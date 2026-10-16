@@ -44,6 +44,29 @@ def machine_of(record):
     return f"{H.hardware_id(m)} {H.label(m)} | {m.get('kernel') or '?'} | driver {m.get('driver') or '?'}"
 
 
+def backend_of(subject):
+    """The accelerator backend an engine reported, or "unstated".
+
+    Read from the devices it said it detected: the types of the available ones other than the
+    CPU, lower case, joined with "+"; "cpu" when it detected none. An engine that was not asked,
+    or does not answer, is "unstated" - never "cpu", which is a claim about the machine.
+    """
+    said = (subject or {}).get("devices")
+    if not said or not isinstance(said.get("devices"), list):
+        return "unstated"
+    kinds = sorted({str(d.get("type")).lower() for d in said["devices"]
+                    if d.get("status") == "available" and str(d.get("type")).lower() != "cpu"})
+    return "+".join(kinds) or "cpu"
+
+
+def loken_backend(record):
+    """The backend of the record's loken subject, whatever its label's case."""
+    for name, subject in (record.get("subjects") or {}).items():
+        if name.lower().startswith("loken"):
+            return backend_of(subject)
+    return "unstated"
+
+
 def backends_of(record):
     subjects = record.get("subjects")
     if not subjects:
@@ -54,7 +77,7 @@ def backends_of(record):
         # A commit where one is offered, a version otherwise, and the name alone when the
         # server answered nothing: three different facts, never collapsed.
         stamp = said.get("commit") or said.get("version") or "unstated"
-        parts.append(f"{name}@{stamp}")
+        parts.append(f"{name}@{stamp} [{backend_of(subjects[name])}]")
     return ", ".join(parts)
 
 
