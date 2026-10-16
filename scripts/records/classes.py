@@ -8,7 +8,7 @@ two rows only ever meet when what produced them agrees.
 A class is the tuple a comparison is honest within:
 
     schema major, protocol profile, the flags the profile declares significant,
-    the machine, and the backend each engine answered on
+    the hardware, and the backend each engine answered on
 
 Anything the record does not state is `unknown`, and unknown is a class of its own rather
 than a wildcard: an archived run whose machine was never recorded cannot quietly join a run
@@ -17,6 +17,9 @@ whose machine is known, because the difference between them is exactly what is u
     classes.py <record.json> [more.json ...]
 """
 import argparse, json, pathlib, sys
+
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+import hardware as H
 
 SCHEMA_NAME = "assay"
 
@@ -38,8 +41,7 @@ def machine_of(record):
     m = record.get("machine")
     if not m:
         return "unknown machine"
-    cards = ",".join(sorted(g.get("uuid") or g.get("name") or "?" for g in m.get("gpus", [])))
-    return f"{m.get('cpu') or '?'} | {m.get('kernel') or '?'} | driver {m.get('driver') or '?'} | {cards or 'no card'}"
+    return f"{H.hardware_id(m)} {H.label(m)} | {m.get('kernel') or '?'} | driver {m.get('driver') or '?'}"
 
 
 def backends_of(record):
