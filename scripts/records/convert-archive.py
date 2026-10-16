@@ -11,10 +11,32 @@ So every field this cannot fill is written as null, never as a default, and the 
 absence of the whole block would have meant "this tool is old", which is a different fact.
 
     convert-archive.py <report.json> [more.json ...] --into <directory>
+        [--attest-machine <reference.json> [--attest-host]]
+
+A person who knows which machine took an archive can say so. `--attest-machine` copies the
+cards, processor and memory of a reference record, leaves driver, kernel and OS null (the
+reference's are not the archive's), and marks the block `attested` so nobody reads it as
+measured. `--attest-host` adds this machine's host_id. The attestation fills only what is
+absent: a record that already carries a machine keeps it.
 """
-import argparse, json, pathlib, sys
+import argparse, hashlib, json, pathlib, sys
+
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+import hardware as H
 
 SCHEMA = "assay/2"
+ATTEST_FIELDS = ("cpu", "threads", "ram_gib", "gpus")
+
+
+def attested(reference: dict, host: bool, source: pathlib.Path) -> dict:
+    ref = reference["machine"]
+    m = {k: ref[k] for k in ATTEST_FIELDS if k in ref}
+    m["gpus"] = [{k: v for k, v in g.items() if k != "uuid"} for g in m.get("gpus", [])]
+    m["hardware_id"] = H.hardware_id(m)
+    if host:
+        m["host_id"] = H.host_id_here()
+    m["attested"] = f"by the operator, from {source.name}; driver, kernel and OS unknown"
+    return m
 
 
 def convert(old: dict, source: pathlib.Path) -> dict:
@@ -51,7 +73,10 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("reports", nargs="+", type=pathlib.Path)
     ap.add_argument("--into", required=True, type=pathlib.Path)
+    ap.add_argument("--attest-machine", type=pathlib.Path)
+    ap.add_argument("--attest-host", action="store_true")
     args = ap.parse_args()
+    reference = json.loads(args.attest_machine.read_text()) if args.attest_machine else None
     args.into.mkdir(parents=True, exist_ok=True)
     done = 0
     for path in args.reports:
@@ -61,10 +86,19 @@ def main() -> int:
             print(f"  skipped {path.name}: {e}", file=sys.stderr)
             continue
         if old.get("schema") == SCHEMA:
-            print(f"  already current: {path.name}")
-            continue
+            wants_host = args.attest_host and not (old.get("machine") or {}).get("host_id")
+            if reference is None or (old.get("machine") and not wants_host):
+                print(f"  already current: {path.name}")
+                continue
+            new = old
+            if old.get("machine"):
+                new["machine"]["host_id"] = H.host_id_here()
+        else:
+            new = convert(old, path)
+        if reference is not None and not new.get("machine"):
+            new["machine"] = attested(reference, args.attest_host, args.attest_machine)
         out = args.into / path.name
-        out.write_text(json.dumps(convert(old, path), indent=2) + "\n")
+        out.write_text(json.dumps(new, indent=2) + "\n")
         done += 1
     print(f"converted {done} report(s) into {args.into}")
     return 0
