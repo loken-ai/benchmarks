@@ -39,6 +39,23 @@ def hardware_id(machine):
                       _s(machine.get("threads")), _s(machine.get("ram_gib")))
 
 
+ATTEST_FIELDS = ("cpu", "threads", "ram_gib", "gpus")
+
+
+def attested(reference, host, source):
+    """A machine block an operator vouches for, built from a reference record's cards,
+    processor and memory. Driver, kernel and OS stay absent: the reference's are not the
+    archive's."""
+    ref = reference["machine"]
+    m = {k: ref[k] for k in ATTEST_FIELDS if k in ref}
+    m["gpus"] = [{k: v for k, v in g.items() if k != "uuid"} for g in m.get("gpus", [])]
+    m["hardware_id"] = hardware_id(m)
+    if host:
+        m["host_id"] = host_id_here()
+    m["attested"] = f"by the operator, from {source}; driver, kernel and OS unknown"
+    return m
+
+
 def host_id_here():
     """This machine's host_id, by the runner's rule (src/provenance.rs)."""
     return short_hash("assay/host", pathlib.Path("/etc/machine-id").read_text().splitlines()[0].strip())
