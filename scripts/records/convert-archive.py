@@ -11,7 +11,10 @@ So every field this cannot fill is written as null, never as a default, and the 
 absence of the whole block would have meant "this tool is old", which is a different fact.
 
     convert-archive.py <report.json> [more.json ...] --into <directory>
-        [--attest-machine <reference.json> [--attest-host]]
+        [--attest-machine <reference.json> [--attest-host]] [--archive-label NAME]
+
+`--archive-label` marks every record as taken from a named archive (a folder of superseded or
+differently-protocoled runs). The store keeps them; the pages do not table them.
 
 A person who knows which machine took an archive can say so. `--attest-machine` copies the
 cards, processor and memory of a reference record, leaves driver, kernel and OS null (the
@@ -40,6 +43,9 @@ def convert(old: dict, source: pathlib.Path) -> dict:
         # name rather than promoted into a field that implies more than it holds.
         "subjects": None,
         "legacy_engine_build": old.get("engine_build"),
+        # What an old report said about the engines it measured, kept under the names it used.
+        "ollama_version": old.get("ollama_version"),
+        "vllm_version": old.get("vllm_version"),
         "protocol": {
             "iterations": cfg.get("iterations"),
             "warmup": cfg.get("warmup"),
@@ -63,6 +69,7 @@ def main() -> int:
     ap.add_argument("--into", required=True, type=pathlib.Path)
     ap.add_argument("--attest-machine", type=pathlib.Path)
     ap.add_argument("--attest-host", action="store_true")
+    ap.add_argument("--archive-label")
     args = ap.parse_args()
     reference = json.loads(args.attest_machine.read_text()) if args.attest_machine else None
     args.into.mkdir(parents=True, exist_ok=True)
@@ -85,6 +92,8 @@ def main() -> int:
             new = convert(old, path)
         if reference is not None and not new.get("machine"):
             new["machine"] = H.attested(reference, args.attest_host, args.attest_machine.name)
+        if args.archive_label:
+            new["archive"] = args.archive_label
         out = args.into / path.name
         out.write_text(json.dumps(new, indent=2) + "\n")
         done += 1
