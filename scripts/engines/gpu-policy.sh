@@ -65,9 +65,11 @@ gpu_env_for() {
     esac
     n=$(_gpu_count "$spec")
     if [ "$GPU_VENDOR" = amd ]; then
-        # No NVIDIA card; the AMD cards by ROCm's own numbering, every one for "all".
-        printf 'CUDA_VISIBLE_DEVICES=-1'
-        [ "$spec" != all ] && printf ' ROCR_VISIBLE_DEVICES=%s' "$spec"
+        # No NVIDIA card, and the AMD cards by ROCm's own numbering. HIP also reads
+        # CUDA_VISIBLE_DEVICES unless HIP_VISIBLE_DEVICES is set, so both are named.
+        local amd="$spec"
+        [ "$spec" = all ] && amd=$(seq -s, 0 $((n - 1)))
+        printf 'CUDA_VISIBLE_DEVICES=-1 HIP_VISIBLE_DEVICES=%s' "$amd"
     else
         uuids=$(_gpu_uuids "$spec") || return 0      # no NVML: leave the environment alone
         printf 'CUDA_DEVICE_ORDER=PCI_BUS_ID CUDA_VISIBLE_DEVICES=%s' "$uuids"
