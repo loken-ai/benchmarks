@@ -18,6 +18,9 @@
 # indices a caller writes mean the same silicon in all three processes.
 
 GPUS="${GPUS:-all}"
+# Whose cards the run measures: nvidia (CUDA, NVML) or amd (ROCm). On a machine with both, the
+# other vendor's cards are hidden from every engine, so a cell is one vendor's silicon.
+GPU_VENDOR="${GPU_VENDOR:-nvidia}"
 OLLAMA_GPUS="${OLLAMA_GPUS:-$GPUS}"
 LOKEN_GPUS="${LOKEN_GPUS:-$GPUS}"
 VLLM_GPUS="${VLLM_GPUS:-$GPUS}"
@@ -37,10 +40,20 @@ _gpu_uuids() {
     printf '%s' "$out"
 }
 
+# _amd_cards - one line per AMD display card, in the order ROCm numbers them (PCI order).
+_amd_cards() {
+    local d
+    for d in /sys/bus/pci/devices/*; do
+        [ "$(cat "$d/vendor" 2>/dev/null)" = 0x1002 ] || continue
+        case "$(cat "$d/class" 2>/dev/null)" in 0x0300*|0x0380*) echo "${d##*/}" ;; esac
+    done
+}
+
 # _gpu_count <spec> - how many cards that spec exposes.
 _gpu_count() {
-    if [ "$1" = all ]; then nvidia-smi --query-gpu=uuid --format=csv,noheader 2>/dev/null | grep -c .
-    else echo "$1" | tr ',' '\n' | grep -c .; fi
+    if [ "$1" != all ]; then echo "$1" | tr ',' '\n' | grep -c .
+    elif [ "$GPU_VENDOR" = amd ]; then _amd_cards | grep -c .
+    else nvidia-smi --query-gpu=uuid --format=csv,noheader 2>/dev/null | grep -c .; fi
 }
 
 # gpu_env_for <ollama|loken|vllm> - the env prefix for that engine's launch.
@@ -50,9 +63,15 @@ gpu_env_for() {
         ollama) spec="$OLLAMA_GPUS" ;; loken) spec="$LOKEN_GPUS" ;; vllm) spec="$VLLM_GPUS" ;;
         *) echo "gpu_env_for: unknown engine '$1'" >&2; return 1 ;;
     esac
-    uuids=$(_gpu_uuids "$spec") || return 0          # no NVML: leave the environment alone
     n=$(_gpu_count "$spec")
-    printf 'CUDA_DEVICE_ORDER=PCI_BUS_ID CUDA_VISIBLE_DEVICES=%s' "$uuids"
+    if [ "$GPU_VENDOR" = amd ]; then
+        # No NVIDIA card; the AMD cards by ROCm's own numbering, every one for "all".
+        printf 'CUDA_VISIBLE_DEVICES=-1'
+        [ "$spec" != all ] && printf ' ROCR_VISIBLE_DEVICES=%s' "$spec"
+    else
+        uuids=$(_gpu_uuids "$spec") || return 0      # no NVML: leave the environment alone
+        printf 'CUDA_DEVICE_ORDER=PCI_BUS_ID CUDA_VISIBLE_DEVICES=%s' "$uuids"
+    fi
     # Exposing several cards is not the same as using them: ollama's scheduler will settle on
     # one unless told to spread. Without this, "ollama sees two cards" and "ollama uses two
     # cards" differ, and the second is what the comparison is about.

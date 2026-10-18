@@ -127,7 +127,13 @@ if [ "$BENCH_MODE" = gpu ]; then
     # reports ~0.91 of the nameplate as available. Judge the fit against that, not the total.
     _u=$(( _mb * 1024 * 1024 * 91 / 100 ))
     [ "$_u" -gt "$_one_card" ] && _one_card=$_u
-  done < <(nvidia-smi --query-gpu=memory.total --format=csv,noheader,nounits 2>/dev/null)
+  done < <(if [ "$GPU_VENDOR" = amd ]; then
+             for _c in $(_amd_cards); do
+               echo $(( $(cat "/sys/bus/pci/devices/$_c/mem_info_vram_total" 2>/dev/null || echo 0) / 1048576 ))
+             done
+           else
+             nvidia-smi --query-gpu=memory.total --format=csv,noheader,nounits 2>/dev/null
+           fi)
 fi
 _blob=$(blob_bytes_of "${_probe_model:-}")
 if [ "$BENCH_MODE" = gpu ] && [ -z "$GPU_PIN" ] && [ "$_one_card" -gt 0 ] && [ "$_blob" -gt "$_one_card" ]; then
