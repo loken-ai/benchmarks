@@ -21,7 +21,7 @@ import argparse, json, pathlib, sys
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import hardware as H
 
-SCHEMA_NAME = "assay"
+SCHEMA_NAMES = ("loken", "assay")  # assay: the name of records written before the schema had its own
 
 # The flags a comparison is only honest within. A run that asserts none of them is not
 # thereby equal to one that asserts them - it is a run that did not say.
@@ -32,7 +32,7 @@ def major(schema):
     if not schema or "/" not in schema:
         return None
     name, _, version = schema.partition("/")
-    if name != SCHEMA_NAME:
+    if name not in SCHEMA_NAMES:
         return None
     return version.split(".")[0]
 

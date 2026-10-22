@@ -43,7 +43,7 @@
 #                VLLM_SERVE="hf:<repo> --name <tag>"   to include vLLM in a GPU run
 #   the cards    GPUS=all|0|0,1       and per engine OLLAMA_GPUS / LOKEN_GPUS / VLLM_GPUS
 #                GPU_PIN=<n>          older spelling of GPUS=<n>
-#   binaries     ASSAY   OLLAMA_BIN   LOKEN_BIN   VLLM_HF_LAUNCHER   VLLM_TAG_LAUNCHER
+#   binaries     LOKPROF   OLLAMA_BIN   LOKEN_BIN   VLLM_HF_LAUNCHER   VLLM_TAG_LAUNCHER
 #   ports        OLLAMA_PORT   LOKEN_PORT   VLLM_PORT
 #   machine      PKG_TEMP_SENSOR=<sysfs temp file>   COOL_C=<C>   LOGDIR=<dir>
 #
@@ -70,7 +70,7 @@ VLLM_TAG_LAUNCHER="${VLLM_TAG_LAUNCHER:-$HERE/vllm-serve-ollama.sh}"
 VLLM_PORT="${VLLM_PORT:-8000}"
 
 # -- THE RUN ------------------------------------------------------------------------------
-ASSAY="${ASSAY:-$(command -v assay || echo target/release/assay)}"   # the tool being driven
+LOKPROF="${LOKPROF:-$(command -v lokprof || echo target/release/lokprof)}"   # the tool being driven
 MODELS_DIR="${MODELS_DIR:-$HOME/.ollama/models}"                     # ollama's blob store
 BENCH_MODE="${BENCH_MODE:-cpu}"                                      # cpu | gpu
 OUT="${OUT:-results/fairbench.json}"
@@ -399,7 +399,7 @@ for _att in 1 2 3; do
     [ "$cpubuf" -gt 2000 ] && echo "  ⚠ ollama STILL CPU-fell after 3 tries (CPU buffer ${cpubuf} MiB) - model is VRAM-marginal on this box; recording ollama's CPU-fallback as its real default behaviour" >&2
   fi
   cool_wait
-  "$ASSAY" --ollama http://127.0.0.1:$OLLAMA_PORT "${NUMGPU[@]}" "${COMMON[@]}" "$@" -o "$TMP/ollama.json" || true
+  "$LOKPROF" --ollama http://127.0.0.1:$OLLAMA_PORT "${NUMGPU[@]}" "${COMMON[@]}" "$@" -o "$TMP/ollama.json" || true
   break
 done
 fi
@@ -411,7 +411,7 @@ kill_all
 echo "▶ LOKEN${LOKEN_EXTRA:+ ${LOKEN_EXTRA[*]}} ..."
 engine_start loken || true
 cool_wait
-"$ASSAY" --loken http://127.0.0.1:$LOKEN_PORT "${NUMGPU[@]}" "${COMMON[@]}" "$@" -o "$TMP/loken.json" || true
+"$LOKPROF" --loken http://127.0.0.1:$LOKEN_PORT "${NUMGPU[@]}" "${COMMON[@]}" "$@" -o "$TMP/loken.json" || true
 if [ -f "$TMP/loken.json" ]; then PARTS+=("$TMP/loken.json"); fi
 fi
 
@@ -431,7 +431,7 @@ if _want vllm && [ "$BENCH_MODE" = gpu ] && [ -n "${VLLM_SERVE:-}" ]; then
   fi
   echo "  waiting for vLLM to finish loading weights (minutes)..."
   engine_start vllm || true
-  "$ASSAY" --vllm "$VLLM_PORT" "${COMMON[@]}" "$@" -o "$TMP/vllm.json" || true
+  "$LOKPROF" --vllm "$VLLM_PORT" "${COMMON[@]}" "$@" -o "$TMP/vllm.json" || true
   if [ -f "$TMP/vllm.json" ]; then PARTS+=("$TMP/vllm.json"); fi
 fi
 

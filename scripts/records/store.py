@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """The store: every run kept once, named by what it contains, never overwritten.
 
-A run is one record in the assay schema. It is filed under the hash of its own content, so a
+A run is one record in the lokprof schema. It is filed under the hash of its own content, so a
 rerun is a new file, the same file filed twice is one, and a name can never point at a
 different measurement than it did yesterday. The store is data with its own lifecycle and sits
 outside the code repositories.

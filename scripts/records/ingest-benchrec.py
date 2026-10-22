@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Bring replayable measurement records into the assay schema, keeping their inputs.
+"""Bring replayable measurement records into the lokprof schema, keeping their inputs.
 
 A record directory holds request.json (the exact body, prompt included), meta.json (model tag
 and blob digest, the server's version and commit, binary sha256, config text, date) and
 results.json (per run: prompt tokens, prefill and decode rates, wall time). It is one engine
-measured on one prompt, repeated. This writes it as a run of the assay schema with one cell and
+measured on one prompt, repeated. This writes it as a run of the lokprof schema with one cell and
 one iteration per run, and carries the inputs under `replay` so the run can be played again on
 another binary.
 
@@ -20,7 +20,7 @@ import argparse, json, pathlib, sys
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import hardware as H
 
-SCHEMA = "assay/2"
+SCHEMA = "loken/2"
 
 
 def convert(directory: pathlib.Path, reference: dict, host: bool) -> dict:

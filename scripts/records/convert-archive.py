@@ -27,7 +27,7 @@ import argparse, json, pathlib, sys
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import hardware as H
 
-SCHEMA = "assay/2"
+SCHEMA = "loken/2"
 
 
 def convert(old: dict, source: pathlib.Path) -> dict:
@@ -80,7 +80,7 @@ def main() -> int:
         except Exception as e:  # a truncated archive is skipped, and said
             print(f"  skipped {path.name}: {e}", file=sys.stderr)
             continue
-        if old.get("schema") == SCHEMA:
+        if old.get("schema") in (SCHEMA, "assay/2"):
             wants_host = args.attest_host and not (old.get("machine") or {}).get("host_id")
             if reference is None or (old.get("machine") and not wants_host):
                 print(f"  already current: {path.name}")

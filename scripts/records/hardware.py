@@ -35,7 +35,7 @@ def hardware_id(machine):
         return machine["hardware_id"]
     cards = sorted(f"{_s(g.get('name'))}/{_s(g.get('vram_mib'))}/{_s(g.get('power_cap_w'))}"
                    for g in machine.get("gpus", []))
-    return short_hash("assay/hardware", ",".join(cards), _s(machine.get("cpu")),
+    return short_hash("loken/hardware", ",".join(cards), _s(machine.get("cpu")),
                       _s(machine.get("threads")), _s(machine.get("ram_gib")))
 
 
@@ -58,7 +58,7 @@ def attested(reference, host, source):
 
 def host_id_here():
     """This machine's host_id, by the runner's rule (src/provenance.rs)."""
-    return short_hash("assay/host", pathlib.Path("/etc/machine-id").read_text().splitlines()[0].strip())
+    return short_hash("loken/host", pathlib.Path("/etc/machine-id").read_text().splitlines()[0].strip())
 
 
 def label(machine):
@@ -75,7 +75,7 @@ def label(machine):
 def self_check():
     card = lambda cap: {"name": "Card", "vram_mib": 16000, "power_cap_w": cap}
     got = hardware_id({"cpu": "Cpu", "threads": 8, "ram_gib": 32, "gpus": [card(300), card(180)]})
-    assert got == "e6edf7e117a392d7", got
+    assert got == "9e3586b770949eea", got
 
 
 def main():
