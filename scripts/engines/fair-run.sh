@@ -453,7 +453,9 @@ jq -s '
       {
         schema: .[0].schema,
         timestamp: .[0].timestamp,
-        machine: .[0].machine,
+        # The machine of the part whose server listed its devices, which is the description by
+        # the cards that were measured; the first part when no server did.
+        machine: ((map(select([.subjects[]?.devices | select(. != null)] | length > 0)) | first | .machine) // .[0].machine),
         protocol: .[0].protocol,
         subjects: (map(.subjects // {}) | add),
         # Stamped after the fact by campaign.sh, and read by bench_row.py to warn that a
