@@ -47,15 +47,16 @@ def machine_of(record):
 def backend_of(subject):
     """The accelerator backend an engine reported, or "unstated".
 
-    Read from the devices it said it detected: the types of the available ones other than the
-    CPU, lower case, joined with "+"; "cpu" when it detected none. An engine that was not asked,
+    Read from the devices it said it detected: the backends (else the types) of the available
+    ones other than the CPU, lower case, joined with "+"; "cpu" when it detected none. An engine that was not asked,
     or does not answer, is "unstated" - never "cpu", which is a claim about the machine.
     """
     said = (subject or {}).get("devices")
     if not said or not isinstance(said.get("devices"), list):
         return "unstated"
-    kinds = sorted({str(d.get("type")).lower() for d in said["devices"]
-                    if d.get("status") == "available" and str(d.get("type")).lower() != "cpu"})
+    kinds = sorted({str(d.get("backend") or d.get("type")).lower() for d in said["devices"]
+                    if d.get("status") == "available"
+                    and str(d.get("backend") or d.get("type")).lower() != "cpu"})
     return "+".join(kinds) or "cpu"
 
 
