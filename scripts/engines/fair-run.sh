@@ -465,6 +465,20 @@ echo "▶ LOKEN${LOKEN_EXTRA:+ ${LOKEN_EXTRA[*]}} ..."
 engine_start loken || true
 cool_wait
 "$LOKPROF" --loken http://127.0.0.1:$LOKEN_PORT "${NUMGPU[@]}" "${COMMON[@]}" "$@" -o "$TMP/loken.json" || true
+# A backend run records loken only if the model ran on that backend alone. loken places layers
+# the backend cannot hold on the host, and a host rate under a Vulkan or OpenCL name would be
+# read as the backend's: the cell then carries the peer alone, and says why.
+if [ -f "$TMP/loken.json" ] && [ "$BACKEND" != native ]; then
+  _placed=$(sed 's/\x1b\[[0-9;]*m//g' "$LOGDIR/loken.log" 2>/dev/null | grep -oE "loaded: layers [^ ]+" | tail -1)
+  case "$_placed" in
+    *"$BACKEND("*) case "$_placed" in *CPU*) _placed="" ;; esac ;;
+    *) _placed="" ;;
+  esac
+  if [ -z "$_placed" ]; then
+    echo "  ⚠ loken did not run wholly on $BACKEND (placement: $(sed 's/\x1b\[[0-9;]*m//g' "$LOGDIR/loken.log" 2>/dev/null | grep -oE "loaded: layers [^ ]+" | tail -1)) - not recorded" >&2
+    rm -f "$TMP/loken.json"
+  fi
+fi
 if [ -f "$TMP/loken.json" ]; then PARTS+=("$TMP/loken.json"); fi
 fi
 
