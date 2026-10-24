@@ -322,6 +322,53 @@ E_CWD[loken]="${LOKEN_CWD:-$(cd "$(dirname "$LOKEN_ABS")/../.." && pwd)}"
 }
 E_PROBE[loken]="http://127.0.0.1:$LOKEN_PORT/api/version"; E_WAIT[loken]=60
 
+# -- BACKEND: the runtime a card is measured through ----------------------------------------------
+#   native (default)  the vendor's own runtime: CUDA on an NVIDIA card, ROCm on an AMD card
+#   vulkan            loken on the card's Vulkan device, ollama on the same device through its Vulkan
+#                     backend, the vendor runtimes hidden from both so neither can fall back to them
+#   opencl            loken on the OpenCL GPU; no reference engine runs a language model there
+# VULKAN_CARD names the card by a part of its name (default: the GPU_VENDOR's own).
+BACKEND="${BACKEND:-native}"
+case "$BACKEND" in
+  native) ;;
+  vulkan|opencl)
+    E_ENV[loken]="CUDA_VISIBLE_DEVICES=-1 HIP_VISIBLE_DEVICES=-1"
+    if [ "$BACKEND" = opencl ]; then
+      _loken_alone=1
+      echo "▶ backend opencl: loken alone, no reference engine runs this backend" >&2
+    else
+      case "$GPU_VENDOR" in amd) _card_default=AMD ;; intel) _card_default=Intel ;; *) _card_default=NVIDIA ;; esac
+      VULKAN_CARD="${VULKAN_CARD:-$_card_default}"
+      command -v vulkaninfo >/dev/null 2>&1 || { echo "backend vulkan needs vulkaninfo to find the card" >&2; exit 2; }
+      # The card's place among the Vulkan GPUs, in the order the loader lists them (the order
+      # both loken and ollama's Vulkan backend number them), the software renderer left out.
+      _vk_index=$(vulkaninfo --summary 2>/dev/null | awk -v want="$VULKAN_CARD" '
+        /deviceType/ { cpu = ($0 ~ /CPU/) }
+        /deviceName/ { if (!cpu) { n++; if (tolower($0) ~ tolower(want) && !found) { print n - 1; found = 1 } } }')
+      [ -n "$_vk_index" ] || { echo "no Vulkan GPU matches '$VULKAN_CARD'" >&2; exit 2; }
+      E_ENV[ollama]="OLLAMA_VULKAN=1 GGML_VK_VISIBLE_DEVICES=$_vk_index CUDA_VISIBLE_DEVICES=-1 HIP_VISIBLE_DEVICES=-1 OLLAMA_MODELS=$MODELS_DIR/"
+      # An ollama without the Vulkan backend would measure the host and call it Vulkan.
+      if [ ! -d "$(dirname "$(dirname "$OLLAMA_BIN")")/lib/ollama/vulkan" ]; then
+        echo "▶ this ollama has no Vulkan backend: loken is measured alone" >&2
+        _loken_alone=1
+      fi
+      # loken reads the card it may use from its configuration; the tree's file stays as it is.
+      _vk_cwd="$TMP/loken-vulkan"; mkdir -p "$_vk_cwd"
+      python3 - "${E_CWD[loken]}/config.toml" "$_vk_cwd/config.toml" "$VULKAN_CARD" <<'PY'
+import re, sys
+src, dst, card = sys.argv[1:4]
+text = open(src).read()
+text = re.sub(r"(?m)^vulkan_devices\s*=.*\n", "", text)
+line = 'vulkan_devices = ["%s"]\n' % card
+text = text.replace("[inference]\n", "[inference]\n" + line, 1) if "[inference]\n" in text else line + text
+open(dst, "w").write(text)
+PY
+      E_CWD[loken]="$_vk_cwd"
+    fi
+    ;;
+  *) echo "BACKEND must be native, vulkan or opencl, not '$BACKEND'" >&2; exit 2 ;;
+esac
+
 # vLLM is launched through a wrapper because its own flags differ per source (an HF repo or a
 # converted ollama tag). The wrapper is data here like the others, not a special case below.
 E_BIN[vllm]="$VLLM_HF_LAUNCHER"
@@ -368,6 +415,12 @@ if [ -z "${ENGINES:-}" ]; then
     ENGINES="ollama loken"
     [ "$BENCH_MODE" = gpu ] && [ -n "${VLLM_SERVE:-}" ] && ENGINES="$ENGINES vllm"
   fi
+fi
+# Neither Vulkan nor OpenCL is a backend vLLM serves on; a peer that cannot run the backend is
+# left out, never run on another one.
+if [ "$BACKEND" != native ]; then
+  ENGINES=$(echo " $ENGINES " | sed 's/ vllm / /; s/^ //; s/ $//')
+  if [ -n "${_loken_alone:-}" ]; then ENGINES="loken"; fi
 fi
 _want() { case " $ENGINES " in *" $1 "*) return 0 ;; *) return 1 ;; esac; }
 echo "▶ engines: $ENGINES"
