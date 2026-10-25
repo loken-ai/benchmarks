@@ -22,7 +22,7 @@
 #     --tokenizer <hf-repo> if startup hangs or errors on the tokenizer.
 set -euo pipefail
 
-VENV="${VLLM_VENV:-$HOME/vllm}"
+VENV="${VLLM_VENV:?set VLLM_VENV to a vLLM environment}"
 OLLAMA_MODELS="${OLLAMA_MODELS:-$HOME/.ollama/models}"
 PORT=8000
 GPU=1
@@ -112,7 +112,7 @@ case "$ARCH" in
   qwen3|qwen2|llama|gemma|gemma2|gemma3|mistral|phi3|stablelm|starcoder2)
     : ;;  # known vLLM-GGUF-loadable dense archs
   *)
-    echo "  warning:  GGUF arch '$ARCH' may not load on vLLM's experimental GGUF path" >&2
+    echo "  ⚠️  GGUF arch '$ARCH' may not load on vLLM's experimental GGUF path" >&2
     echo "      (MoE/hybrid archs like gpt-oss/nemotron/lfm2/qwen3.5 are unsupported)." >&2 ;;
 esac
 
