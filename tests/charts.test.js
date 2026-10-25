@@ -12,11 +12,10 @@ function row(over) {
   }, over);
 }
 
-test("the family of an engine is its first word, and a drafter arm is its own", () => {
+test("the family of an engine is its first word", () => {
   assert.strictEqual(C.family("Ollama 0.35.1"), "Ollama");
   assert.strictEqual(C.family("vLLM 0.32.0"), "vLLM");
   assert.strictEqual(C.family("loken"), "loken");
-  assert.strictEqual(C.family("loken + llama3.2:1b"), "loken+");
 });
 
 test("a metric reads its cold or warm half, or its single figure", () => {

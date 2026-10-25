@@ -9,7 +9,7 @@
     ["Run", "run"], ["Status", "status"]];
   const NUM = new Set(["ctx", "prefill", "ttft", "decode", "tokens", "e2e", "jreq", "jtok", "dprefill", "dttft", "ddecode", "denergy"]);
   const SHOWN = 500;
-  const family = e => /^loken \+ /.test(e) ? "loken+" : e.split(" ")[0];
+  const family = e => e.split(" ")[0];
   const $ = id => document.getElementById(id);
   const el = (tag, text, cls) => { const n = document.createElement(tag); n.textContent = text; if (cls) n.className = cls; return n; };
   let rows = [], sortKey = null, sortDir = 1, all = false;

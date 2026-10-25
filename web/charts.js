@@ -12,13 +12,12 @@
     jtok: { label: "Joules per token", half: false },
     jreq: { label: "Joules per request", half: false },
   };
-  const COLORS = { loken: "#1b873f", Ollama: "#c77700", vLLM: "#7b3ac2", "loken+": "#0b7285" };
+  const COLORS = { loken: "#1b873f", Ollama: "#c77700", vLLM: "#7b3ac2" };
   const FALLBACK = ["#c2255c", "#1971c2", "#5c940d", "#e8590c"];
   const DASHES = ["", "6 3", "2 3", "8 3 2 3"];
 
-  // The engine family of a row: loken, Ollama or vLLM; "loken+" for loken with a drafter named.
+  // The engine family of a row: loken, Ollama or vLLM.
   function family(engine) {
-    if (/^loken \+ /.test(engine)) return "loken+";
     return engine.split(" ")[0];
   }
 
