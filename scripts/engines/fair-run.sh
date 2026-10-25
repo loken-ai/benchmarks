@@ -267,6 +267,18 @@ kill_all() {
 # wait_url <url> [seconds] [must-contain] - an engine answering is not an engine ready:
 # vLLM serves /v1/models while the weights are still loading, so the third argument lets a
 # probe demand a substring rather than a status code.
+# The reason a peer engine did not start, in words that name no path and no machine.
+failure_reason() { # failure_reason <engine>
+  local log="$LOGDIR/$1.log"
+  if grep -qiE "gated repo|401 Client Error" "$log" 2>/dev/null; then
+    echo "the checkpoint is a gated repository on Hugging Face and the engine has no access to it"
+  elif grep -qiE "out of memory|OOM|OutOfMemory|not enough memory" "$log" 2>/dev/null; then
+    echo "the weights do not fit the cards the engine was given"
+  else
+    echo "the engine stopped before it answered"
+  fi
+}
+
 wait_url() {
   local url="$1" secs="${2:-60}" want="${3:-}" pidfile="${4:-}" pid
   for _ in $(seq 1 "$secs"); do
@@ -318,7 +330,7 @@ engine_start() {
 
 # -- DERIVED - computed from the above, not settable. Grouped so the top of the file stays
 # the list of what a caller decides, and this stays the list of what follows from it.
-TMP=$(mktemp -d); PARTS=()
+TMP=$(mktemp -d); PARTS=(); FAILED=()
 TMPDIR_LOGS="$TMP/logs"; LOGDIR="${LOGDIR:-$TMPDIR_LOGS}"; mkdir -p "$LOGDIR"
 
 # The three engines, declared once.
@@ -557,4 +569,19 @@ jq -s '
         results: (map(.results) | add),
       }
     end' "${PARTS[@]}" > "$OUT"
+# A peer that did not start is a visible "impossible" cell for the model, never a silent absence.
+if _want ollama && [ ! -f "$TMP/ollama.json" ]; then FAILED+=("Ollama|$(failure_reason ollama)"); fi
+if _want vllm && [ "$BENCH_MODE" = gpu ] && [ -n "${VLLM_SERVE:-}" ] && [ ! -f "$TMP/vllm.json" ]; then
+  FAILED+=("vLLM|$(failure_reason vllm)")
+fi
+for failed in "${FAILED[@]}"; do
+  [ -s "$OUT" ] || break
+  jq --arg target "${failed%%|*}" --arg reason "${failed#*|}" '
+    (.results[0] // {}) as $c
+    | .results += [{target: $target, url: "", model: $c.model, num_ctx: $c.num_ctx, prompt: $c.prompt,
+        prompt_chars: ($c.prompt_chars // 0), stats: {}, iterations: [], iteration_errors: [],
+        coherence_pass: null, first_response_preview: "", load_time_ms: null, model_fingerprint: null,
+        load_error: $reason}]' "$OUT" > "$OUT.tmp" && mv "$OUT.tmp" "$OUT"
+  echo ">> ${failed%%|*} could not run this model: ${failed#*|}"
+done
 echo ">> merged ${#PARTS[@]} engine(s) -> $OUT"
