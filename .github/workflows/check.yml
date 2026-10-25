@@ -30,6 +30,13 @@ jobs:
       - name: Test
         run: python3 -m unittest discover tests
 
+  scripts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      # The protocol lives in the scripts; this is the mechanical check they get.
+      - run: shellcheck -S warning scripts/bench scripts/engines/*.sh
+
   pages:
     if: github.event_name == 'push' && !github.event.repository.private
     needs: records

@@ -355,8 +355,9 @@ provision() {
     export OLLAMA_BIN="$obin"
     # The versions each engine will be measured with. Stamped into every result file so the report
     # reads the version from the measurement, not from whatever is installed when it is generated.
-    export OLLAMA_VER="$("$OLLAMA_BIN" --version 2>&1 | grep -oiE '[0-9]+\.[0-9]+\.[0-9]+' | head -1)"
-    export VLLM_VER="$("$venv/bin/python" -c 'import vllm;print(vllm.__version__)' 2>/dev/null | tail -1)"
+    OLLAMA_VER="$("$OLLAMA_BIN" --version 2>&1 | grep -oiE '[0-9]+\.[0-9]+\.[0-9]+' | head -1)"
+    VLLM_VER="$("$venv/bin/python" -c 'import vllm;print(vllm.__version__)' 2>/dev/null | tail -1)"
+    export OLLAMA_VER VLLM_VER
     echo "engines (bench compartment):"
     echo "  ollama:  ${OLLAMA_VER:-?}  [$OLLAMA_BIN]"
     echo "  vLLM:    ${VLLM_VER:-?}  [$venv]"
@@ -425,6 +426,11 @@ PY
 
     local m mod fmt engines amod vserve err ctx st pr dev out tag mode psuf suffix asrargs rc declared
     local first=1 missing=0
+    # The other nodes of a cluster, if bench.toml names any, as --node arguments.
+    local node_args=() node
+    while read -r node; do
+        [ -n "$node" ] && node_args+=(--node "$node")
+    done < <(cluster_nodes)
     for dev in $devices; do for ctx in $ctxs; do for pr in $prompts; do for st in $streams; do
         # The CPU sweeps are streamed only.
         [ "$dev" = cpu ] && [ "$st" != 1 ] && continue
@@ -495,7 +501,7 @@ PY
             [ -s "$out.part" ] || { echo "no result for $m"; missing=$((missing + 1)); continue; }
             mv "$out.part" "$out"
             stamp_result "$out" "$stamp"
-            python3 scripts/architecture.py enrich "$out" $(cluster_nodes | sed 's/^/--node /') \
+            python3 scripts/architecture.py enrich "$out" "${node_args[@]}" \
                 || echo "  (the architecture of $m was not added to $out)"
             python3 scripts/add.py "$out" >/dev/null 2>&1 || echo "  (the record of $m was not filed: run scripts/add.py $out)"
             # The plot and the score follow every cell, so a regression shows while the
