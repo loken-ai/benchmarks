@@ -14,7 +14,7 @@ import bench_row as B
 # working directory is.
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 RESULTS = sys.argv[1] if len(sys.argv) > 1 else str(ROOT / "results")
-OUT = sys.argv[2] if len(sys.argv) > 2 else str(ROOT / "docs" / "bench.html")
+OUT = sys.argv[2] if len(sys.argv) > 2 else str(ROOT / "site" / "bench.html")
 
 rows = []
 for p in sorted(glob.glob(os.path.join(RESULTS, "*.json"))):

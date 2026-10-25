@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 # The one entry point for a reproducible loken bench campaign.
 #
-# It owns nothing the store already knows: the model list comes from loken's own catalogue
-# (GET /api/tags), the store paths from loken/config.toml, and the matrix axes from
-# bench/matrix.toml. There is no model list to maintain and no machine path in the repo.
+# It owns nothing the stores already know: the model list comes from loken's own catalogue
+# (GET /api/tags), the store paths from the config.toml loken is started with, and the matrix
+# axes from matrix.toml. The binaries it measures with, a release of loken and a release of
+# lokprof, are named in bench.toml (copy bench.toml.example). There is no model list to maintain
+# and no machine path in the repository.
 #
 # Usage:
 #   bench                 # PLAN: print the cells a campaign would run (no side effects) [default]
@@ -16,14 +18,16 @@
 # compartment and drives the full matrix, which monopolizes the machine. Plan first, run on purpose.
 set -u
 
-HERE="$(cd "$(dirname "$(readlink -f "$0")")" && pwd)"   # loken/scripts
-LOKEN="$(cd "$HERE/.." && pwd)"                           # loken
-CONFIG="$LOKEN/config.toml"
-MATRIX="$LOKEN/bench/matrix.toml"
+if [ "${1:-}" = -h ] || [ "${1:-}" = --help ]; then sed -n '2,18p' "$0" | sed 's/^# \{0,1\}//'; exit 0; fi
+
+HERE="$(cd "$(dirname "$(readlink -f "$0")")" && pwd)"   # scripts
+ROOT="$(cd "$HERE/.." && pwd)"                            # this repository
+SETTINGS="$ROOT/bench.toml"
+MATRIX="$ROOT/matrix.toml"
 # The golden recording an ASR cell transcribes and the transcript its word error rate is read
 # against. Either can be pointed elsewhere for a one-off run.
-ASR_AUDIO="${ASR_AUDIO:-$LOKEN/bench/asr/jfk.wav}"
-ASR_REFERENCE="${ASR_REFERENCE:-$LOKEN/bench/asr/jfk.txt}"
+ASR_AUDIO="${ASR_AUDIO:-$ROOT/fixtures/asr/jfk.wav}"
+ASR_REFERENCE="${ASR_REFERENCE:-$ROOT/fixtures/asr/jfk.txt}"
 # Whose cards a campaign measures: NVIDIA when nvidia-smi lists one, else AMD when the PCI bus
 # holds one. GPU_VENDOR picks on a machine with both; the other vendor's cards are hidden.
 if [ -z "${GPU_VENDOR:-}" ]; then
@@ -41,22 +45,43 @@ case "$BACKEND" in
     *) echo "bench: BACKEND must be native, vulkan or opencl, not '$BACKEND'" >&2; exit 1 ;;
 esac
 export BACKEND
-# The loken build measured: the CUDA release by default, a ROCm build for AMD cards.
-LOKEN_BIN="${LOKEN_BIN:-$LOKEN/target/release/lokend}"
-export LOKEN_BIN
-# Whatever build is measured, it reads this tree's configuration.
-export LOKEN_CWD="${LOKEN_CWD:-$LOKEN}"
-LOKEN_URL="${LOKEN_URL:-http://127.0.0.1:11435}"
-
 die() { echo "bench: $*" >&2; exit 1; }
 have() { command -v "$1" >/dev/null 2>&1; }
 
 have python3 || die "python3 is required (TOML parsing, list handling)"
 have curl || die "curl is required (loken catalogue)"
-[ -f "$CONFIG" ] || die "no config.toml at $CONFIG"
+[ -f "$SETTINGS" ] || die "no bench.toml at $SETTINGS (copy bench.toml.example and fill it in)"
 [ -f "$MATRIX" ] || die "no matrix at $MATRIX"
 
-# --- config.toml: the single source of the store paths -----------------------------------------
+# --- bench.toml: the builds measured and where loken is started ----------------------------------
+# A relative path is read from the directory of bench.toml.
+setting() { # setting <table.key>
+    python3 - "$SETTINGS" "$1" <<'PY'
+import pathlib, sys, tomllib
+path = pathlib.Path(sys.argv[1])
+cur = tomllib.loads(path.read_text())
+for part in sys.argv[2].split("."):
+    cur = cur.get(part, {}) if isinstance(cur, dict) else {}
+if isinstance(cur, str) and cur:
+    where = pathlib.Path(cur)
+    print(cur if "://" in cur else where if where.is_absolute() else (path.parent / where).resolve())
+else:
+    print("")
+PY
+}
+# The loken build measured, the directory whose config.toml it is started with, and its address.
+LOKEN_BIN="$(setting loken.binary)"
+LOKEN_CWD="$(setting loken.config_dir)"
+LOKEN_URL="$(setting loken.url)"
+LOKPROF="$(setting lokprof.binary)"
+[ -n "$LOKEN_URL" ] || LOKEN_URL="http://127.0.0.1:11435"
+[ -x "$LOKEN_BIN" ] || die "bench.toml: loken.binary '$LOKEN_BIN' is not an executable (a lokend from a loken release)"
+[ -x "$LOKPROF" ] || die "bench.toml: lokprof.binary '$LOKPROF' is not an executable (the lokprof of a lokprof release)"
+[ -f "$LOKEN_CWD/config.toml" ] || die "bench.toml: loken.config_dir '$LOKEN_CWD' holds no config.toml"
+export LOKEN_BIN LOKEN_CWD LOKPROF
+CONFIG="$LOKEN_CWD/config.toml"
+
+# --- loken's config.toml: the single source of the store paths ---------------------------------
 cfg_key() { # cfg_key <dotted.key>
     python3 - "$CONFIG" "$1" <<'PY'
 import sys, tomllib
@@ -70,14 +95,14 @@ PY
 
 OLLAMA_STORE="$(cfg_key ollama_models_dir)"
 HF_STORE="$(cfg_key huggingface_models_dir)"
-[ -n "$OLLAMA_STORE" ] || die "config.toml has no ollama_models_dir"
+[ -n "$OLLAMA_STORE" ] || die "$CONFIG has no ollama_models_dir"
 # The engines read the same store loken does - this is what ends the split-brain.
 export OLLAMA_MODELS="$OLLAMA_STORE"
 export MODELS_DIR="$OLLAMA_STORE"
 [ -n "$HF_STORE" ] && export HF_HOME="$HF_STORE"
 
 # --- the model list = loken's catalogue, with the modality AND the format loken declares --------
-# loken's /api/tags entries carry, per model, `capabilities` (model_capabilities: completion, tts,
+# loken's /api/tags entries carry, per model, `capabilities` (completion, tts,
 # asr, txt2img/img2img, music, ...) and `details.format` ("gguf" for an ollama-source model,
 # "safetensors" for a huggingface-source one - set at models.rs:71-81 from the model's source). Both
 # are read from THERE, never guessed from the name: the modality picks lokprof's clock, the format says
@@ -251,7 +276,7 @@ provision() {
     fi
     have uv || die "uv is required to provision the vLLM venv"
     have tar || die "tar is required to provision ollama"
-    local comp="$LOKEN/results/engines"
+    local comp="$ROOT/results/engines"
     mkdir -p "$comp"
     local venv="$comp/vllm-venv"
     # The download cache stays in the compartment too, on the same disk as the venv it feeds.
@@ -333,8 +358,6 @@ print(r["tag_name"].lstrip("v"), url)' "$1"
 # that order, every model once, one fair-run per cell and per prompt, the CPU sweeps streamed
 # only. A generated-media cell has no such axes and is measured once, in the first sweep.
 run() {
-    [ -x "$LOKEN_BIN" ] || die "no loken binary at $LOKEN_BIN; build it first"
-    "$LOKEN/../assert-binary-current.sh" >/dev/null 2>&1 || die "binary is stale; rebuild before measuring"
     provision
     local models; models="$(loken_models)"
     [ -n "$models" ] || die "loken returned no catalogue at $LOKEN_URL/api/tags (is it serving?)"
@@ -358,7 +381,7 @@ PY
     [ "$BACKEND" = native ] || devices="gpu"
     local stamp; stamp=$(stat -c %Y "$LOKEN_BIN")
 
-    cd "$LOKEN" || die "cannot cd $LOKEN"
+    cd "$ROOT" || die "cannot cd $ROOT"
     # The thermal floor, read once for the whole campaign while nothing works on the cards and
     # exported to every cell: read per cell, on cards still warm from the cell before, the gate
     # would open on a reading that means nothing.
@@ -427,7 +450,7 @@ PY
             env ENGINES="$engines" STREAM="$st" BENCH_MODE="$dev" OUT="$out.part" VLLM_SERVE="$vserve" \
                 GPU_PIN="$([ "$dev" = gpu ] && echo "${PIN:-}")" ASR_AUDIO="$ASR_AUDIO" \
                 timeout --kill-after=60 "${CELL_CAP:-7200}" \
-                scripts/fair_bench.sh --models "$m" --prompts "$pr" --num-ctx "$ctx" \
+                scripts/engines/fair-run.sh --models "$m" --prompts "$pr" --num-ctx "$ctx" \
                 --max-tokens "${MAXTOK:-128}" --iterations 3 --modality "$amod" \
                 "${asrargs[@]}" \
                 2>&1 | tail -4
@@ -438,7 +461,7 @@ PY
             [ -s "$out.part" ] || { echo "no result for $m"; missing=$((missing + 1)); continue; }
             mv "$out.part" "$out"
             stamp_result "$out" "$stamp"
-            python3 scripts/report.py file "$out" >/dev/null 2>&1 || echo "  (report not modality-aware yet for $amod)"
+            python3 scripts/add.py "$out" >/dev/null 2>&1 || echo "  (the record of $m was not filed: run scripts/add.py $out)"
             # The plot and the score follow every cell, so a regression shows while the
             # campaign still runs.
             python3 scripts/plot-bench.py >/dev/null 2>&1 || true
@@ -455,6 +478,5 @@ PY
 case "${1:---plan}" in
     --plan|plan|"") plan ;;
     run) run ;;
-    -h|--help) sed -n '2,12p' "$0" | sed 's/^# \{0,1\}//' ;;
     *) die "unknown argument: $1 (try --plan or run)" ;;
 esac

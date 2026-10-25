@@ -59,7 +59,8 @@ HERE="$(cd "$(dirname "$(readlink -f "$0")")" && pwd)"
 OLLAMA_BIN="${OLLAMA_BIN:-$(command -v ollama || echo ollama)}"
 OLLAMA_PORT="${OLLAMA_PORT:-11434}"
 
-LOKEN_BIN="${LOKEN_BIN:-$(command -v lokend || echo ../loken/target/release/lokend)}"
+LOKEN_BIN="${LOKEN_BIN:-$(command -v lokend || true)}"
+[ -x "$LOKEN_BIN" ] || { echo "no lokend: set LOKEN_BIN to the lokend of a loken release" >&2; exit 2; }
 LOKEN_PORT="${LOKEN_PORT:-11435}"
 
 # vLLM is started through a wrapper, because its arguments differ depending on whether the
@@ -70,7 +71,8 @@ VLLM_TAG_LAUNCHER="${VLLM_TAG_LAUNCHER:-$HERE/vllm-serve-ollama.sh}"
 VLLM_PORT="${VLLM_PORT:-8000}"
 
 # -- THE RUN ------------------------------------------------------------------------------
-LOKPROF="${LOKPROF:-$(command -v lokprof || echo target/release/lokprof)}"   # the tool being driven
+LOKPROF="${LOKPROF:-$(command -v lokprof || true)}"   # the tool being driven
+[ -x "$LOKPROF" ] || { echo "no lokprof: set LOKPROF to the lokprof of a lokprof release" >&2; exit 2; }
 MODELS_DIR="${MODELS_DIR:-$HOME/.ollama/models}"                     # ollama's blob store
 BENCH_MODE="${BENCH_MODE:-cpu}"                                      # cpu | gpu
 OUT="${OUT:-results/fairbench.json}"
@@ -311,11 +313,11 @@ E_BIN[loken]="$LOKEN_ABS"; E_ARGS[loken]="serve --models-dir $MODELS_DIR --keep-
 # Started from the directory that HOLDS config.toml. There is no --config flag: the server
 # looks for ./config.toml first, so the working directory decides which configuration is
 # measured, and a different memory fraction is a different per-card budget, hence a different
-# placement for any model near the boundary. The directory is derived from the binary, not from
-# this script, and the run refuses to start without a config.toml there. LOKEN_CWD points the
-# engine at another one - a variant arm of a campaign, the same binary with a drafter named -
-# without touching the configuration in the tree that every other cell is measured with.
-E_CWD[loken]="${LOKEN_CWD:-$(cd "$(dirname "$LOKEN_ABS")/../.." && pwd)}"
+# placement for any model near the boundary. LOKEN_CWD names that directory, and the run refuses
+# to start without a config.toml there. A variant arm of a campaign, the same binary with a
+# drafter named, points it at another one without touching the configuration every other cell
+# is measured with.
+E_CWD[loken]="${LOKEN_CWD:-}"
 [ -f "${E_CWD[loken]}/config.toml" ] || {
   echo "no config.toml in ${E_CWD[loken]} - refusing to measure an engine that would read its defaults" >&2
   exit 2
