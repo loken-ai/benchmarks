@@ -25,3 +25,26 @@ jobs:
       - name: Check every record
         if: github.event_name == 'push'
         run: python3 scripts/check.py runs/*/*.json
+      - name: Build the site
+        run: python3 scripts/site.py
+      - name: Test
+        run: python3 -m unittest discover tests
+
+  pages:
+    if: github.event_name == 'push' && !github.event.repository.private
+    needs: records
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v5
+      - run: python3 scripts/site.py
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: site
+      - id: deploy
+        uses: actions/deploy-pages@v4

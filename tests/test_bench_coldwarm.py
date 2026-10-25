@@ -3,13 +3,13 @@
 The fixtures are copies of results/qwen3_8b_4096_stream_long.json and
 results/qwen3_8b_4096_stream_cpu.json with the per-sample traces dropped.
 
-    python3 -m unittest discover scripts/tests
+    python3 -m unittest discover tests
 """
 import pathlib
 import sys
 import unittest
 
-sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent.parent))
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent.parent / "scripts"))
 import bench_row as B
 import scoreboard as SB
 

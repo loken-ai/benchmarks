@@ -1,13 +1,19 @@
 """The page of a backend no reference engine runs says so.
 
-    python3 -m unittest discover scripts/tests
+    python3 -m unittest discover tests
 """
+import importlib.util
 import pathlib
 import sys
 import unittest
 
-sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent.parent))
-import report as R
+SCRIPTS = pathlib.Path(__file__).resolve().parent.parent / "scripts"
+sys.path.insert(0, str(SCRIPTS))
+sys.path.insert(0, str(SCRIPTS / "records"))
+# scripts/site.py shares its name with the standard library's site module.
+spec = importlib.util.spec_from_file_location("site_pages", SCRIPTS / "site.py")
+R = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(R)
 
 
 class BackendNote(unittest.TestCase):
