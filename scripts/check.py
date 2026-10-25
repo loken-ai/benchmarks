@@ -10,7 +10,7 @@ It must also be anonymous: dates without a time of day, a machine block that hol
 listed fields, and no path, private address or mailbox in any string.
 Prints one line per refused record with every reason, and exits 1 when any is refused.
 """
-import json, pathlib, sys
+import json, pathlib, sys, tomllib
 
 HERE = pathlib.Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE / "records"))
@@ -42,6 +42,30 @@ def protocol_problems(record):
     return out
 
 
+def protocol_prompts():
+    """The prompt sizes of the protocol, in tokens, from matrix.toml."""
+    matrix = tomllib.loads((R.ROOT / "matrix.toml").read_text())
+    return [str(p) for p in matrix["axes"]["prompts"]]
+
+
+def prompt_problems(record):
+    """A cell is measured with a prompt of the protocol, and the prompt it names has the size it
+    says: the text it was given is the file of that name."""
+    allowed = protocol_prompts()
+    out = []
+    for cell in record.get("results") or []:
+        label = str(cell.get("prompt"))
+        if label not in allowed:
+            out.append(f"{cell.get('target')} {cell.get('model')}: prompt '{label}' is not one of the protocol's "
+                       f"({', '.join(allowed)} tokens)")
+        elif cell.get("prompt_chars") and cell["prompt_chars"] != len((R.ROOT / "prompts" / f"{label}.txt").read_text()):
+            out.append(f"{cell.get('target')} {cell.get('model')}: prompt '{label}' holds "
+                       f"{cell['prompt_chars']} characters, not the text of the protocol")
+        if len(out) >= 3:
+            break
+    return out
+
+
 def anonymity_problems(record):
     out = []
     machine = record.get("machine")
@@ -58,6 +82,36 @@ def anonymity_problems(record):
     local = R.local_strings(record)
     if local:
         out.append("a string names a path, a private address or a mailbox: " + repr(local[0]))
+    return out
+
+
+# The energy figures of an iteration: null unless the window was complete.
+ENERGY_FIGURES = ("energy_j", "gpu_energy_j", "cpu_pkg_energy_j", "dram_energy_j", "j_per_tok",
+                  "wh_per_tok", "gco2_per_tok", "gpu_decode_j", "cpu_pkg_decode_j",
+                  "dram_decode_j", "decode_energy_j", "j_per_decode_tok")
+
+
+def energy_problems(record):
+    """Reasons to refuse the energy blocks of a record: a total that leaves a domain out must
+    not be stored as if it were complete."""
+    out = []
+    for cell in record.get("results") or []:
+        for n, it in enumerate(cell.get("iterations") or []):
+            energy = it.get("energy")
+            if not isinstance(energy, dict):
+                continue
+            where = f"{cell.get('target')} {cell.get('model')} iteration {n + 1}"
+            if "complete" not in energy:
+                out.append(f"{where}: an energy block that does not say whether it is complete")
+            elif energy["complete"]:
+                if energy.get("missing_domains") or "cpu_pkg" not in (energy.get("domains_counted") or []):
+                    out.append(f"{where}: an energy block called complete that left out the processor or a card")
+            else:
+                stored = [k for k in ENERGY_FIGURES if energy.get(k) is not None]
+                if stored:
+                    out.append(f"{where}: an incomplete energy block that stores {', '.join(stored)}")
+            if len(out) >= 3:
+                return out
     return out
 
 
@@ -85,6 +139,8 @@ def problems(path, record, holders):
         if path.parent.name != computed:
             out.append(f"in folder {path.parent.name}, its machine is hardware_id {computed}")
     out += anonymity_problems(record)
+    out += energy_problems(record)
+    out += prompt_problems(record)
     out += protocol_problems(record)
     others = [p for p in holders.get(path.stem, []) if p.resolve() != path.resolve()]
     if others:

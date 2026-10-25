@@ -28,7 +28,7 @@ def record(**machine):
         "timestamp": "2026-10-21T12:38:57.420195068+02:00",
         "machine": block,
         "protocol": {"iterations": 3, "warmup": 0, "max_tokens": 128, "streaming": True},
-        "results": [{"model": "m", "iterations": [{}], "model_fingerprint": {"modified_at": "2026-09-29T12:35:31+02:00"}}],
+        "results": [{"model": "m", "prompt": "1000", "prompt_chars": 4384, "iterations": [{}], "model_fingerprint": {"modified_at": "2026-09-29T12:35:31+02:00"}}],
     }
 
 
@@ -127,6 +127,56 @@ class Checks(unittest.TestCase):
         rec = R.anonymised(record())
         wrong = pathlib.Path("runs") / rec["machine"]["hardware_id"] / "0000000000000000.json"
         self.assertTrue(any("hashes to run_id" in why for why in K.problems(wrong, rec, {})))
+
+
+class Energy(unittest.TestCase):
+    def with_energy(self, **energy):
+        rec = R.anonymised(record())
+        block = {"complete": True, "missing_domains": [], "domains_counted": ["gpu", "cpu_pkg"], "energy_j": 4.0}
+        block.update(energy)
+        rec["results"][0]["target"] = "LOKEN"
+        rec["results"][0]["iterations"] = [{"energy": block}]
+        return rec
+
+    def reasons(self, rec):
+        return K.energy_problems(rec)
+
+    def test_a_complete_block_is_accepted(self):
+        self.assertEqual(self.reasons(self.with_energy()), [])
+
+    def test_an_old_block_without_the_flag_is_refused(self):
+        rec = self.with_energy()
+        del rec["results"][0]["iterations"][0]["energy"]["complete"]
+        self.assertTrue(any("does not say" in why for why in self.reasons(rec)))
+
+    def test_an_incomplete_block_may_not_store_a_figure(self):
+        rec = self.with_energy(complete=False, missing_domains=["cpu_pkg"], energy_j=4.0, j_per_tok=0.03)
+        self.assertTrue(any("incomplete energy block that stores" in why for why in self.reasons(rec)))
+        clean = self.with_energy(complete=False, missing_domains=["cpu_pkg"], energy_j=None)
+        self.assertEqual(self.reasons(clean), [])
+
+    def test_a_block_called_complete_must_count_the_processor(self):
+        rec = self.with_energy(domains_counted=["gpu"])
+        self.assertTrue(any("left out" in why for why in self.reasons(rec)))
+        rec = self.with_energy(missing_domains=["card0"])
+        self.assertTrue(any("left out" in why for why in self.reasons(rec)))
+
+
+class PromptChecks(unittest.TestCase):
+    def cell(self, label, chars):
+        return {"target": "LOKEN", "model": "m", "prompt": label, "prompt_chars": chars}
+
+    def test_a_cell_with_a_prompt_of_the_protocol_is_accepted(self):
+        record = {"results": [self.cell("1000", 4384), self.cell("100", 451)]}
+        self.assertEqual(K.prompt_problems(record), [])
+
+    def test_a_prompt_outside_the_protocol_is_refused(self):
+        record = {"results": [self.cell("short", 58), self.cell("2500", 11000)]}
+        self.assertTrue(any("not one of the protocol" in why for why in K.prompt_problems(record)))
+
+    def test_a_prompt_whose_text_is_not_the_size_it_says_is_refused(self):
+        record = {"results": [self.cell("1000", 939)]}
+        self.assertTrue(any("holds 939 characters, not the text" in why for why in K.prompt_problems(record)))
 
 
 class CpuRuns(unittest.TestCase):
