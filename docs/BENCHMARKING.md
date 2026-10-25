@@ -45,7 +45,9 @@ the context sizes of the full matrix, so what a campaign will do is visible befo
 is the deliberate step: it monopolizes the machine for hours. `bench` asks loken for the catalogue and
 starts the `lokend` named in `bench.toml` when none answers. It needs `python3` and `curl`.
 
-`BENCH_ONLY="a b" scripts/bench run` measures only the named models. Without `FULL=1` the run is a
+`BENCH_ONLY="a b" scripts/bench run` measures only the named models. `CELL_CAP=<seconds>` stops a cell that runs longer
+(7200 by default): a model too large for the cards can spend hours computing on the host, and the cell is then
+reported as interrupted, without a result. Without `FULL=1` the run is a
 fast pass: GPU, context 4096, the short prompt, streaming. `FULL=1` sweeps the whole matrix.
 
 ## The whole matrix
