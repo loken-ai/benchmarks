@@ -129,11 +129,12 @@ if [ "$BENCH_MODE" = gpu ]; then
     # reports ~0.91 of the nameplate as available. Judge the fit against that, not the total.
     _u=$(( _mb * 1024 * 1024 * 91 / 100 ))
     [ "$_u" -gt "$_one_card" ] && _one_card=$_u
-  done < <(if [ "$GPU_VENDOR" = amd ]; then
+  done < <(if [ "$GPU_VENDOR" = amd ] || [ "$GPU_VENDOR" = all ]; then
              for _c in $(_amd_cards); do
                echo $(( $(cat "/sys/bus/pci/devices/$_c/mem_info_vram_total" 2>/dev/null || echo 0) / 1048576 ))
              done
-           else
+           fi
+           if [ "$GPU_VENDOR" != amd ]; then
              nvidia-smi --query-gpu=memory.total --format=csv,noheader,nounits 2>/dev/null
            fi)
 fi
@@ -182,10 +183,17 @@ _discover_pkg_temp() {
 }
 PKG_TEMP_SENSOR="${PKG_TEMP_SENSOR:-$(_discover_pkg_temp || true)}"   # milli-C, may be empty
 
-# Hottest card, in whole C. Empty when there is no nvidia-smi to ask.
+# Hottest card, in whole C, over the NVIDIA cards nvidia-smi lists and the AMD cards' sensors.
+# Empty when neither can be asked.
 _gpu_hottest_c() {
-  nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader,nounits 2>/dev/null \
-    | sort -rn | head -1
+  {
+    nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader,nounits 2>/dev/null
+    for _c in $(_amd_cards); do
+      for _t in /sys/bus/pci/devices/"$_c"/hwmon/hwmon*/temp1_input; do
+        [ -r "$_t" ] && echo $(( $(cat "$_t") / 1000 ))
+      done
+    done
+  } | sort -rn | head -1
 }
 # The idle floor, read before any engine starts. A campaign that begins on hot cards records a
 # floor it can meet, which is the honest failure: the gate then admits it is gating on a warm

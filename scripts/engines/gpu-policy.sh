@@ -18,8 +18,10 @@
 # indices a caller writes mean the same silicon in all three processes.
 
 GPUS="${GPUS:-all}"
-# Whose cards the run measures: nvidia (CUDA, NVML) or amd (ROCm). On a machine with both, the
-# other vendor's cards are hidden from every engine, so a cell is one vendor's silicon.
+# Whose cards the run measures: nvidia (CUDA, NVML), amd (ROCm) or all. With nvidia or amd, the
+# other vendor's cards are hidden from every engine, so a cell is one vendor's silicon. With all,
+# every card of both vendors is exposed to every engine: loken drives both at once, and an engine
+# that can drive one vendor only uses the cards of that vendor. Only GPUS=all is meaningful then.
 GPU_VENDOR="${GPU_VENDOR:-nvidia}"
 OLLAMA_GPUS="${OLLAMA_GPUS:-$GPUS}"
 LOKEN_GPUS="${LOKEN_GPUS:-$GPUS}"
@@ -49,11 +51,17 @@ _amd_cards() {
     done
 }
 
+# _nvidia_count - how many NVIDIA cards NVML lists.
+_nvidia_count() {
+    nvidia-smi --query-gpu=uuid --format=csv,noheader 2>/dev/null | grep -c . || true
+}
+
 # _gpu_count <spec> - how many cards that spec exposes.
 _gpu_count() {
     if [ "$1" != all ]; then echo "$1" | tr ',' '\n' | grep -c .
     elif [ "$GPU_VENDOR" = amd ]; then _amd_cards | grep -c .
-    else nvidia-smi --query-gpu=uuid --format=csv,noheader 2>/dev/null | grep -c .; fi
+    elif [ "$GPU_VENDOR" = all ]; then echo $(( $(_nvidia_count) + $(_amd_cards | grep -c .) ))
+    else _nvidia_count; fi
 }
 
 # gpu_env_for <ollama|loken|vllm> - the env prefix for that engine's launch.
@@ -64,7 +72,15 @@ gpu_env_for() {
         *) echo "gpu_env_for: unknown engine '$1'" >&2; return 1 ;;
     esac
     n=$(_gpu_count "$spec")
-    if [ "$GPU_VENDOR" = amd ]; then
+    if [ "$GPU_VENDOR" = all ]; then
+        # Both vendors, each by its own numbering: NVIDIA by UUID in PCI order, AMD by ROCm's
+        # index. Neither runtime reads the other's variable.
+        [ "$spec" = all ] || { echo "gpu-policy: GPU_VENDOR=all exposes every card, not '$spec'" >&2; return 1; }
+        local na; na=$(_amd_cards | grep -c .)
+        uuids=$(_gpu_uuids all) || uuids=-1
+        printf 'CUDA_DEVICE_ORDER=PCI_BUS_ID CUDA_VISIBLE_DEVICES=%s HIP_VISIBLE_DEVICES=%s' \
+            "$uuids" "$([ "$na" -gt 0 ] && seq -s, 0 $((na - 1)) || echo -1)"
+    elif [ "$GPU_VENDOR" = amd ]; then
         # No NVIDIA card, and the AMD cards by ROCm's own numbering. HIP also reads
         # CUDA_VISIBLE_DEVICES unless HIP_VISIBLE_DEVICES is set, so both are named.
         local amd="$spec"
@@ -89,6 +105,9 @@ gpu_extra_args_for() {
         *) return 1 ;;
     esac
     n=$(_gpu_count "$spec") || return 0
+    # vLLM is the CUDA build here: it shards across the NVIDIA cards it was given, and the cards
+    # of another vendor are not usable by it.
+    [ "$GPU_VENDOR" = all ] && n=$(_nvidia_count)
     # vLLM shards across exactly the cards it was given; anything else leaves them idle.
     [ "$1" = vllm ] && [ "$n" -gt 0 ] && printf -- '--tensor-parallel-size %s' "$n"
     return 0

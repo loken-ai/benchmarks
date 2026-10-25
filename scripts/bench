@@ -28,11 +28,15 @@ MATRIX="$ROOT/matrix.toml"
 # against. Either can be pointed elsewhere for a one-off run.
 ASR_AUDIO="${ASR_AUDIO:-$ROOT/fixtures/asr/jfk.wav}"
 ASR_REFERENCE="${ASR_REFERENCE:-$ROOT/fixtures/asr/jfk.txt}"
-# Whose cards a campaign measures: NVIDIA when nvidia-smi lists one, else AMD when the PCI bus
-# holds one. GPU_VENDOR picks on a machine with both; the other vendor's cards are hidden.
+# Whose cards a campaign measures: every card of the machine. On a machine with NVIDIA and AMD
+# cards that is GPU_VENDOR=all, loken driving both vendors at once; GPU_VENDOR=nvidia or amd
+# restricts the run to one vendor and hides the other's cards from every engine.
 if [ -z "${GPU_VENDOR:-}" ]; then
-    if nvidia-smi -L 2>/dev/null | grep -q .; then GPU_VENDOR=nvidia
-    elif grep -qs 0x1002 /sys/bus/pci/devices/*/vendor; then GPU_VENDOR=amd
+    has_nvidia=0; has_amd=0
+    nvidia-smi -L 2>/dev/null | grep -q . && has_nvidia=1
+    grep -qs 0x1002 /sys/bus/pci/devices/*/vendor && has_amd=1
+    if [ "$has_nvidia" = 1 ] && [ "$has_amd" = 1 ]; then GPU_VENDOR=all
+    elif [ "$has_amd" = 1 ]; then GPU_VENDOR=amd
     else GPU_VENDOR=nvidia; fi
 fi
 export GPU_VENDOR
@@ -359,7 +363,8 @@ provision() {
     [ -x "$obin" ] || die "no ollama binary in the compartment"
     # AMD cards need ollama's ROCm libraries, shipped apart and unpacked over the same tree.
     local odir; odir="$(dirname "$(dirname "$obin")")"
-    if [ "$GPU_VENDOR" = amd ] && ! compgen -G "$odir/lib/ollama/rocm*" >/dev/null; then
+    if { [ "$GPU_VENDOR" = amd ] || [ "$GPU_VENDOR" = all ]; } && grep -qs 0x1002 /sys/bus/pci/devices/*/vendor \
+            && ! compgen -G "$odir/lib/ollama/rocm*" >/dev/null; then
         local over rurl rarc
         over="$("$obin" --version 2>&1 | grep -oiE '[0-9]+\.[0-9]+\.[0-9]+' | head -1)"
         read -r _ rurl < <(ollama_asset ollama-linux-amd64-rocm.tar.zst "v$over")
@@ -437,16 +442,36 @@ PY
     # The thermal floor, read once for the whole campaign while nothing works on the cards and
     # exported to every cell: read per cell, on cards still warm from the cell before, the gate
     # would open on a reading that means nothing.
-    if [ "$GPU_VENDOR" = nvidia ] && have nvidia-smi && [ -z "${GPU_IDLE_C:-}" ]; then
+    if [ "$GPU_VENDOR" != amd ] && have nvidia-smi && [ -z "${GPU_IDLE_C:-}" ]; then
         local busy held
         busy=$(nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits | sort -rn | head -1)
         held=$(nvidia-smi --query-gpu=memory.used --format=csv,noheader,nounits | sort -rn | head -1)
         if [ "${busy:-0}" -gt 5 ] || [ "${held:-0}" -gt 600 ]; then
             die "cards are still working (${busy}% busy, ${held} MiB held): stop what holds them first"
         fi
-        GPU_IDLE_C=$(nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader,nounits | sort -rn | head -1)
-        export GPU_IDLE_C
-        echo "thermal floor for this campaign: ${GPU_IDLE_C}C (idle, nothing resident)"
+    fi
+    if [ "$GPU_VENDOR" != nvidia ]; then
+        local card busy_amd
+        for card in /sys/bus/pci/devices/*; do
+            [ "$(cat "$card/vendor" 2>/dev/null)" = 0x1002 ] || continue
+            busy_amd=$(cat "$card/gpu_busy_percent" 2>/dev/null || echo 0)
+            [ "$busy_amd" -le 5 ] || die "an AMD card is still working (${busy_amd}% busy): stop what holds it first"
+        done
+    fi
+    if [ -z "${GPU_IDLE_C:-}" ]; then
+        GPU_IDLE_C="$(
+            {
+                nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader,nounits 2>/dev/null
+                for card in /sys/bus/pci/devices/*; do
+                    [ "$(cat "$card/vendor" 2>/dev/null)" = 0x1002 ] || continue
+                    for t in "$card"/hwmon/hwmon*/temp1_input; do [ -r "$t" ] && echo $(( $(cat "$t") / 1000 )); done
+                done
+            } | sort -rn | head -1
+        )"
+        if [ -n "$GPU_IDLE_C" ]; then
+            export GPU_IDLE_C
+            echo "thermal floor for this campaign: ${GPU_IDLE_C}C (idle, nothing resident)"
+        fi
     fi
 
     local m mod fmt engines amod vserve err ctx st pr dev out tag mode psuf suffix asrargs rc declared
