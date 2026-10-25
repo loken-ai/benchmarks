@@ -178,13 +178,13 @@ plan_cell() { # plan_cell <model> <modality> <format>
             case "$fmt" in
                 gguf)        engines="ollama loken" ;;
                 safetensors) engines="loken vllm"; vserve="hf:$m --name $m" ;;
-                *)           err="unknown format '${fmt:-<none>}' (neither gguf nor safetensors)" ;;
+                *)           err="not run: unknown format '${fmt:-<none>}' (neither gguf nor safetensors)" ;;
             esac ;;
         image|music|tts)
             engines="loken" ;;   # only loken speaks images/generations, audio/speech here
         asr)
             if ! [ -s "$ASR_AUDIO" ]; then
-                err="asr needs a golden audio (no file at $ASR_AUDIO)"
+                err="not run: asr needs a golden audio (no file at $ASR_AUDIO)"
             elif [ "$fmt" = safetensors ]; then
                 # vLLM serves the same checkpoint on /v1/audio/transcriptions, its context held
                 # to the decoder's own length.
@@ -194,7 +194,7 @@ plan_cell() { # plan_cell <model> <modality> <format>
             fi ;;
         unserved)
             err="not served by loken: it declares no capability" ;;
-        *)  err="no lokprof measurement for the '$mod' capability" ;;
+        *)  err="not run: no lokprof measurement for the '$mod' capability" ;;
     esac
     # "|" separates the fields, not a tab: a tab is IFS whitespace, so an empty middle field (an
     # empty vLLM target) would collapse and shift the error into the wrong column. No field holds a
@@ -239,10 +239,11 @@ PY
 # Stamp a freshly measured result with the binary build and the versions of the engines that
 # actually produced a row in it. The report reads the version from here, so a row never carries the
 # version installed when the report was generated - only the one it was measured with.
-stamp_result() { # stamp_result <file> <stamp> <prompt label>
-    python3 - "$1" "$2" "${OLLAMA_VER:-}" "${VLLM_VER:-}" "$3" <<'PY'
+stamp_result() { # stamp_result <file> <stamp> <prompt label> <modality> <format> <engines>
+    python3 - "$1" "$2" "${OLLAMA_VER:-}" "${VLLM_VER:-}" "$3" "$4" "$5" "$6" <<'PY'
 import json, sys
 p, stamp, over, vver, label = sys.argv[1], int(sys.argv[2]), sys.argv[3], sys.argv[4], sys.argv[5]
+modality, fmt, planned = sys.argv[6], sys.argv[7], sys.argv[8].split()
 d = json.load(open(p))
 d["engine_build"] = stamp
 # lokprof names a prompt it was given as text "custom"; the protocol names it by its size in
@@ -254,6 +255,30 @@ cfg = d.get("config") or {}
 if cfg.get("custom_prompt"):
     cfg["custom_prompt"] = None
     cfg["prompts"] = [label]
+# A peer the harness does not run for this model gets a cell that says so, with the reason: a
+# missing cell reads as a cell nobody tried.
+PEERS = {"ollama": "Ollama", "vllm": "vLLM"}
+KIND = {"image": "image generation", "music": "audio generation", "tts": "speech synthesis"}
+def not_run_reason(peer):
+    if modality in KIND:
+        return f"no {KIND[modality]} endpoint in the harness"
+    if modality == "asr":
+        return "no speech recognition endpoint in the harness" if peer == "ollama" else "needs safetensors weights"
+    if peer == "vllm":
+        return "paired with safetensors weights only"
+    return "paired with GGUF weights only"
+done = {r.get("target", "").lower() for r in d.get("results", [])}
+model = d["results"][0]["model"] if d.get("results") else ""
+for peer, label_of in PEERS.items():
+    if peer in planned or peer in done or not model:
+        continue
+    cell = dict(d["results"][0])
+    for key in ("iterations", "iteration_errors"):
+        cell[key] = []
+    cell.update(target=label_of, url="", stats={}, coherence_pass=None, first_response_preview="",
+                load_time_ms=None, model_fingerprint=None, prompt_chars=0,
+                load_error="not run: " + not_run_reason(peer))
+    d["results"].append(cell)
 targets = {r.get("target", "").lower() for r in d.get("results", [])}
 if over and "ollama" in targets:
     d["ollama_version"] = over
@@ -562,7 +587,7 @@ PY
             fi
             [ -s "$out.part" ] || { echo "no result for $m"; missing=$((missing + 1)); continue; }
             mv "$out.part" "$out"
-            stamp_result "$out" "$stamp" "$pr"
+            stamp_result "$out" "$stamp" "$pr" "$amod" "$fmt" "$engines"
             python3 scripts/architecture.py enrich "$out" "${node_args[@]}" \
                 || echo "  (the architecture of $m was not added to $out)"
             python3 scripts/add.py "$out" >/dev/null 2>&1 || echo "  (the record of $m was not filed: run scripts/add.py $out)"

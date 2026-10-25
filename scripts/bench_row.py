@@ -322,9 +322,26 @@ def rows(d, mode, device):
             # An engine that could not take the model at all, or one that took it and kept no
             # iteration: either way no rate, and the result file carries the reason.
             "impossible": bool(r.get("load_error")),
+            "reason": r.get("load_error") or "",
             "failed": not (r.get("iterations") or []) and not r.get("load_error"),
         }
     return out
+
+def mark_of(reason):
+    """The word for a cell with no rate: `not run` when the harness did not give the engine the
+    model, `unsupported` when it did and the engine answered that it cannot run it."""
+    return "not run" if (reason or "").startswith("not run") else "unsupported"
+
+
+def short_reason(reason):
+    """The reason of a cell with no rate, in a few words: an engine's JSON error is unwrapped."""
+    text = (reason or "").removeprefix("not run: ").removeprefix("Load failed: ")
+    try:
+        text = json.loads(text).get("error", text)
+    except (ValueError, AttributeError):
+        pass
+    return " ".join(str(text).split())[:90]
+
 
 def fmt(v, n=1):
     return " - " if v is None else f"{v:,.{n}f}".replace(",", " ")
@@ -413,8 +430,9 @@ def cells_detail(merged):
                 # The engine was given the model and could not run it, or ran it and kept no
                 # iteration: the row says which, since a comparison that leaves a cell out reads
                 # as a cell that was not tried.
-                info["mark"] = "impossible" if v.get("impossible") else "failed"
-                out.append((head + [" - "] * 7 + [info["mark"], "", "", ""] + tail, info))
+                info["mark"] = mark_of(v.get("reason")) if v.get("impossible") else "failed"
+                said = info["mark"] if not v.get("impossible") else f'{info["mark"]}: {short_reason(v.get("reason"))}'
+                out.append((head + [" - "] * 7 + [said, "", "", ""] + tail, info))
                 continue
             if not any(v[k] is not None for k in ("pre_c", "dec_c", "ntok", "e2e", "jreq")):
                 # Nothing was measured, so there is no row. An all-dash line reads as a cell

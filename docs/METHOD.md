@@ -48,7 +48,8 @@ answering a story opening as a question while the third continued it.
 |---|---|
 | `incoherent` | the answer repeats itself. Excluded both ways: it would flatter whichever engine produced it |
 | `no answer` | one token back, no decode interval to divide by. Prefill, latency and joules stand |
-| `impossible` | the engine was given the model and could not run it: an architecture it does not know, or weights it cannot hold. The result file carries its reason |
+| `unsupported` | the engine was given the model and could not run it: an architecture it does not know, weights it cannot hold, a model it does not have. The cell states the engine's own reason |
+| `not run` | the harness gives the engine no way to take this model: no endpoint for that kind of generation, or weights in a format the engine is not paired with. The cell states why, so a missing rate is never mistaken for a cell nobody tried |
 | `failed` | the engine took the model and no iteration survived: a request the bench gave up on, or one the engine refused. The result file carries each iteration's error |
 
 **Read `Tokens` before the rate.** A model that stops early is averaged over a few dozen steps
