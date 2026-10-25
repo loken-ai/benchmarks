@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 # Make the energy of a machine measurable by the campaign, and say what is and is not.
 #
-#   scripts/enable-energy.sh                 # this machine: install the rule if needed, then report
-#   scripts/enable-energy.sh --check         # this machine: report only, change nothing, no root
-#   scripts/enable-energy.sh host [host...]  # other machines, over ssh (asks for sudo there)
-#   scripts/enable-energy.sh --check host... # other machines: report only
+#   scripts/enable-energy.sh           # install the rule if it is needed (asks for sudo), then report
+#   scripts/enable-energy.sh --check   # report only, change nothing, no root
+#
+# It acts on the machine it runs on. Run it on each machine that takes part in a campaign.
 #
 # What a run's energy is made of, and where each part is read:
 #   processor   RAPL package and dram counters under /sys/class/powercap. The kernel makes them
@@ -113,24 +113,10 @@ here() {
   report
 }
 
-mode=""
 case "${1:-}" in
-  --check) if [ "$#" = 1 ]; then report; exit $?; fi; mode="--check"; shift ;;
-  *) ;;
-esac
-case "${1:-}" in
+  --check) report; exit $? ;;
   --install) install_rule; exit $? ;;
-  -h|--help) sed -n '2,24p' "$0" | sed 's/^# \{0,1\}//'; exit 0 ;;
+  -h|--help) sed -n '2,23p' "$0" | sed 's/^# \{0,1\}//'; exit 0 ;;
   "") here; exit $? ;;
-  -*) die "unknown option: $1 (try --help)" ;;
+  *) die "unknown argument: $1 (try --help)" ;;
 esac
-
-status=0
-for host in "$@"; do
-  remote="$(ssh "$host" 'mktemp -p "${XDG_RUNTIME_DIR:-/dev/shm}" energy.XXXXXX')" || { echo "enable-energy: cannot reach $host" >&2; status=1; continue; }
-  scp -q "$0" "$host:$remote" || { echo "enable-energy: cannot copy the script to $host" >&2; status=1; continue; }
-  tty="-t"; [ -n "$mode" ] && tty=""
-  # shellcheck disable=SC2086
-  ssh $tty "$host" "bash $remote $mode; rc=\$?; rm -f $remote; exit \$rc" || status=1
-done
-exit "$status"

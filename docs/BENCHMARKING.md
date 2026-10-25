@@ -72,12 +72,12 @@ every run. The comparison is reproducible and touches no other environment.
 
 A run's energy is the energy the machine drew over the request: the cards, read through NVML (NVIDIA) or
 the amdgpu power reading (AMD), plus the processor, read from the RAPL counters of the kernel. Those
-counters are readable by root only, so a machine needs one rule before its energy can be measured:
+counters are readable by root only, so each machine of a campaign needs one rule before its energy can be
+measured. The script acts on the machine it runs on:
 
 ```
-scripts/enable-energy.sh              # this machine: installs the rule (sudo), then reports
-scripts/enable-energy.sh host1 host2  # other machines over ssh
-scripts/enable-energy.sh --check      # report only, no root
+scripts/enable-energy.sh          # installs the rule (asks for sudo), then reports
+scripts/enable-energy.sh --check  # report only, no root
 ```
 
 `bench run` checks it at the start and warns. A domain that cannot be measured is left out of a record
