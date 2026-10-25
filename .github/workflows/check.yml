@@ -24,7 +24,11 @@ jobs:
           if [ -s records.txt ]; then xargs python3 scripts/check.py < records.txt; fi
       - name: Check every record
         if: github.event_name == 'push'
-        run: python3 scripts/check.py runs/*/*.json
+        # A repository between campaigns holds no record, and the glob then names none.
+        run: |
+          shopt -s nullglob
+          records=(runs/*/*.json)
+          if [ ${#records[@]} -eq 0 ]; then echo "no record"; else python3 scripts/check.py "${records[@]}"; fi
       - name: Build the site
         run: python3 scripts/site.py
       - name: Test
