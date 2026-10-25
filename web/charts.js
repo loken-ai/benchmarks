@@ -12,7 +12,7 @@
     jtok: { label: "Joules per token", half: false },
     jreq: { label: "Joules per request", half: false },
   };
-  const COLORS = { loken: "#1b873f", Ollama: "#c77700", vLLM: "#7b3ac2" };
+  const COLORS = { loken: "var(--c-loken)", Ollama: "var(--c-ollama)", vLLM: "var(--c-vllm)" };
   const FALLBACK = ["#c2255c", "#1971c2", "#5c940d", "#e8590c"];
   const DASHES = ["", "6 3", "2 3", "8 3 2 3"];
 
@@ -252,7 +252,12 @@
       html = f.model ? barChart(barGroups(rows, f, metric, half, hardwareLabel, 40), METRICS[metric].label)
                      : '<p class="note">Pick a model.</p>';
     }
-    $("chart").innerHTML = html;
+    const conds = [f.prompt + " prompt", f.mode, f.device].join(", ");
+    const title = view === "ctx" ? (f.model || "Pick a model") + " across context sizes"
+      : view === "models" ? "Every model on " + ($("hw1").selectedOptions[0] || { textContent: "" }).textContent + ", context " + f.ctx
+      : (f.model || "Pick a model") + " across hardware, context " + f.ctx;
+    $("title").textContent = METRICS[metric].label + ": " + title;
+    $("chart").innerHTML = html + '<p class="note">' + conds + (METRICS[metric].half ? ", " + half : "") + "</p>";
     location.hash = new URLSearchParams({ view, metric, half, prompt: f.prompt, mode: f.mode, device: f.device,
       model: view === "hw" ? $("model2").value : $("model").value, hw1: $("hw1").value, ctx: $("ctx").value }).toString();
   }
@@ -285,6 +290,12 @@
     }
     if (p.get("model")) { $("model").value = p.get("model"); $("model2").value = p.get("model"); }
     else if (bestModel) { $("model").value = bestModel[0]; $("model2").value = bestModel[0]; }
+    if (!p.get("model")) {
+      const perHw = new Map();
+      for (const r of basics) if (r.model === $("model").value) perHw.set(r.hw + "/" + r.backend, (perHw.get(r.hw + "/" + r.backend) || 0) + 1);
+      const top = new Set([...perHw.entries()].sort((x, y) => y[1] - x[1]).slice(0, 3).map(e => e[0]));
+      if (top.size) for (const cb of $("hw").querySelectorAll("input")) cb.checked = top.has(cb.value);
+    }
     for (const id of ["view", "metric", "half", "prompt", "mode", "device", "ctx", "ctx2", "hw1", "model", "model2", "log"]) $(id).addEventListener("input", draw);
     draw();
   });

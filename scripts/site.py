@@ -3,10 +3,11 @@
 
     scripts/site.py
 
-The site is an index of hardware configurations, one page per hardware_id with the table the
-loken report writes (bench_row.py), one table per backend loken answered on, each row with the
-status of the record behind it, and a search page over `index.json`. Records in
-records check.py refuses appear nowhere. Dates are UTC.
+The site is an index of hardware configurations, one page per hardware_id with its architecture and
+the table the loken report writes (bench_row.py), one table per backend loken answered on, each
+row with the status of the record behind it, charts of the rates, and a search page over
+`index.json`. Records check.py refuses appear nowhere. Dates are UTC. The layout is pages.py and
+the files of web/.
 """
 import html, json, os, pathlib, re, sys, time
 
@@ -19,6 +20,7 @@ sys.path.insert(0, str(HERE / "records"))
 import check as K  # noqa: E402
 import repository as R  # noqa: E402
 import bench_row as B  # noqa: E402
+import pages as P  # noqa: E402
 
 # The report derives an unstated loken version from loken's git history, which this
 # repository does not hold: such a row is labelled without a number.
@@ -26,40 +28,7 @@ B._dev_version_at = lambda epoch: None
 
 OUT = R.ROOT / "site"
 STATUS_COL = "Status"
-
-CSS = """
-:root { color-scheme: light dark; --bg: #ffffff; --fg: #1d1d1f; --muted: #5f6368; --line: #d9dce1; --head: #f3f4f6;
-  --link: #0b57d0; --ok: #137333; --wait: #8a5a00; }
-@media (prefers-color-scheme: dark) {
-  :root { --bg: #16181c; --fg: #e8eaed; --muted: #9aa0a6; --line: #3c4043; --head: #23262b;
-    --link: #8ab4f8; --ok: #81c995; --wait: #fdd663; } }
-body { background: var(--bg); color: var(--fg); margin: 0 auto; max-width: 1400px;
-  padding: 16px; font: 15px/1.5 system-ui, sans-serif; }
-a { color: var(--link); }
-nav { margin-bottom: 16px; }
-nav a { margin-right: 16px; }
-p.note { color: var(--muted); }
-.scroll { overflow-x: auto; }
-table { border-collapse: collapse; font-size: 13px; margin: 8px 0 24px; }
-th, td { border: 1px solid var(--line); padding: 3px 8px; text-align: left; white-space: nowrap; }
-th { background: var(--head); position: sticky; top: 0; }
-td.num { text-align: right; font-variant-numeric: tabular-nums; }
-.confirmed { color: var(--ok); }
-.submitted { color: var(--wait); }
-form { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 12px; align-items: end; }
-form.controls label { display: flex; flex-direction: column; font-size: 13px; color: var(--muted); }
-fieldset { border: 1px solid var(--line); padding: 2px 10px 6px; }
-fieldset label { margin-right: 12px; }
-button { background: var(--head); color: var(--fg); border: 1px solid var(--line); padding: 4px 10px; font: inherit; cursor: pointer; }
-ul.legend { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 4px 20px; font-size: 13px; }
-svg text { fill: var(--fg); }
-input, select { background: var(--bg); color: var(--fg); border: 1px solid var(--line);
-  padding: 4px 6px; font: inherit; }
-"""
-
-NUMERIC = {"Ctx", "Prefill tok/s", "TTFT ms", "Decode tok/s", "Tokens", "E2E ms", "J/req", "J/token",
-           "\u0394 prefill", "\u0394 TTFT", "\u0394 decode", "\u0394 energy"}
-
+COMPARISON = re.compile(r"^\*{0,2}([+-])")
 
 def backend_note(backend):
     """The line a page carries when no reference engine runs its backend."""
@@ -71,12 +40,6 @@ def backend_note(backend):
 
 def esc(value):
     return html.escape(str(value))
-
-
-def cell_html(value):
-    """A table cell of bench_row: `**x**` marks a loken figure."""
-    text = esc(value.strip())
-    return re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", text)
 
 
 def plain(value):
@@ -92,60 +55,6 @@ def figures(cell):
         except (ValueError, IndexError):
             out.append(None)
     return out
-
-
-def page(title, body, depth=0):
-    up = "../" * depth
-    return (f"<!doctype html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n"
-            f"<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n"
-            f"<title>{esc(title)}</title>\n<link rel=\"stylesheet\" href=\"{up}style.css\">\n"
-            f"</head>\n<body>\n<nav><a href=\"{up}index.html\">Hardware</a>"
-            f"<a href=\"{up}charts.html\">Charts</a><a href=\"{up}search.html\">Search</a></nav>\n{body}\n</body>\n</html>\n")
-
-
-def table(head, rows, classes=None):
-    out = ["<div class=\"scroll\"><table>", "<tr>" + "".join(f"<th>{esc(h)}</th>" for h in head) + "</tr>"]
-    for i, r in enumerate(rows):
-        tds = []
-        for h, v in zip(head, r):
-            cls = "num" if h in NUMERIC else (classes[i] if classes and h == STATUS_COL else "")
-            tds.append(f"<td class=\"{cls}\">{v}</td>" if cls else f"<td>{v}</td>")
-        out.append("<tr>" + "".join(tds) + "</tr>")
-    out.append("</table></div>")
-    return "\n".join(out)
-
-
-def hardware_block(machine, docs, backends):
-    rows = []
-    nodes = machine.get("nodes") or [machine]
-    for n, node in enumerate(nodes):
-        tag = f"Node {n + 1} " if machine.get("nodes") else ""
-        for i, g in enumerate(node.get("gpus", [])):
-            cap = f", {g['power_cap_w']} W" if g.get("power_cap_w") else ""
-            mem = f" - {g['vram_mib'] / 1024:.0f} GB" if g.get("vram_mib") else ""
-            arch = f", {g['arch']}" if g.get("arch") else ""
-            link = (f", PCIe {g['pcie_gen']}.0 x{g['pcie_width']}"
-                    if g.get("pcie_gen") and g.get("pcie_width") else "")
-            rows.append([f"{tag}GPU {i}", esc(f"{g.get('name') or '?'}{mem}{cap}{arch}{link}")])
-        if not node.get("gpus"):
-            rows.append([f"{tag}GPU", "none recorded"])
-        threads = f" - {node['threads']} threads" if node.get("threads") else ""
-        sockets = f", {node['sockets']} socket(s)" if node.get("sockets") else ""
-        rows.append([f"{tag}CPU", esc(f"{node.get('cpu') or '?'}{threads}{sockets}")])
-        if node.get("cpu_flags"):
-            rows.append([f"{tag}Instruction sets", esc(", ".join(node["cpu_flags"]))])
-        if node.get("ram_gib"):
-            rows.append([f"{tag}RAM", esc(f"{node['ram_gib']} GB")])
-    rows.append(["Backend", esc(", ".join(backends))])
-    for key, name in (("driver", "Driver"), ("kernel", "Kernel")):
-        seen = sorted({(d.get("machine") or {}).get(key) for d in docs} - {None})
-        if seen:
-            rows.append([name, esc(", ".join(seen))])
-    note = ""
-    if any((d.get("machine") or {}).get("attested") for d in docs):
-        note = ("<p class=\"note\">Runs taken before the runner recorded its machine carry the "
-                "hardware an operator attested for them; their driver and kernel are unknown.</p>")
-    return table(["", ""], rows) + note
 
 
 def span(docs):
@@ -164,6 +73,22 @@ def load():
     return out
 
 
+def backend_label(backend):
+    return backend if backend != "unstated" else "backend not recorded"
+
+
+def decode_verdicts(rows):
+    """(faster, slower) counts of the warm decode delta of the compared rows."""
+    wins = losses = 0
+    for r in rows:
+        half = r[15].split("/")[-1].strip()
+        m = COMPARISON.match(half)
+        if m:
+            wins += m.group(1) == "+"
+            losses += m.group(1) == "-"
+    return wins, losses
+
+
 def main():
     entries = load()
     status = R.statuses([(rid, rec) for rid, rec, _ in entries])
@@ -173,7 +98,6 @@ def main():
     clash = [k for k, v in short.items() if len(v) > 1]
     if clash:
         sys.exit(f"run ids share their first 8 digits, a row cannot name its record: {clash}")
-    record_of = {rid: rec for rid, rec, _ in entries}
 
     hardware = {}
     for rid, rec, path in entries:
@@ -181,32 +105,37 @@ def main():
 
     OUT.mkdir(exist_ok=True)
     (OUT / "hw").mkdir(exist_ok=True)
-    (OUT / "style.css").write_text(CSS.lstrip())
+    for asset in (R.ROOT / "web").iterdir():
+        (OUT / asset.name).write_text(asset.read_text())
     head = [c if c != "Date" else "Date (UTC)" for c in B.COLS] + [STATUS_COL]
-    search, index_rows, written = [], [], set()
+    search, infos, written = [], [], set()
+    models, all_hosts, wins_all, losses_all = set(), set(), 0, 0
     for hid, group in sorted(hardware.items(), key=lambda kv: -len(kv[1])):
         docs = [rec for _, rec, _ in group]
         machine = next(d["machine"] for d in reversed(docs) if d.get("machine"))
         label = R.H.label(machine)
-        cards = sorted({g.get("name") or "?" for g in machine.get("gpus", [])}) or ["no card"]
+        nodes = machine.get("nodes") or [machine]
+        cards = sorted({g.get("name") or "?" for n in nodes for g in n.get("gpus", [])}) or ["no card"]
         backends = {}
         for rid, rec, path in group:
             backends.setdefault(R.C.loken_backend(rec), []).append((rec, rec.get("converted_from") or path.name, rid))
-        sections, tabled, row_count = [], [], 0
+        sections, tabled, row_count, wins, losses = [], [], 0, 0, 0
         for backend, triples in sorted(backends.items(), key=lambda kv: -len(kv[1])):
             tabled += [d for d, _, _ in triples]
             rows_ = [r[:17] + [str(r[17])[:10]] + r[18:] for r in B.cells(B.load_docs(triples))]
             row_count += len(rows_)
+            w, l = decode_verdicts(rows_)
+            wins, losses = wins + w, losses + l
             first, last = span([d for d, _, _ in triples])
             builds = sorted({plain(r[5])[len("loken "):] for r in rows_
                              if plain(r[5]).startswith("loken ") and " + " not in r[5]})
-            lines, classes = [], []
+            statuses = []
             for r in rows_:
                 rid = short[r[18]][0]
                 st = status[rid]
-                lines.append([cell_html(v) for v in r] + [st])
-                classes.append(st)
-                search.append({"hw": hid, "label": label, "cards": cards, "backend": backend,
+                statuses.append(st)
+                models.add(plain(r[0]))
+                search.append({"hw": hid, "label": label, "title": P.cards_title(machine), "cards": cards, "backend": backend,
                                "model": plain(r[0]), "ctx": plain(r[1]), "prompt": plain(r[2]),
                                "mode": plain(r[3]), "device": plain(r[4]), "engine": plain(r[5]),
                                "prefill": plain(r[6]), "ttft": plain(r[7]), "decode": plain(r[8]),
@@ -221,48 +150,71 @@ def main():
             if builds:
                 notes.append(f"loken builds measured: {', '.join(builds)}.")
             notes += backend_note(backend)
-            sections.append(f"<h2>Results, backend {esc(backend)}</h2>\n<p>{esc(' '.join(notes))}</p>\n"
-                            + table(head, lines, classes))
+            tid = f"t-{len(sections)}"
+            sections.append(
+                f'<h2>Results {P.backend_chip(backend)}</h2>\n'
+                f'<p class="note">{P.esc(" ".join(notes))}</p>\n'
+                f'<div class="toolbar"><label>Filter this table <input type="search" data-filter="{tid}" '
+                f'placeholder="model or engine" size="26"></label>'
+                f'<a class="btn" href="../charts.html#view=models&amp;hw1={P.esc(hid)}/{P.esc(backend)}">Chart these rows</a></div>\n'
+                + P.result_table(head, rows_, statuses).replace('<table class="results">', f'<table class="results" id="{tid}">', 1))
         confirmed = sum(1 for rid, _, _ in group if status[rid] == R.CONFIRMED)
-        hosts = {R.submitter(rec) for _, rec, _ in group}
-        host_count = len({h for h in hosts if h})
-        body = (f"<h1>{esc(label)}</h1>\n<p>hardware_id <code>{esc(hid)}</code>. "
-                f"{len(group)} record(s), {confirmed} confirmed, from {host_count} host(s).</p>\n"
-                + "<p>" + " ".join(f"<a href=\"../charts.html#view=models&amp;hw1={esc(hid)}/{esc(b)}\">Charts"
-                                   f"{' (' + esc(b) + ')' if len(backends) > 1 else ''}</a>" for b in sorted(backends))
-                + "</p>\n<h2>Hardware</h2>\n" + hardware_block(machine, docs, sorted(backends))
-                + "\n<p class=\"note\">Columns as in loken's BENCHMARKS.md. A row's Date (UTC) and "
-                "Run name the record behind it; Status is that record's.</p>\n"
-                + "\n".join(sections))
-        (OUT / "hw" / f"{hid}.html").write_text(page(label, body, depth=1))
-        written.add(f"{hid}.html")
+        hosts = {h for h in (R.submitter(rec) for _, rec, _ in group) if h}
+        all_hosts |= hosts
+        wins_all, losses_all = wins_all + wins, losses_all + losses
         first, last = span(tabled)
-        index_rows.append([f"<a href=\"hw/{esc(hid)}.html\">{esc(label)}</a>", esc(", ".join(sorted(backends))),
-                           f"<code>{esc(hid)}</code>", esc(f"{first} to {last}"), str(len(tabled)),
-                           str(row_count), f"{confirmed} / {len(group)}", str(host_count)])
+        info = {"hid": hid, "title": P.cards_title(machine), "cpu": nodes[0].get("cpu") or "?",
+                "backends": sorted(backends), "vram": P.vram_gb(machine),
+                "archs": sorted({g["arch"] for n in nodes for g in n.get("gpus", []) if g.get("arch")}),
+                "runs": len(tabled), "rows": row_count, "confirmed": confirmed, "hosts": len(hosts),
+                "wins": wins, "losses": losses, "span": f"{first} to {last}"}
+        infos.append(info)
+        tiles = "".join(f'<div class="stat"><b>{P.esc(v)}</b><span>{P.esc(k)}</span></div>' for k, v in (
+            ("runs", info["runs"]), ("rows", row_count), ("confirmed records", f"{confirmed} / {len(group)}"),
+            ("hosts", len(hosts)), ("from", first), ("to", last)))
+        chips = "".join(P.backend_chip(b) for b in info["backends"])
+        body = (f'<div class="crumbs"><a href="../index.html">Hardware</a> / {P.esc(info["title"])}</div>\n'
+                f'<h1>{P.esc(info["title"])}</h1>\n<p class="sub">{P.esc(info["cpu"])}</p>\n'
+                f'<div class="chips">{chips}<span class="chip">hardware id {P.esc(hid)}</span></div>\n'
+                f'<section class="stats">{tiles}</section>\n<h2>Architecture</h2>\n{P.specs(machine, docs)}\n'
+                f'<p class="note">Columns as in the <a href="{P.REPO}/blob/main/docs/METHOD.md">method</a>. Each rate reads '
+                f'cold / warm. A row\'s Date (UTC) and Run name the record behind it; Status is that record\'s.</p>\n'
+                + "\n".join(sections) + '\n<script src="../table.js"></script>')
+        (OUT / "hw" / f"{hid}.html").write_text(P.page(label, body, depth=1, active="index.html",
+                                                        description=f"loken benchmarks on {P.cards_title(machine)}."))
+        written.add(f"{hid}.html")
     for stale in (OUT / "hw").glob("*.html"):
         if stale.name not in written:
             stale.unlink()
 
-    body = ("<h1>loken benchmarks</h1>\n<p>Runs of the loken bench campaign, one page per hardware "
-            "configuration. A record is <span class=\"confirmed\">confirmed</span> when another record "
-            "of the same equivalence class on the same hardware comes from another host; otherwise it is <span class=\"submitted\">submitted</span>.</p>\n"
-            + table(["Hardware", "Backend", "Id", "Runs from", "Runs", "Rows", "Confirmed records",
-                     "Hosts"], index_rows))
-    (OUT / "index.html").write_text(page("loken benchmarks", body))
+    compared = wins_all + losses_all
+    stats = [("hardware configurations", len(infos)), ("machines", len(all_hosts)), ("runs", len(entries)),
+             ("models", len(models)), ("rows", len(search)),
+             ("decode cells won by loken", f"{100 * wins_all // compared}%" if compared else "-")]
+    cards = "".join(P.hardware_card(i) for i in infos)
+    body = (P.hero(stats) + '\n<h2>Hardware</h2>\n<div class="cards">' + cards + "</div>\n"
+            '<h2>Reading the numbers</h2>\n<div class="specs">'
+            '<div class="spec"><h3>Cold and warm</h3><p>Every cell runs its prompt three times. The first request is '
+            'cold; the later ones, served from a prompt cache by an engine that keeps one, give the warm median. Each '
+            'rate shows both, cold first.</p></div>'
+            '<div class="spec"><h3>Confirmed</h3><p>A record is confirmed when another host measured the same '
+            'configuration on the same hardware. Until then it is submitted, and shown as such.</p></div>'
+            '<div class="spec"><h3>Anonymous</h3><p>A record names no person and no machine: the day of the run '
+            'without its hour, the architecture of the hardware, and two one-way hashes.</p></div></div>')
+    (OUT / "index.html").write_text(P.page("loken benchmarks", body, active="index.html"))
     (OUT / "index.json").write_text(json.dumps(search, ensure_ascii=False, separators=(",", ":")))
-    (OUT / "search.html").write_text(page("Search benchmarks", SEARCH))
-    (OUT / "charts.html").write_text(page("Benchmark charts", CHARTS))
-    for asset in (R.ROOT / "web").glob("*.js"):
-        (OUT / asset.name).write_text(asset.read_text())
+    (OUT / "search.html").write_text(P.page("Search benchmarks", SEARCH, active="search.html"))
+    (OUT / "charts.html").write_text(P.page("Benchmark charts", CHARTS, active="charts.html"))
     print(f"wrote {len(written)} hardware page(s), {len(search)} row(s) in index.json, "
           f"{len(entries)} record(s)")
     return 0
 
 
 SEARCH = """<h1>Search</h1>
-<form onsubmit="return false">
-<label>Words <input id="words" placeholder="model, card, engine..." size="28"></label>
+<p class="sub">Every row of every machine. Type words, narrow by hardware, engine, device, mode, prompt or context size,
+click a column to sort, and download what is shown.</p>
+<form onsubmit="return false" class="panel">
+<label>Words <input id="words" type="search" placeholder="model, card, engine..." size="28"></label>
 <label>Hardware <select id="hardware"></select></label>
 <label>Engine <select id="engine"></select></label>
 <label>Device <select id="device"></select></label>
@@ -272,12 +224,14 @@ SEARCH = """<h1>Search</h1>
 <button id="csv" type="button">Download CSV</button>
 </form>
 <p id="count" class="note"></p>
-<div class="scroll"><table id="out"></table></div>
+<div class="scroll"><table id="out" class="results"></table></div>
 <p><button id="more" type="button" style="display:none">Show every row</button></p>
 <script src="search.js"></script>"""
 
 CHARTS = """<h1>Charts</h1>
-<form onsubmit="return false" class="controls">
+<p class="sub">A rate across context sizes, across models, or across hardware. Pick a chart, a metric and the
+cells to compare; hover a point or a bar for the engine build and the date.</p>
+<form onsubmit="return false" class="panel">
 <label>Chart <select id="view"></select></label>
 <label>Metric <select id="metric"></select></label>
 <label id="half-row">Figure <select id="half"></select></label>
@@ -285,24 +239,24 @@ CHARTS = """<h1>Charts</h1>
 <label>Mode <select id="mode"></select></label>
 <label>Device <select id="device"></select></label>
 <fieldset><legend>Engines</legend><span id="engines"></span></fieldset>
-</form>
-<form onsubmit="return false" class="controls" id="ctx-only">
-<label>Model <input id="model" list="models" size="40" placeholder="start typing a model"></label>
-<label><input type="checkbox" id="log"> logarithmic scale</label>
-<fieldset><legend>Hardware</legend><span id="hw"></span></fieldset>
-</form>
-<form onsubmit="return false" class="controls" id="models-only">
+<span id="ctx-only" style="display:contents">
+<label>Model <input id="model" list="models" size="38" placeholder="start typing a model"></label>
+<label>Scale <span><input type="checkbox" id="log"> logarithmic</span></label>
+<fieldset class="wide"><legend>Hardware</legend><span id="hw"></span></fieldset>
+</span>
+<span id="models-only" style="display:contents">
 <label>Hardware <select id="hw1"></select></label>
 <label>Context <select id="ctx"></select></label>
-</form>
-<form onsubmit="return false" class="controls" id="hw-only">
-<label>Model <input id="model2" list="models" size="40" placeholder="start typing a model"></label>
+</span>
+<span id="hw-only" style="display:contents">
+<label>Model <input id="model2" list="models" size="38" placeholder="start typing a model"></label>
 <label>Context <select id="ctx2"></select></label>
+</span>
 </form>
 <datalist id="models"></datalist>
-<div id="chart"></div>
-<p class="note">A point or a bar is the newest run of its cell; hover it for the engine build and the date. Rates are
-the warm figure (median of the later requests) or the cold one (the first request).</p>
+<div class="chartbox"><h2 id="title"></h2><div id="chart"></div></div>
+<p class="note">A point or a bar is the newest run of its cell. A rate is the warm figure, the median of the requests
+after the first, or the cold one, the first request.</p>
 <script src="charts.js"></script>"""
 
 

@@ -105,7 +105,8 @@ state the loken version is labelled `loken` without a number.
 | `scripts/architecture.py` | describes the machine and its cluster |
 | `scripts/add.py`, `scripts/check.py`, `scripts/site.py` | file a run, check it, build the site |
 | `scripts/bench_row.py`, `scripts/scoreboard.py` | the table rows and the win count |
-| `web/` | the scripts of the site: the charts and the search |
+| `scripts/pages.py` | the layout of the site: the shell, the hero, the hardware cards and the result tables |
+| `web/` | the style sheet and the scripts of the site: the charts, the search and the table filter |
 | `matrix.toml`, `fixtures/` | the matrix axes and the speech recognition fixtures, credited in `NOTICE.md` |
 | `bench.toml.example` | the settings a campaign reads |
 | `runs/` | the shared runs, one folder per hardware |

@@ -2,10 +2,10 @@
 // context size, sort by any column and download what is shown as CSV.
 (function () {
   "use strict";
-  const COLS = [["Hardware", "label"], ["Model", "model"], ["Ctx", "ctx"], ["Prompt", "prompt"], ["Mode", "mode"],
-    ["Device", "device"], ["Engine", "engine"], ["Prefill tok/s", "prefill"], ["TTFT ms", "ttft"], ["Decode tok/s", "decode"],
-    ["Tokens", "tokens"], ["E2E ms", "e2e"], ["J/req", "jreq"], ["J/token", "jtok"], ["Δ prefill", "dprefill"],
-    ["Δ TTFT", "dttft"], ["Δ decode", "ddecode"], ["Δ energy", "denergy"], ["Date (UTC)", "date"],
+  const COLS = [["Model", "model"], ["Hardware", "title"], ["Engine", "engine"], ["Ctx", "ctx"], ["Prompt", "prompt"],
+    ["Mode", "mode"], ["Device", "device"], ["Prefill tok/s", "prefill"], ["TTFT ms", "ttft"], ["Decode tok/s", "decode"],
+    ["Tokens", "tokens"], ["E2E ms", "e2e"], ["J/req", "jreq"], ["J/token", "jtok"], ["\u0394 prefill", "dprefill"],
+    ["\u0394 TTFT", "dttft"], ["\u0394 decode", "ddecode"], ["\u0394 energy", "denergy"], ["Date (UTC)", "date"],
     ["Run", "run"], ["Status", "status"]];
   const NUM = new Set(["ctx", "prefill", "ttft", "decode", "tokens", "e2e", "jreq", "jtok", "dprefill", "dttft", "ddecode", "denergy"]);
   const SHOWN = 500;
@@ -48,7 +48,7 @@
     const t = $("out"); t.replaceChildren();
     const h = t.insertRow();
     for (const [name, key] of COLS) {
-      const th = el("th", name + (sortKey === key ? (sortDir > 0 ? " ▲" : " ▼") : ""));
+      const th = el("th", name + (sortKey === key ? (sortDir > 0 ? " \u25B2" : " \u25BC") : ""));
       th.style.cursor = "pointer";
       th.addEventListener("click", () => { sortDir = sortKey === key ? -sortDir : 1; sortKey = key; render(); });
       h.appendChild(th);
@@ -57,7 +57,8 @@
       const tr = t.insertRow();
       for (const [, key] of COLS) {
         let td;
-        if (key === "label") { td = document.createElement("td"); const a = el("a", r.label); a.href = "hw/" + r.hw + ".html"; td.appendChild(a); }
+        if (key === "title") { td = document.createElement("td"); const a = el("a", r.title + (r.backend !== "unstated" ? " (" + r.backend + ")" : "")); a.href = "hw/" + r.hw + ".html"; td.appendChild(a); }
+        else if (key === "engine") td = el("td", r.engine, "eng " + family(r.engine).toLowerCase());
         else td = el("td", r[key], NUM.has(key) ? "num" : key === "status" ? r.status : "");
         tr.appendChild(td);
       }
