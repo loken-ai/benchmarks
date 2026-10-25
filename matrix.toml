@@ -6,12 +6,15 @@
 # facts about the comparison.
 
 # The axes the driver sweeps. The full matrix is their product (ctx x prompts x stream x device).
-# The context sizes are powers of two from 4096 to 131072, so a rate is read across the window and
-# not only at its two ends. A size above a model's declared window is skipped. A shorter run
+#
+# `context` is the window each engine is asked to reserve. `prompts` are the sizes of the input in
+# tokens, each the file of that name in prompts/: the same text cut at 100, 1 000 and 10 000 tokens
+# (counted with the Qwen3 tokenizer), so a rate is read across the size of the input. A window the
+# prompt does not fit in, or above the one a model declares, is not measured. A shorter run
 # selects a subset on the command line.
 [axes]
-context = [4096, 8192, 16384, 32768, 65536, 131072]
-prompts = ["short", "medium", "long"]
+context = [4096, 131072]
+prompts = ["100", "1000", "10000"]
 stream = [true, false]
 device = ["gpu", "cpu"]
 

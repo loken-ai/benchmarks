@@ -29,9 +29,9 @@
 # VLLM_SERVE="hf:<repo> --name <tag-the-others-use>".
 #
 # Usage:
-#   BENCH_MODE=cpu  scripts/fair-run.sh --models <tag> --prompts short,long
+#   BENCH_MODE=cpu  scripts/fair-run.sh --models <tag> --prompt "$(cat prompts/1000.txt)"
 #   BENCH_MODE=gpu  GPUS=0 VLLM_SERVE="hf:<repo> --name <tag>" \
-#       OUT=results/three-way.json scripts/fair-run.sh --models <tag> --prompts short,medium,long
+#       OUT=results/three-way.json scripts/fair-run.sh --models <tag> --prompt "$(cat prompts/2500.txt)"
 #   BENCH_MODE=gpu  scripts/fair-run.sh --models <big-tag> ...     # every card, no GPUS pin
 #
 # Do not pass -o; use OUT=. CPU mode forces --num-gpu 0 on ollama, which is only fair because

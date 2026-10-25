@@ -264,6 +264,11 @@
 
   fetch("index.json").then(r => r.json()).then(data => {
     rows = data;
+    if (!rows.length) {
+      $("title").textContent = "";
+      $("chart").innerHTML = '<p class="note">No run has been published yet.</p>';
+      return;
+    }
     const uniq = key => [...new Set(rows.map(r => r[key]))].sort((a, b) => String(a).localeCompare(String(b), undefined, { numeric: true }));
     const hws = [...new Map(rows.map(r => [r.hw + "/" + r.backend, hardwareLabel(r)])).entries()]
       .map(([value, label]) => ({ value, label })).sort((a, b) => a.label.localeCompare(b.label));
@@ -276,10 +281,10 @@
     checks("engines", [...new Set(rows.map(r => family(r.engine)))].sort().map(v => ({ value: v, label: v })), () => true);
     checks("hw", hws, () => true);
     $("models").replaceChildren(...uniq("model").map(m => { const o = el("option"); o.value = m; return o; }));
-    // Defaults that show something: the short streamed GPU cells at 4096, on the hardware and the
+    // Defaults that show something: the 1000 character streamed GPU cells at 4096, on the hardware and the
     // model with the most rows of that kind.
     const prefer = (id, wanted) => { const sel = $(id); if ([...sel.options].some(o => o.value === wanted)) sel.value = wanted; };
-    prefer("prompt", "short"); prefer("mode", "stream"); prefer("device", "GPU"); prefer("ctx", "4096"); prefer("ctx2", "4096");
+    prefer("prompt", "1000"); prefer("mode", "stream"); prefer("device", "GPU"); prefer("ctx", "4096"); prefer("ctx2", "4096");
     const basics = rows.filter(r => r.prompt === $("prompt").value && r.mode === $("mode").value && r.device === $("device").value && r.m && r.m.decode && r.m.decode[1] !== null);
     const most = key => { const n = new Map(); for (const r of basics) n.set(key(r), (n.get(key(r)) || 0) + 1); return [...n.entries()].sort((a, b) => b[1] - a[1])[0]; };
     const bestHw = most(r => r.hw + "/" + r.backend), bestModel = most(r => r.model);

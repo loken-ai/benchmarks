@@ -48,18 +48,19 @@ starts the `lokend` named in `bench.toml` when none answers. It needs `python3` 
 `BENCH_ONLY="a b" scripts/bench run` measures only the named models. `CELL_CAP=<seconds>` stops a cell that runs longer
 (7200 by default): a model too large for the cards can spend hours computing on the host, and the cell is then
 reported as interrupted, without a result. Without `FULL=1` the run is a
-fast pass: GPU, context 4096, the short prompt, streaming. `FULL=1` sweeps the whole matrix.
+fast pass: GPU, the first context window, the 100 token prompt, streaming. `FULL=1` sweeps the whole matrix.
 
 ## The whole matrix
 
-`FULL=1 scripts/bench run` sweeps every axis of `matrix.toml`: for each device, context size, prompt
-and streaming mode in that order, every model once. The context sizes are the powers of two from
-4096 to 131072, so a rate is read across the window and not only at its two ends. A size above the
-window a model declares (read from the metadata loken shows for it) is skipped, with a line that says
-so. Each cell is one run of `fair-run.sh` on one prompt, so the servers start afresh for every
-prompt, and its scratch file is `results/<model>_<ctx>_<stream|non-stream>[_<prompt>][_cpu].json`
-(no prompt suffix for the short one). The CPU sweeps are streamed only and have no vLLM. A
-generated-media cell has no such axes and is measured once, in the first sweep.
+`FULL=1 scripts/bench run` sweeps every axis of `matrix.toml`: for each device, context window, prompt
+and streaming mode in that order, every model once. The prompts are three sizes of one text, 100,
+1 000 and 10 000 tokens (`prompts/`), so a rate is read across the size of the input;
+`docs/METHOD.md` gives their characters and words. The windows are 4096 and 131072 tokens. A window
+the prompt does not fit in, or above the one a model declares (read from the metadata loken shows for it) is skipped, with a line that
+says so. Each cell is one run of `fair-run.sh` on one prompt, so the servers start afresh for every
+prompt, and its scratch file is `results/<model>_<ctx>_<stream|non-stream>_<prompt>[_cpu].json`. The CPU
+sweeps are streamed only and have no vLLM. A generated-media cell has no such axes and is measured
+once, in the first sweep, with the first prompt.
 
 ## The engine compartment
 

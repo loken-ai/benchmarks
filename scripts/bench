@@ -217,16 +217,16 @@ print(f" --max-len {n}" if isinstance(n, int) else "", end="")' "$cfg"
 
 # Write a visible ERROR cell for a model loken lists but the campaign cannot measure, so it appears
 # in the report as impossible (bench_row reads load_error) instead of silently vanishing.
-write_error_cell() { # write_error_cell <model> <reason> <out> <stamp>
-    python3 - "$1" "$2" "$3" "$4" <<'PY'
+write_error_cell() { # write_error_cell <model> <reason> <out> <stamp> <prompt label>
+    python3 - "$1" "$2" "$3" "$4" "$5" <<'PY'
 import json, sys, datetime
-model, reason, out, stamp = sys.argv[1], sys.argv[2], sys.argv[3], int(sys.argv[4])
+model, reason, out, stamp, label = sys.argv[1], sys.argv[2], sys.argv[3], int(sys.argv[4]), sys.argv[5]
 doc = {
     "schema": "loken/2",
     "engine_build": stamp,
     "timestamp": datetime.datetime.now().astimezone().isoformat(),
     "results": [{
-        "target": "loken", "url": "", "model": model, "num_ctx": 4096, "prompt": "short",
+        "target": "loken", "url": "", "model": model, "num_ctx": 4096, "prompt": label,
         "prompt_chars": 0, "stats": {}, "iterations": [], "iteration_errors": [],
         "coherence_pass": None, "first_response_preview": "", "load_time_ms": None,
         "model_fingerprint": None, "load_error": reason,
@@ -239,12 +239,21 @@ PY
 # Stamp a freshly measured result with the binary build and the versions of the engines that
 # actually produced a row in it. The report reads the version from here, so a row never carries the
 # version installed when the report was generated - only the one it was measured with.
-stamp_result() { # stamp_result <file> <stamp>
-    python3 - "$1" "$2" "${OLLAMA_VER:-}" "${VLLM_VER:-}" <<'PY'
+stamp_result() { # stamp_result <file> <stamp> <prompt label>
+    python3 - "$1" "$2" "${OLLAMA_VER:-}" "${VLLM_VER:-}" "$3" <<'PY'
 import json, sys
-p, stamp, over, vver = sys.argv[1], int(sys.argv[2]), sys.argv[3], sys.argv[4]
+p, stamp, over, vver, label = sys.argv[1], int(sys.argv[2]), sys.argv[3], sys.argv[4], sys.argv[5]
 d = json.load(open(p))
 d["engine_build"] = stamp
+# lokprof names a prompt it was given as text "custom"; the protocol names it by its size in
+# tokens, and the text itself is the file of that name in prompts/, not part of the record.
+for r in d.get("results", []):
+    if r.get("prompt") == "custom":
+        r["prompt"] = label
+cfg = d.get("config") or {}
+if cfg.get("custom_prompt"):
+    cfg["custom_prompt"] = None
+    cfg["prompts"] = [label]
 targets = {r.get("target", "").lower() for r in d.get("results", [])}
 if over and "ollama" in targets:
     d["ollama_version"] = over
@@ -416,20 +425,24 @@ run() {
     [ -n "$models" ] || die "loken returned no catalogue at $LOKEN_URL/api/tags (is it serving?)"
 
     local ctxs prompts streams devices
-    if [ "${FULL:-0}" = 1 ]; then
-        # The full matrix axes come from the manifest - the only curated data a campaign reads.
-        IFS='|' read -r ctxs prompts streams devices < <(python3 - "$MATRIX" <<'PY'
+    # The axes come from the manifest - the only curated data a campaign reads. A fast pass
+    # (without FULL=1) takes the first value of each axis: GPU, the smallest window, the smallest
+    # prompt, streaming.
+    IFS='|' read -r ctxs prompts streams devices < <(python3 - "$MATRIX" "${FULL:-0}" <<'PY'
 import sys, tomllib
 a = tomllib.load(open(sys.argv[1], "rb"))["axes"]
-print(" ".join(str(c) for c in a["context"]) + "|"
-      + " ".join(a["prompts"]) + "|"
-      + " ".join("1" if s else "0" for s in a["stream"]) + "|"
-      + " ".join(a["device"]))
+full = sys.argv[2] == "1"
+pick = (lambda v: v) if full else (lambda v: v[:1])
+print(" ".join(str(c) for c in pick(a["context"])) + "|"
+      + " ".join(pick(a["prompts"])) + "|"
+      + " ".join("1" if s else "0" for s in pick(a["stream"])) + "|"
+      + " ".join(pick(a["device"])))
 PY
 )
-    else
-        ctxs="4096"; prompts="short"; streams="1"; devices="gpu"
-    fi
+    local pr_name
+    for pr_name in $prompts; do
+        [ -s "$ROOT/prompts/$pr_name.txt" ] || die "matrix.toml names the prompt '$pr_name' and prompts/$pr_name.txt is missing"
+    done
     # A card is measured through one backend; the host has none to choose.
     [ "$BACKEND" = native ] || devices="gpu"
     local stamp; stamp=$(stat -c %Y "$LOKEN_BIN")
@@ -489,7 +502,7 @@ PY
             if [ -n "$err" ]; then
                 if [ "$first" = 1 ]; then
                     out="results/${tag}_error.json"
-                    write_error_cell "$m" "$err" "$out" "$stamp"
+                    write_error_cell "$m" "$err" "$out" "$stamp" "$pr"
                     echo "ERROR cell: $m ($mod) - $err"
                 fi
                 continue
@@ -505,6 +518,11 @@ PY
                 engines=$(echo " $engines " | sed 's/ vllm / /; s/^ //; s/ $//'); vserve=""
                 [ -n "$engines" ] || continue
             fi
+            # A window the prompt and its answer do not fit in is not measured (the prompt's size
+            # is nominal in tokens; a tenth of margin covers the other tokenizers).
+            if [ "$ctx" -lt $((pr + pr / 10 + ${MAXTOK:-128})) ]; then
+                echo "skipped $m ctx=$ctx: a prompt of $pr tokens does not fit"; continue
+            fi
             # A context above the window the model declares is not measured.
             case "$mod" in
                 text|vision)
@@ -514,7 +532,7 @@ PY
                     fi ;;
             esac
             mode=stream; [ "$st" = 1 ] || mode=non-stream
-            psuf=""; [ "$pr" != short ] && psuf="_$pr"
+            psuf="_$pr"
             suffix=""; [ "$dev" = cpu ] && suffix="_cpu"
             [ "$BACKEND" = native ] || suffix="_$BACKEND"
             out="results/${tag}_${ctx}_${mode}${psuf}${suffix}.json"
@@ -534,7 +552,7 @@ PY
             env ENGINES="$engines" STREAM="$st" BENCH_MODE="$dev" OUT="$out.part" VLLM_SERVE="$vserve" \
                 GPU_PIN="$([ "$dev" = gpu ] && echo "${PIN:-}")" ASR_AUDIO="$ASR_AUDIO" \
                 timeout --kill-after=60 "${CELL_CAP:-7200}" \
-                scripts/engines/fair-run.sh --models "$m" --prompts "$pr" --num-ctx "$ctx" \
+                scripts/engines/fair-run.sh --models "$m" --prompt "$(cat "$ROOT/prompts/$pr.txt")" --num-ctx "$ctx" \
                 --max-tokens "${MAXTOK:-128}" --iterations 3 --modality "$amod" \
                 "${asrargs[@]}" \
                 2>&1 | tail -4
@@ -544,7 +562,7 @@ PY
             fi
             [ -s "$out.part" ] || { echo "no result for $m"; missing=$((missing + 1)); continue; }
             mv "$out.part" "$out"
-            stamp_result "$out" "$stamp"
+            stamp_result "$out" "$stamp" "$pr"
             python3 scripts/architecture.py enrich "$out" "${node_args[@]}" \
                 || echo "  (the architecture of $m was not added to $out)"
             python3 scripts/add.py "$out" >/dev/null 2>&1 || echo "  (the record of $m was not filed: run scripts/add.py $out)"

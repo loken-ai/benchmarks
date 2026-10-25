@@ -2,7 +2,7 @@
 // context size, sort by any column and download what is shown as CSV.
 (function () {
   "use strict";
-  const COLS = [["Model", "model"], ["Hardware", "title"], ["Engine", "engine"], ["Ctx", "ctx"], ["Prompt", "prompt"],
+  const COLS = [["Model", "model"], ["Hardware", "title"], ["Engine", "engine"], ["Ctx", "ctx"], ["Prompt (tokens)", "prompt"],
     ["Mode", "mode"], ["Device", "device"], ["Prefill tok/s", "prefill"], ["TTFT ms", "ttft"], ["Decode tok/s", "decode"],
     ["Tokens", "tokens"], ["E2E ms", "e2e"], ["J/req", "jreq"], ["J/token", "jtok"], ["\u0394 prefill", "dprefill"],
     ["\u0394 TTFT", "dttft"], ["\u0394 decode", "ddecode"], ["\u0394 energy", "denergy"], ["Date (UTC)", "date"],

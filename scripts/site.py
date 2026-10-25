@@ -107,7 +107,8 @@ def main():
     (OUT / "hw").mkdir(exist_ok=True)
     for asset in (R.ROOT / "web").iterdir():
         (OUT / asset.name).write_text(asset.read_text())
-    head = [c if c != "Date" else "Date (UTC)" for c in B.COLS] + [STATUS_COL]
+    renamed = {"Date": "Date (UTC)", "Prompt": "Prompt (tokens)"}
+    head = [renamed.get(c, c) for c in B.COLS] + [STATUS_COL]
     search, infos, written = [], [], set()
     models, all_hosts, wins_all, losses_all = set(), set(), 0, 0
     for hid, group in sorted(hardware.items(), key=lambda kv: -len(kv[1])):
@@ -194,7 +195,7 @@ def main():
     stats = [("hardware configurations", len(infos)), ("machines", len(all_hosts)), ("runs", len(entries)),
              ("models", len(models)), ("rows", len(search)),
              ("decode cells won by loken", f"{100 * wins_all // compared}%" if compared else "-")]
-    cards = "".join(P.hardware_card(i) for i in infos)
+    cards = "".join(P.hardware_card(i) for i in infos) or '<p class="note">No run has been published yet.</p>'
     body = (P.hero(stats) + '\n<h2>Hardware</h2>\n<div class="cards">' + cards + "</div>\n"
             '<h2>Reading the numbers</h2>\n<div class="specs">'
             '<div class="spec"><h3>Cold and warm</h3><p>Every cell runs its prompt three times. The first request is '

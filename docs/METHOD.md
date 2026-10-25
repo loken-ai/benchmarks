@@ -7,23 +7,32 @@ One cell is `(model, context, prompt, mode, device, engine)`, measured by
 [lokprof](https://github.com/loken-ai/lokprof): 3 iterations, greedy, 128 tokens.
 
 `Ctx` is the window each engine was asked to reserve, not a window the prompt fills: the
-longest prompt is about 300 tokens. Ollama allocates the whole window up front, and at 131072
+longest prompt is about 2,100 tokens. Ollama allocates the whole window up front, and at 131072
 that sends layers of the larger models to the host; this engine plans its quantised cache at
 4096 tokens and grows it on demand, so it reserved less. The 131072 column compares those two
-policies on short prompts, not two engines at a full context.
+policies on prompts that stay far below the window, not two engines at a full context.
 Engines run alone, others stopped, cards back at idle - a peer process changes where a model
 lands. Ollama runs without Vulkan, `num_gpu 0` for CPU rows.
 
-**Prompts** are the harness's three, byte-identical to every engine. Only the prefill differs;
-the 128-token cap keeps the decode column comparable.
+**Prompts** are three sizes of one text, byte-identical to every engine. Only the prefill differs;
+the 128-token cap keeps the decode column comparable. A prompt is named by its size in tokens, and
+`prompts/<size>.txt` holds the text.
 
-| Prompt | What it is | Size |
-|---|---|---|
-| `short` | a story opening, cut mid-sentence | 13 words |
-| `medium` | a paragraph on computing history, likewise | 34 words |
-| `long` | a code review over a 22-line Rust function | 139 words |
+| Prompt | Tokens | Characters | Words |
+|---|---|---|---|
+| `100` | 100 | 451 | 85 |
+| `1000` | 1 000 | 4 384 | 794 |
+| `10000` | 10 000 | 42 295 | 7 736 |
 
-Vision rows use the parallel `vision_*` prompts.
+The text is the opening of a public domain novel in plain ASCII. Each prompt is the start of the
+next, cut where the Qwen3 tokenizer counts exactly the size, at a word or a punctuation mark
+(the 100 token prompt ends inside a word). Another tokenizer counts a few percent more or less,
+so the size is nominal for the model under test. A window the prompt and its answer do not fit in
+is not measured, so the 10000 prompt runs at the 131072 window only. A record names the prompt by
+its size and states the number of characters it was given; a record whose prompt is not one of
+these three, or whose text has another length, is refused.
+
+Vision rows send the same prompt beside their image.
 
 **Cards.** Ollama is pinned to one card only while the weights fit it - above that it would get
 one card plus host spill while the others get the machine. Rows before 2026-08-14 04:00 on
