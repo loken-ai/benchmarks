@@ -69,6 +69,14 @@ else:
     print("")
 PY
 }
+# The ssh targets of the other nodes when the campaign measures a cluster, one per line.
+cluster_nodes() {
+    python3 - "$SETTINGS" <<'PY'
+import pathlib, sys, tomllib
+for node in tomllib.loads(pathlib.Path(sys.argv[1]).read_text()).get("cluster", {}).get("nodes", []):
+    print(node)
+PY
+}
 # The loken build measured, the directory whose config.toml it is started with, and its address.
 LOKEN_BIN="$(setting loken.binary)"
 LOKEN_CWD="$(setting loken.config_dir)"
@@ -487,6 +495,8 @@ PY
             [ -s "$out.part" ] || { echo "no result for $m"; missing=$((missing + 1)); continue; }
             mv "$out.part" "$out"
             stamp_result "$out" "$stamp"
+            python3 scripts/architecture.py enrich "$out" $(cluster_nodes | sed 's/^/--node /') \
+                || echo "  (the architecture of $m was not added to $out)"
             python3 scripts/add.py "$out" >/dev/null 2>&1 || echo "  (the record of $m was not filed: run scripts/add.py $out)"
             # The plot and the score follow every cell, so a regression shows while the
             # campaign still runs.
