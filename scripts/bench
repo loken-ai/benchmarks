@@ -31,14 +31,8 @@ ASR_REFERENCE="${ASR_REFERENCE:-$ROOT/fixtures/asr/jfk.txt}"
 # Whose cards a campaign measures: every card of the machine. On a machine with NVIDIA and AMD
 # cards that is GPU_VENDOR=all, loken driving both vendors at once; GPU_VENDOR=nvidia or amd
 # restricts the run to one vendor and hides the other's cards from every engine.
-if [ -z "${GPU_VENDOR:-}" ]; then
-    has_nvidia=0; has_amd=0
-    nvidia-smi -L 2>/dev/null | grep -q . && has_nvidia=1
-    grep -qs 0x1002 /sys/bus/pci/devices/*/vendor && has_amd=1
-    if [ "$has_nvidia" = 1 ] && [ "$has_amd" = 1 ]; then GPU_VENDOR=all
-    elif [ "$has_amd" = 1 ]; then GPU_VENDOR=amd
-    else GPU_VENDOR=nvidia; fi
-fi
+# The card policy and the detection of the cards are scripts/engines/gpu-policy.sh.
+. "$HERE/engines/gpu-policy.sh"
 export GPU_VENDOR
 # The runtime a campaign measures a card through: its native one (default), its Vulkan device
 # (loken and ollama both on Vulkan), or OpenCL (loken alone). VULKAN_CARD names the card by a
@@ -363,7 +357,7 @@ provision() {
     [ -x "$obin" ] || die "no ollama binary in the compartment"
     # AMD cards need ollama's ROCm libraries, shipped apart and unpacked over the same tree.
     local odir; odir="$(dirname "$(dirname "$obin")")"
-    if { [ "$GPU_VENDOR" = amd ] || [ "$GPU_VENDOR" = all ]; } && grep -qs 0x1002 /sys/bus/pci/devices/*/vendor \
+    if { [ "$GPU_VENDOR" = amd ] || [ "$GPU_VENDOR" = all ]; } && [ -n "$(_amd_cards)" ] \
             && ! compgen -G "$odir/lib/ollama/rocm*" >/dev/null; then
         local over rurl rarc
         over="$("$obin" --version 2>&1 | grep -oiE '[0-9]+\.[0-9]+\.[0-9]+' | head -1)"
@@ -452,9 +446,8 @@ PY
     fi
     if [ "$GPU_VENDOR" != nvidia ]; then
         local card busy_amd
-        for card in /sys/bus/pci/devices/*; do
-            [ "$(cat "$card/vendor" 2>/dev/null)" = 0x1002 ] || continue
-            busy_amd=$(cat "$card/gpu_busy_percent" 2>/dev/null || echo 0)
+        for card in $(_amd_cards); do
+            busy_amd=$(cat "/sys/bus/pci/devices/$card/gpu_busy_percent" 2>/dev/null || echo 0)
             [ "$busy_amd" -le 5 ] || die "an AMD card is still working (${busy_amd}% busy): stop what holds it first"
         done
     fi
@@ -462,9 +455,8 @@ PY
         GPU_IDLE_C="$(
             {
                 nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader,nounits 2>/dev/null
-                for card in /sys/bus/pci/devices/*; do
-                    [ "$(cat "$card/vendor" 2>/dev/null)" = 0x1002 ] || continue
-                    for t in "$card"/hwmon/hwmon*/temp1_input; do [ -r "$t" ] && echo $(( $(cat "$t") / 1000 )); done
+                for card in $(_amd_cards); do
+                    for t in /sys/bus/pci/devices/"$card"/hwmon/hwmon*/temp1_input; do [ -r "$t" ] && echo $(( $(cat "$t") / 1000 )); done
                 done
             } | sort -rn | head -1
         )"

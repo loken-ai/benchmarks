@@ -18,11 +18,38 @@
 # indices a caller writes mean the same silicon in all three processes.
 
 GPUS="${GPUS:-all}"
+
+# A card is a display device with dedicated memory of at least this many MiB. The smallest card
+# a campaign measures holds 4 GiB; the memory an integrated GPU borrows from the host is less, and
+# such a device is not measured nor exposed to an engine.
+CARD_MIN_MIB=4096
+
+# _amd_cards - one line per AMD card, in the order ROCm numbers them (PCI order).
+_amd_cards() {
+    local d mib
+    for d in /sys/bus/pci/devices/*; do
+        [ "$(cat "$d/vendor" 2>/dev/null)" = 0x1002 ] || continue
+        case "$(cat "$d/class" 2>/dev/null)" in 0x0300*|0x0380*) ;; *) continue ;; esac
+        mib=$(( $(cat "$d/mem_info_vram_total" 2>/dev/null || echo 0) / 1048576 ))
+        [ "$mib" -ge "$CARD_MIN_MIB" ] && echo "${d##*/}"
+    done
+}
+
+# detect_vendor - nvidia, amd, or all when the machine holds cards of both.
+detect_vendor() {
+    local nvidia=0 amd=0
+    nvidia-smi -L 2>/dev/null | grep -q . && nvidia=1
+    [ -n "$(_amd_cards)" ] && amd=1
+    if [ "$nvidia" = 1 ] && [ "$amd" = 1 ]; then echo all
+    elif [ "$amd" = 1 ]; then echo amd
+    else echo nvidia; fi
+}
+
 # Whose cards the run measures: nvidia (CUDA, NVML), amd (ROCm) or all. With nvidia or amd, the
 # other vendor's cards are hidden from every engine, so a cell is one vendor's silicon. With all,
 # every card of both vendors is exposed to every engine: loken drives both at once, and an engine
 # that can drive one vendor only uses the cards of that vendor. Only GPUS=all is meaningful then.
-GPU_VENDOR="${GPU_VENDOR:-nvidia}"
+GPU_VENDOR="${GPU_VENDOR:-$(detect_vendor)}"
 OLLAMA_GPUS="${OLLAMA_GPUS:-$GPUS}"
 LOKEN_GPUS="${LOKEN_GPUS:-$GPUS}"
 VLLM_GPUS="${VLLM_GPUS:-$GPUS}"
@@ -42,14 +69,6 @@ _gpu_uuids() {
     printf '%s' "$out"
 }
 
-# _amd_cards - one line per AMD display card, in the order ROCm numbers them (PCI order).
-_amd_cards() {
-    local d
-    for d in /sys/bus/pci/devices/*; do
-        [ "$(cat "$d/vendor" 2>/dev/null)" = 0x1002 ] || continue
-        case "$(cat "$d/class" 2>/dev/null)" in 0x0300*|0x0380*) echo "${d##*/}" ;; esac
-    done
-}
 
 # _nvidia_count - how many NVIDIA cards NVML lists.
 _nvidia_count() {
