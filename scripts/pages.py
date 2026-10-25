@@ -112,8 +112,8 @@ def hardware_card(info):
         total = info["wins"] + info["losses"]
         win = (f'<div class="win"><div class="bar"><i style="width:{100 * info["wins"] / total:.1f}%"></i>'
                f'<i style="width:{100 * info["losses"] / total:.1f}%"></i></div>'
-               f'<p>loken decodes faster than the best other engine in {info["wins"]} of {total} compared cells '
-               f'(warm).</p></div>')
+               f'<p><span class="item"><span class="key green"></span>loken decodes faster in {info["wins"]} of {total} compared cells</span> '
+               f'<span class="item"><span class="key red"></span>slower in {info["losses"]}</span></p></div>')
     return f"""<a class="card" href="hw/{esc(info["hid"])}.html">
 <h3>{esc(info["title"])}</h3>
 <div class="cpu">{esc(info["cpu"])}</div>
