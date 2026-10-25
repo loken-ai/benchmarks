@@ -127,6 +127,22 @@ for m in json.load(sys.stdin).get("models", []):
 ' 2>/dev/null
 }
 
+# The context window a model declares, in tokens, from the metadata loken shows for it; nothing
+# when the metadata states none (a checkpoint, a media model). A cell asking for more than a model
+# declares is skipped, never measured past the window.
+declare -A DECLARED_CTX=()
+model_context() { # model_context <model>
+    if [ -z "${DECLARED_CTX[$1]+set}" ]; then
+        DECLARED_CTX[$1]="$(curl -sf -m 30 -X POST "$LOKEN_URL/api/show" -d "{\"name\":\"$1\"}" \
+            | python3 -c '
+import sys, json
+info = json.load(sys.stdin).get("model_info") or {}
+sizes = [v for k, v in info.items() if k.endswith(".context_length") and isinstance(v, int)]
+print(max(sizes) if sizes else "")' 2>/dev/null)"
+    fi
+    printf '%s' "${DECLARED_CTX[$1]}"
+}
+
 # The engines that can serve one cell, and how lokprof must run it, from the modality and the format.
 # One rule, no name heuristic, no curated peer list: the format loken declares says which peer can
 # load the weights; the modality says which clock and whether a peer speaks that endpoint at all.
@@ -261,6 +277,8 @@ plan() {
             "$m" "$mod" "${fmt:-<none>}" "${err:+ERROR}${err:-$engines}" "$err"
     done <<< "$models"
     echo
+    echo "context sizes (FULL=1): $(python3 -c 'import sys, tomllib; print(*tomllib.load(open(sys.argv[1], "rb"))["axes"]["context"])' "$MATRIX")"
+    echo "a context above a model's declared window is skipped"
     echo "(plan only; run with: $0 run)"
 }
 
@@ -397,7 +415,7 @@ PY
         echo "thermal floor for this campaign: ${GPU_IDLE_C}C (idle, nothing resident)"
     fi
 
-    local m mod fmt engines amod vserve err ctx st pr dev out tag mode psuf suffix asrargs rc
+    local m mod fmt engines amod vserve err ctx st pr dev out tag mode psuf suffix asrargs rc declared
     local first=1 missing=0
     for dev in $devices; do for ctx in $ctxs; do for pr in $prompts; do for st in $streams; do
         # The CPU sweeps are streamed only.
@@ -429,6 +447,14 @@ PY
                 engines=$(echo " $engines " | sed 's/ vllm / /; s/^ //; s/ $//'); vserve=""
                 [ -n "$engines" ] || continue
             fi
+            # A context above the window the model declares is not measured.
+            case "$mod" in
+                text|vision)
+                    declared="$(model_context "$m")"
+                    if [ -n "$declared" ] && [ "$ctx" -gt "$declared" ]; then
+                        echo "skipped $m ctx=$ctx: the model declares a window of $declared"; continue
+                    fi ;;
+            esac
             mode=stream; [ "$st" = 1 ] || mode=non-stream
             psuf=""; [ "$pr" != short ] && psuf="_$pr"
             suffix=""; [ "$dev" = cpu ] && suffix="_cpu"
