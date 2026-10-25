@@ -39,6 +39,13 @@ test("a series has one point per context size, the newest run winning", () => {
   assert.deepStrictEqual(series[0].points.map(p => [p[0], p[1]]), [[4096, 130], [8192, 95]]);
 });
 
+test("two builds of one engine are one line, the newest", () => {
+  const rows = [row({ engine: "Ollama 0.34.2", m: { decode: [10, 10] } }), row({ engine: "Ollama 0.35.1", date: "2026-10-25", m: { decode: [20, 20] } })];
+  const series = C.contextSeries(rows, { model: "m1" }, "decode", "warm");
+  assert.strictEqual(series.length, 1);
+  assert.deepStrictEqual(series[0].points.map(p => p[1]), [20]);
+});
+
 test("one line per hardware and engine, and the engine filter applies", () => {
   const rows = [row({}), row({ engine: "Ollama 0.35.1" }), row({ hw: "h2", cards: ["Card B"] })];
   assert.strictEqual(C.contextSeries(rows, { model: "m1" }, "decode", "warm").length, 3);

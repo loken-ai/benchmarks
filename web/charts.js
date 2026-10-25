@@ -66,17 +66,17 @@
 
   // One line per hardware and engine: the metric against the context size.
   function contextSeries(rows, f, metric, half) {
-    const picked = newest(select(rows, f), r => [r.hw, r.backend, r.engine, r.ctx, r.prompt, r.mode, r.device].join("|"));
+    const picked = newest(select(rows, f), r => [r.hw, r.backend, family(r.engine), r.ctx, r.prompt, r.mode, r.device].join("|"));
     const seen = {}, hwIndex = new Map(), series = new Map();
     for (const r of picked) {
       const v = value(r, metric, half);
       if (v === null) continue;
       const hwKey = r.hw + "/" + r.backend;
       if (!hwIndex.has(hwKey)) hwIndex.set(hwKey, hwIndex.size);
-      const key = hwKey + "|" + r.engine;
+      const key = hwKey + "|" + family(r.engine);
       if (!series.has(key)) {
         series.set(key, {
-          label: hardwareLabel(r) + " - " + r.engine,
+          label: hardwareLabel(r) + " - " + family(r.engine),
           color: colorOf(family(r.engine), seen),
           dash: DASHES[hwIndex.get(hwKey) % DASHES.length],
           points: [],
@@ -91,7 +91,7 @@
 
   // Bars grouped by `groupOf(row)`, one bar per engine family.
   function barGroups(rows, f, metric, half, groupOf, limit) {
-    const picked = newest(select(rows, f), r => [r.hw, r.backend, r.engine, r.model, r.ctx, r.prompt, r.mode, r.device].join("|"));
+    const picked = newest(select(rows, f), r => [r.hw, r.backend, family(r.engine), r.model, r.ctx, r.prompt, r.mode, r.device].join("|"));
     const groups = new Map(), seen = {};
     for (const r of picked) {
       const v = value(r, metric, half);
@@ -113,6 +113,7 @@
   }
 
   function format(v) {
+    if (Number.isInteger(v)) return String(v);
     if (v >= 1000) return v.toFixed(0);
     if (v >= 100) return v.toFixed(1);
     if (v >= 10) return v.toFixed(1);
@@ -271,12 +272,20 @@
     checks("engines", [...new Set(rows.map(r => family(r.engine)))].sort().map(v => ({ value: v, label: v })), () => true);
     checks("hw", hws, () => true);
     $("models").replaceChildren(...uniq("model").map(m => { const o = el("option"); o.value = m; return o; }));
+    // Defaults that show something: the short streamed GPU cells at 4096, on the hardware and the
+    // model with the most rows of that kind.
+    const prefer = (id, wanted) => { const sel = $(id); if ([...sel.options].some(o => o.value === wanted)) sel.value = wanted; };
+    prefer("prompt", "short"); prefer("mode", "stream"); prefer("device", "GPU"); prefer("ctx", "4096"); prefer("ctx2", "4096");
+    const basics = rows.filter(r => r.prompt === $("prompt").value && r.mode === $("mode").value && r.device === $("device").value && r.m && r.m.decode && r.m.decode[1] !== null);
+    const most = key => { const n = new Map(); for (const r of basics) n.set(key(r), (n.get(key(r)) || 0) + 1); return [...n.entries()].sort((a, b) => b[1] - a[1])[0]; };
+    const bestHw = most(r => r.hw + "/" + r.backend), bestModel = most(r => r.model);
+    if (bestHw) $("hw1").value = bestHw[0];
     const p = new URLSearchParams(location.hash.slice(1));
     for (const [id, key] of [["view", "view"], ["metric", "metric"], ["half", "half"], ["prompt", "prompt"], ["mode", "mode"], ["device", "device"], ["hw1", "hw1"], ["ctx", "ctx"]]) {
       if (p.get(key)) $(id).value = p.get(key);
     }
     if (p.get("model")) { $("model").value = p.get("model"); $("model2").value = p.get("model"); }
-    else { const first = rows.find(r => family(r.engine) === "loken" && r.m && r.m.decode); if (first) { $("model").value = first.model; $("model2").value = first.model; } }
+    else if (bestModel) { $("model").value = bestModel[0]; $("model2").value = bestModel[0]; }
     for (const id of ["view", "metric", "half", "prompt", "mode", "device", "ctx", "ctx2", "hw1", "model", "model2", "log"]) $(id).addEventListener("input", draw);
     draw();
   });
