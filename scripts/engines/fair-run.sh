@@ -146,7 +146,7 @@ if [ "$BENCH_MODE" = gpu ] && [ -z "$GPU_PIN" ] && [ "$_one_card" -gt 0 ] && [ "
   LOKEN_GPUS=all
   # shellcheck disable=SC2034
   VLLM_GPUS=all
-  echo "  ⓘ $_probe_model weighs $((_blob/1000000000)) GB > one card ($((_one_card/1000000000)) GB) - every engine unpinned" >&2
+  echo "  note: $_probe_model weighs $((_blob/1000000000)) GB > one card ($((_one_card/1000000000)) GB) - every engine unpinned" >&2
 fi
 gpu_policy_banner
 # --stream is the protocol default: it measures a decode rate client-side and identically
@@ -191,7 +191,7 @@ _gpu_hottest_c() {
 # floor it can meet, which is the honest failure: the gate then admits it is gating on a warm
 # machine rather than pretending the reading means what it does on a cold one.
 GPU_IDLE_C="${GPU_IDLE_C:-$(_gpu_hottest_c)}"
-[ -n "${GPU_IDLE_C:-}" ] && echo "  🌡 gpu idle floor ${GPU_IDLE_C}C" >&2
+[ -n "${GPU_IDLE_C:-}" ] && echo "  temp: gpu idle floor ${GPU_IDLE_C}C" >&2
 
 cool_wait() {
   local t
@@ -200,10 +200,10 @@ cool_wait() {
     local thr_mc=$(( ${COOL_C:-45} * 1000 ))
     for _ in $(seq 1 120); do            # <=120 s cap
       t=$(cat "$PKG_TEMP_SENSOR" 2>/dev/null || echo 0)
-      [ "$t" -le "$thr_mc" ] && { echo "  🌡 pkg $((t/1000))C <= ${COOL_C:-45}C - proceeding" >&2; return 0; }
+      [ "$t" -le "$thr_mc" ] && { echo "  temp: pkg $((t/1000))C <= ${COOL_C:-45}C - proceeding" >&2; return 0; }
       sleep 2
     done
-    echo "  🌡 pkg still $((t/1000))C after cap - proceeding anyway" >&2
+    echo "  temp: pkg still $((t/1000))C after cap - proceeding anyway" >&2
     return 0
   fi
 
@@ -217,10 +217,10 @@ cool_wait() {
   for _ in $(seq 1 300); do            # <=600 s cap
     t=$(_gpu_hottest_c)
     [ -z "$t" ] && return 0
-    [ "$t" -le "$thr" ] && { echo "  🌡 gpu ${t}C <= ${thr}C - proceeding" >&2; return 0; }
+    [ "$t" -le "$thr" ] && { echo "  temp: gpu ${t}C <= ${thr}C - proceeding" >&2; return 0; }
     sleep 2
   done
-  echo "  🌡 gpu still ${t}C after cap (floor ${GPU_IDLE_C}C) - proceeding anyway" >&2
+  echo "  temp: gpu still ${t}C after cap (floor ${GPU_IDLE_C}C) - proceeding anyway" >&2
 }
 
 kill_all() {
@@ -294,7 +294,7 @@ engine_start() {
   ( cd "${E_CWD[$n]:-$PWD}" \
     && env $(gpu_env_for "$n") ${E_ENV[$n]:-} nohup "${E_BIN[$n]}" ${E_ARGS[$n]:-} >"$log" 2>&1 & )
   wait_url "${E_PROBE[$n]}" "${E_WAIT[$n]:-60}" "${E_WANT[$n]:-}" \
-    || { echo "  ⚠ $n did not come up within ${E_WAIT[$n]:-60}s - see $log" >&2; return 1; }
+    || { echo "  warning: $n did not come up within ${E_WAIT[$n]:-60}s - see $log" >&2; return 1; }
   return 0
 }
 
@@ -337,7 +337,7 @@ case "$BACKEND" in
     E_ENV[loken]="CUDA_VISIBLE_DEVICES=-1 HIP_VISIBLE_DEVICES=-1"
     if [ "$BACKEND" = opencl ]; then
       _loken_alone=1
-      echo "▶ backend opencl: loken alone, no reference engine runs this backend" >&2
+      echo ">> backend opencl: loken alone, no reference engine runs this backend" >&2
     else
       case "$GPU_VENDOR" in amd) _card_default=AMD ;; intel) _card_default=Intel ;; *) _card_default=NVIDIA ;; esac
       VULKAN_CARD="${VULKAN_CARD:-$_card_default}"
@@ -351,7 +351,7 @@ case "$BACKEND" in
       E_ENV[ollama]="OLLAMA_VULKAN=1 GGML_VK_VISIBLE_DEVICES=$_vk_index CUDA_VISIBLE_DEVICES=-1 HIP_VISIBLE_DEVICES=-1 OLLAMA_MODELS=$MODELS_DIR/"
       # An ollama without the Vulkan backend would measure the host and call it Vulkan.
       if [ ! -d "$(dirname "$(dirname "$OLLAMA_BIN")")/lib/ollama/vulkan" ]; then
-        echo "▶ this ollama has no Vulkan backend: loken is measured alone" >&2
+        echo ">> this ollama has no Vulkan backend: loken is measured alone" >&2
         _loken_alone=1
       fi
       # loken reads the card it may use from its configuration; the tree's file stays as it is.
@@ -375,7 +375,7 @@ esac
 # converted ollama tag). The wrapper is data here like the others, not a special case below.
 E_BIN[vllm]="$VLLM_HF_LAUNCHER"
 E_PROBE[vllm]="http://127.0.0.1:$VLLM_PORT/v1/models"; E_WANT[vllm]='"id"'; E_WAIT[vllm]=600
-echo "▶ BENCH_MODE=$BENCH_MODE  GPU_PIN='${GPU_PIN:-none}'  -> $OUT"
+echo ">> BENCH_MODE=$BENCH_MODE  GPU_PIN='${GPU_PIN:-none}'  -> $OUT"
 
 # -- 1. ollama, isolated ------------------------------------------------------
 # RETRY on CPU-fallback: a VRAM-tight model can spill to the CPU at load non-deterministically
@@ -399,8 +399,8 @@ if [ "$BENCH_MODE" = gpu ] && [ -n "$GPU_PIN" ]; then
   for _m in "${_MS[@]}"; do
     _sz=$(blob_bytes_of "$_m")
     if [ "$_one_card" -gt 0 ] && [ "$_sz" -gt "$_one_card" ]; then
-      echo "⚠️⚠️  GPU_PIN=$GPU_PIN + '$_m' weighs $((_sz/1000000000)) GB > one card ($((_one_card/1000000000)) GB) -> it will SPILL to CPU (fake loss, GPU tok/s ~ CPU tok/s)." >&2
-      echo "⚠️⚠️  Re-run without GPU_PIN so every engine gets the same cards." >&2
+      echo "WARNING:  GPU_PIN=$GPU_PIN + '$_m' weighs $((_sz/1000000000)) GB > one card ($((_one_card/1000000000)) GB) -> it will SPILL to CPU (fake loss, GPU tok/s ~ CPU tok/s)." >&2
+      echo "WARNING:  Re-run without GPU_PIN so every engine gets the same cards." >&2
     fi
   done
 fi
@@ -425,12 +425,12 @@ if [ "$BACKEND" != native ]; then
   if [ -n "${_loken_alone:-}" ]; then ENGINES="loken"; fi
 fi
 _want() { case " $ENGINES " in *" $1 "*) return 0 ;; *) return 1 ;; esac; }
-echo "▶ engines: $ENGINES"
+echo ">> engines: $ENGINES"
 
 if _want ollama; then
 for _att in 1 2 3; do
   kill_all
-  echo "▶ ollama (default params)${_att:+ [try $_att]} ..."
+  echo ">> ollama (default params)${_att:+ [try $_att]} ..."
   engine_start ollama || true
   # PRE-BENCH placement probe (GPU mode, NON-spread only): force a one-token load and check
   # whether ollama CPU-fell BEFORE wasting a full multi-context bench; retry on a fresh
@@ -448,10 +448,10 @@ for _att in 1 2 3; do
     # served it perfectly well by hand.
     cpubuf=$(cpubuf_of_log "$LOGDIR/ollama.log" || true); [ -z "$cpubuf" ] && cpubuf=0
     if [ "$cpubuf" -gt 2000 ] && [ "$_att" -lt 3 ]; then
-      echo "  ⚠ ollama CPU-fell at load (CPU model buffer ${cpubuf} MiB) - retrying on fresh restart" >&2
+      echo "  warning: ollama CPU-fell at load (CPU model buffer ${cpubuf} MiB) - retrying on fresh restart" >&2
       continue
     fi
-    [ "$cpubuf" -gt 2000 ] && echo "  ⚠ ollama STILL CPU-fell after 3 tries (CPU buffer ${cpubuf} MiB) - model is VRAM-marginal on this box; recording ollama's CPU-fallback as its real default behaviour" >&2
+    [ "$cpubuf" -gt 2000 ] && echo "  warning: ollama STILL CPU-fell after 3 tries (CPU buffer ${cpubuf} MiB) - model is VRAM-marginal on this box; recording ollama's CPU-fallback as its real default behaviour" >&2
   fi
   cool_wait
   "$LOKPROF" --ollama http://127.0.0.1:$OLLAMA_PORT "${NUMGPU[@]}" "${COMMON[@]}" "$@" -o "$TMP/ollama.json" || true
@@ -463,7 +463,7 @@ if [ -f "$TMP/ollama.json" ]; then PARTS+=("$TMP/ollama.json"); fi
 # -- 2. LOKEN, isolated -------------------------------------------------------
 if _want loken; then
 kill_all
-echo "▶ LOKEN${LOKEN_EXTRA:+ ${LOKEN_EXTRA[*]}} ..."
+echo ">> LOKEN${LOKEN_EXTRA:+ ${LOKEN_EXTRA[*]}} ..."
 engine_start loken || true
 cool_wait
 "$LOKPROF" --loken http://127.0.0.1:$LOKEN_PORT "${NUMGPU[@]}" "${COMMON[@]}" "$@" -o "$TMP/loken.json" || true
@@ -477,7 +477,7 @@ if [ -f "$TMP/loken.json" ] && [ "$BACKEND" != native ]; then
     *) _placed="" ;;
   esac
   if [ -z "$_placed" ]; then
-    echo "  ⚠ loken did not run wholly on $BACKEND (placement: $(sed 's/\x1b\[[0-9;]*m//g' "$LOGDIR/loken.log" 2>/dev/null | grep -oE "loaded: layers [^ ]+" | tail -1)) - not recorded" >&2
+    echo "  warning: loken did not run wholly on $BACKEND (placement: $(sed 's/\x1b\[[0-9;]*m//g' "$LOGDIR/loken.log" 2>/dev/null | grep -oE "loaded: layers [^ ]+" | tail -1)) - not recorded" >&2
     rm -f "$TMP/loken.json"
   fi
 fi
@@ -487,7 +487,7 @@ fi
 # -- 3. vLLM, isolated (GPU only, when requested) -----------------------------
 if _want vllm && [ "$BENCH_MODE" = gpu ] && [ -n "${VLLM_SERVE:-}" ]; then
   kill_all
-  echo "▶ vLLM: $VLLM_SERVE ..."
+  echo ">> vLLM: $VLLM_SERVE ..."
   # Which wrapper depends on where the weights come from; its own index flag stays because
   # vLLM parses CUDA_VISIBLE_DEVICES as integers and a UUID breaks it. The card SET is the
   # policy's; this only says which of those it starts on.
@@ -536,4 +536,4 @@ jq -s '
         results: (map(.results) | add),
       }
     end' "${PARTS[@]}" > "$OUT"
-echo "▶ merged ${#PARTS[@]} engine(s) -> $OUT"
+echo ">> merged ${#PARTS[@]} engine(s) -> $OUT"

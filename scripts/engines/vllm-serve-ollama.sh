@@ -112,7 +112,7 @@ case "$ARCH" in
   qwen3|qwen2|llama|gemma|gemma2|gemma3|mistral|phi3|stablelm|starcoder2)
     : ;;  # known vLLM-GGUF-loadable dense archs
   *)
-    echo "  ⚠️  GGUF arch '$ARCH' may not load on vLLM's experimental GGUF path" >&2
+    echo "  warning:  GGUF arch '$ARCH' may not load on vLLM's experimental GGUF path" >&2
     echo "      (MoE/hybrid archs like gpt-oss/nemotron/lfm2/qwen3.5 are unsupported)." >&2 ;;
 esac
 

@@ -49,7 +49,7 @@ class ColdWarm(unittest.TestCase):
         row = next(r for r in B.cells(self.merged) if key(r) == GPU and "loken" in r[5])
         self.assertIn("353.5 / 689.5", row[B.COLS.index("Prefill tok/s")])
         self.assertIn("66.2 / 73.0", row[B.COLS.index("Decode tok/s")])
-        self.assertIn("-18.0% / -13.5%", row[B.COLS.index("Δ decode")])
+        self.assertIn("-18.0% / -13.5%", row[B.COLS.index("\u0394 decode")])
 
     def test_incoherent_answer_withholds_both_temperatures(self):
         loken = next(i for r, i in B.cells_detail(self.merged) if i["plain"] and i["key"] == CPU)

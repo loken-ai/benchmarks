@@ -98,6 +98,6 @@ gpu_extra_args_for() {
 gpu_policy_banner() {
     printf '  GPUs - ollama:%s  loken:%s  vllm:%s\n' "$OLLAMA_GPUS" "$LOKEN_GPUS" "$VLLM_GPUS" >&2
     if [ "$OLLAMA_GPUS" != "$LOKEN_GPUS" ] || [ "$LOKEN_GPUS" != "$VLLM_GPUS" ]; then
-        printf '  ⚠️  engines were given DIFFERENT cards - cells from this run are not like-for-like\n' >&2
+        printf '  warning:  engines were given DIFFERENT cards - cells from this run are not like-for-like\n' >&2
     fi
 }

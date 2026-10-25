@@ -71,7 +71,7 @@ def engine_label(target, version=None):
 # current name would empty most of the table without saying anything was missing.
 RETIRED_TARGETS = {"llmuse": "loken", "llmserver": "loken"}
 COLS = ["Model", "Ctx", "Prompt", "Mode", "Device", "Engine", "Prefill tok/s", "TTFT ms", "Decode tok/s",
-        "Tokens", "E2E ms", "J/req", "J/token", "Δ prefill", "Δ TTFT", "Δ decode", "Δ energy", "Date", "Run"]
+        "Tokens", "E2E ms", "J/req", "J/token", "\u0394 prefill", "\u0394 TTFT", "\u0394 decode", "\u0394 energy", "Date", "Run"]
 
 
 def _prefill(i):

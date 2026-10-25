@@ -21,7 +21,7 @@ import argparse, json, pathlib, sys
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import hardware as H
 
-SCHEMA_NAMES = ("loken", "assay")  # assay: the name of records written before the schema had its own
+SCHEMA_NAMES = ("loken", "assay")  # the second is the name older records carry
 
 # The flags a comparison is only honest within. A run that asserts none of them is not
 # thereby equal to one that asserts them - it is a run that did not say.
