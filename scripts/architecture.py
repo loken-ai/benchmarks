@@ -211,14 +211,19 @@ def enrich(record, nodes=()):
         for i, found in enumerate(spare):
             if found.get("name") == card.get("name") and (found.get("index") in (None, card.get("index"))):
                 card.update({k: v for k, v in found.items() if k in ("vendor", "arch", "pcie_gen", "pcie_width")})
+                for key in ("vram_mib", "power_cap_w"):
+                    if card.get(key) is None and found.get(key) is not None:
+                        card[key] = found[key]
                 spare.pop(i)
                 break
+    sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent / "records"))
+    import hardware as H
     if nodes:
-        sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent / "records"))
-        import hardware as H
         machine["nodes"] = [here] + [remote(t) for t in nodes]
-        machine.pop("hardware_id", None)
-        machine["hardware_id"] = H.hardware_id(machine)
+    # The id follows the card details the system added, so a card the server named without its
+    # memory is the same configuration in every record of the campaign.
+    machine.pop("hardware_id", None)
+    machine["hardware_id"] = H.hardware_id(machine)
     return record
 
 
