@@ -103,6 +103,7 @@ state the loken version is labelled `loken` without a number.
 | `scripts/engines/` | the isolation protocol (`fair-run.sh`), the card policy and the vLLM launchers |
 | `scripts/records/` | the record store, the hardware identity, the equivalence classes and the converter of old reports |
 | `scripts/architecture.py` | describes the machine and its cluster |
+| `scripts/enable-energy.sh` | makes the energy of a machine measurable, and reports what is and is not |
 | `scripts/add.py`, `scripts/check.py`, `scripts/site.py` | file a run, check it, build the site |
 | `scripts/bench_row.py`, `scripts/scoreboard.py` | the table rows and the win count |
 | `scripts/pages.py` | the layout of the site: the shell, the hero, the hardware cards and the result tables |

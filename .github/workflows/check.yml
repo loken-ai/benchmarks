@@ -37,7 +37,7 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       # The protocol lives in the scripts; this is the mechanical check they get.
-      - run: shellcheck -S warning scripts/bench scripts/engines/*.sh
+      - run: shellcheck -S warning scripts/bench scripts/enable-energy.sh scripts/engines/*.sh
 
   pages:
     if: github.event_name == 'push' && !github.event.repository.private

@@ -68,6 +68,21 @@ bench's alone, never your own vLLM environment or the `ollama` on your `PATH`. T
 `results/engines/`: a fresh vLLM environment and a versioned ollama. Their versions are recorded in
 every run. The comparison is reproducible and touches no other environment.
 
+## Energy
+
+A run's energy is the energy the machine drew over the request: the cards, read through NVML (NVIDIA) or
+the amdgpu power reading (AMD), plus the processor, read from the RAPL counters of the kernel. Those
+counters are readable by root only, so a machine needs one rule before its energy can be measured:
+
+```
+scripts/enable-energy.sh              # this machine: installs the rule (sudo), then reports
+scripts/enable-energy.sh host1 host2  # other machines over ssh
+scripts/enable-energy.sh --check      # report only, no root
+```
+
+`bench run` checks it at the start and warns. A domain that cannot be measured is left out of a record
+as a missing value, never as a partial total that looks measured.
+
 ## Where results live
 
 Every run is a record of the loken schema, filed once under the hash of what it holds:

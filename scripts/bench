@@ -403,6 +403,8 @@ print(r["tag_name"].lstrip("v"), url)' "$1"
 # only. A generated-media cell has no such axes and is measured once, in the first sweep.
 run() {
     provision
+    "$HERE/enable-energy.sh" --check >/dev/null || \
+        echo "warning: some energy domain of this machine is not measurable; run scripts/enable-energy.sh (the records then hold no energy)"
     local models
     ensure_catalogue
     models="$(loken_models)"
