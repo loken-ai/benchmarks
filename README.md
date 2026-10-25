@@ -18,7 +18,8 @@ scripts/bench                      # plan: print the cells a campaign would run
 scripts/bench run                  # run it
 ```
 
-`docs/BENCHMARKING.md` is the procedure: the engines the campaign installs for comparison, the
+`docs/BENCHMARKING.md` is the procedure and `docs/METHOD.md` says how a cell is measured and how the
+columns are read. The procedure covers the engines the campaign installs for comparison, the
 matrix of context sizes, prompts and devices, the backends (CUDA, ROCm, Vulkan, OpenCL, host) and
 the modalities.
 
@@ -103,7 +104,7 @@ state the loken version is labelled `loken` without a number.
 | `scripts/architecture.py` | describes the machine and its cluster |
 | `scripts/add.py`, `scripts/check.py`, `scripts/site.py` | file a run, check it, build the site |
 | `scripts/bench_row.py`, `scripts/scoreboard.py`, `scripts/plot-bench.py` | the table rows, the win count and the plot |
-| `matrix.toml`, `fixtures/` | the matrix axes and the speech recognition fixtures |
+| `matrix.toml`, `fixtures/` | the matrix axes and the speech recognition fixtures, credited in `NOTICE.md` |
 | `bench.toml.example` | the settings a campaign reads |
 | `runs/` | the shared runs, one folder per hardware |
 | `tests/` | the tests |
