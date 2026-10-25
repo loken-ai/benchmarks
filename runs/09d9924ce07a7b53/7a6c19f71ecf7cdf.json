@@ -1,0 +1,723 @@
+{
+  "config": {
+    "carbon_intensity_gco2_per_kwh": 50.0,
+    "custom_prompt": null,
+    "energy_measure": true,
+    "gpu_sample": true,
+    "iterations": 3,
+    "max_tokens": 128,
+    "models": [
+      "deepseek-r1:32b"
+    ],
+    "num_ctx": [
+      131072
+    ],
+    "num_gpu": null,
+    "prompts": [
+      "long"
+    ],
+    "session_id": null,
+    "streaming": false,
+    "unique_prompt": false,
+    "warmup": 0
+  },
+  "converted_from": "deepseek-r1_32b_131072_non-stream_long.json",
+  "idle_energy_baseline": null,
+  "legacy_engine_build": 1788498694,
+  "machine": {
+    "attested": "by the operator, from deepcoder_14b_4096_stream.json; driver, kernel and OS unknown",
+    "cpu": "Intel(R) Core(TM) i9-10900K CPU @ 3.70GHz",
+    "gpus": [
+      {
+        "index": 0,
+        "name": "NVIDIA GeForce RTX 5070 Ti",
+        "power_cap_w": 300,
+        "vram_mib": 16303
+      },
+      {
+        "index": 1,
+        "name": "NVIDIA GeForce RTX 5060 Ti",
+        "power_cap_w": 180,
+        "vram_mib": 16311
+      }
+    ],
+    "hardware_id": "09d9924ce07a7b53",
+    "host_id": "d4b8ae99f4bfcc54",
+    "ram_gib": 62,
+    "threads": 20
+  },
+  "ollama_version": "0.34.2",
+  "protocol": {
+    "cards_by_uuid": null,
+    "engines_alone": null,
+    "iterations": 3,
+    "max_tokens": 128,
+    "prefix_reuse_offered": false,
+    "streaming": false,
+    "thermal_gate_c": null,
+    "unique_prompt": false,
+    "warmup": 0
+  },
+  "results": [
+    {
+      "coherence_pass": true,
+      "first_response_preview": "Also, consider performance optimizations. Okay, I need to review this Rust function called parse_csv_line. The goal is t…",
+      "iterations": [
+        {
+          "completion_tok_s": 1.2660002855495096,
+          "e2e_latency_ms": 101105.82237699999,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 101.141858103,
+            "energy_j": 6834.825999997556,
+            "gco2_per_tok": 0.0007416260850691792,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 6834.825999997556,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 53.39707812498091,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 0.014832521701383586
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 42.00679900497508,
+              "power_peak_w": 70.253,
+              "samples": 1005,
+              "util_avg_pct": 3,
+              "util_peak_pct": 79,
+              "vram_avg_mb": 12738,
+              "vram_peak_mb": 14569
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 31.03040000000001,
+              "power_peak_w": 42.687,
+              "samples": 1005,
+              "util_avg_pct": 4,
+              "util_peak_pct": 100,
+              "vram_avg_mb": 12873,
+              "vram_peak_mb": 14649
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 1,
+            "cpu_peak_pct": 94,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 60,
+            "rss_peak_mb": 438,
+            "samples": 497,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 1,
+          "load_time_ms": 21546.653367,
+          "prompt_tok_s": 91.23255177447312,
+          "prompt_tokens": 236,
+          "response_preview": "Also, consider performance optimizations. Okay, I need to review this Rust function called parse_csv_line. The goal is t…",
+          "server_decode_tok_s": 1.6630417769476658,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 101105.82237699999
+        },
+        {
+          "completion_tok_s": 1.4578872406595673,
+          "e2e_latency_ms": 87798.285375,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 87.825610769,
+            "energy_j": 6026.450999997556,
+            "gco2_per_tok": 0.0006539117838539015,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 6026.450999997556,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 47.08164843748091,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 0.01307823567707803
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 41.802026285714305,
+              "power_peak_w": 44.851,
+              "samples": 875,
+              "util_avg_pct": 0,
+              "util_peak_pct": 6,
+              "vram_avg_mb": 14569,
+              "vram_peak_mb": 14569
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 32.235867428571424,
+              "power_peak_w": 36.038,
+              "samples": 875,
+              "util_avg_pct": 3,
+              "util_peak_pct": 68,
+              "vram_avg_mb": 14649,
+              "vram_peak_mb": 14649
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 0,
+            "cpu_peak_pct": 108,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 61,
+            "rss_peak_mb": 63,
+            "samples": 431,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 2,
+          "load_time_ms": 182.567179,
+          "prompt_tok_s": 540.4687421277064,
+          "prompt_tokens": 236,
+          "response_preview": "Also, consider performance optimizations. Okay, I need to review this Rust function called parse_csv_line. The goal is t…",
+          "server_decode_tok_s": 1.4682756673800421,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 87798.285375
+        },
+        {
+          "completion_tok_s": 1.7510367823466393,
+          "e2e_latency_ms": 73099.54953,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 73.140218227,
+            "energy_j": 5179.855000004172,
+            "gco2_per_tok": 0.0005620502387157305,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 5179.855000004172,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 40.467617187532596,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 0.01124100477431461
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 43.652668038408706,
+              "power_peak_w": 45.594,
+              "samples": 729,
+              "util_avg_pct": 1,
+              "util_peak_pct": 6,
+              "vram_avg_mb": 14569,
+              "vram_peak_mb": 14569
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 32.421053497942424,
+              "power_peak_w": 36.791,
+              "samples": 729,
+              "util_avg_pct": 2,
+              "util_peak_pct": 19,
+              "vram_avg_mb": 14649,
+              "vram_peak_mb": 14649
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 0,
+            "cpu_peak_pct": 89,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 61,
+            "rss_peak_mb": 61,
+            "samples": 360,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 3,
+          "load_time_ms": 245.377222,
+          "prompt_tok_s": 571.132633453852,
+          "prompt_tokens": 236,
+          "response_preview": "Also, consider performance optimizations. Okay, I need to review this Rust function called parse_csv_line. The goal is t…",
+          "server_decode_tok_s": 1.7670162561078022,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 73099.54953
+        }
+      ],
+      "load_time_ms": 51350.692639,
+      "model": "deepseek-r1:32b",
+      "model_fingerprint": {
+        "modified_at": "2026-04-10",
+        "parameter_size": "32.8B",
+        "quantization_level": "Q4_K_M"
+      },
+      "num_ctx": 131072,
+      "prompt": "long",
+      "prompt_chars": 939,
+      "stats": {
+        "Carbon gCO2/tok [gpu]": {
+          "count": 3,
+          "max": 0.0007416260850691792,
+          "mean": 0.000652529369212937,
+          "min": 0.0005620502387157305,
+          "p50": 0.0006539117838539015,
+          "p95": 0.0007328546549476514,
+          "stddev": 8.979590442257945e-05,
+          "unit": "g"
+        },
+        "Completion tok/s": {
+          "count": 3,
+          "max": 1.7510367823466393,
+          "mean": 1.4916414361852386,
+          "min": 1.2660002855495096,
+          "p50": 1.4578872406595673,
+          "p95": 1.721721828177932,
+          "stddev": 0.244273637736447,
+          "unit": "tok/s"
+        },
+        "E2E latency": {
+          "count": 3,
+          "max": 101105.82237699999,
+          "mean": 87334.55242733333,
+          "min": 73099.54953,
+          "p50": 87798.285375,
+          "p95": 99775.06867679999,
+          "stddev": 14008.894170498108,
+          "unit": "ms"
+        },
+        "Energy J/tok [gpu]": {
+          "count": 3,
+          "max": 53.39707812498091,
+          "mean": 46.98211458333147,
+          "min": 40.467617187532596,
+          "p50": 47.08164843748091,
+          "p95": 52.765535156230904,
+          "stddev": 6.465305118425721,
+          "unit": "J"
+        },
+        "Energy Wh/tok [gpu]": {
+          "count": 3,
+          "max": 0.014832521701383586,
+          "mean": 0.013050587384258744,
+          "min": 0.01124100477431461,
+          "p50": 0.01307823567707803,
+          "p95": 0.014657093098953031,
+          "stddev": 0.0017959180884515897,
+          "unit": "Wh"
+        },
+        "Model load": {
+          "count": 1,
+          "max": 51350.692639,
+          "mean": 51350.692639,
+          "min": 51350.692639,
+          "p50": 51350.692639,
+          "p95": 51350.692639,
+          "stddev": 0.0,
+          "unit": "ms"
+        },
+        "Prompt tok/s": {
+          "count": 3,
+          "max": 571.132633453852,
+          "mean": 400.94464245201044,
+          "min": 91.23255177447312,
+          "p50": 540.4687421277064,
+          "p95": 568.0662443212375,
+          "stddev": 268.65638442386546,
+          "unit": "tok/s"
+        },
+        "Tokens generated": {
+          "count": 3,
+          "max": 128.0,
+          "mean": 128.0,
+          "min": 128.0,
+          "p50": 128.0,
+          "p95": 128.0,
+          "stddev": 0.0,
+          "unit": "count"
+        }
+      },
+      "target": "Ollama",
+      "url": "http://127.0.0.1:11434"
+    },
+    {
+      "coherence_pass": true,
+      "first_response_preview": "Also, consider performance optimizations. Okay, I need to review this Rust function called parse_csv_line. The goal is t…",
+      "iterations": [
+        {
+          "completion_tok_s": 26.541174486401253,
+          "e2e_latency_ms": 4822.695396,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 4.852428571,
+            "energy_j": 1155.5410000011325,
+            "gco2_per_tok": 0.00012538422309040068,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 1155.5410000011325,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 9.027664062508848,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 0.0025076844618080133
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 140.32322916666666,
+              "power_peak_w": 210.23,
+              "samples": 48,
+              "util_avg_pct": 64,
+              "util_peak_pct": 97,
+              "vram_avg_mb": 12803,
+              "vram_peak_mb": 12999
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 81.24068750000005,
+              "power_peak_w": 122.351,
+              "samples": 48,
+              "util_avg_pct": 63,
+              "util_peak_pct": 95,
+              "vram_avg_mb": 6905,
+              "vram_peak_mb": 6931
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 91,
+            "cpu_peak_pct": 103,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 23379,
+            "rss_peak_mb": 23401,
+            "samples": 25,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 1,
+          "load_time_ms": 12.696052,
+          "prompt_tok_s": 160.44645776950313,
+          "prompt_tokens": 236,
+          "response_preview": "Also, consider performance optimizations. Okay, I need to review this Rust function called parse_csv_line. The goal is t…",
+          "server_decode_tok_s": 38.34272604758758,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 4822.695396
+        },
+        {
+          "completion_tok_s": 33.65128963791946,
+          "e2e_latency_ms": 3803.7175210000005,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 3.82872273,
+            "energy_j": 1103.1869999989867,
+            "gco2_per_tok": 0.0001197034505207234,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 1103.1869999989867,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 8.618648437492084,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 0.002394069010414468
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 192.24636842105272,
+              "power_peak_w": 212.497,
+              "samples": 38,
+              "util_avg_pct": 81,
+              "util_peak_pct": 98,
+              "vram_avg_mb": 12782,
+              "vram_peak_mb": 12969
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 112.50165789473682,
+              "power_peak_w": 125.185,
+              "samples": 38,
+              "util_avg_pct": 78,
+              "util_peak_pct": 96,
+              "vram_avg_mb": 6927,
+              "vram_peak_mb": 6931
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 93,
+            "cpu_peak_pct": 104,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 23401,
+            "rss_peak_mb": 23401,
+            "samples": 20,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 2,
+          "load_time_ms": 16.258612,
+          "prompt_tok_s": 662.7276773204775,
+          "prompt_tokens": 236,
+          "response_preview": "Also, consider performance optimizations. Okay, I need to review this Rust function called parse_csv_line. The goal is t…",
+          "server_decode_tok_s": 37.312021268020025,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 3803.7175210000005
+        },
+        {
+          "completion_tok_s": 22.172400004098638,
+          "e2e_latency_ms": 5772.942937,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 5.805855986,
+            "energy_j": 1271.6319999992847,
+            "gco2_per_tok": 0.00013798090277770017,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 1271.6319999992847,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 9.934624999994412,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 0.0027596180555540034
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 150.85738983050845,
+              "power_peak_w": 168.889,
+              "samples": 59,
+              "util_avg_pct": 56,
+              "util_peak_pct": 76,
+              "vram_avg_mb": 12780,
+              "vram_peak_mb": 13001
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 85.94969491525427,
+              "power_peak_w": 98.738,
+              "samples": 59,
+              "util_avg_pct": 59,
+              "util_peak_pct": 87,
+              "vram_avg_mb": 6928,
+              "vram_peak_mb": 6931
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 94,
+            "cpu_peak_pct": 103,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 23401,
+            "rss_peak_mb": 23401,
+            "samples": 30,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 3,
+          "load_time_ms": 14.820485,
+          "prompt_tok_s": 527.1246189405521,
+          "prompt_tokens": 236,
+          "response_preview": "Also, consider performance optimizations. Okay, I need to review this Rust function called parse_csv_line. The goal is t…",
+          "server_decode_tok_s": 24.123406150324175,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 5772.942937
+        }
+      ],
+      "load_time_ms": 34603.477054,
+      "model": "deepseek-r1:32b",
+      "model_fingerprint": {
+        "modified_at": "",
+        "parameter_size": "32.8B",
+        "quantization_level": "Q4_K_M"
+      },
+      "num_ctx": 131072,
+      "prompt": "long",
+      "prompt_chars": 939,
+      "stats": {
+        "Carbon gCO2/tok [gpu]": {
+          "count": 3,
+          "max": 0.00013798090277770017,
+          "mean": 0.00012768952546294142,
+          "min": 0.0001197034505207234,
+          "p50": 0.00012538422309040068,
+          "p95": 0.00013672123480897022,
+          "stddev": 9.354257294042524e-06,
+          "unit": "g"
+        },
+        "Completion tok/s": {
+          "count": 3,
+          "max": 33.65128963791946,
+          "mean": 27.454954709473117,
+          "min": 22.172400004098638,
+          "p50": 26.541174486401253,
+          "p95": 32.94027812276764,
+          "stddev": 5.7937442581130325,
+          "unit": "tok/s"
+        },
+        "E2E latency": {
+          "count": 3,
+          "max": 5772.942937,
+          "mean": 4799.785284666667,
+          "min": 3803.7175210000005,
+          "p50": 4822.695396,
+          "p95": 5677.9181829,
+          "stddev": 984.8125911340045,
+          "unit": "ms"
+        },
+        "Energy J/tok [gpu]": {
+          "count": 3,
+          "max": 9.934624999994412,
+          "mean": 9.19364583333178,
+          "min": 8.618648437492084,
+          "p50": 9.027664062508848,
+          "p95": 9.843928906245855,
+          "stddev": 0.6735065251710622,
+          "unit": "J"
+        },
+        "Energy Wh/tok [gpu]": {
+          "count": 3,
+          "max": 0.0027596180555540034,
+          "mean": 0.0025537905092588285,
+          "min": 0.002394069010414468,
+          "p50": 0.0025076844618080133,
+          "p95": 0.0027344246961794045,
+          "stddev": 0.0001870851458808506,
+          "unit": "Wh"
+        },
+        "Model load": {
+          "count": 1,
+          "max": 34603.477054,
+          "mean": 34603.477054,
+          "min": 34603.477054,
+          "p50": 34603.477054,
+          "p95": 34603.477054,
+          "stddev": 0.0,
+          "unit": "ms"
+        },
+        "Prompt tok/s": {
+          "count": 3,
+          "max": 662.7276773204775,
+          "mean": 450.0995846768442,
+          "min": 160.44645776950313,
+          "p50": 527.1246189405521,
+          "p95": 649.1673714824849,
+          "stddev": 259.8485093393794,
+          "unit": "tok/s"
+        },
+        "Tokens generated": {
+          "count": 3,
+          "max": 128.0,
+          "mean": 128.0,
+          "min": 128.0,
+          "p50": 128.0,
+          "p95": 128.0,
+          "stddev": 0.0,
+          "unit": "count"
+        }
+      },
+      "target": "LOKEN",
+      "url": "http://127.0.0.1:11435"
+    }
+  ],
+  "schema": "loken/2",
+  "subjects": null,
+  "timestamp": "2026-09-04",
+  "vllm_version": null
+}

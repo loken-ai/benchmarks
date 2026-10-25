@@ -1,0 +1,723 @@
+{
+  "config": {
+    "carbon_intensity_gco2_per_kwh": 50.0,
+    "custom_prompt": null,
+    "energy_measure": true,
+    "gpu_sample": true,
+    "iterations": 3,
+    "max_tokens": 128,
+    "models": [
+      "mistral-nemo:latest"
+    ],
+    "num_ctx": [
+      4096
+    ],
+    "num_gpu": null,
+    "prompts": [
+      "short"
+    ],
+    "session_id": null,
+    "streaming": false,
+    "unique_prompt": false,
+    "warmup": 0
+  },
+  "converted_from": "mistral-nemo_latest_4096_non-stream.json",
+  "idle_energy_baseline": null,
+  "legacy_engine_build": 1788440729,
+  "machine": {
+    "attested": "by the operator, from deepcoder_14b_4096_stream.json; driver, kernel and OS unknown",
+    "cpu": "Intel(R) Core(TM) i9-10900K CPU @ 3.70GHz",
+    "gpus": [
+      {
+        "index": 0,
+        "name": "NVIDIA GeForce RTX 5070 Ti",
+        "power_cap_w": 300,
+        "vram_mib": 16303
+      },
+      {
+        "index": 1,
+        "name": "NVIDIA GeForce RTX 5060 Ti",
+        "power_cap_w": 180,
+        "vram_mib": 16311
+      }
+    ],
+    "hardware_id": "09d9924ce07a7b53",
+    "host_id": "d4b8ae99f4bfcc54",
+    "ram_gib": 62,
+    "threads": 20
+  },
+  "ollama_version": "0.34.2",
+  "protocol": {
+    "cards_by_uuid": null,
+    "engines_alone": null,
+    "iterations": 3,
+    "max_tokens": 128,
+    "prefix_reuse_offered": false,
+    "streaming": false,
+    "thermal_gate_c": null,
+    "unique_prompt": false,
+    "warmup": 0
+  },
+  "results": [
+    {
+      "coherence_pass": true,
+      "first_response_preview": "young girl named Lily. (Yes, I know it sounds like the beginning of a fairy tale, but bear with me.) She was an ordinary…",
+      "iterations": [
+        {
+          "completion_tok_s": 17.00301912010196,
+          "e2e_latency_ms": 7528.074814,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 7.553962445,
+            "energy_j": 744.0310000032187,
+            "gco2_per_tok": 8.073253038229369e-05,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 744.0310000032187,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 5.812742187525146,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 0.0016146506076458737
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 55.078756756756796,
+              "power_peak_w": 97.866,
+              "samples": 74,
+              "util_avg_pct": 13,
+              "util_peak_pct": 95,
+              "vram_avg_mb": 2258,
+              "vram_peak_mb": 6585
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 40.772283783783784,
+              "power_peak_w": 97.807,
+              "samples": 74,
+              "util_avg_pct": 27,
+              "util_peak_pct": 98,
+              "vram_avg_mb": 2301,
+              "vram_peak_mb": 6471
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 13,
+            "cpu_peak_pct": 99,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 87,
+            "rss_peak_mb": 429,
+            "samples": 39,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 1,
+          "load_time_ms": 5560.092511,
+          "prompt_tok_s": 162.4678872066693,
+          "prompt_tokens": 16,
+          "response_preview": "young girl named Lily. (Yes, I know it sounds like the beginning of a fairy tale, but bear with me.) She was an ordinary…",
+          "server_decode_tok_s": 68.53815085139912,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 7528.074814
+        },
+        {
+          "completion_tok_s": 60.89863335554685,
+          "e2e_latency_ms": 2101.853407,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 2.1294542180000002,
+            "energy_j": 346.804000005126,
+            "gco2_per_tok": 3.763064236166732e-05,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 346.804000005126,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 2.709406250040047,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 0.0007526128472333464
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 82.16504761904763,
+              "power_peak_w": 97.602,
+              "samples": 21,
+              "util_avg_pct": 21,
+              "util_peak_pct": 31,
+              "vram_avg_mb": 3841,
+              "vram_peak_mb": 3841
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 81.23323809523811,
+              "power_peak_w": 98.538,
+              "samples": 21,
+              "util_avg_pct": 43,
+              "util_peak_pct": 62,
+              "vram_avg_mb": 3951,
+              "vram_peak_mb": 3951
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 10,
+            "cpu_peak_pct": 99,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 63,
+            "rss_peak_mb": 63,
+            "samples": 12,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 2,
+          "load_time_ms": 212.613121,
+          "prompt_tok_s": 1068.3047339253521,
+          "prompt_tokens": 16,
+          "response_preview": "young girl named Lily. (Yes, I know it sounds like the beginning of a fairy tale, but bear with me.) She was an ordinary…",
+          "server_decode_tok_s": 68.71793274983935,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 2101.853407
+        },
+        {
+          "completion_tok_s": 60.85067808463466,
+          "e2e_latency_ms": 2103.509838,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 2.132124492,
+            "energy_j": 356.49899999797344,
+            "gco2_per_tok": 3.8682617187280104e-05,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 356.49899999797344,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 2.7851484374841675,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 0.0007736523437456021
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 83.88561904761903,
+              "power_peak_w": 97.759,
+              "samples": 21,
+              "util_avg_pct": 22,
+              "util_peak_pct": 31,
+              "vram_avg_mb": 3841,
+              "vram_peak_mb": 3841
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 81.42314285714286,
+              "power_peak_w": 98.623,
+              "samples": 21,
+              "util_avg_pct": 42,
+              "util_peak_pct": 60,
+              "vram_avg_mb": 3951,
+              "vram_peak_mb": 3951
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 11,
+            "cpu_peak_pct": 109,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 62,
+            "rss_peak_mb": 63,
+            "samples": 12,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 3,
+          "load_time_ms": 215.418699,
+          "prompt_tok_s": 1068.7328835749115,
+          "prompt_tokens": 16,
+          "response_preview": "young girl named Lily. (Yes, I know it sounds like the beginning of a fairy tale, but bear with me.) She was an ordinary…",
+          "server_decode_tok_s": 68.74982208297996,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 2103.509838
+        }
+      ],
+      "load_time_ms": 19569.404411,
+      "model": "mistral-nemo:latest",
+      "model_fingerprint": {
+        "modified_at": "2026-06-14",
+        "parameter_size": "12.2B",
+        "quantization_level": "Q4_0"
+      },
+      "num_ctx": 4096,
+      "prompt": "short",
+      "prompt_chars": 58,
+      "stats": {
+        "Carbon gCO2/tok [gpu]": {
+          "count": 3,
+          "max": 8.073253038229369e-05,
+          "mean": 5.234859664374704e-05,
+          "min": 3.763064236166732e-05,
+          "p50": 3.8682617187280104e-05,
+          "p95": 7.652753906279232e-05,
+          "stddev": 2.4586834558643087e-05,
+          "unit": "g"
+        },
+        "Completion tok/s": {
+          "count": 3,
+          "max": 60.89863335554685,
+          "mean": 46.25077685342782,
+          "min": 17.00301912010196,
+          "p50": 60.85067808463466,
+          "p95": 60.89383782845563,
+          "stddev": 25.329312549840235,
+          "unit": "tok/s"
+        },
+        "E2E latency": {
+          "count": 3,
+          "max": 7528.074814,
+          "mean": 3911.1460196666667,
+          "min": 2101.853407,
+          "p50": 2103.509838,
+          "p95": 6985.618316399999,
+          "stddev": 3132.352329065027,
+          "unit": "ms"
+        },
+        "Energy J/tok [gpu]": {
+          "count": 3,
+          "max": 5.812742187525146,
+          "mean": 3.7690989583497867,
+          "min": 2.709406250040047,
+          "p50": 2.7851484374841675,
+          "p95": 5.509982812521048,
+          "stddev": 1.7702520882223023,
+          "unit": "J"
+        },
+        "Energy Wh/tok [gpu]": {
+          "count": 3,
+          "max": 0.0016146506076458737,
+          "mean": 0.0010469719328749405,
+          "min": 0.0007526128472333464,
+          "p50": 0.0007736523437456021,
+          "p95": 0.0015305507812558466,
+          "stddev": 0.0004917366911728617,
+          "unit": "Wh"
+        },
+        "Model load": {
+          "count": 1,
+          "max": 19569.404411,
+          "mean": 19569.404411,
+          "min": 19569.404411,
+          "p50": 19569.404411,
+          "p95": 19569.404411,
+          "stddev": 0.0,
+          "unit": "ms"
+        },
+        "Prompt tok/s": {
+          "count": 3,
+          "max": 1068.7328835749115,
+          "mean": 766.5018349023109,
+          "min": 162.4678872066693,
+          "p50": 1068.3047339253521,
+          "p95": 1068.6900686099557,
+          "stddev": 523.1087872561658,
+          "unit": "tok/s"
+        },
+        "Tokens generated": {
+          "count": 3,
+          "max": 128.0,
+          "mean": 128.0,
+          "min": 128.0,
+          "p50": 128.0,
+          "p95": 128.0,
+          "stddev": 0.0,
+          "unit": "count"
+        }
+      },
+      "target": "Ollama",
+      "url": "http://127.0.0.1:11434"
+    },
+    {
+      "coherence_pass": true,
+      "first_response_preview": "young girl named Lily. (Yes, I know it sounds like the beginning of a fairy tale, but bear with me.) She was an ordinary…",
+      "iterations": [
+        {
+          "completion_tok_s": 94.52216411235878,
+          "e2e_latency_ms": 1354.179744,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 1.381557936,
+            "energy_j": 282.8969999998808,
+            "gco2_per_tok": 3.069628906248707e-05,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 282.8969999998808,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 2.2101328124990687,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 0.0006139257812497413
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 105.12271428571428,
+              "power_peak_w": 195.808,
+              "samples": 14,
+              "util_avg_pct": 56,
+              "util_peak_pct": 99,
+              "vram_avg_mb": 8096,
+              "vram_peak_mb": 8101
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 25.66478571428572,
+              "power_peak_w": 25.725,
+              "samples": 14,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 155,
+              "vram_peak_mb": 155
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 81,
+            "cpu_peak_pct": 99,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 8305,
+            "rss_peak_mb": 8307,
+            "samples": 8,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 1,
+          "load_time_ms": 10.046175,
+          "prompt_tok_s": 102.3474101342883,
+          "prompt_tokens": 16,
+          "response_preview": "young girl named Lily. (Yes, I know it sounds like the beginning of a fairy tale, but bear with me.) She was an ordinary…",
+          "server_decode_tok_s": 107.81691774292729,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 1354.179744
+        },
+        {
+          "completion_tok_s": 105.8342908174026,
+          "e2e_latency_ms": 1209.437877,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 1.232248048,
+            "energy_j": 281.6170000061393,
+            "gco2_per_tok": 3.0557400174277266e-05,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 281.6170000061393,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 2.200132812547963,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 0.0006111480034855453
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 195.47500000000005,
+              "power_peak_w": 217.655,
+              "samples": 13,
+              "util_avg_pct": 60,
+              "util_peak_pct": 99,
+              "vram_avg_mb": 8101,
+              "vram_peak_mb": 8101
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 25.662153846153846,
+              "power_peak_w": 25.666,
+              "samples": 13,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 155,
+              "vram_peak_mb": 155
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 85,
+            "cpu_peak_pct": 104,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 8307,
+            "rss_peak_mb": 8307,
+            "samples": 7,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 2,
+          "load_time_ms": 13.924727,
+          "prompt_tok_s": 1375.3122173625945,
+          "prompt_tokens": 16,
+          "response_preview": "young girl named Lily. (Yes, I know it sounds like the beginning of a fairy tale, but bear with me.) She was an ordinary…",
+          "server_decode_tok_s": 108.15761076863478,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 1209.437877
+        },
+        {
+          "completion_tok_s": 103.6262783103926,
+          "e2e_latency_ms": 1235.207923,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 1.268482839,
+            "energy_j": 284.4460000023246,
+            "gco2_per_tok": 3.086436631969668e-05,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 284.4460000023246,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 2.222234375018161,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 0.0006172873263939336
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 201.00915384615385,
+              "power_peak_w": 227.504,
+              "samples": 13,
+              "util_avg_pct": 62,
+              "util_peak_pct": 99,
+              "vram_avg_mb": 8101,
+              "vram_peak_mb": 8101
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 25.668999999999997,
+              "power_peak_w": 25.7,
+              "samples": 13,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 155,
+              "vram_peak_mb": 155
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 76,
+            "cpu_peak_pct": 104,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 8307,
+            "rss_peak_mb": 8307,
+            "samples": 8,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 3,
+          "load_time_ms": 12.434791,
+          "prompt_tok_s": 422.18235823940984,
+          "prompt_tokens": 16,
+          "response_preview": "young girl named Lily. (Yes, I know it sounds like the beginning of a fairy tale, but bear with me.) She was an ordinary…",
+          "server_decode_tok_s": 108.10453326284556,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 1235.207923
+        }
+      ],
+      "load_time_ms": 4964.815543000001,
+      "model": "mistral-nemo:latest",
+      "model_fingerprint": {
+        "modified_at": "",
+        "parameter_size": "12.2B",
+        "quantization_level": "Q4_0"
+      },
+      "num_ctx": 4096,
+      "prompt": "short",
+      "prompt_chars": 58,
+      "stats": {
+        "Carbon gCO2/tok [gpu]": {
+          "count": 3,
+          "max": 3.086436631969668e-05,
+          "mean": 3.070601851882034e-05,
+          "min": 3.0557400174277266e-05,
+          "p50": 3.069628906248707e-05,
+          "p95": 3.084755859397572e-05,
+          "stddev": 1.5371418395456756e-07,
+          "unit": "g"
+        },
+        "Completion tok/s": {
+          "count": 3,
+          "max": 105.8342908174026,
+          "mean": 101.327577746718,
+          "min": 94.52216411235878,
+          "p50": 103.6262783103926,
+          "p95": 105.61348956670162,
+          "stddev": 5.996171350021602,
+          "unit": "tok/s"
+        },
+        "E2E latency": {
+          "count": 3,
+          "max": 1354.179744,
+          "mean": 1266.2751813333334,
+          "min": 1209.437877,
+          "p50": 1235.207923,
+          "p95": 1342.2825619,
+          "stddev": 77.2103161560939,
+          "unit": "ms"
+        },
+        "Energy J/tok [gpu]": {
+          "count": 3,
+          "max": 2.222234375018161,
+          "mean": 2.210833333355064,
+          "min": 2.200132812547963,
+          "p50": 2.2101328124990687,
+          "p95": 2.2210242187662517,
+          "stddev": 0.011067421244728879,
+          "unit": "J"
+        },
+        "Energy Wh/tok [gpu]": {
+          "count": 3,
+          "max": 0.0006172873263939336,
+          "mean": 0.0006141203703764067,
+          "min": 0.0006111480034855453,
+          "p50": 0.0006139257812497413,
+          "p95": 0.0006169511718795143,
+          "stddev": 3.0742836790913526e-06,
+          "unit": "Wh"
+        },
+        "Model load": {
+          "count": 1,
+          "max": 4964.815543000001,
+          "mean": 4964.815543000001,
+          "min": 4964.815543000001,
+          "p50": 4964.815543000001,
+          "p95": 4964.815543000001,
+          "stddev": 0.0,
+          "unit": "ms"
+        },
+        "Prompt tok/s": {
+          "count": 3,
+          "max": 1375.3122173625945,
+          "mean": 633.2806619120976,
+          "min": 102.3474101342883,
+          "p50": 422.18235823940984,
+          "p95": 1279.999231450276,
+          "stddev": 662.2172758774603,
+          "unit": "tok/s"
+        },
+        "Tokens generated": {
+          "count": 3,
+          "max": 128.0,
+          "mean": 128.0,
+          "min": 128.0,
+          "p50": 128.0,
+          "p95": 128.0,
+          "stddev": 0.0,
+          "unit": "count"
+        }
+      },
+      "target": "LOKEN",
+      "url": "http://127.0.0.1:11435"
+    }
+  ],
+  "schema": "loken/2",
+  "subjects": null,
+  "timestamp": "2026-09-03",
+  "vllm_version": null
+}

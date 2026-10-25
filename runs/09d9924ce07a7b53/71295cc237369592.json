@@ -1,0 +1,723 @@
+{
+  "config": {
+    "carbon_intensity_gco2_per_kwh": 50.0,
+    "custom_prompt": null,
+    "energy_measure": true,
+    "gpu_sample": true,
+    "iterations": 3,
+    "max_tokens": 128,
+    "models": [
+      "olmo2:7b"
+    ],
+    "num_ctx": [
+      4096
+    ],
+    "num_gpu": null,
+    "prompts": [
+      "short"
+    ],
+    "session_id": null,
+    "streaming": false,
+    "unique_prompt": false,
+    "warmup": 0
+  },
+  "converted_from": "olmo2_7b_4096_non-stream.json",
+  "idle_energy_baseline": null,
+  "legacy_engine_build": 1788440729,
+  "machine": {
+    "attested": "by the operator, from deepcoder_14b_4096_stream.json; driver, kernel and OS unknown",
+    "cpu": "Intel(R) Core(TM) i9-10900K CPU @ 3.70GHz",
+    "gpus": [
+      {
+        "index": 0,
+        "name": "NVIDIA GeForce RTX 5070 Ti",
+        "power_cap_w": 300,
+        "vram_mib": 16303
+      },
+      {
+        "index": 1,
+        "name": "NVIDIA GeForce RTX 5060 Ti",
+        "power_cap_w": 180,
+        "vram_mib": 16311
+      }
+    ],
+    "hardware_id": "09d9924ce07a7b53",
+    "host_id": "d4b8ae99f4bfcc54",
+    "ram_gib": 62,
+    "threads": 20
+  },
+  "ollama_version": "0.34.2",
+  "protocol": {
+    "cards_by_uuid": null,
+    "engines_alone": null,
+    "iterations": 3,
+    "max_tokens": 128,
+    "prefix_reuse_offered": false,
+    "streaming": false,
+    "thermal_gate_c": null,
+    "unique_prompt": false,
+    "warmup": 0
+  },
+  "results": [
+    {
+      "coherence_pass": true,
+      "first_response_preview": "young prince named Alex. Alex was known for his kindness and bravery, but he had one peculiar habit - he could only comm…",
+      "iterations": [
+        {
+          "completion_tok_s": 85.32620757108666,
+          "e2e_latency_ms": 1500.1252680000002,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 1.531851716,
+            "energy_j": 269.03400000184774,
+            "gco2_per_tok": 2.919205729186716e-05,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 269.03400000184774,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 2.1018281250144355,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 0.0005838411458373432
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 72.755375,
+              "power_peak_w": 95.01,
+              "samples": 16,
+              "util_avg_pct": 19,
+              "util_peak_pct": 31,
+              "vram_avg_mb": 3457,
+              "vram_peak_mb": 3457
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 57.06575,
+              "power_peak_w": 86.553,
+              "samples": 16,
+              "util_avg_pct": 36,
+              "util_peak_pct": 60,
+              "vram_avg_mb": 3343,
+              "vram_peak_mb": 3343
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 8,
+            "cpu_peak_pct": 73,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 55,
+            "rss_peak_mb": 55,
+            "samples": 9,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 1,
+          "load_time_ms": 118.338948,
+          "prompt_tok_s": 129.2902825423641,
+          "prompt_tokens": 15,
+          "response_preview": "young prince named Alex. Alex was known for his kindness and bravery, but he had one peculiar habit - he could only comm…",
+          "server_decode_tok_s": 101.40252365530746,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 1500.1252680000002
+        },
+        {
+          "completion_tok_s": 89.46495754032605,
+          "e2e_latency_ms": 1430.7277789999998,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 1.461966908,
+            "energy_j": 265.04700000584126,
+            "gco2_per_tok": 2.875944010480048e-05,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 265.04700000584126,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 2.070679687545635,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 0.0005751888020960096
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 85.19473333333332,
+              "power_peak_w": 95.971,
+              "samples": 15,
+              "util_avg_pct": 18,
+              "util_peak_pct": 31,
+              "vram_avg_mb": 3457,
+              "vram_peak_mb": 3457
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 83.03340000000001,
+              "power_peak_w": 89.69,
+              "samples": 15,
+              "util_avg_pct": 35,
+              "util_peak_pct": 59,
+              "vram_avg_mb": 3343,
+              "vram_peak_mb": 3343
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 9,
+            "cpu_peak_pct": 84,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 46,
+            "rss_peak_mb": 46,
+            "samples": 9,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 2,
+          "load_time_ms": 122.666637,
+          "prompt_tok_s": 1480.7502467917077,
+          "prompt_tokens": 15,
+          "response_preview": "young prince named Alex. Alex was known for his kindness and bravery, but he had one peculiar habit - he could only comm…",
+          "server_decode_tok_s": 101.81217721363933,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 1430.7277789999998
+        },
+        {
+          "completion_tok_s": 92.3797276209713,
+          "e2e_latency_ms": 1385.58538,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 1.41691615,
+            "energy_j": 256.71599999815226,
+            "gco2_per_tok": 2.7855468749799508e-05,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 256.71599999815226,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 2.0055937499855645,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 0.0005571093749959902
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 83.93473333333334,
+              "power_peak_w": 97.354,
+              "samples": 15,
+              "util_avg_pct": 18,
+              "util_peak_pct": 30,
+              "vram_avg_mb": 3457,
+              "vram_peak_mb": 3457
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 80.5886,
+              "power_peak_w": 97.594,
+              "samples": 15,
+              "util_avg_pct": 35,
+              "util_peak_pct": 60,
+              "vram_avg_mb": 3343,
+              "vram_peak_mb": 3343
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 9,
+            "cpu_peak_pct": 69,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 53,
+            "rss_peak_mb": 53,
+            "samples": 8,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 3,
+          "load_time_ms": 117.256874,
+          "prompt_tok_s": 1471.1651628089446,
+          "prompt_tokens": 15,
+          "response_preview": "young prince named Alex. Alex was known for his kindness and bravery, but he had one peculiar habit - he could only comm…",
+          "server_decode_tok_s": 101.8424735627282,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 1385.58538
+        }
+      ],
+      "load_time_ms": 13032.106721,
+      "model": "olmo2:7b",
+      "model_fingerprint": {
+        "modified_at": "2026-07-06",
+        "parameter_size": "7.3B",
+        "quantization_level": "Q4_K_M"
+      },
+      "num_ctx": 4096,
+      "prompt": "short",
+      "prompt_chars": 58,
+      "stats": {
+        "Carbon gCO2/tok [gpu]": {
+          "count": 3,
+          "max": 2.919205729186716e-05,
+          "mean": 2.8602322048822382e-05,
+          "min": 2.7855468749799508e-05,
+          "p50": 2.875944010480048e-05,
+          "p95": 2.9148795573160494e-05,
+          "stddev": 6.820057150291233e-07,
+          "unit": "g"
+        },
+        "Completion tok/s": {
+          "count": 3,
+          "max": 92.3797276209713,
+          "mean": 89.056964244128,
+          "min": 85.32620757108666,
+          "p50": 89.46495754032605,
+          "p95": 92.08825061290676,
+          "stddev": 3.5444153496504986,
+          "unit": "tok/s"
+        },
+        "E2E latency": {
+          "count": 3,
+          "max": 1500.1252680000002,
+          "mean": 1438.812809,
+          "min": 1385.58538,
+          "p50": 1430.7277789999998,
+          "p95": 1493.1855191000002,
+          "stddev": 57.69638002802972,
+          "unit": "ms"
+        },
+        "Energy J/tok [gpu]": {
+          "count": 3,
+          "max": 2.1018281250144355,
+          "mean": 2.0593671875152118,
+          "min": 2.0055937499855645,
+          "p50": 2.070679687545635,
+          "p95": 2.0987132812675555,
+          "stddev": 0.04910441148209691,
+          "unit": "J"
+        },
+        "Energy Wh/tok [gpu]": {
+          "count": 3,
+          "max": 0.0005838411458373432,
+          "mean": 0.0005720464409764476,
+          "min": 0.0005571093749959902,
+          "p50": 0.0005751888020960096,
+          "p95": 0.0005829759114632098,
+          "stddev": 1.364011430058244e-05,
+          "unit": "Wh"
+        },
+        "Model load": {
+          "count": 1,
+          "max": 13032.106721,
+          "mean": 13032.106721,
+          "min": 13032.106721,
+          "p50": 13032.106721,
+          "p95": 13032.106721,
+          "stddev": 0.0,
+          "unit": "ms"
+        },
+        "Prompt tok/s": {
+          "count": 3,
+          "max": 1480.7502467917077,
+          "mean": 1027.0685640476722,
+          "min": 129.2902825423641,
+          "p50": 1471.1651628089446,
+          "p95": 1479.7917383934314,
+          "stddev": 777.5135693450676,
+          "unit": "tok/s"
+        },
+        "Tokens generated": {
+          "count": 3,
+          "max": 128.0,
+          "mean": 128.0,
+          "min": 128.0,
+          "p50": 128.0,
+          "p95": 128.0,
+          "stddev": 0.0,
+          "unit": "count"
+        }
+      },
+      "target": "Ollama",
+      "url": "http://127.0.0.1:11434"
+    },
+    {
+      "coherence_pass": true,
+      "first_response_preview": "young prince named Leo. Leo was known for his kindness and bravery. He was loved by all, but he had a secret - he could …",
+      "iterations": [
+        {
+          "completion_tok_s": 110.39849753026787,
+          "e2e_latency_ms": 1159.436069,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 1.18479289,
+            "energy_j": 237.17000000178814,
+            "gco2_per_tok": 2.5734592014082916e-05,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 237.17000000178814,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 1.8528906250139698,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 0.0005146918402816583
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 86.09816666666666,
+              "power_peak_w": 131.731,
+              "samples": 12,
+              "util_avg_pct": 41,
+              "util_peak_pct": 99,
+              "vram_avg_mb": 8820,
+              "vram_peak_mb": 9509
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 26.751083333333327,
+              "power_peak_w": 26.775,
+              "samples": 12,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 155,
+              "vram_peak_mb": 155
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 77,
+            "cpu_peak_pct": 99,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 5042,
+            "rss_peak_mb": 5050,
+            "samples": 7,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 1,
+          "load_time_ms": 11.403964,
+          "prompt_tok_s": 69.39566122226245,
+          "prompt_tokens": 15,
+          "response_preview": "young prince named Leo. Leo was known for his kindness and bravery. He was loved by all, but he had a secret - he could …",
+          "server_decode_tok_s": 137.49307872731663,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 1159.436069
+        },
+        {
+          "completion_tok_s": 135.61836777708598,
+          "e2e_latency_ms": 943.824956,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 0.965141711,
+            "energy_j": 223.8859999999404,
+            "gco2_per_tok": 2.4293185763882422e-05,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 223.8859999999404,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 1.7491093749995343,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 0.0004858637152776484
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 207.61870000000005,
+              "power_peak_w": 226.123,
+              "samples": 10,
+              "util_avg_pct": 99,
+              "util_peak_pct": 99,
+              "vram_avg_mb": 9509,
+              "vram_peak_mb": 9509
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 26.7832,
+              "power_peak_w": 26.816,
+              "samples": 10,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 155,
+              "vram_peak_mb": 155
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 77,
+            "cpu_peak_pct": 104,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 5051,
+            "rss_peak_mb": 5051,
+            "samples": 6,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 2,
+          "load_time_ms": 16.835707,
+          "prompt_tok_s": 2266.715325488987,
+          "prompt_tokens": 15,
+          "response_preview": "young prince named Leo. Leo was known for his kindness and bravery. He was loved by all, but he had a secret - he could …",
+          "server_decode_tok_s": 139.13852871280397,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 943.824956
+        },
+        {
+          "completion_tok_s": 131.53990551856486,
+          "e2e_latency_ms": 973.0887329999999,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 0.99723395,
+            "energy_j": 242.2990000024438,
+            "gco2_per_tok": 2.6291124132209614e-05,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 242.2990000024438,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 1.8929609375190921,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 0.0005258224826441923
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 195.58636363636361,
+              "power_peak_w": 198.05,
+              "samples": 11,
+              "util_avg_pct": 54,
+              "util_peak_pct": 99,
+              "vram_avg_mb": 9509,
+              "vram_peak_mb": 9509
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 26.805545454545452,
+              "power_peak_w": 26.816,
+              "samples": 11,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 155,
+              "vram_peak_mb": 155
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 80,
+            "cpu_peak_pct": 104,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 5051,
+            "rss_peak_mb": 5051,
+            "samples": 6,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 3,
+          "load_time_ms": 14.959457,
+          "prompt_tok_s": 548.7880637571728,
+          "prompt_tokens": 15,
+          "response_preview": "young prince named Leo. Leo was known for his kindness and bravery. He was loved by all, but he had a secret - he could …",
+          "server_decode_tok_s": 137.6484745001351,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 973.0887329999999
+        }
+      ],
+      "load_time_ms": 3781.398341,
+      "model": "olmo2:7b",
+      "model_fingerprint": {
+        "modified_at": "",
+        "parameter_size": "7.3B",
+        "quantization_level": "Q4_K_M"
+      },
+      "num_ctx": 4096,
+      "prompt": "short",
+      "prompt_chars": 58,
+      "stats": {
+        "Carbon gCO2/tok [gpu]": {
+          "count": 3,
+          "max": 2.6291124132209614e-05,
+          "mean": 2.543963397005832e-05,
+          "min": 2.4293185763882422e-05,
+          "p50": 2.5734592014082916e-05,
+          "p95": 2.6235470920396945e-05,
+          "stddev": 1.0311108653823766e-06,
+          "unit": "g"
+        },
+        "Completion tok/s": {
+          "count": 3,
+          "max": 135.61836777708598,
+          "mean": 125.8522569419729,
+          "min": 110.39849753026787,
+          "p50": 131.53990551856486,
+          "p95": 135.21052155123388,
+          "stddev": 13.537816425284088,
+          "unit": "tok/s"
+        },
+        "E2E latency": {
+          "count": 3,
+          "max": 1159.436069,
+          "mean": 1025.4499193333334,
+          "min": 943.824956,
+          "p50": 973.0887329999999,
+          "p95": 1140.8013354,
+          "stddev": 116.95430042520987,
+          "unit": "ms"
+        },
+        "Energy J/tok [gpu]": {
+          "count": 3,
+          "max": 1.8929609375190921,
+          "mean": 1.8316536458441988,
+          "min": 1.7491093749995343,
+          "p50": 1.8528906250139698,
+          "p95": 1.8889539062685798,
+          "stddev": 0.07423998230753108,
+          "unit": "J"
+        },
+        "Energy Wh/tok [gpu]": {
+          "count": 3,
+          "max": 0.0005258224826441923,
+          "mean": 0.0005087926794011664,
+          "min": 0.0004858637152776484,
+          "p50": 0.0005146918402816583,
+          "p95": 0.0005247094184079389,
+          "stddev": 2.0622217307647554e-05,
+          "unit": "Wh"
+        },
+        "Model load": {
+          "count": 1,
+          "max": 3781.398341,
+          "mean": 3781.398341,
+          "min": 3781.398341,
+          "p50": 3781.398341,
+          "p95": 3781.398341,
+          "stddev": 0.0,
+          "unit": "ms"
+        },
+        "Prompt tok/s": {
+          "count": 3,
+          "max": 2266.715325488987,
+          "mean": 961.6330168228075,
+          "min": 69.39566122226245,
+          "p50": 548.7880637571728,
+          "p95": 2094.9225993158057,
+          "stddev": 1155.3718635993923,
+          "unit": "tok/s"
+        },
+        "Tokens generated": {
+          "count": 3,
+          "max": 128.0,
+          "mean": 128.0,
+          "min": 128.0,
+          "p50": 128.0,
+          "p95": 128.0,
+          "stddev": 0.0,
+          "unit": "count"
+        }
+      },
+      "target": "LOKEN",
+      "url": "http://127.0.0.1:11435"
+    }
+  ],
+  "schema": "loken/2",
+  "subjects": null,
+  "timestamp": "2026-09-03",
+  "vllm_version": null
+}

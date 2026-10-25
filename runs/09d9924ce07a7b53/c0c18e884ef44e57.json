@@ -1,0 +1,723 @@
+{
+  "config": {
+    "carbon_intensity_gco2_per_kwh": 50.0,
+    "custom_prompt": null,
+    "energy_measure": true,
+    "gpu_sample": true,
+    "iterations": 3,
+    "max_tokens": 128,
+    "models": [
+      "gemma4:12b"
+    ],
+    "num_ctx": [
+      131072
+    ],
+    "num_gpu": null,
+    "prompts": [
+      "medium"
+    ],
+    "session_id": null,
+    "streaming": false,
+    "unique_prompt": false,
+    "warmup": 0
+  },
+  "converted_from": "gemma4_12b_131072_non-stream_medium.json",
+  "idle_energy_baseline": null,
+  "legacy_engine_build": 1788498694,
+  "machine": {
+    "attested": "by the operator, from deepcoder_14b_4096_stream.json; driver, kernel and OS unknown",
+    "cpu": "Intel(R) Core(TM) i9-10900K CPU @ 3.70GHz",
+    "gpus": [
+      {
+        "index": 0,
+        "name": "NVIDIA GeForce RTX 5070 Ti",
+        "power_cap_w": 300,
+        "vram_mib": 16303
+      },
+      {
+        "index": 1,
+        "name": "NVIDIA GeForce RTX 5060 Ti",
+        "power_cap_w": 180,
+        "vram_mib": 16311
+      }
+    ],
+    "hardware_id": "09d9924ce07a7b53",
+    "host_id": "d4b8ae99f4bfcc54",
+    "ram_gib": 62,
+    "threads": 20
+  },
+  "ollama_version": "0.34.2",
+  "protocol": {
+    "cards_by_uuid": null,
+    "engines_alone": null,
+    "iterations": 3,
+    "max_tokens": 128,
+    "prefix_reuse_offered": false,
+    "streaming": false,
+    "thermal_gate_c": null,
+    "unique_prompt": false,
+    "warmup": 0
+  },
+  "results": [
+    {
+      "coherence_pass": false,
+      "first_response_preview": "a mathematical and logical and a a a a a a a a \"<|channel>thought <channel|>It looks like your text cut off into a repet…",
+      "iterations": [
+        {
+          "completion_tok_s": 12.996605542096933,
+          "e2e_latency_ms": 9848.725467999999,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 9.875454618,
+            "energy_j": 980.9479999989271,
+            "gco2_per_tok": 0.00010643967013877248,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 980.9479999989271,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 7.663656249991618,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 0.0021287934027754496
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 54.21651546391752,
+              "power_peak_w": 100.438,
+              "samples": 97,
+              "util_avg_pct": 11,
+              "util_peak_pct": 94,
+              "vram_avg_mb": 3821,
+              "vram_peak_mb": 8091
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 43.27581443298967,
+              "power_peak_w": 106.787,
+              "samples": 97,
+              "util_avg_pct": 24,
+              "util_peak_pct": 98,
+              "vram_avg_mb": 3941,
+              "vram_peak_mb": 8149
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 13,
+            "cpu_peak_pct": 128,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 94,
+            "rss_peak_mb": 323,
+            "samples": 50,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 1,
+          "load_time_ms": 7369.428633,
+          "prompt_tok_s": 390.6735567275762,
+          "prompt_tokens": 44,
+          "response_preview": "a mathematical and logical and a a a a a a a a \"<|channel>thought <channel|>It looks like your text cut off into a repet…",
+          "server_decode_tok_s": 54.13161679720986,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 9848.725467999999
+        },
+        {
+          "completion_tok_s": null,
+          "e2e_latency_ms": 1398.8203640000002,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 1.422959198,
+            "energy_j": 215.78399999439716,
+            "gco2_per_tok": null,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 215.78399999439716,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": null,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": null
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 74.33113333333334,
+              "power_peak_w": 89.516,
+              "samples": 15,
+              "util_avg_pct": 11,
+              "util_peak_pct": 25,
+              "vram_avg_mb": 8091,
+              "vram_peak_mb": 8091
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 73.44866666666668,
+              "power_peak_w": 88.657,
+              "samples": 15,
+              "util_avg_pct": 34,
+              "util_peak_pct": 57,
+              "vram_avg_mb": 8149,
+              "vram_peak_mb": 8149
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 34,
+            "cpu_peak_pct": 128,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 87,
+            "rss_peak_mb": 89,
+            "samples": 8,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 2,
+          "load_time_ms": null,
+          "prompt_tok_s": null,
+          "prompt_tokens": null,
+          "response_preview": "a mathematical and logical reasoning system based on Georgeerius Miller's Miller01111111111111111111111111111111",
+          "server_decode_tok_s": null,
+          "tokens_generated": null,
+          "ttft_ms": null,
+          "wall_clock_ms": 1398.8203640000002
+        },
+        {
+          "completion_tok_s": null,
+          "e2e_latency_ms": 1409.2643090000001,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 1.432745514,
+            "energy_j": 216.30200000107288,
+            "gco2_per_tok": null,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 216.30200000107288,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": null,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": null
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 77.68760000000002,
+              "power_peak_w": 94.284,
+              "samples": 15,
+              "util_avg_pct": 10,
+              "util_peak_pct": 29,
+              "vram_avg_mb": 8091,
+              "vram_peak_mb": 8091
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 78.57453333333332,
+              "power_peak_w": 96.323,
+              "samples": 15,
+              "util_avg_pct": 31,
+              "util_peak_pct": 61,
+              "vram_avg_mb": 8149,
+              "vram_peak_mb": 8149
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 36,
+            "cpu_peak_pct": 118,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 84,
+            "rss_peak_mb": 90,
+            "samples": 8,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 3,
+          "load_time_ms": null,
+          "prompt_tok_s": null,
+          "prompt_tokens": null,
+          "response_preview": "a mathematical and logical reasoning system based on Georgeerius Miller's Miller01111111111111111111111111111111",
+          "server_decode_tok_s": null,
+          "tokens_generated": null,
+          "ttft_ms": null,
+          "wall_clock_ms": 1409.2643090000001
+        }
+      ],
+      "load_time_ms": 21957.050848000003,
+      "model": "gemma4:12b",
+      "model_fingerprint": {
+        "modified_at": "2026-06-08",
+        "parameter_size": "11.9B",
+        "quantization_level": "Q4_K_M"
+      },
+      "num_ctx": 131072,
+      "prompt": "medium",
+      "prompt_chars": 236,
+      "stats": {
+        "Carbon gCO2/tok [gpu]": {
+          "count": 1,
+          "max": 0.00010643967013877248,
+          "mean": 0.00010643967013877248,
+          "min": 0.00010643967013877248,
+          "p50": 0.00010643967013877248,
+          "p95": 0.00010643967013877248,
+          "stddev": 0.0,
+          "unit": "g"
+        },
+        "Completion tok/s": {
+          "count": 1,
+          "max": 12.996605542096933,
+          "mean": 12.996605542096933,
+          "min": 12.996605542096933,
+          "p50": 12.996605542096933,
+          "p95": 12.996605542096933,
+          "stddev": 0.0,
+          "unit": "tok/s"
+        },
+        "E2E latency": {
+          "count": 3,
+          "max": 9848.725467999999,
+          "mean": 4218.936713666667,
+          "min": 1398.8203640000002,
+          "p50": 1409.2643090000001,
+          "p95": 9004.779352099999,
+          "stddev": 4875.542875702185,
+          "unit": "ms"
+        },
+        "Energy J/tok [gpu]": {
+          "count": 1,
+          "max": 7.663656249991618,
+          "mean": 7.663656249991618,
+          "min": 7.663656249991618,
+          "p50": 7.663656249991618,
+          "p95": 7.663656249991618,
+          "stddev": 0.0,
+          "unit": "J"
+        },
+        "Energy Wh/tok [gpu]": {
+          "count": 1,
+          "max": 0.0021287934027754496,
+          "mean": 0.0021287934027754496,
+          "min": 0.0021287934027754496,
+          "p50": 0.0021287934027754496,
+          "p95": 0.0021287934027754496,
+          "stddev": 0.0,
+          "unit": "Wh"
+        },
+        "Model load": {
+          "count": 1,
+          "max": 21957.050848000003,
+          "mean": 21957.050848000003,
+          "min": 21957.050848000003,
+          "p50": 21957.050848000003,
+          "p95": 21957.050848000003,
+          "stddev": 0.0,
+          "unit": "ms"
+        },
+        "Prompt tok/s": {
+          "count": 1,
+          "max": 390.6735567275762,
+          "mean": 390.6735567275762,
+          "min": 390.6735567275762,
+          "p50": 390.6735567275762,
+          "p95": 390.6735567275762,
+          "stddev": 0.0,
+          "unit": "tok/s"
+        },
+        "Tokens generated": {
+          "count": 1,
+          "max": 128.0,
+          "mean": 128.0,
+          "min": 128.0,
+          "p50": 128.0,
+          "p95": 128.0,
+          "stddev": 0.0,
+          "unit": "count"
+        }
+      },
+      "target": "Ollama",
+      "url": "http://127.0.0.1:11434"
+    },
+    {
+      "coherence_pass": false,
+      "first_response_preview": "a mathematical and logical reasoning system based on Georgeeriuspergers (Georgeeriuspergers) is a a a a a a a a a \"thoug…",
+      "iterations": [
+        {
+          "completion_tok_s": 69.66306965996257,
+          "e2e_latency_ms": 1837.415443,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 1.862334475,
+            "energy_j": 410.13199999928474,
+            "gco2_per_tok": 4.450217013881128e-05,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 410.13199999928474,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 3.204156249994412,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 0.0008900434027762255
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 143.4635,
+              "power_peak_w": 228.802,
+              "samples": 20,
+              "util_avg_pct": 72,
+              "util_peak_pct": 94,
+              "vram_avg_mb": 10278,
+              "vram_peak_mb": 10279
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 27.431500000000007,
+              "power_peak_w": 27.463,
+              "samples": 20,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 155,
+              "vram_peak_mb": 155
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 82,
+            "cpu_peak_pct": 104,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 9040,
+            "rss_peak_mb": 9041,
+            "samples": 11,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 1,
+          "load_time_ms": 16.495051,
+          "prompt_tok_s": 448.42291596825646,
+          "prompt_tokens": 44,
+          "response_preview": "a mathematical and logical reasoning system based on Georgeeriuspergers (Georgeeriuspergers) is a a a a a a a a a \"thoug…",
+          "server_decode_tok_s": 74.32178980377833,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 1837.415443
+        },
+        {
+          "completion_tok_s": 73.81656915891953,
+          "e2e_latency_ms": 1734.0280300000002,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 1.762788714,
+            "energy_j": 399.10199999809265,
+            "gco2_per_tok": 4.330533854145971e-05,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 399.10199999809265,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 3.117984374985099,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 0.0008661067708291942
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 185.99305555555554,
+              "power_peak_w": 227.115,
+              "samples": 18,
+              "util_avg_pct": 68,
+              "util_peak_pct": 95,
+              "vram_avg_mb": 10279,
+              "vram_peak_mb": 10279
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 27.456055555555555,
+              "power_peak_w": 27.507,
+              "samples": 18,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 155,
+              "vram_peak_mb": 155
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 86,
+            "cpu_peak_pct": 104,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 9043,
+            "rss_peak_mb": 9043,
+            "samples": 10,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 2,
+          "load_time_ms": 12.981974,
+          "prompt_tok_s": 1739.4934595045922,
+          "prompt_tokens": 44,
+          "response_preview": "a mathematical and logical reasoning system based on Georgeeriuspergers (Georgeeriuspergers) is a a a a a a a a a \"thoug…",
+          "server_decode_tok_s": 75.51901117445782,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 1734.0280300000002
+        },
+        {
+          "completion_tok_s": 73.15218270851257,
+          "e2e_latency_ms": 1749.776907,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 1.774207515,
+            "energy_j": 407.2090000063181,
+            "gco2_per_tok": 4.418500434096334e-05,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 407.2090000063181,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 3.18132031254936,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 0.0008837000868192667
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 195.6636666666666,
+              "power_peak_w": 226.805,
+              "samples": 18,
+              "util_avg_pct": 68,
+              "util_peak_pct": 95,
+              "vram_avg_mb": 10279,
+              "vram_peak_mb": 10279
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 27.414888888888882,
+              "power_peak_w": 27.453,
+              "samples": 18,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 155,
+              "vram_peak_mb": 155
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 86,
+            "cpu_peak_pct": 104,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 9043,
+            "rss_peak_mb": 9043,
+            "samples": 10,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 3,
+          "load_time_ms": 14.379293,
+          "prompt_tok_s": 1027.7605361864091,
+          "prompt_tokens": 44,
+          "response_preview": "a mathematical and logical reasoning system based on Georgeeriuspergers (Georgeeriuspergers) is a a a a a a a a a \"thoug…",
+          "server_decode_tok_s": 75.66341081571619,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 1749.776907
+        }
+      ],
+      "load_time_ms": 5779.292343,
+      "model": "gemma4:12b",
+      "model_fingerprint": {
+        "modified_at": "",
+        "parameter_size": "11.9B",
+        "quantization_level": "Q4_K_M"
+      },
+      "num_ctx": 131072,
+      "prompt": "medium",
+      "prompt_chars": 236,
+      "stats": {
+        "Carbon gCO2/tok [gpu]": {
+          "count": 3,
+          "max": 4.450217013881128e-05,
+          "mean": 4.399750434041144e-05,
+          "min": 4.330533854145971e-05,
+          "p50": 4.418500434096334e-05,
+          "p95": 4.447045355902649e-05,
+          "stddev": 6.200553650763752e-07,
+          "unit": "g"
+        },
+        "Completion tok/s": {
+          "count": 3,
+          "max": 73.81656915891953,
+          "mean": 72.21060717579822,
+          "min": 69.66306965996257,
+          "p50": 73.15218270851257,
+          "p95": 73.75013051387883,
+          "stddev": 2.2311012717520593,
+          "unit": "tok/s"
+        },
+        "E2E latency": {
+          "count": 3,
+          "max": 1837.415443,
+          "mean": 1773.7401266666668,
+          "min": 1734.0280300000002,
+          "p50": 1749.776907,
+          "p95": 1828.6515894,
+          "stddev": 55.70382584978193,
+          "unit": "ms"
+        },
+        "Energy J/tok [gpu]": {
+          "count": 3,
+          "max": 3.204156249994412,
+          "mean": 3.167820312509624,
+          "min": 3.117984374985099,
+          "p50": 3.18132031254936,
+          "p95": 3.2018726562499067,
+          "stddev": 0.04464398628549917,
+          "unit": "J"
+        },
+        "Energy Wh/tok [gpu]": {
+          "count": 3,
+          "max": 0.0008900434027762255,
+          "mean": 0.0008799500868082287,
+          "min": 0.0008661067708291942,
+          "p50": 0.0008837000868192667,
+          "p95": 0.0008894090711805296,
+          "stddev": 1.2401107301527517e-05,
+          "unit": "Wh"
+        },
+        "Model load": {
+          "count": 1,
+          "max": 5779.292343,
+          "mean": 5779.292343,
+          "min": 5779.292343,
+          "p50": 5779.292343,
+          "p95": 5779.292343,
+          "stddev": 0.0,
+          "unit": "ms"
+        },
+        "Prompt tok/s": {
+          "count": 3,
+          "max": 1739.4934595045922,
+          "mean": 1071.8923038864193,
+          "min": 448.42291596825646,
+          "p50": 1027.7605361864091,
+          "p95": 1668.3201671727738,
+          "stddev": 646.6656762091584,
+          "unit": "tok/s"
+        },
+        "Tokens generated": {
+          "count": 3,
+          "max": 128.0,
+          "mean": 128.0,
+          "min": 128.0,
+          "p50": 128.0,
+          "p95": 128.0,
+          "stddev": 0.0,
+          "unit": "count"
+        }
+      },
+      "target": "LOKEN",
+      "url": "http://127.0.0.1:11435"
+    }
+  ],
+  "schema": "loken/2",
+  "subjects": null,
+  "timestamp": "2026-09-04",
+  "vllm_version": null
+}

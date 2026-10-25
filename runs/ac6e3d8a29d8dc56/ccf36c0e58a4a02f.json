@@ -1,0 +1,679 @@
+{
+  "config": {
+    "carbon_intensity_gco2_per_kwh": 50.0,
+    "custom_prompt": null,
+    "energy_measure": true,
+    "gpu_sample": true,
+    "iterations": 3,
+    "max_tokens": 128,
+    "models": [
+      "qwen3:8b"
+    ],
+    "num_ctx": [
+      4096
+    ],
+    "num_gpu": null,
+    "prompts": [
+      "long"
+    ],
+    "session_id": null,
+    "streaming": false,
+    "unique_prompt": false,
+    "warmup": 0
+  },
+  "engine_build": 1792564833,
+  "idle_energy_baseline": null,
+  "machine": {
+    "cpu": "Intel(R) Core(TM) i9-10900K CPU @ 3.70GHz",
+    "driver": "610.43.02",
+    "gpus": [
+      {
+        "index": 0,
+        "name": "NVIDIA GeForce GTX 1650",
+        "power_cap_w": 75,
+        "vram_mib": 4096
+      }
+    ],
+    "kernel": "6.12.90+deb13.1-amd64",
+    "os": "Debian GNU/Linux 13 (trixie)",
+    "ram_gib": 62,
+    "threads": 20
+  },
+  "ollama_version": "0.35.1",
+  "protocol": {
+    "cards_by_uuid": null,
+    "engines_seen": [
+      "llama-server",
+      "ollama"
+    ],
+    "gpu_temps_c_at_start": [
+      32
+    ],
+    "iterations": 3,
+    "max_tokens": 128,
+    "prefix_reuse_offered": false,
+    "streaming": false,
+    "unique_prompt": false,
+    "warmup": 0
+  },
+  "results": [
+    {
+      "coherence_pass": true,
+      "first_response_preview": "Also, provide a benchmark comparison between the original and corrected code. Okay, let's take a look at this Rust funct...",
+      "iteration_errors": [],
+      "iterations": [
+        {
+          "completion_tok_s": 73.8978861181754,
+          "degenerate": false,
+          "e2e_latency_ms": 1732.1199119999999,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 1.7524733239999999,
+            "energy_j": 6.320000000298023,
+            "gco2_per_tok": 6.857638889212265e-07,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 6.320000000298023,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.049375000002328306,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied - run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 1.371527777842453e-05
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce GTX 1650",
+              "power_avg_w": 6.878470588235294,
+              "power_peak_w": 7.038,
+              "samples": 17,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 16,
+              "vram_peak_mb": 16
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 0,
+            "cpu_peak_pct": 4,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 43,
+            "rss_peak_mb": 43,
+            "samples": 9,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 1,
+          "load_time_ms": 2.135335,
+          "prompt_tok_s": 1575.9014491587368,
+          "prompt_tokens": 235,
+          "response_preview": "Also, provide a benchmark comparison between the original and corrected code. Okay, let's take a look at this Rust funct...",
+          "server_decode_tok_s": 81.04712890545852,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 1732.1199119999999
+        },
+        {
+          "completion_tok_s": 82.5759869699531,
+          "degenerate": false,
+          "e2e_latency_ms": 1550.087437,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 1.568309894,
+            "energy_j": 4.392999999690801,
+            "gco2_per_tok": 4.766710069108942e-07,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 4.392999999690801,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.03432031249758438,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied - run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 9.533420138217883e-06
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce GTX 1650",
+              "power_avg_w": 6.874933333333334,
+              "power_peak_w": 6.957,
+              "samples": 15,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 16,
+              "vram_peak_mb": 16
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 1,
+            "cpu_peak_pct": 4,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 43,
+            "rss_peak_mb": 43,
+            "samples": 8,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 2,
+          "load_time_ms": 2.249217,
+          "prompt_tok_s": 13563.430682211703,
+          "prompt_tokens": 235,
+          "response_preview": "Also, provide a benchmark comparison between the original and corrected code. Okay, let's take a look at this Rust funct...",
+          "server_decode_tok_s": 83.71774822802882,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 1550.087437
+        },
+        {
+          "completion_tok_s": 85.58478216506909,
+          "degenerate": false,
+          "e2e_latency_ms": 1495.592987,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 1.5136490949999999,
+            "energy_j": 5.302000000141561,
+            "gco2_per_tok": 5.753038194598047e-07,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 5.302000000141561,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.041421875001105946,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied - run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 1.1506076389196095e-05
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce GTX 1650",
+              "power_avg_w": 6.906400000000001,
+              "power_peak_w": 7.096,
+              "samples": 15,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 16,
+              "vram_peak_mb": 16
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 0,
+            "cpu_peak_pct": 4,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 43,
+            "rss_peak_mb": 43,
+            "samples": 8,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 3,
+          "load_time_ms": 2.306789,
+          "prompt_tok_s": 14962.434738316566,
+          "prompt_tokens": 235,
+          "response_preview": "Also, provide a benchmark comparison between the original and corrected code. Okay, let's take a look at this Rust funct...",
+          "server_decode_tok_s": 86.71763586045236,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 1495.592987
+        }
+      ],
+      "load_error": null,
+      "load_time_ms": 3410.572223,
+      "model": "qwen3:8b",
+      "model_fingerprint": {
+        "modified_at": "2026-07-04",
+        "parameter_size": "8.2B",
+        "quantization_level": "Q4_K_M"
+      },
+      "num_ctx": 4096,
+      "prompt": "long",
+      "prompt_chars": 939,
+      "stats": {
+        "Carbon gCO2/tok [gpu]": {
+          "count": 3,
+          "max": 6.857638889212265e-07,
+          "mean": 5.792462384306418e-07,
+          "min": 4.766710069108942e-07,
+          "p50": 5.753038194598047e-07,
+          "p95": 6.747178819750844e-07,
+          "stddev": 1.0460217649433926e-07,
+          "unit": "g"
+        },
+        "Completion tok/s": {
+          "count": 3,
+          "max": 85.58478216506909,
+          "mean": 80.68621841773255,
+          "min": 73.8978861181754,
+          "p50": 82.5759869699531,
+          "p95": 85.28390264555749,
+          "stddev": 6.068303196812611,
+          "unit": "tok/s"
+        },
+        "E2E latency": {
+          "count": 3,
+          "max": 1732.1199119999999,
+          "mean": 1592.600112,
+          "min": 1495.592987,
+          "p50": 1550.087437,
+          "p95": 1713.9166645,
+          "stddev": 123.86178673921434,
+          "unit": "ms"
+        },
+        "Energy J/tok [gpu]": {
+          "count": 3,
+          "max": 0.049375000002328306,
+          "mean": 0.04170572916700621,
+          "min": 0.03432031249758438,
+          "p50": 0.041421875001105946,
+          "p95": 0.04857968750220607,
+          "stddev": 0.007531356707592425,
+          "unit": "J"
+        },
+        "Energy Wh/tok [gpu]": {
+          "count": 3,
+          "max": 1.371527777842453e-05,
+          "mean": 1.1584924768612837e-05,
+          "min": 9.533420138217883e-06,
+          "p50": 1.1506076389196095e-05,
+          "p95": 1.3494357639501686e-05,
+          "stddev": 2.0920435298867853e-06,
+          "unit": "Wh"
+        },
+        "Model load": {
+          "count": 1,
+          "max": 3410.572223,
+          "mean": 3410.572223,
+          "min": 3410.572223,
+          "p50": 3410.572223,
+          "p95": 3410.572223,
+          "stddev": 0.0,
+          "unit": "ms"
+        },
+        "Prompt tok/s": {
+          "count": 3,
+          "max": 14962.434738316566,
+          "mean": 10033.922289895669,
+          "min": 1575.9014491587368,
+          "p50": 13563.430682211703,
+          "p95": 14822.534332706078,
+          "stddev": 7358.185271791182,
+          "unit": "tok/s"
+        },
+        "Tokens generated": {
+          "count": 3,
+          "max": 128.0,
+          "mean": 128.0,
+          "min": 128.0,
+          "p50": 128.0,
+          "p95": 128.0,
+          "stddev": 0.0,
+          "unit": "count"
+        }
+      },
+      "target": "Ollama",
+      "url": "http://127.0.0.1:11434"
+    },
+    {
+      "coherence_pass": true,
+      "first_response_preview": "Also, explain why the original code is incorrect and what the fix does. The original code is incorrect in several ways. ...",
+      "iteration_errors": [],
+      "iterations": [
+        {
+          "completion_tok_s": 45.58183890683791,
+          "degenerate": false,
+          "e2e_latency_ms": 2808.1359390000002,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 2.826355618,
+            "energy_j": 8.527000000234693,
+            "gco2_per_tok": 9.252387153032437e-07,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 8.527000000234693,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.06661718750183354,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied - run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 1.8504774306064874e-05
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce GTX 1650",
+              "power_avg_w": 7.000592592592593,
+              "power_peak_w": 7.547,
+              "samples": 27,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 16,
+              "vram_peak_mb": 16
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 114,
+            "cpu_peak_pct": 196,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 1386,
+            "rss_peak_mb": 1397,
+            "samples": 15,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 1,
+          "load_time_ms": 92.805935,
+          "prompt_tok_s": 591.1760375351402,
+          "prompt_tokens": 235,
+          "response_preview": "Also, explain why the original code is incorrect and what the fix does. The original code is incorrect in several ways. ...",
+          "server_decode_tok_s": 60.00107288480936,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 2808.1359390000002
+        },
+        {
+          "completion_tok_s": 54.4416734582548,
+          "degenerate": false,
+          "e2e_latency_ms": 2351.1400710000003,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 2.389190563,
+            "energy_j": 7.591999999713153,
+            "gco2_per_tok": 8.237847221910973e-07,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 7.591999999713153,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.059312499997759005,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied - run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 1.6475694443821946e-05
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce GTX 1650",
+              "power_avg_w": 6.9413478260869566,
+              "power_peak_w": 7.062,
+              "samples": 23,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 16,
+              "vram_peak_mb": 16
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 130,
+            "cpu_peak_pct": 196,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 1402,
+            "rss_peak_mb": 1403,
+            "samples": 12,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 2,
+          "load_time_ms": 15.818891,
+          "prompt_tok_s": 691.0816846699964,
+          "prompt_tokens": 235,
+          "response_preview": "Also, explain why the original code is incorrect and what the fix does. The original code is incorrect in several ways. ...",
+          "server_decode_tok_s": 64.20690772324177,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 2351.1400710000003
+        },
+        {
+          "completion_tok_s": 55.30522313614267,
+          "degenerate": false,
+          "e2e_latency_ms": 2314.428778,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 2.337859426,
+            "energy_j": 7.572999999858439,
+            "gco2_per_tok": 8.217230902624174e-07,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 7.572999999858439,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.059164062498894054,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied - run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 1.6434461805248348e-05
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce GTX 1650",
+              "power_avg_w": 6.959565217391305,
+              "power_peak_w": 7.215,
+              "samples": 23,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 16,
+              "vram_peak_mb": 16
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 118,
+            "cpu_peak_pct": 196,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 1403,
+            "rss_peak_mb": 1403,
+            "samples": 13,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 3,
+          "load_time_ms": 19.619794,
+          "prompt_tok_s": 708.7264168796701,
+          "prompt_tokens": 235,
+          "response_preview": "Also, explain why the original code is incorrect and what the fix does. The original code is incorrect in several ways. ...",
+          "server_decode_tok_s": 65.27433151830405,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 2314.428778
+        }
+      ],
+      "load_error": null,
+      "load_time_ms": 4431.816944,
+      "model": "qwen3:8b",
+      "model_fingerprint": {
+        "modified_at": "",
+        "parameter_size": "8.2B",
+        "quantization_level": "Q4_K_M"
+      },
+      "num_ctx": 4096,
+      "prompt": "long",
+      "prompt_chars": 939,
+      "stats": {
+        "Carbon gCO2/tok [gpu]": {
+          "count": 3,
+          "max": 9.252387153032437e-07,
+          "mean": 8.569155092522528e-07,
+          "min": 8.217230902624174e-07,
+          "p50": 8.237847221910973e-07,
+          "p95": 9.150933159920291e-07,
+          "stddev": 5.917861053934064e-08,
+          "unit": "g"
+        },
+        "Completion tok/s": {
+          "count": 3,
+          "max": 55.30522313614267,
+          "mean": 51.77624516707846,
+          "min": 45.58183890683791,
+          "p50": 54.4416734582548,
+          "p95": 55.218868168353886,
+          "stddev": 5.381861313637277,
+          "unit": "tok/s"
+        },
+        "E2E latency": {
+          "count": 3,
+          "max": 2808.1359390000002,
+          "mean": 2491.2349293333336,
+          "min": 2314.428778,
+          "p50": 2351.1400710000003,
+          "p95": 2762.4363522000003,
+          "stddev": 275.05747981876004,
+          "unit": "ms"
+        },
+        "Energy J/tok [gpu]": {
+          "count": 3,
+          "max": 0.06661718750183354,
+          "mean": 0.0616979166661622,
+          "min": 0.059164062498894054,
+          "p50": 0.059312499997759005,
+          "p95": 0.06588671875142608,
+          "stddev": 0.004260859958832522,
+          "unit": "J"
+        },
+        "Energy Wh/tok [gpu]": {
+          "count": 3,
+          "max": 1.8504774306064874e-05,
+          "mean": 1.7138310185045056e-05,
+          "min": 1.6434461805248348e-05,
+          "p50": 1.6475694443821946e-05,
+          "p95": 1.830186631984058e-05,
+          "stddev": 1.1835722107868127e-06,
+          "unit": "Wh"
+        },
+        "Model load": {
+          "count": 1,
+          "max": 4431.816944,
+          "mean": 4431.816944,
+          "min": 4431.816944,
+          "p50": 4431.816944,
+          "p95": 4431.816944,
+          "stddev": 0.0,
+          "unit": "ms"
+        },
+        "Prompt tok/s": {
+          "count": 3,
+          "max": 708.7264168796701,
+          "mean": 663.6613796949356,
+          "min": 591.1760375351402,
+          "p50": 691.0816846699964,
+          "p95": 706.9619436587027,
+          "stddev": 63.3910700706711,
+          "unit": "tok/s"
+        },
+        "Tokens generated": {
+          "count": 3,
+          "max": 128.0,
+          "mean": 128.0,
+          "min": 128.0,
+          "p50": 128.0,
+          "p95": 128.0,
+          "stddev": 0.0,
+          "unit": "count"
+        }
+      },
+      "target": "LOKEN",
+      "url": "http://127.0.0.1:11435"
+    }
+  ],
+  "schema": "loken/2",
+  "subjects": {
+    "LOKEN": {
+      "says": {
+        "commit": "faf7af64e",
+        "loken": "0.3.1-dev+gfaf7af64e",
+        "version": "0.3.1-dev+gfaf7af64e"
+      },
+      "url": "http://127.0.0.1:11435"
+    },
+    "Ollama": {
+      "says": {
+        "version": "0.35.1"
+      },
+      "url": "http://127.0.0.1:11434"
+    }
+  },
+  "timestamp": "2026-10-21"
+}

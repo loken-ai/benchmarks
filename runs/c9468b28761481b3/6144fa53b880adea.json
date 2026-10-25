@@ -1,0 +1,703 @@
+{
+  "config": {
+    "carbon_intensity_gco2_per_kwh": 50.0,
+    "custom_prompt": null,
+    "energy_measure": true,
+    "gpu_sample": true,
+    "iterations": 3,
+    "max_tokens": 128,
+    "models": [
+      "qwen3:0.6b"
+    ],
+    "num_ctx": [
+      4096
+    ],
+    "num_gpu": null,
+    "prompts": [
+      "short"
+    ],
+    "session_id": null,
+    "streaming": false,
+    "unique_prompt": false,
+    "warmup": 0
+  },
+  "engine_build": 1792773905,
+  "idle_energy_baseline": null,
+  "machine": {
+    "cpu": "Intel(R) Core(TM) i9-10900K CPU @ 3.70GHz",
+    "gpus": [
+      {
+        "index": 0,
+        "name": "AMD Radeon RX 9070 XT"
+      }
+    ],
+    "hardware_id": "c9468b28761481b3",
+    "host_id": "d4b8ae99f4bfcc54",
+    "kernel": "6.12.90+deb13.1-amd64",
+    "os": "Debian GNU/Linux 13 (trixie)",
+    "ram_gib": 62,
+    "threads": 20
+  },
+  "ollama_version": "0.35.1",
+  "protocol": {
+    "cards_by_uuid": null,
+    "engines_seen": [
+      "llama-server",
+      "ollama"
+    ],
+    "gpu_temps_c_at_start": [
+      32
+    ],
+    "iterations": 3,
+    "max_tokens": 128,
+    "prefix_reuse_offered": false,
+    "streaming": false,
+    "unique_prompt": false,
+    "warmup": 0
+  },
+  "results": [
+    {
+      "coherence_pass": true,
+      "first_response_preview": "wise old man named Sir Aladdin. He was known for his wisdom and his knowledge of the stars. One day, he was asked by his...",
+      "iteration_errors": [],
+      "iterations": [
+        {
+          "completion_tok_s": 172.33053753738437,
+          "degenerate": false,
+          "e2e_latency_ms": 742.758665,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 0.763424278,
+            "energy_j": 1.7609999999403954,
+            "gco2_per_tok": 1.9108072916019917e-07,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 1.7609999999403954,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.013757812499534339,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied - run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 3.821614583203983e-06
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce GTX 1650",
+              "power_avg_w": 6.903625000000001,
+              "power_peak_w": 7.086,
+              "samples": 8,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 16,
+              "vram_peak_mb": 16
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 1,
+            "cpu_peak_pct": 9,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 42,
+            "rss_peak_mb": 42,
+            "samples": 5,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 1,
+          "load_time_ms": 10.558443,
+          "prompt_tok_s": 136.80264849927497,
+          "prompt_tokens": 15,
+          "response_preview": "wise old man named Sir Aladdin. He was known for his wisdom and his knowledge of the stars. One day, he was asked by his...",
+          "server_decode_tok_s": 206.84361491536382,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 742.758665
+        },
+        {
+          "completion_tok_s": 172.92492157723086,
+          "degenerate": false,
+          "e2e_latency_ms": 740.205627,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 0.775427131,
+            "energy_j": 3.3919999999925494,
+            "gco2_per_tok": 3.6805555555474713e-07,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 3.3919999999925494,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.026499999999941792,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied - run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 7.361111111094942e-06
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce GTX 1650",
+              "power_avg_w": 6.955125,
+              "power_peak_w": 7.1,
+              "samples": 8,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 16,
+              "vram_peak_mb": 16
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 1,
+            "cpu_peak_pct": 9,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 42,
+            "rss_peak_mb": 42,
+            "samples": 5,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 2,
+          "load_time_ms": 6.461343,
+          "prompt_tok_s": 2396.1661341853037,
+          "prompt_tokens": 15,
+          "response_preview": "wise old man named Sir Alas. He was known for his wisdom and his knowledge of all things. He lived in a kingdom that was...",
+          "server_decode_tok_s": 177.97379613935902,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 740.205627
+        },
+        {
+          "completion_tok_s": 173.68193582857097,
+          "degenerate": false,
+          "e2e_latency_ms": 736.979349,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 0.760288416,
+            "energy_j": 3.825999999884516,
+            "gco2_per_tok": 4.151475694319136e-07,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 3.825999999884516,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.02989062499909778,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied - run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 8.302951388638272e-06
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce GTX 1650",
+              "power_avg_w": 6.919375,
+              "power_peak_w": 7.041,
+              "samples": 8,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 16,
+              "vram_peak_mb": 16
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 0,
+            "cpu_peak_pct": 4,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 40,
+            "rss_peak_mb": 40,
+            "samples": 5,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 3,
+          "load_time_ms": 2.443483,
+          "prompt_tok_s": 2358.8614562038056,
+          "prompt_tokens": 15,
+          "response_preview": "wise old man named Sir Alas. He was known for his wisdom and his knowledge of all things. He lived in a kingdom that was...",
+          "server_decode_tok_s": 177.59697419155222,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 736.979349
+        }
+      ],
+      "load_error": null,
+      "load_time_ms": 1295.0330829999998,
+      "model": "qwen3:0.6b",
+      "model_fingerprint": {
+        "modified_at": "2026-07-05",
+        "parameter_size": "751.63M",
+        "quantization_level": "Q4_K_M"
+      },
+      "num_ctx": 4096,
+      "prompt": "short",
+      "prompt_chars": 58,
+      "stats": {
+        "Carbon gCO2/tok [gpu]": {
+          "count": 3,
+          "max": 4.151475694319136e-07,
+          "mean": 3.2476128471561997e-07,
+          "min": 1.9108072916019917e-07,
+          "p50": 3.6805555555474713e-07,
+          "p95": 4.1043836804419693e-07,
+          "stddev": 1.1814094397352795e-07,
+          "unit": "g"
+        },
+        "Completion tok/s": {
+          "count": 3,
+          "max": 173.68193582857097,
+          "mean": 172.97913164772874,
+          "min": 172.33053753738437,
+          "p50": 172.92492157723086,
+          "p95": 173.60623440343696,
+          "stddev": 0.6773281214913881,
+          "unit": "tok/s"
+        },
+        "E2E latency": {
+          "count": 3,
+          "max": 742.758665,
+          "mean": 739.9812136666666,
+          "min": 736.979349,
+          "p50": 740.205627,
+          "p95": 742.5033612,
+          "stddev": 2.8961861758349268,
+          "unit": "ms"
+        },
+        "Energy J/tok [gpu]": {
+          "count": 3,
+          "max": 0.02989062499909778,
+          "mean": 0.023382812499524636,
+          "min": 0.013757812499534339,
+          "p50": 0.026499999999941792,
+          "p95": 0.02955156249918218,
+          "stddev": 0.008506147966094014,
+          "unit": "J"
+        },
+        "Energy Wh/tok [gpu]": {
+          "count": 3,
+          "max": 8.302951388638272e-06,
+          "mean": 6.495225694312399e-06,
+          "min": 3.821614583203983e-06,
+          "p50": 7.361111111094942e-06,
+          "p95": 8.208767360883938e-06,
+          "stddev": 2.3628188794705586e-06,
+          "unit": "Wh"
+        },
+        "Model load": {
+          "count": 1,
+          "max": 1295.0330829999998,
+          "mean": 1295.0330829999998,
+          "min": 1295.0330829999998,
+          "p50": 1295.0330829999998,
+          "p95": 1295.0330829999998,
+          "stddev": 0.0,
+          "unit": "ms"
+        },
+        "Prompt tok/s": {
+          "count": 3,
+          "max": 2396.1661341853037,
+          "mean": 1630.6100796294613,
+          "min": 136.80264849927497,
+          "p50": 2358.8614562038056,
+          "p95": 2392.435666387154,
+          "stddev": 1293.8096423835505,
+          "unit": "tok/s"
+        },
+        "Tokens generated": {
+          "count": 3,
+          "max": 128.0,
+          "mean": 128.0,
+          "min": 128.0,
+          "p50": 128.0,
+          "p95": 128.0,
+          "stddev": 0.0,
+          "unit": "count"
+        }
+      },
+      "target": "Ollama",
+      "url": "http://127.0.0.1:11434"
+    },
+    {
+      "coherence_pass": false,
+      "first_response_preview": "man named John. He was a man of the sea, and he lived in a small island. He had a boat, and he was very much in need of ...",
+      "iteration_errors": [],
+      "iterations": [
+        {
+          "completion_tok_s": 190.71593885856194,
+          "degenerate": true,
+          "e2e_latency_ms": 671.155231,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 0.689481909,
+            "energy_j": 1.7599999997764826,
+            "gco2_per_tok": 1.9097222219796903e-07,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 1.7599999997764826,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.01374999999825377,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied - run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 3.819444443959381e-06
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce GTX 1650",
+              "power_avg_w": 7.076428571428571,
+              "power_peak_w": 7.388,
+              "samples": 7,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 16,
+              "vram_peak_mb": 16
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 90,
+            "cpu_peak_pct": 127,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 770,
+            "rss_peak_mb": 781,
+            "samples": 4,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 1,
+          "load_time_ms": 9.143081,
+          "prompt_tok_s": 1567.1100787222076,
+          "prompt_tokens": 15,
+          "response_preview": "man named John. He was a man of the sea, and he lived in a small island. He had a boat, and he was very much in need of ...",
+          "server_decode_tok_s": 269.523417238893,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 671.155231
+        },
+        {
+          "completion_tok_s": 236.53476597414718,
+          "degenerate": true,
+          "e2e_latency_ms": 541.1466660000001,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 0.559874783,
+            "energy_j": 1.398999999742955,
+            "gco2_per_tok": 1.5180121524988661e-07,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 1.398999999742955,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.010929687497991836,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied - run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 3.0360243049977323e-06
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce GTX 1650",
+              "power_avg_w": 7.089833333333334,
+              "power_peak_w": 7.428,
+              "samples": 6,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 16,
+              "vram_peak_mb": 16
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 80,
+            "cpu_peak_pct": 137,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 782,
+            "rss_peak_mb": 782,
+            "samples": 4,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 2,
+          "load_time_ms": 14.953084,
+          "prompt_tok_s": 222.69377216081398,
+          "prompt_tokens": 15,
+          "response_preview": "man named John. He was a man of the sea, and he lived in a small island. He had a boat, and he was very much in need of ...",
+          "server_decode_tok_s": 279.2114839090007,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 541.1466660000001
+        },
+        {
+          "completion_tok_s": 240.61984604743722,
+          "degenerate": true,
+          "e2e_latency_ms": 531.959446,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 0.550916641,
+            "energy_j": 3.6499999999068677,
+            "gco2_per_tok": 3.9605034721211673e-07,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 3.6499999999068677,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.028515624999272404,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied - run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 7.921006944242335e-06
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce GTX 1650",
+              "power_avg_w": 7.0566666666666675,
+              "power_peak_w": 7.468,
+              "samples": 6,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 16,
+              "vram_peak_mb": 16
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 77,
+            "cpu_peak_pct": 127,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 782,
+            "rss_peak_mb": 782,
+            "samples": 4,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 3,
+          "load_time_ms": 19.284223,
+          "prompt_tok_s": 215.08190139570232,
+          "prompt_tokens": 15,
+          "response_preview": "man named John. He was a man of the sea, and he lived in a small island. He had a boat, and he was very much in need of ...",
+          "server_decode_tok_s": 289.2512310436353,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 531.959446
+        }
+      ],
+      "load_error": null,
+      "load_time_ms": 2195.170389,
+      "model": "qwen3:0.6b",
+      "model_fingerprint": {
+        "modified_at": "",
+        "parameter_size": "751.63M",
+        "quantization_level": "Q4_K_M"
+      },
+      "num_ctx": 4096,
+      "prompt": "short",
+      "prompt_chars": 58,
+      "stats": {
+        "Carbon gCO2/tok [gpu]": {
+          "count": 3,
+          "max": 3.9605034721211673e-07,
+          "mean": 2.4627459488665745e-07,
+          "min": 1.5180121524988661e-07,
+          "p50": 1.9097222219796903e-07,
+          "p95": 3.7554253471070196e-07,
+          "stddev": 1.3117992961891948e-07,
+          "unit": "g"
+        },
+        "Completion tok/s": {
+          "count": 3,
+          "max": 240.61984604743722,
+          "mean": 222.62351696004876,
+          "min": 190.71593885856194,
+          "p50": 236.53476597414718,
+          "p95": 240.21133804010822,
+          "stddev": 27.708159899714737,
+          "unit": "tok/s"
+        },
+        "E2E latency": {
+          "count": 3,
+          "max": 671.155231,
+          "mean": 581.4204476666667,
+          "min": 531.959446,
+          "p50": 541.1466660000001,
+          "p95": 658.1543745,
+          "stddev": 77.8482482638004,
+          "unit": "ms"
+        },
+        "Energy J/tok [gpu]": {
+          "count": 3,
+          "max": 0.028515624999272404,
+          "mean": 0.017731770831839338,
+          "min": 0.010929687497991836,
+          "p50": 0.01374999999825377,
+          "p95": 0.027039062499170537,
+          "stddev": 0.009444954932562203,
+          "unit": "J"
+        },
+        "Energy Wh/tok [gpu]": {
+          "count": 3,
+          "max": 7.921006944242335e-06,
+          "mean": 4.92549189773315e-06,
+          "min": 3.0360243049977323e-06,
+          "p50": 3.819444443959381e-06,
+          "p95": 7.510850694214039e-06,
+          "stddev": 2.6235985923783897e-06,
+          "unit": "Wh"
+        },
+        "Model load": {
+          "count": 1,
+          "max": 2195.170389,
+          "mean": 2195.170389,
+          "min": 2195.170389,
+          "p50": 2195.170389,
+          "p95": 2195.170389,
+          "stddev": 0.0,
+          "unit": "ms"
+        },
+        "Prompt tok/s": {
+          "count": 3,
+          "max": 1567.1100787222076,
+          "mean": 668.2952507595746,
+          "min": 215.08190139570232,
+          "p50": 222.69377216081398,
+          "p95": 1432.668448066068,
+          "stddev": 778.4057787351397,
+          "unit": "tok/s"
+        },
+        "Tokens generated": {
+          "count": 3,
+          "max": 128.0,
+          "mean": 128.0,
+          "min": 128.0,
+          "p50": 128.0,
+          "p95": 128.0,
+          "stddev": 0.0,
+          "unit": "count"
+        }
+      },
+      "target": "LOKEN",
+      "url": "http://127.0.0.1:11435"
+    }
+  ],
+  "schema": "loken/2",
+  "subjects": {
+    "LOKEN": {
+      "devices": {
+        "compiled": {
+          "audio": true,
+          "cuda": true,
+          "image": true,
+          "midi": true,
+          "opencl": true,
+          "video": true
+        },
+        "devices": [
+          {
+            "backend": "rocm",
+            "name": "AMD Radeon RX 9070 XT",
+            "status": "available",
+            "type": "CUDA"
+          },
+          {
+            "backend": "cpu",
+            "name": "CPU (20 cores)",
+            "status": "available",
+            "type": "CPU"
+          }
+        ]
+      },
+      "says": {
+        "commit": "c85e5fc96",
+        "loken": "0.3.1-dev+gc85e5fc96",
+        "version": "0.3.1-dev+gc85e5fc96"
+      },
+      "url": "http://127.0.0.1:11435"
+    },
+    "Ollama": {
+      "devices": null,
+      "says": {
+        "version": "0.35.1"
+      },
+      "url": "http://127.0.0.1:11434"
+    }
+  },
+  "timestamp": "2026-10-23"
+}

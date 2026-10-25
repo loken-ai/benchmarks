@@ -1,0 +1,723 @@
+{
+  "config": {
+    "carbon_intensity_gco2_per_kwh": 50.0,
+    "custom_prompt": null,
+    "energy_measure": true,
+    "gpu_sample": true,
+    "iterations": 3,
+    "max_tokens": 128,
+    "models": [
+      "mistral-small3.2:latest"
+    ],
+    "num_ctx": [
+      131072
+    ],
+    "num_gpu": null,
+    "prompts": [
+      "short"
+    ],
+    "session_id": null,
+    "streaming": false,
+    "unique_prompt": false,
+    "warmup": 0
+  },
+  "converted_from": "mistral-small3.2_latest_131072_non-stream.json",
+  "idle_energy_baseline": null,
+  "legacy_engine_build": 1788498694,
+  "machine": {
+    "attested": "by the operator, from deepcoder_14b_4096_stream.json; driver, kernel and OS unknown",
+    "cpu": "Intel(R) Core(TM) i9-10900K CPU @ 3.70GHz",
+    "gpus": [
+      {
+        "index": 0,
+        "name": "NVIDIA GeForce RTX 5070 Ti",
+        "power_cap_w": 300,
+        "vram_mib": 16303
+      },
+      {
+        "index": 1,
+        "name": "NVIDIA GeForce RTX 5060 Ti",
+        "power_cap_w": 180,
+        "vram_mib": 16311
+      }
+    ],
+    "hardware_id": "09d9924ce07a7b53",
+    "host_id": "d4b8ae99f4bfcc54",
+    "ram_gib": 62,
+    "threads": 20
+  },
+  "ollama_version": "0.34.2",
+  "protocol": {
+    "cards_by_uuid": null,
+    "engines_alone": null,
+    "iterations": 3,
+    "max_tokens": 128,
+    "prefix_reuse_offered": false,
+    "streaming": false,
+    "thermal_gate_c": null,
+    "unique_prompt": false,
+    "warmup": 0
+  },
+  "results": [
+    {
+      "coherence_pass": true,
+      "first_response_preview": "king and queen. They were very happy together but they had one problem: they couldn’t have any children. One day the que…",
+      "iterations": [
+        {
+          "completion_tok_s": 2.0695724778671583,
+          "e2e_latency_ms": 61848.522518000005,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 61.886224207,
+            "energy_j": 4313.620999999344,
+            "gco2_per_tok": 0.00046805783420131775,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 4313.620999999344,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 33.70016406249488,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 0.009361156684026355
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 43.469266339869336,
+              "power_peak_w": 54.051,
+              "samples": 612,
+              "util_avg_pct": 3,
+              "util_peak_pct": 67,
+              "vram_avg_mb": 10485,
+              "vram_peak_mb": 14171
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 31.50427941176468,
+              "power_peak_w": 38.424,
+              "samples": 612,
+              "util_avg_pct": 7,
+              "util_peak_pct": 100,
+              "vram_avg_mb": 9509,
+              "vram_peak_mb": 12717
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 2,
+            "cpu_peak_pct": 113,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 67,
+            "rss_peak_mb": 399,
+            "samples": 304,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 1,
+          "load_time_ms": 23677.904846,
+          "prompt_tok_s": 15.522135535406962,
+          "prompt_tokens": 16,
+          "response_preview": "king and queen. They were very happy together but they had one problem: they couldn’t have any children. One day the que…",
+          "server_decode_tok_s": 3.447084333537618,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 61848.522518000005
+        },
+        {
+          "completion_tok_s": 5.117184030617002,
+          "e2e_latency_ms": 25013.757417,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 25.037131779,
+            "energy_j": 1987.9189999997616,
+            "gco2_per_tok": 0.00021570301649302966,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 1987.9189999997616,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 15.530617187498137,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 0.0043140603298605935
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 47.73364400000001,
+              "power_peak_w": 49.33,
+              "samples": 250,
+              "util_avg_pct": 3,
+              "util_peak_pct": 6,
+              "vram_avg_mb": 14171,
+              "vram_peak_mb": 14171
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 37.13235599999998,
+              "power_peak_w": 38.971,
+              "samples": 250,
+              "util_avg_pct": 6,
+              "util_peak_pct": 13,
+              "vram_avg_mb": 12717,
+              "vram_peak_mb": 12717
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 1,
+            "cpu_peak_pct": 104,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 70,
+            "rss_peak_mb": 74,
+            "samples": 124,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 2,
+          "load_time_ms": 294.526114,
+          "prompt_tok_s": 84.45767614704081,
+          "prompt_tokens": 16,
+          "response_preview": "king and queen. They were very happy together but they had one problem: they couldn’t have any children. One day the que…",
+          "server_decode_tok_s": 5.220360597223935,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 25013.757417
+        },
+        {
+          "completion_tok_s": 5.2285925929233805,
+          "e2e_latency_ms": 24480.775222999997,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 24.52355546,
+            "energy_j": 1971.2910000011325,
+            "gco2_per_tok": 0.00021389876302095622,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 1971.2910000011325,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 15.400710937508848,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 0.0042779752604191245
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 48.17308571428565,
+              "power_peak_w": 49.551,
+              "samples": 245,
+              "util_avg_pct": 3,
+              "util_peak_pct": 6,
+              "vram_avg_mb": 14171,
+              "vram_peak_mb": 14171
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 38.0533387755102,
+              "power_peak_w": 39.497,
+              "samples": 245,
+              "util_avg_pct": 6,
+              "util_peak_pct": 13,
+              "vram_avg_mb": 12717,
+              "vram_peak_mb": 12717
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 1,
+            "cpu_peak_pct": 104,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 75,
+            "rss_peak_mb": 76,
+            "samples": 122,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 3,
+          "load_time_ms": 304.903902,
+          "prompt_tok_s": 84.82168890585324,
+          "prompt_tokens": 16,
+          "response_preview": "king and queen. They were very happy together but they had one problem: they couldn’t have any children. One day the que…",
+          "server_decode_tok_s": 5.3366142392958675,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 24480.775222999997
+        }
+      ],
+      "load_time_ms": 46033.844045000005,
+      "model": "mistral-small3.2:latest",
+      "model_fingerprint": {
+        "modified_at": "2026-06-14",
+        "parameter_size": "24.0B",
+        "quantization_level": "Q4_K_M"
+      },
+      "num_ctx": 131072,
+      "prompt": "short",
+      "prompt_chars": 58,
+      "stats": {
+        "Carbon gCO2/tok [gpu]": {
+          "count": 3,
+          "max": 0.00046805783420131775,
+          "mean": 0.0002992198712384345,
+          "min": 0.00021389876302095622,
+          "p50": 0.00021570301649302966,
+          "p95": 0.0004428223524304889,
+          "stddev": 0.00014622074796601136,
+          "unit": "g"
+        },
+        "Completion tok/s": {
+          "count": 3,
+          "max": 5.2285925929233805,
+          "mean": 4.13844970046918,
+          "min": 2.0695724778671583,
+          "p50": 5.117184030617002,
+          "p95": 5.217451736692743,
+          "stddev": 1.7925659509735998,
+          "unit": "tok/s"
+        },
+        "E2E latency": {
+          "count": 3,
+          "max": 61848.522518000005,
+          "mean": 37114.35171933333,
+          "min": 24480.775222999997,
+          "p50": 25013.757417,
+          "p95": 58165.046007900004,
+          "stddev": 21422.07789473261,
+          "unit": "ms"
+        },
+        "Energy J/tok [gpu]": {
+          "count": 3,
+          "max": 33.70016406249488,
+          "mean": 21.543830729167286,
+          "min": 15.400710937508848,
+          "p50": 15.530617187498137,
+          "p95": 31.883209374995204,
+          "stddev": 10.527893853552817,
+          "unit": "J"
+        },
+        "Energy Wh/tok [gpu]": {
+          "count": 3,
+          "max": 0.009361156684026355,
+          "mean": 0.005984397424768691,
+          "min": 0.0042779752604191245,
+          "p50": 0.0043140603298605935,
+          "p95": 0.00885644704860978,
+          "stddev": 0.002924414959320227,
+          "unit": "Wh"
+        },
+        "Model load": {
+          "count": 1,
+          "max": 46033.844045000005,
+          "mean": 46033.844045000005,
+          "min": 46033.844045000005,
+          "p50": 46033.844045000005,
+          "p95": 46033.844045000005,
+          "stddev": 0.0,
+          "unit": "ms"
+        },
+        "Prompt tok/s": {
+          "count": 3,
+          "max": 84.82168890585324,
+          "mean": 61.600500196100334,
+          "min": 15.522135535406962,
+          "p50": 84.45767614704081,
+          "p95": 84.785287629972,
+          "stddev": 39.90544942329333,
+          "unit": "tok/s"
+        },
+        "Tokens generated": {
+          "count": 3,
+          "max": 128.0,
+          "mean": 128.0,
+          "min": 128.0,
+          "p50": 128.0,
+          "p95": 128.0,
+          "stddev": 0.0,
+          "unit": "count"
+        }
+      },
+      "target": "Ollama",
+      "url": "http://127.0.0.1:11434"
+    },
+    {
+      "coherence_pass": true,
+      "first_response_preview": "king and queen. They were very happy together but they had one problem: they couldn’t have any children. One day the que…",
+      "iterations": [
+        {
+          "completion_tok_s": 32.89357970866097,
+          "e2e_latency_ms": 3891.3368849999997,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 3.926099159,
+            "energy_j": 833.3249999955297,
+            "gco2_per_tok": 9.04215494786816e-05,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 833.3249999955297,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 6.510351562465075,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 0.001808430989573632
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 106.30140000000002,
+              "power_peak_w": 218.172,
+              "samples": 40,
+              "util_avg_pct": 45,
+              "util_peak_pct": 96,
+              "vram_avg_mb": 9320,
+              "vram_peak_mb": 9351
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 66.37512500000003,
+              "power_peak_w": 128.597,
+              "samples": 40,
+              "util_avg_pct": 44,
+              "util_peak_pct": 93,
+              "vram_avg_mb": 4876,
+              "vram_peak_mb": 4881
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 91,
+            "cpu_peak_pct": 123,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 17733,
+            "rss_peak_mb": 17747,
+            "samples": 21,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 1,
+          "load_time_ms": 16.02025,
+          "prompt_tok_s": 12.654721238862283,
+          "prompt_tokens": 16,
+          "response_preview": "king and queen. They were very happy together but they had one problem: they couldn’t have any children. One day the que…",
+          "server_decode_tok_s": 49.03796940014926,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 3891.3368849999997
+        },
+        {
+          "completion_tok_s": 59.0601854748766,
+          "e2e_latency_ms": 2167.280698,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 2.189953962,
+            "energy_j": 714.03900000453,
+            "gco2_per_tok": 7.74781901046582e-05,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 714.03900000453,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 5.57842968753539,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 0.001549563802093164
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 190.25863636363638,
+              "power_peak_w": 221.703,
+              "samples": 22,
+              "util_avg_pct": 75,
+              "util_peak_pct": 98,
+              "vram_avg_mb": 9326,
+              "vram_peak_mb": 9351
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 115.49818181818182,
+              "power_peak_w": 133.342,
+              "samples": 22,
+              "util_avg_pct": 76,
+              "util_peak_pct": 94,
+              "vram_avg_mb": 4881,
+              "vram_peak_mb": 4881
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 89,
+            "cpu_peak_pct": 104,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 17747,
+            "rss_peak_mb": 17747,
+            "samples": 12,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 2,
+          "load_time_ms": 10.668279,
+          "prompt_tok_s": 496.598856506643,
+          "prompt_tokens": 16,
+          "response_preview": "king and queen. They were very happy together but they had one problem: they couldn’t have any children. One day the que…",
+          "server_decode_tok_s": 60.26927501265564,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 2167.280698
+        },
+        {
+          "completion_tok_s": 59.12176251330071,
+          "e2e_latency_ms": 2165.023412,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 2.188217559,
+            "energy_j": 703.8820000067353,
+            "gco2_per_tok": 7.637608507017527e-05,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 703.8820000067353,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 5.49907812505262,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 0.0015275217014035054
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 199.18754545454541,
+              "power_peak_w": 221.296,
+              "samples": 22,
+              "util_avg_pct": 80,
+              "util_peak_pct": 98,
+              "vram_avg_mb": 9327,
+              "vram_peak_mb": 9351
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 118.84990909090911,
+              "power_peak_w": 133.379,
+              "samples": 22,
+              "util_avg_pct": 72,
+              "util_peak_pct": 94,
+              "vram_avg_mb": 4881,
+              "vram_peak_mb": 4881
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 89,
+            "cpu_peak_pct": 104,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 17747,
+            "rss_peak_mb": 17747,
+            "samples": 12,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 3,
+          "load_time_ms": 10.720039,
+          "prompt_tok_s": 510.47690028216607,
+          "prompt_tokens": 16,
+          "response_preview": "king and queen. They were very happy together but they had one problem: they couldn’t have any children. One day the que…",
+          "server_decode_tok_s": 60.3079548444565,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 2165.023412
+        }
+      ],
+      "load_time_ms": 18525.217689,
+      "model": "mistral-small3.2:latest",
+      "model_fingerprint": {
+        "modified_at": "",
+        "parameter_size": "24.0B",
+        "quantization_level": "Q4_K_M"
+      },
+      "num_ctx": 131072,
+      "prompt": "short",
+      "prompt_chars": 58,
+      "stats": {
+        "Carbon gCO2/tok [gpu]": {
+          "count": 3,
+          "max": 9.04215494786816e-05,
+          "mean": 8.142527488450502e-05,
+          "min": 7.637608507017527e-05,
+          "p50": 7.74781901046582e-05,
+          "p95": 8.912721354127927e-05,
+          "stddev": 7.810465818831058e-06,
+          "unit": "g"
+        },
+        "Completion tok/s": {
+          "count": 3,
+          "max": 59.12176251330071,
+          "mean": 50.358509232279424,
+          "min": 32.89357970866097,
+          "p50": 59.0601854748766,
+          "p95": 59.115604809458304,
+          "stddev": 15.125103979200768,
+          "unit": "tok/s"
+        },
+        "E2E latency": {
+          "count": 3,
+          "max": 3891.3368849999997,
+          "mean": 2741.2136649999998,
+          "min": 2165.023412,
+          "p50": 2167.280698,
+          "p95": 3718.931266299999,
+          "stddev": 996.0365654545004,
+          "unit": "ms"
+        },
+        "Energy J/tok [gpu]": {
+          "count": 3,
+          "max": 6.510351562465075,
+          "mean": 5.862619791684362,
+          "min": 5.49907812505262,
+          "p50": 5.57842968753539,
+          "p95": 6.4171593749721065,
+          "stddev": 0.5623535389558364,
+          "unit": "J"
+        },
+        "Energy Wh/tok [gpu]": {
+          "count": 3,
+          "max": 0.001808430989573632,
+          "mean": 0.0016285054976901004,
+          "min": 0.0015275217014035054,
+          "p50": 0.001549563802093164,
+          "p95": 0.001782544270825585,
+          "stddev": 0.00015620931637662125,
+          "unit": "Wh"
+        },
+        "Model load": {
+          "count": 1,
+          "max": 18525.217689,
+          "mean": 18525.217689,
+          "min": 18525.217689,
+          "p50": 18525.217689,
+          "p95": 18525.217689,
+          "stddev": 0.0,
+          "unit": "ms"
+        },
+        "Prompt tok/s": {
+          "count": 3,
+          "max": 510.47690028216607,
+          "mean": 339.9101593425571,
+          "min": 12.654721238862283,
+          "p50": 496.598856506643,
+          "p95": 509.08909590461377,
+          "stddev": 283.49645738719516,
+          "unit": "tok/s"
+        },
+        "Tokens generated": {
+          "count": 3,
+          "max": 128.0,
+          "mean": 128.0,
+          "min": 128.0,
+          "p50": 128.0,
+          "p95": 128.0,
+          "stddev": 0.0,
+          "unit": "count"
+        }
+      },
+      "target": "LOKEN",
+      "url": "http://127.0.0.1:11435"
+    }
+  ],
+  "schema": "loken/2",
+  "subjects": null,
+  "timestamp": "2026-09-04",
+  "vllm_version": null
+}

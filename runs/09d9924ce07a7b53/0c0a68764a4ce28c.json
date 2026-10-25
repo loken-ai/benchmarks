@@ -1,0 +1,663 @@
+{
+  "config": {
+    "carbon_intensity_gco2_per_kwh": 50.0,
+    "custom_prompt": null,
+    "energy_measure": true,
+    "gpu_sample": true,
+    "iterations": 3,
+    "max_tokens": 128,
+    "models": [
+      "gemma4:31b"
+    ],
+    "num_ctx": [
+      131072
+    ],
+    "num_gpu": null,
+    "prompts": [
+      "short"
+    ],
+    "session_id": null,
+    "streaming": false,
+    "unique_prompt": false,
+    "warmup": 0
+  },
+  "converted_from": "gemma4_31b_131072_non-stream.json",
+  "idle_energy_baseline": null,
+  "legacy_engine_build": 1788498694,
+  "machine": {
+    "attested": "by the operator, from deepcoder_14b_4096_stream.json; driver, kernel and OS unknown",
+    "cpu": "Intel(R) Core(TM) i9-10900K CPU @ 3.70GHz",
+    "gpus": [
+      {
+        "index": 0,
+        "name": "NVIDIA GeForce RTX 5070 Ti",
+        "power_cap_w": 300,
+        "vram_mib": 16303
+      },
+      {
+        "index": 1,
+        "name": "NVIDIA GeForce RTX 5060 Ti",
+        "power_cap_w": 180,
+        "vram_mib": 16311
+      }
+    ],
+    "hardware_id": "09d9924ce07a7b53",
+    "host_id": "d4b8ae99f4bfcc54",
+    "ram_gib": 62,
+    "threads": 20
+  },
+  "ollama_version": "0.34.2",
+  "protocol": {
+    "cards_by_uuid": null,
+    "engines_alone": null,
+    "iterations": 3,
+    "max_tokens": 128,
+    "prefix_reuse_offered": false,
+    "streaming": false,
+    "thermal_gate_c": null,
+    "unique_prompt": false,
+    "warmup": 0
+  },
+  "results": [
+    {
+      "coherence_pass": true,
+      "first_response_preview": "young woman named Elara. Elara was not like the other women in her village; she possessed a gift that was both beautiful…",
+      "iterations": [
+        {
+          "completion_tok_s": null,
+          "e2e_latency_ms": 27726.439357,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 27.755465905,
+            "energy_j": 2182.619000002742,
+            "gco2_per_tok": null,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 2182.619000002742,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": null,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": null
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 47.29536861313866,
+              "power_peak_w": 55.217,
+              "samples": 274,
+              "util_avg_pct": 6,
+              "util_peak_pct": 98,
+              "vram_avg_mb": 9078,
+              "vram_peak_mb": 14535
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 36.42020437956201,
+              "power_peak_w": 43.469,
+              "samples": 274,
+              "util_avg_pct": 12,
+              "util_peak_pct": 99,
+              "vram_avg_mb": 7877,
+              "vram_peak_mb": 12261
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 4,
+            "cpu_peak_pct": 124,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 85,
+            "rss_peak_mb": 339,
+            "samples": 138,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 1,
+          "load_time_ms": null,
+          "prompt_tok_s": null,
+          "prompt_tokens": null,
+          "response_preview": "young woman named Elara. Elara was not like the other women in her village; she possessed a gift that was both beautiful…",
+          "server_decode_tok_s": null,
+          "tokens_generated": null,
+          "ttft_ms": null,
+          "wall_clock_ms": 27726.439357
+        },
+        {
+          "completion_tok_s": null,
+          "e2e_latency_ms": 13440.715365,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 13.470650385999999,
+            "energy_j": 1198.9180000051856,
+            "gco2_per_tok": null,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 1198.9180000051856,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": null,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": null
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 52.40600740740746,
+              "power_peak_w": 54.511,
+              "samples": 135,
+              "util_avg_pct": 4,
+              "util_peak_pct": 10,
+              "vram_avg_mb": 14535,
+              "vram_peak_mb": 14535
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 42.27918518518518,
+              "power_peak_w": 44.563,
+              "samples": 135,
+              "util_avg_pct": 9,
+              "util_peak_pct": 23,
+              "vram_avg_mb": 12261,
+              "vram_peak_mb": 12261
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 4,
+            "cpu_peak_pct": 123,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 74,
+            "rss_peak_mb": 88,
+            "samples": 67,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 2,
+          "load_time_ms": null,
+          "prompt_tok_s": null,
+          "prompt_tokens": null,
+          "response_preview": "young woman named Elara. Elara was not like the other women in her village; she possessed a gift that was both beautiful…",
+          "server_decode_tok_s": null,
+          "tokens_generated": null,
+          "ttft_ms": null,
+          "wall_clock_ms": 13440.715365
+        },
+        {
+          "completion_tok_s": null,
+          "e2e_latency_ms": 13380.420753999999,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 13.409959276,
+            "energy_j": 1188.1180000007153,
+            "gco2_per_tok": null,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 1188.1180000007153,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": null,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": null
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 52.69230597014927,
+              "power_peak_w": 54.654,
+              "samples": 134,
+              "util_avg_pct": 4,
+              "util_peak_pct": 10,
+              "vram_avg_mb": 14535,
+              "vram_peak_mb": 14535
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 42.83573880597019,
+              "power_peak_w": 45.298,
+              "samples": 134,
+              "util_avg_pct": 9,
+              "util_peak_pct": 19,
+              "vram_avg_mb": 12261,
+              "vram_peak_mb": 12261
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 4,
+            "cpu_peak_pct": 123,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 73,
+            "rss_peak_mb": 88,
+            "samples": 67,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 3,
+          "load_time_ms": null,
+          "prompt_tok_s": null,
+          "prompt_tokens": null,
+          "response_preview": "young woman named Elara. Elara was not like the other women in her village; she possessed a gift that was both beautiful…",
+          "server_decode_tok_s": null,
+          "tokens_generated": null,
+          "ttft_ms": null,
+          "wall_clock_ms": 13380.420753999999
+        }
+      ],
+      "load_time_ms": 51803.360200999996,
+      "model": "gemma4:31b",
+      "model_fingerprint": {
+        "modified_at": "2026-06-08",
+        "parameter_size": "31.3B",
+        "quantization_level": "Q4_K_M"
+      },
+      "num_ctx": 131072,
+      "prompt": "short",
+      "prompt_chars": 58,
+      "stats": {
+        "E2E latency": {
+          "count": 3,
+          "max": 27726.439357,
+          "mean": 18182.525158666667,
+          "min": 13380.420753999999,
+          "p50": 13440.715365,
+          "p95": 26297.866957799997,
+          "stddev": 8265.327127760302,
+          "unit": "ms"
+        },
+        "Model load": {
+          "count": 1,
+          "max": 51803.360200999996,
+          "mean": 51803.360200999996,
+          "min": 51803.360200999996,
+          "p50": 51803.360200999996,
+          "p95": 51803.360200999996,
+          "stddev": 0.0,
+          "unit": "ms"
+        }
+      },
+      "target": "Ollama",
+      "url": "http://127.0.0.1:11434"
+    },
+    {
+      "coherence_pass": true,
+      "first_response_preview": "young woman named Elara. Elara was not like other women in the kingdom; she possessed a magical own single own own own o…",
+      "iterations": [
+        {
+          "completion_tok_s": 23.56900826615554,
+          "e2e_latency_ms": 5430.860669000001,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 5.460156823,
+            "energy_j": 1096.0509999990463,
+            "gco2_per_tok": 0.0001189291449651743,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 1096.0509999990463,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 8.56289843749255,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 0.002378582899303486
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 97.45392307692303,
+              "power_peak_w": 113.393,
+              "samples": 52,
+              "util_avg_pct": 27,
+              "util_peak_pct": 37,
+              "vram_avg_mb": 10223,
+              "vram_peak_mb": 10245
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 98.33513461538459,
+              "power_peak_w": 118.346,
+              "samples": 52,
+              "util_avg_pct": 60,
+              "util_peak_pct": 73,
+              "vram_avg_mb": 11878,
+              "vram_peak_mb": 11917
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 95,
+            "cpu_peak_pct": 104,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 16437,
+            "rss_peak_mb": 16447,
+            "samples": 28,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 1,
+          "load_time_ms": 20.397498,
+          "prompt_tok_s": 59.086458504137816,
+          "prompt_tokens": 16,
+          "response_preview": "young woman named Elara. Elara was not like other women in the kingdom; she possessed a magical own single own own own o…",
+          "server_decode_tok_s": 24.909571522006566,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 5430.860669000001
+        },
+        {
+          "completion_tok_s": 24.77209520488887,
+          "e2e_latency_ms": 5167.104314,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 5.190405894,
+            "energy_j": 1097.7039999961853,
+            "gco2_per_tok": 0.00011910850694403052,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 1097.7039999961853,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 8.575812499970198,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 0.0023821701388806104
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 110.14067346938779,
+              "power_peak_w": 117.532,
+              "samples": 49,
+              "util_avg_pct": 28,
+              "util_peak_pct": 38,
+              "vram_avg_mb": 10245,
+              "vram_peak_mb": 10245
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 113.852612244898,
+              "power_peak_w": 118.319,
+              "samples": 49,
+              "util_avg_pct": 64,
+              "util_peak_pct": 74,
+              "vram_avg_mb": 11917,
+              "vram_peak_mb": 11917
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 95,
+            "cpu_peak_pct": 104,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 16448,
+            "rss_peak_mb": 16448,
+            "samples": 27,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 2,
+          "load_time_ms": 16.244025,
+          "prompt_tok_s": 327.02053572463285,
+          "prompt_tokens": 16,
+          "response_preview": "young woman named Elara. Elara was not like other women in the kingdom; she possessed a magical own single own own own o…",
+          "server_decode_tok_s": 25.090353794335208,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 5167.104314
+        },
+        {
+          "completion_tok_s": 24.80579014443512,
+          "e2e_latency_ms": 5160.0855790000005,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 5.183240891,
+            "energy_j": 1108.655999995768,
+            "gco2_per_tok": 0.0001202968749995408,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 1108.655999995768,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 8.661374999966938,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 0.002405937499990816
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 109.94731999999995,
+              "power_peak_w": 117.532,
+              "samples": 50,
+              "util_avg_pct": 28,
+              "util_peak_pct": 37,
+              "vram_avg_mb": 10245,
+              "vram_peak_mb": 10245
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 113.90174,
+              "power_peak_w": 118.673,
+              "samples": 50,
+              "util_avg_pct": 61,
+              "util_peak_pct": 74,
+              "vram_avg_mb": 11917,
+              "vram_peak_mb": 11917
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 94,
+            "cpu_peak_pct": 104,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 16449,
+            "rss_peak_mb": 16449,
+            "samples": 27,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 3,
+          "load_time_ms": 14.287843,
+          "prompt_tok_s": 323.66028713360544,
+          "prompt_tokens": 16,
+          "response_preview": "young woman named Elara. Elara was not like other women in the kingdom; she possessed a magical own single own own own o…",
+          "server_decode_tok_s": 25.11809691244216,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 5160.0855790000005
+        }
+      ],
+      "load_time_ms": 19962.092034,
+      "model": "gemma4:31b",
+      "model_fingerprint": {
+        "modified_at": "",
+        "parameter_size": "31.3B",
+        "quantization_level": "Q4_K_M"
+      },
+      "num_ctx": 131072,
+      "prompt": "short",
+      "prompt_chars": 58,
+      "stats": {
+        "Carbon gCO2/tok [gpu]": {
+          "count": 3,
+          "max": 0.0001202968749995408,
+          "mean": 0.0001194448423029152,
+          "min": 0.0001189291449651743,
+          "p50": 0.00011910850694403052,
+          "p95": 0.00012017803819398977,
+          "stddev": 7.433118234994744e-07,
+          "unit": "g"
+        },
+        "Completion tok/s": {
+          "count": 3,
+          "max": 24.80579014443512,
+          "mean": 24.38229787182651,
+          "min": 23.56900826615554,
+          "p50": 24.77209520488887,
+          "p95": 24.802420650480496,
+          "stddev": 0.7045309249827787,
+          "unit": "tok/s"
+        },
+        "E2E latency": {
+          "count": 3,
+          "max": 5430.860669000001,
+          "mean": 5252.683520666667,
+          "min": 5160.0855790000005,
+          "p50": 5167.104314,
+          "p95": 5404.485033500001,
+          "stddev": 154.34583830281628,
+          "unit": "ms"
+        },
+        "Energy J/tok [gpu]": {
+          "count": 3,
+          "max": 8.661374999966938,
+          "mean": 8.600028645809894,
+          "min": 8.56289843749255,
+          "p50": 8.575812499970198,
+          "p95": 8.652818749967263,
+          "stddev": 0.053518451291962484,
+          "unit": "J"
+        },
+        "Energy Wh/tok [gpu]": {
+          "count": 3,
+          "max": 0.002405937499990816,
+          "mean": 0.0023888968460583043,
+          "min": 0.002378582899303486,
+          "p50": 0.0023821701388806104,
+          "p95": 0.0024035607638797953,
+          "stddev": 1.4866236469989506e-05,
+          "unit": "Wh"
+        },
+        "Model load": {
+          "count": 1,
+          "max": 19962.092034,
+          "mean": 19962.092034,
+          "min": 19962.092034,
+          "p50": 19962.092034,
+          "p95": 19962.092034,
+          "stddev": 0.0,
+          "unit": "ms"
+        },
+        "Prompt tok/s": {
+          "count": 3,
+          "max": 327.02053572463285,
+          "mean": 236.58909378745867,
+          "min": 59.086458504137816,
+          "p50": 323.66028713360544,
+          "p95": 326.68451086553006,
+          "stddev": 153.73097269919649,
+          "unit": "tok/s"
+        },
+        "Tokens generated": {
+          "count": 3,
+          "max": 128.0,
+          "mean": 128.0,
+          "min": 128.0,
+          "p50": 128.0,
+          "p95": 128.0,
+          "stddev": 0.0,
+          "unit": "count"
+        }
+      },
+      "target": "LOKEN",
+      "url": "http://127.0.0.1:11435"
+    }
+  ],
+  "schema": "loken/2",
+  "subjects": null,
+  "timestamp": "2026-09-04",
+  "vllm_version": null
+}

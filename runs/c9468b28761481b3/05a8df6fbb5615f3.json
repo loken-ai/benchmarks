@@ -1,0 +1,703 @@
+{
+  "config": {
+    "carbon_intensity_gco2_per_kwh": 50.0,
+    "custom_prompt": null,
+    "energy_measure": true,
+    "gpu_sample": true,
+    "iterations": 3,
+    "max_tokens": 128,
+    "models": [
+      "qwen3:0.6b"
+    ],
+    "num_ctx": [
+      131072
+    ],
+    "num_gpu": null,
+    "prompts": [
+      "medium"
+    ],
+    "session_id": null,
+    "streaming": false,
+    "unique_prompt": false,
+    "warmup": 0
+  },
+  "engine_build": 1792773905,
+  "idle_energy_baseline": null,
+  "machine": {
+    "cpu": "Intel(R) Core(TM) i9-10900K CPU @ 3.70GHz",
+    "gpus": [
+      {
+        "index": 0,
+        "name": "AMD Radeon RX 9070 XT"
+      }
+    ],
+    "hardware_id": "c9468b28761481b3",
+    "host_id": "d4b8ae99f4bfcc54",
+    "kernel": "6.12.90+deb13.1-amd64",
+    "os": "Debian GNU/Linux 13 (trixie)",
+    "ram_gib": 62,
+    "threads": 20
+  },
+  "ollama_version": "0.35.1",
+  "protocol": {
+    "cards_by_uuid": null,
+    "engines_seen": [
+      "llama-server",
+      "ollama"
+    ],
+    "gpu_temps_c_at_start": [
+      32
+    ],
+    "iterations": 3,
+    "max_tokens": 128,
+    "prefix_reuse_offered": false,
+    "streaming": false,
+    "unique_prompt": false,
+    "warmup": 0
+  },
+  "results": [
+    {
+      "coherence_pass": false,
+      "first_response_preview": "the invention of the first programmable computer, the ENIAC, which was built in 1945. In the 1960s, the first programmab...",
+      "iteration_errors": [],
+      "iterations": [
+        {
+          "completion_tok_s": 49.92848750535933,
+          "degenerate": true,
+          "e2e_latency_ms": 2563.6666840000003,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 2.584099007,
+            "energy_j": 7.936999999918044,
+            "gco2_per_tok": 8.612196180466626e-07,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 7.936999999918044,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.062007812499359716,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied - run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 1.7224392360933253e-05
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce GTX 1650",
+              "power_avg_w": 7.11752,
+              "power_peak_w": 7.901,
+              "samples": 25,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 16,
+              "vram_peak_mb": 16
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 2,
+            "cpu_peak_pct": 19,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 38,
+            "rss_peak_mb": 39,
+            "samples": 13,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 1,
+          "load_time_ms": 1787.69115,
+          "prompt_tok_s": 1001.9806594430851,
+          "prompt_tokens": 43,
+          "response_preview": "the invention of the first programmable computer, the ENIAC, which was built in 1945. In the 1960s, the first programmab...",
+          "server_decode_tok_s": 174.89707716923616,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 2563.6666840000003
+        },
+        {
+          "completion_tok_s": 172.3591217836837,
+          "degenerate": true,
+          "e2e_latency_ms": 742.635485,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 0.761203912,
+            "energy_j": 2.37099999981001,
+            "gco2_per_tok": 2.572699652571626e-07,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 2.37099999981001,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.018523437498515705,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied - run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 5.145399305143251e-06
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce GTX 1650",
+              "power_avg_w": 7.0062500000000005,
+              "power_peak_w": 7.086,
+              "samples": 8,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 16,
+              "vram_peak_mb": 16
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 1,
+            "cpu_peak_pct": 9,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 38,
+            "rss_peak_mb": 38,
+            "samples": 5,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 2,
+          "load_time_ms": 2.329617,
+          "prompt_tok_s": 6759.94340512498,
+          "prompt_tokens": 43,
+          "response_preview": "the invention of the first programmable computer, the ENIAC, which was built in 1945. In the 1960s, the first programmab...",
+          "server_decode_tok_s": 176.30951134716997,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 742.635485
+        },
+        {
+          "completion_tok_s": 162.89660378856064,
+          "degenerate": true,
+          "e2e_latency_ms": 785.7745160000001,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 0.805869352,
+            "energy_j": 2.6230000001378357,
+            "gco2_per_tok": 2.8461371529273393e-07,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 2.6230000001378357,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.02049218750107684,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied - run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 5.692274305854678e-06
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce GTX 1650",
+              "power_avg_w": 6.99225,
+              "power_peak_w": 7.066,
+              "samples": 8,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 16,
+              "vram_peak_mb": 16
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 1,
+            "cpu_peak_pct": 9,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 38,
+            "rss_peak_mb": 38,
+            "samples": 5,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 3,
+          "load_time_ms": 10.738229,
+          "prompt_tok_s": 4955.058769301682,
+          "prompt_tokens": 43,
+          "response_preview": "the invention of the first programmable computer, the ENIAC, which was built in 1945. In the 1960s, the first programmab...",
+          "server_decode_tok_s": 167.9838525521734,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 785.7745160000001
+        }
+      ],
+      "load_error": null,
+      "load_time_ms": 1275.9585630000001,
+      "model": "qwen3:0.6b",
+      "model_fingerprint": {
+        "modified_at": "2026-07-05",
+        "parameter_size": "751.63M",
+        "quantization_level": "Q4_K_M"
+      },
+      "num_ctx": 131072,
+      "prompt": "medium",
+      "prompt_chars": 236,
+      "stats": {
+        "Carbon gCO2/tok [gpu]": {
+          "count": 3,
+          "max": 8.612196180466626e-07,
+          "mean": 4.6770109953218636e-07,
+          "min": 2.572699652571626e-07,
+          "p50": 2.8461371529273393e-07,
+          "p95": 8.035590277712697e-07,
+          "stddev": 3.410711633616555e-07,
+          "unit": "g"
+        },
+        "Completion tok/s": {
+          "count": 3,
+          "max": 172.3591217836837,
+          "mean": 128.39473769253456,
+          "min": 49.92848750535933,
+          "p50": 162.89660378856064,
+          "p95": 171.41286998417138,
+          "stddev": 68.118273066258,
+          "unit": "tok/s"
+        },
+        "E2E latency": {
+          "count": 3,
+          "max": 2563.6666840000003,
+          "mean": 1364.0255616666668,
+          "min": 742.635485,
+          "p50": 785.7745160000001,
+          "p95": 2385.8774672,
+          "stddev": 1039.1435708282997,
+          "unit": "ms"
+        },
+        "Energy J/tok [gpu]": {
+          "count": 3,
+          "max": 0.062007812499359716,
+          "mean": 0.03367447916631742,
+          "min": 0.018523437498515705,
+          "p50": 0.02049218750107684,
+          "p95": 0.05785624999953142,
+          "stddev": 0.0245571237620392,
+          "unit": "J"
+        },
+        "Energy Wh/tok [gpu]": {
+          "count": 3,
+          "max": 1.7224392360933253e-05,
+          "mean": 9.354021990643727e-06,
+          "min": 5.145399305143251e-06,
+          "p50": 5.692274305854678e-06,
+          "p95": 1.6071180555425394e-05,
+          "stddev": 6.821423267233111e-06,
+          "unit": "Wh"
+        },
+        "Model load": {
+          "count": 1,
+          "max": 1275.9585630000001,
+          "mean": 1275.9585630000001,
+          "min": 1275.9585630000001,
+          "p50": 1275.9585630000001,
+          "p95": 1275.9585630000001,
+          "stddev": 0.0,
+          "unit": "ms"
+        },
+        "Prompt tok/s": {
+          "count": 3,
+          "max": 6759.94340512498,
+          "mean": 4238.994277956583,
+          "min": 1001.9806594430851,
+          "p50": 4955.058769301682,
+          "p95": 6579.45494154265,
+          "stddev": 2945.011886561603,
+          "unit": "tok/s"
+        },
+        "Tokens generated": {
+          "count": 3,
+          "max": 128.0,
+          "mean": 128.0,
+          "min": 128.0,
+          "p50": 128.0,
+          "p95": 128.0,
+          "stddev": 0.0,
+          "unit": "count"
+        }
+      },
+      "target": "Ollama",
+      "url": "http://127.0.0.1:11434"
+    },
+    {
+      "coherence_pass": true,
+      "first_response_preview": "the invention of the first programmable computer, the ENIAC, which was built in 1945. In the 1960s, the first programmab...",
+      "iteration_errors": [],
+      "iterations": [
+        {
+          "completion_tok_s": 50.993934753911454,
+          "degenerate": false,
+          "e2e_latency_ms": 2510.102439,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 2.528759433,
+            "energy_j": 15.077000000048429,
+            "gco2_per_tok": 1.6359592013941437e-06,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 15.077000000048429,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.11778906250037835,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied - run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 3.2719184027882874e-05
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce GTX 1650",
+              "power_avg_w": 9.389080000000002,
+              "power_peak_w": 10.941,
+              "samples": 25,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 16,
+              "vram_peak_mb": 17
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 171,
+            "cpu_peak_pct": 639,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 754,
+            "rss_peak_mb": 896,
+            "samples": 13,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 1,
+          "load_time_ms": 7.641579,
+          "prompt_tok_s": 3880.5004401660676,
+          "prompt_tokens": 43,
+          "response_preview": "the invention of the first programmable computer, the ENIAC, which was built in 1945. In the 1960s, the first programmab...",
+          "server_decode_tok_s": 262.24190973310994,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 2510.102439
+        },
+        {
+          "completion_tok_s": 234.66019950978827,
+          "degenerate": false,
+          "e2e_latency_ms": 545.469578,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 0.564044658,
+            "energy_j": 1.395999999716878,
+            "gco2_per_tok": 1.5147569441372374e-07,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 1.395999999716878,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.010906249997788109,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied - run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 3.0295138882744746e-06
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce GTX 1650",
+              "power_avg_w": 7.145333333333333,
+              "power_peak_w": 7.41,
+              "samples": 6,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 16,
+              "vram_peak_mb": 16
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 85,
+            "cpu_peak_pct": 127,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 821,
+            "rss_peak_mb": 821,
+            "samples": 4,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 2,
+          "load_time_ms": 14.957687,
+          "prompt_tok_s": 592.1053628084301,
+          "prompt_tokens": 43,
+          "response_preview": "the invention of the first programmable computer, the ENIAC, which was built in 1945. In the 1960s, the first programmab...",
+          "server_decode_tok_s": 279.87840673873035,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 545.469578
+        },
+        {
+          "completion_tok_s": 238.19243709163743,
+          "degenerate": false,
+          "e2e_latency_ms": 537.380622,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 0.556325223,
+            "energy_j": 3.4920000000856817,
+            "gco2_per_tok": 3.7890625000929703e-07,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 3.4920000000856817,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.027281250000669388,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied - run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 7.578125000185941e-06
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce GTX 1650",
+              "power_avg_w": 7.090166666666666,
+              "power_peak_w": 7.54,
+              "samples": 6,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 16,
+              "vram_peak_mb": 16
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 86,
+            "cpu_peak_pct": 131,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 821,
+            "rss_peak_mb": 821,
+            "samples": 4,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 3,
+          "load_time_ms": 15.084666,
+          "prompt_tok_s": 582.9585858628584,
+          "prompt_tokens": 43,
+          "response_preview": "the invention of the first programmable computer, the ENIAC, which was built in 1945. In the 1960s, the first programmab...",
+          "server_decode_tok_s": 285.73932043318376,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 537.380622
+        }
+      ],
+      "load_error": null,
+      "load_time_ms": 2134.339464,
+      "model": "qwen3:0.6b",
+      "model_fingerprint": {
+        "modified_at": "",
+        "parameter_size": "751.63M",
+        "quantization_level": "Q4_K_M"
+      },
+      "num_ctx": 131072,
+      "prompt": "medium",
+      "prompt_chars": 236,
+      "stats": {
+        "Carbon gCO2/tok [gpu]": {
+          "count": 3,
+          "max": 1.6359592013941437e-06,
+          "mean": 7.221137152723881e-07,
+          "min": 1.5147569441372374e-07,
+          "p50": 3.7890625000929703e-07,
+          "p95": 1.510253906255659e-06,
+          "stddev": 7.99541333380244e-07,
+          "unit": "g"
+        },
+        "Completion tok/s": {
+          "count": 3,
+          "max": 238.19243709163743,
+          "mean": 174.61552378511237,
+          "min": 50.993934753911454,
+          "p50": 234.66019950978827,
+          "p95": 237.8392133334525,
+          "stddev": 107.07400306112129,
+          "unit": "tok/s"
+        },
+        "E2E latency": {
+          "count": 3,
+          "max": 2510.102439,
+          "mean": 1197.6508796666665,
+          "min": 537.380622,
+          "p50": 545.469578,
+          "p95": 2313.6391528999998,
+          "stddev": 1136.6235874288664,
+          "unit": "ms"
+        },
+        "Energy J/tok [gpu]": {
+          "count": 3,
+          "max": 0.11778906250037835,
+          "mean": 0.05199218749961195,
+          "min": 0.010906249997788109,
+          "p50": 0.027281250000669388,
+          "p95": 0.10873828125040745,
+          "stddev": 0.05756697600337757,
+          "unit": "J"
+        },
+        "Energy Wh/tok [gpu]": {
+          "count": 3,
+          "max": 3.2719184027882874e-05,
+          "mean": 1.4442274305447765e-05,
+          "min": 3.0295138882744746e-06,
+          "p50": 7.578125000185941e-06,
+          "p95": 3.020507812511318e-05,
+          "stddev": 1.599082666760488e-05,
+          "unit": "Wh"
+        },
+        "Model load": {
+          "count": 1,
+          "max": 2134.339464,
+          "mean": 2134.339464,
+          "min": 2134.339464,
+          "p50": 2134.339464,
+          "p95": 2134.339464,
+          "stddev": 0.0,
+          "unit": "ms"
+        },
+        "Prompt tok/s": {
+          "count": 3,
+          "max": 3880.5004401660676,
+          "mean": 1685.188129612452,
+          "min": 582.9585858628584,
+          "p50": 592.1053628084301,
+          "p95": 3551.6609324303035,
+          "stddev": 1901.20173088847,
+          "unit": "tok/s"
+        },
+        "Tokens generated": {
+          "count": 3,
+          "max": 128.0,
+          "mean": 128.0,
+          "min": 128.0,
+          "p50": 128.0,
+          "p95": 128.0,
+          "stddev": 0.0,
+          "unit": "count"
+        }
+      },
+      "target": "LOKEN",
+      "url": "http://127.0.0.1:11435"
+    }
+  ],
+  "schema": "loken/2",
+  "subjects": {
+    "LOKEN": {
+      "devices": {
+        "compiled": {
+          "audio": true,
+          "cuda": true,
+          "image": true,
+          "midi": true,
+          "opencl": true,
+          "video": true
+        },
+        "devices": [
+          {
+            "backend": "rocm",
+            "name": "AMD Radeon RX 9070 XT",
+            "status": "available",
+            "type": "CUDA"
+          },
+          {
+            "backend": "cpu",
+            "name": "CPU (20 cores)",
+            "status": "available",
+            "type": "CPU"
+          }
+        ]
+      },
+      "says": {
+        "commit": "c85e5fc96",
+        "loken": "0.3.1-dev+gc85e5fc96",
+        "version": "0.3.1-dev+gc85e5fc96"
+      },
+      "url": "http://127.0.0.1:11435"
+    },
+    "Ollama": {
+      "devices": null,
+      "says": {
+        "version": "0.35.1"
+      },
+      "url": "http://127.0.0.1:11434"
+    }
+  },
+  "timestamp": "2026-10-23"
+}

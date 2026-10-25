@@ -1,0 +1,723 @@
+{
+  "config": {
+    "carbon_intensity_gco2_per_kwh": 50.0,
+    "custom_prompt": null,
+    "energy_measure": true,
+    "gpu_sample": true,
+    "iterations": 3,
+    "max_tokens": 128,
+    "models": [
+      "deepseek-r1:32b"
+    ],
+    "num_ctx": [
+      131072
+    ],
+    "num_gpu": null,
+    "prompts": [
+      "medium"
+    ],
+    "session_id": null,
+    "streaming": false,
+    "unique_prompt": false,
+    "warmup": 0
+  },
+  "converted_from": "deepseek-r1_32b_131072_non-stream_medium.json",
+  "idle_energy_baseline": null,
+  "legacy_engine_build": 1788498694,
+  "machine": {
+    "attested": "by the operator, from deepcoder_14b_4096_stream.json; driver, kernel and OS unknown",
+    "cpu": "Intel(R) Core(TM) i9-10900K CPU @ 3.70GHz",
+    "gpus": [
+      {
+        "index": 0,
+        "name": "NVIDIA GeForce RTX 5070 Ti",
+        "power_cap_w": 300,
+        "vram_mib": 16303
+      },
+      {
+        "index": 1,
+        "name": "NVIDIA GeForce RTX 5060 Ti",
+        "power_cap_w": 180,
+        "vram_mib": 16311
+      }
+    ],
+    "hardware_id": "09d9924ce07a7b53",
+    "host_id": "d4b8ae99f4bfcc54",
+    "ram_gib": 62,
+    "threads": 20
+  },
+  "ollama_version": "0.34.2",
+  "protocol": {
+    "cards_by_uuid": null,
+    "engines_alone": null,
+    "iterations": 3,
+    "max_tokens": 128,
+    "prefix_reuse_offered": false,
+    "streaming": false,
+    "thermal_gate_c": null,
+    "unique_prompt": false,
+    "warmup": 0
+  },
+  "results": [
+    {
+      "coherence_pass": true,
+      "first_response_preview": "the development of the electromechanical computers in the mid-20th century, such as the Z3 and the Atanasoff-Berry Compu…",
+      "iterations": [
+        {
+          "completion_tok_s": 1.885529911590241,
+          "e2e_latency_ms": 67885.425319,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 67.919146806,
+            "energy_j": 4750.168999999762,
+            "gco2_per_tok": 0.0005154263237846964,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 4750.168999999762,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 37.11069531249814,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 0.010308526475693927
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 43.08910930576063,
+              "power_peak_w": 58.698,
+              "samples": 677,
+              "util_avg_pct": 4,
+              "util_peak_pct": 97,
+              "vram_avg_mb": 12503,
+              "vram_peak_mb": 14563
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 32.14419645494836,
+              "power_peak_w": 42.146,
+              "samples": 677,
+              "util_avg_pct": 5,
+              "util_peak_pct": 99,
+              "vram_avg_mb": 12634,
+              "vram_peak_mb": 14643
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 1,
+            "cpu_peak_pct": 99,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 59,
+            "rss_peak_mb": 318,
+            "samples": 336,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 1,
+          "load_time_ms": 14927.107279,
+          "prompt_tok_s": 30.933394075270787,
+          "prompt_tokens": 44,
+          "response_preview": "the development of the electromechanical computers in the mid-20th century, such as the Z3 and the Atanasoff-Berry Compu…",
+          "server_decode_tok_s": 2.4839020828722105,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 67885.425319
+        },
+        {
+          "completion_tok_s": 2.4543964429706184,
+          "e2e_latency_ms": 52151.314172,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 52.215832459,
+            "energy_j": 3731.0499999970198,
+            "gco2_per_tok": 0.0004048448350691211,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 3731.0499999970198,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 29.148828124976717,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 0.008096896701382422
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 43.11326679462582,
+              "power_peak_w": 44.282,
+              "samples": 521,
+              "util_avg_pct": 1,
+              "util_peak_pct": 6,
+              "vram_avg_mb": 14563,
+              "vram_peak_mb": 14563
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 33.53634932821497,
+              "power_peak_w": 35.077,
+              "samples": 521,
+              "util_avg_pct": 3,
+              "util_peak_pct": 14,
+              "vram_avg_mb": 14643,
+              "vram_peak_mb": 14643
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 0,
+            "cpu_peak_pct": 79,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 60,
+            "rss_peak_mb": 60,
+            "samples": 258,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 2,
+          "load_time_ms": 215.455297,
+          "prompt_tok_s": 108.01256873527102,
+          "prompt_tokens": 44,
+          "response_preview": "the development of the electromechanical computers in the mid-20th century, such as the Z3 and the Atanasoff-Berry Compu…",
+          "server_decode_tok_s": 2.485219786333617,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 52151.314172
+        },
+        {
+          "completion_tok_s": 2.4535054549459288,
+          "e2e_latency_ms": 52170.252869,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 52.228035752,
+            "energy_j": 3806.3310000002384,
+            "gco2_per_tok": 0.00041301334635419256,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 3806.3310000002384,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 29.736960937501863,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 0.008260266927083851
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 43.70449712092128,
+              "power_peak_w": 44.822,
+              "samples": 521,
+              "util_avg_pct": 1,
+              "util_peak_pct": 6,
+              "vram_avg_mb": 14563,
+              "vram_peak_mb": 14563
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 34.53422456813828,
+              "power_peak_w": 35.908,
+              "samples": 521,
+              "util_avg_pct": 3,
+              "util_peak_pct": 14,
+              "vram_avg_mb": 14643,
+              "vram_peak_mb": 14643
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 0,
+            "cpu_peak_pct": 84,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 60,
+            "rss_peak_mb": 60,
+            "samples": 258,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 3,
+          "load_time_ms": 243.514868,
+          "prompt_tok_s": 108.28023910245525,
+          "prompt_tokens": 44,
+          "response_preview": "the development of the electromechanical computers in the mid-20th century, such as the Z3 and the Atanasoff-Berry Compu…",
+          "server_decode_tok_s": 2.484541445169635,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 52170.252869
+        }
+      ],
+      "load_time_ms": 50369.08596,
+      "model": "deepseek-r1:32b",
+      "model_fingerprint": {
+        "modified_at": "2026-04-10",
+        "parameter_size": "32.8B",
+        "quantization_level": "Q4_K_M"
+      },
+      "num_ctx": 131072,
+      "prompt": "medium",
+      "prompt_chars": 236,
+      "stats": {
+        "Carbon gCO2/tok [gpu]": {
+          "count": 3,
+          "max": 0.0005154263237846964,
+          "mean": 0.00044442816840267003,
+          "min": 0.0004048448350691211,
+          "p50": 0.00041301334635419256,
+          "p95": 0.000505185026041646,
+          "stddev": 6.162170636140606e-05,
+          "unit": "g"
+        },
+        "Completion tok/s": {
+          "count": 3,
+          "max": 2.4543964429706184,
+          "mean": 2.264477269835596,
+          "min": 1.885529911590241,
+          "p50": 2.4535054549459288,
+          "p95": 2.4543073441681496,
+          "stddev": 0.32817834131119183,
+          "unit": "tok/s"
+        },
+        "E2E latency": {
+          "count": 3,
+          "max": 67885.425319,
+          "mean": 57402.330786666666,
+          "min": 52151.314172,
+          "p50": 52170.252869,
+          "p95": 66313.908074,
+          "stddev": 9078.631113716363,
+          "unit": "ms"
+        },
+        "Energy J/tok [gpu]": {
+          "count": 3,
+          "max": 37.11069531249814,
+          "mean": 31.99882812499224,
+          "min": 29.148828124976717,
+          "p50": 29.736960937501863,
+          "p95": 36.37332187499851,
+          "stddev": 4.436762858021238,
+          "unit": "J"
+        },
+        "Energy Wh/tok [gpu]": {
+          "count": 3,
+          "max": 0.010308526475693927,
+          "mean": 0.0088885633680534,
+          "min": 0.008096896701382422,
+          "p50": 0.008260266927083851,
+          "p95": 0.010103700520832919,
+          "stddev": 0.0012324341272281214,
+          "unit": "Wh"
+        },
+        "Model load": {
+          "count": 1,
+          "max": 50369.08596,
+          "mean": 50369.08596,
+          "min": 50369.08596,
+          "p50": 50369.08596,
+          "p95": 50369.08596,
+          "stddev": 0.0,
+          "unit": "ms"
+        },
+        "Prompt tok/s": {
+          "count": 3,
+          "max": 108.28023910245525,
+          "mean": 82.40873397099902,
+          "min": 30.933394075270787,
+          "p50": 108.01256873527102,
+          "p95": 108.25347206573683,
+          "stddev": 44.579152918061716,
+          "unit": "tok/s"
+        },
+        "Tokens generated": {
+          "count": 3,
+          "max": 128.0,
+          "mean": 128.0,
+          "min": 128.0,
+          "p50": 128.0,
+          "p95": 128.0,
+          "stddev": 0.0,
+          "unit": "count"
+        }
+      },
+      "target": "Ollama",
+      "url": "http://127.0.0.1:11434"
+    },
+    {
+      "coherence_pass": true,
+      "first_response_preview": "Ada Lovelace's work on Babbage's engine, where she wrote the first algorithm intended to be processed by a machine. In t…",
+      "iterations": [
+        {
+          "completion_tok_s": 31.602771874281917,
+          "e2e_latency_ms": 4050.277631,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 4.074724623,
+            "energy_j": 1067.6140000000596,
+            "gco2_per_tok": 0.00011584353298611758,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 1067.6140000000596,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 8.340734375000466,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 0.002316870659722352
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 140.30877499999997,
+              "power_peak_w": 215.688,
+              "samples": 40,
+              "util_avg_pct": 70,
+              "util_peak_pct": 98,
+              "vram_avg_mb": 12703,
+              "vram_peak_mb": 12711
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 88.27405000000002,
+              "power_peak_w": 134.161,
+              "samples": 40,
+              "util_avg_pct": 68,
+              "util_peak_pct": 94,
+              "vram_avg_mb": 6732,
+              "vram_peak_mb": 6769
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 91,
+            "cpu_peak_pct": 104,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 23385,
+            "rss_peak_mb": 23402,
+            "samples": 21,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 1,
+          "load_time_ms": 11.479399,
+          "prompt_tok_s": 49.902828305399574,
+          "prompt_tokens": 44,
+          "response_preview": "Ada Lovelace's work on Babbage's engine, where she wrote the first algorithm intended to be processed by a machine. In t…",
+          "server_decode_tok_s": 40.5503888180843,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 4050.277631
+        },
+        {
+          "completion_tok_s": 39.763495662161894,
+          "e2e_latency_ms": 3219.032881,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 3.249202656,
+            "energy_j": 1015.3039999976754,
+            "gco2_per_tok": 0.00011016753472197,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 1015.3039999976754,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 7.932062499981839,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 0.0022033506944394
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 201.37048387096777,
+              "power_peak_w": 213.453,
+              "samples": 31,
+              "util_avg_pct": 98,
+              "util_peak_pct": 99,
+              "vram_avg_mb": 12711,
+              "vram_peak_mb": 12711
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 125.81083870967743,
+              "power_peak_w": 133.761,
+              "samples": 31,
+              "util_avg_pct": 95,
+              "util_peak_pct": 96,
+              "vram_avg_mb": 6769,
+              "vram_peak_mb": 6769
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 94,
+            "cpu_peak_pct": 104,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 23402,
+            "rss_peak_mb": 23402,
+            "samples": 17,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 2,
+          "load_time_ms": 13.726693,
+          "prompt_tok_s": 466.46146320140645,
+          "prompt_tokens": 44,
+          "response_preview": "Ada Lovelace's work on Babbage's engine, where she wrote the first algorithm intended to be processed by a machine. In t…",
+          "server_decode_tok_s": 41.156099595606754,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 3219.032881
+        },
+        {
+          "completion_tok_s": 40.012843372481754,
+          "e2e_latency_ms": 3198.97286,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 3.223418853,
+            "energy_j": 1023.0930000022054,
+            "gco2_per_tok": 0.00011101269531273928,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 1023.0930000022054,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 7.9929140625172295,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 0.0022202539062547858
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 204.55370967741933,
+              "power_peak_w": 215.112,
+              "samples": 31,
+              "util_avg_pct": 99,
+              "util_peak_pct": 99,
+              "vram_avg_mb": 12712,
+              "vram_peak_mb": 12743
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 127.07338709677424,
+              "power_peak_w": 133.761,
+              "samples": 31,
+              "util_avg_pct": 95,
+              "util_peak_pct": 96,
+              "vram_avg_mb": 6738,
+              "vram_peak_mb": 6769
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 93,
+            "cpu_peak_pct": 104,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 23402,
+            "rss_peak_mb": 23402,
+            "samples": 17,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 3,
+          "load_time_ms": 12.872914,
+          "prompt_tok_s": 578.2760127968801,
+          "prompt_tokens": 44,
+          "response_preview": "Ada Lovelace's work on Babbage's engine, where she wrote the first algorithm intended to be processed by a machine. In t…",
+          "server_decode_tok_s": 41.16277172563028,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 3198.97286
+        }
+      ],
+      "load_time_ms": 18040.107820999998,
+      "model": "deepseek-r1:32b",
+      "model_fingerprint": {
+        "modified_at": "",
+        "parameter_size": "32.8B",
+        "quantization_level": "Q4_K_M"
+      },
+      "num_ctx": 131072,
+      "prompt": "medium",
+      "prompt_chars": 236,
+      "stats": {
+        "Carbon gCO2/tok [gpu]": {
+          "count": 3,
+          "max": 0.00011584353298611758,
+          "mean": 0.00011234125434027562,
+          "min": 0.00011016753472197,
+          "p50": 0.00011101269531273928,
+          "p95": 0.00011536044921877976,
+          "stddev": 3.0623587136205704e-06,
+          "unit": "g"
+        },
+        "Completion tok/s": {
+          "count": 3,
+          "max": 40.012843372481754,
+          "mean": 37.12637030297519,
+          "min": 31.602771874281917,
+          "p50": 39.763495662161894,
+          "p95": 39.98790860144977,
+          "stddev": 4.785200964563298,
+          "unit": "tok/s"
+        },
+        "E2E latency": {
+          "count": 3,
+          "max": 4050.277631,
+          "mean": 3489.4277906666666,
+          "min": 3198.97286,
+          "p50": 3219.032881,
+          "p95": 3967.153156,
+          "stddev": 485.8137592350326,
+          "unit": "ms"
+        },
+        "Energy J/tok [gpu]": {
+          "count": 3,
+          "max": 8.340734375000466,
+          "mean": 8.088570312499845,
+          "min": 7.932062499981839,
+          "p50": 7.9929140625172295,
+          "p95": 8.305952343752143,
+          "stddev": 0.22048982738068076,
+          "unit": "J"
+        },
+        "Energy Wh/tok [gpu]": {
+          "count": 3,
+          "max": 0.002316870659722352,
+          "mean": 0.0022468250868055125,
+          "min": 0.0022033506944394,
+          "p50": 0.0022202539062547858,
+          "p95": 0.002307208984375595,
+          "stddev": 6.124717427241146e-05,
+          "unit": "Wh"
+        },
+        "Model load": {
+          "count": 1,
+          "max": 18040.107820999998,
+          "mean": 18040.107820999998,
+          "min": 18040.107820999998,
+          "p50": 18040.107820999998,
+          "p95": 18040.107820999998,
+          "stddev": 0.0,
+          "unit": "ms"
+        },
+        "Prompt tok/s": {
+          "count": 3,
+          "max": 578.2760127968801,
+          "mean": 364.88010143456205,
+          "min": 49.902828305399574,
+          "p50": 466.46146320140645,
+          "p95": 567.0945578373327,
+          "stddev": 278.4486223995765,
+          "unit": "tok/s"
+        },
+        "Tokens generated": {
+          "count": 3,
+          "max": 128.0,
+          "mean": 128.0,
+          "min": 128.0,
+          "p50": 128.0,
+          "p95": 128.0,
+          "stddev": 0.0,
+          "unit": "count"
+        }
+      },
+      "target": "LOKEN",
+      "url": "http://127.0.0.1:11435"
+    }
+  ],
+  "schema": "loken/2",
+  "subjects": null,
+  "timestamp": "2026-09-04",
+  "vllm_version": null
+}

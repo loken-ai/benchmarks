@@ -1,0 +1,723 @@
+{
+  "config": {
+    "carbon_intensity_gco2_per_kwh": 50.0,
+    "custom_prompt": null,
+    "energy_measure": true,
+    "gpu_sample": true,
+    "iterations": 3,
+    "max_tokens": 128,
+    "models": [
+      "granite3.1-dense:2b"
+    ],
+    "num_ctx": [
+      4096
+    ],
+    "num_gpu": null,
+    "prompts": [
+      "long"
+    ],
+    "session_id": null,
+    "streaming": false,
+    "unique_prompt": false,
+    "warmup": 0
+  },
+  "converted_from": "granite3.1-dense_2b_4096_non-stream_long.json",
+  "idle_energy_baseline": null,
+  "legacy_engine_build": 1788440729,
+  "machine": {
+    "attested": "by the operator, from deepcoder_14b_4096_stream.json; driver, kernel and OS unknown",
+    "cpu": "Intel(R) Core(TM) i9-10900K CPU @ 3.70GHz",
+    "gpus": [
+      {
+        "index": 0,
+        "name": "NVIDIA GeForce RTX 5070 Ti",
+        "power_cap_w": 300,
+        "vram_mib": 16303
+      },
+      {
+        "index": 1,
+        "name": "NVIDIA GeForce RTX 5060 Ti",
+        "power_cap_w": 180,
+        "vram_mib": 16311
+      }
+    ],
+    "hardware_id": "09d9924ce07a7b53",
+    "host_id": "d4b8ae99f4bfcc54",
+    "ram_gib": 62,
+    "threads": 20
+  },
+  "ollama_version": "0.34.2",
+  "protocol": {
+    "cards_by_uuid": null,
+    "engines_alone": null,
+    "iterations": 3,
+    "max_tokens": 128,
+    "prefix_reuse_offered": false,
+    "streaming": false,
+    "thermal_gate_c": null,
+    "unique_prompt": false,
+    "warmup": 0
+  },
+  "results": [
+    {
+      "coherence_pass": true,
+      "first_response_preview": "1) Handling of trailing commas: The current implementation does not handle trailing commas correctly. To fix this, you c…",
+      "iterations": [
+        {
+          "completion_tok_s": 29.676958835150913,
+          "e2e_latency_ms": 4313.110407,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 4.338243347,
+            "energy_j": 381.499000005424,
+            "gco2_per_tok": 4.139529079919966e-05,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 381.499000005424,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 2.980460937542375,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 0.0008279058159839931
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 44.36183333333335,
+              "power_peak_w": 75.344,
+              "samples": 42,
+              "util_avg_pct": 1,
+              "util_peak_pct": 32,
+              "vram_avg_mb": 517,
+              "vram_peak_mb": 2745
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 32.54919047619049,
+              "power_peak_w": 51.914,
+              "samples": 42,
+              "util_avg_pct": 11,
+              "util_peak_pct": 59,
+              "vram_avg_mb": 469,
+              "vram_peak_mb": 2565
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 20,
+            "cpu_peak_pct": 94,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 88,
+            "rss_peak_mb": 379,
+            "samples": 22,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 1,
+          "load_time_ms": 3658.318082,
+          "prompt_tok_s": 3682.4504560773444,
+          "prompt_tokens": 283,
+          "response_preview": "1) Handling of trailing commas: The current implementation does not handle trailing commas correctly. To fix this, you c…",
+          "server_decode_tok_s": 222.28010766692717,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 4313.110407
+        },
+        {
+          "completion_tok_s": 200.87073540541698,
+          "e2e_latency_ms": 637.225725,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 0.661706731,
+            "energy_j": 102.30600000172853,
+            "gco2_per_tok": 1.1100911458520892e-05,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 102.30600000172853,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.7992656250135042,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 0.00022201822917041782
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 91.03771428571429,
+              "power_peak_w": 100.306,
+              "samples": 7,
+              "util_avg_pct": 4,
+              "util_peak_pct": 32,
+              "vram_avg_mb": 1257,
+              "vram_peak_mb": 1257
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 74.49099999999999,
+              "power_peak_w": 85.267,
+              "samples": 7,
+              "util_avg_pct": 10,
+              "util_peak_pct": 55,
+              "vram_avg_mb": 1189,
+              "vram_peak_mb": 1189
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 9,
+            "cpu_peak_pct": 34,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 50,
+            "rss_peak_mb": 50,
+            "samples": 4,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 2,
+          "load_time_ms": 61.330715,
+          "prompt_tok_s": 59267.01570680628,
+          "prompt_tokens": 283,
+          "response_preview": "1) Handling of trailing commas: The current implementation does not handle trailing commas correctly. To fix this, you c…",
+          "server_decode_tok_s": 224.9165348796345,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 637.225725
+        },
+        {
+          "completion_tok_s": 201.6762018150748,
+          "e2e_latency_ms": 634.680735,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 0.658878515,
+            "energy_j": 97.04800000041723,
+            "gco2_per_tok": 1.0530381944489717e-05,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 97.04800000041723,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.7581875000032596,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 0.00021060763888979434
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 92.60257142857142,
+              "power_peak_w": 94.346,
+              "samples": 7,
+              "util_avg_pct": 4,
+              "util_peak_pct": 33,
+              "vram_avg_mb": 1257,
+              "vram_peak_mb": 1257
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 77.95085714285713,
+              "power_peak_w": 84.406,
+              "samples": 7,
+              "util_avg_pct": 7,
+              "util_peak_pct": 55,
+              "vram_avg_mb": 1189,
+              "vram_peak_mb": 1189
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 9,
+            "cpu_peak_pct": 34,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 49,
+            "rss_peak_mb": 49,
+            "samples": 4,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 3,
+          "load_time_ms": 59.051589,
+          "prompt_tok_s": 59983.04366256889,
+          "prompt_tokens": 283,
+          "response_preview": "1) Handling of trailing commas: The current implementation does not handle trailing commas correctly. To fix this, you c…",
+          "server_decode_tok_s": 224.8517383850024,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 634.680735
+        }
+      ],
+      "load_time_ms": 5810.138483000001,
+      "model": "granite3.1-dense:2b",
+      "model_fingerprint": {
+        "modified_at": "2026-07-06",
+        "parameter_size": "2.5B",
+        "quantization_level": "Q4_K_M"
+      },
+      "num_ctx": 4096,
+      "prompt": "long",
+      "prompt_chars": 939,
+      "stats": {
+        "Carbon gCO2/tok [gpu]": {
+          "count": 3,
+          "max": 4.139529079919966e-05,
+          "mean": 2.100886140073676e-05,
+          "min": 1.0530381944489717e-05,
+          "p50": 1.1100911458520892e-05,
+          "p95": 3.8365852865131785e-05,
+          "stddev": 1.765747019523124e-05,
+          "unit": "g"
+        },
+        "Completion tok/s": {
+          "count": 3,
+          "max": 201.6762018150748,
+          "mean": 144.07463201854756,
+          "min": 29.676958835150913,
+          "p50": 200.87073540541698,
+          "p95": 201.59565517410903,
+          "stddev": 99.07210967959496,
+          "unit": "tok/s"
+        },
+        "E2E latency": {
+          "count": 3,
+          "max": 4313.110407,
+          "mean": 1861.672289,
+          "min": 634.680735,
+          "p50": 637.225725,
+          "p95": 3945.5219387999996,
+          "stddev": 2123.0080673495004,
+          "unit": "ms"
+        },
+        "Energy J/tok [gpu]": {
+          "count": 3,
+          "max": 2.980460937542375,
+          "mean": 1.5126380208530463,
+          "min": 0.7581875000032596,
+          "p50": 0.7992656250135042,
+          "p95": 2.7623414062894875,
+          "stddev": 1.2713378540566491,
+          "unit": "J"
+        },
+        "Energy Wh/tok [gpu]": {
+          "count": 3,
+          "max": 0.0008279058159839931,
+          "mean": 0.00042017722801473506,
+          "min": 0.00021060763888979434,
+          "p50": 0.00022201822917041782,
+          "p95": 0.0007673170573026356,
+          "stddev": 0.0003531494039046248,
+          "unit": "Wh"
+        },
+        "Model load": {
+          "count": 1,
+          "max": 5810.138483000001,
+          "mean": 5810.138483000001,
+          "min": 5810.138483000001,
+          "p50": 5810.138483000001,
+          "p95": 5810.138483000001,
+          "stddev": 0.0,
+          "unit": "ms"
+        },
+        "Prompt tok/s": {
+          "count": 3,
+          "max": 59983.04366256889,
+          "mean": 40977.50327515084,
+          "min": 3682.4504560773444,
+          "p50": 59267.01570680628,
+          "p95": 59911.44086699263,
+          "stddev": 32300.447328039743,
+          "unit": "tok/s"
+        },
+        "Tokens generated": {
+          "count": 3,
+          "max": 128.0,
+          "mean": 128.0,
+          "min": 128.0,
+          "p50": 128.0,
+          "p95": 128.0,
+          "stddev": 0.0,
+          "unit": "count"
+        }
+      },
+      "target": "Ollama",
+      "url": "http://127.0.0.1:11434"
+    },
+    {
+      "coherence_pass": true,
+      "first_response_preview": "1) Handling of trailing commas: The current implementation does not handle trailing commas correctly. To fix this, add a…",
+      "iterations": [
+        {
+          "completion_tok_s": 211.27002101179392,
+          "e2e_latency_ms": 605.85974,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 0.631853958,
+            "energy_j": 115.43299999833107,
+            "gco2_per_tok": 1.2525282117874465e-05,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 115.43299999833107,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.9018203124869615,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 0.0002505056423574893
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 66.93385714285715,
+              "power_peak_w": 99.401,
+              "samples": 7,
+              "util_avg_pct": 28,
+              "util_peak_pct": 98,
+              "vram_avg_mb": 2873,
+              "vram_peak_mb": 2905
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 27.374142857142857,
+              "power_peak_w": 27.443,
+              "samples": 7,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 155,
+              "vram_peak_mb": 155
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 75,
+            "cpu_peak_pct": 99,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 1859,
+            "rss_peak_mb": 1859,
+            "samples": 4,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 1,
+          "load_time_ms": 14.240489,
+          "prompt_tok_s": 2182.3455509134315,
+          "prompt_tokens": 283,
+          "response_preview": "1) Handling of trailing commas: The current implementation does not handle trailing commas correctly. To fix this, add a…",
+          "server_decode_tok_s": 277.5166958759855,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 605.85974
+        },
+        {
+          "completion_tok_s": 254.88975274433471,
+          "e2e_latency_ms": 502.17789700000003,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 0.527349036,
+            "energy_j": 114.00700000673532,
+            "gco2_per_tok": 1.2370551216008607e-05,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 114.00700000673532,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.8906796875526197,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 0.00024741102432017213
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 133.85299999999998,
+              "power_peak_w": 151.079,
+              "samples": 6,
+              "util_avg_pct": 94,
+              "util_peak_pct": 98,
+              "vram_avg_mb": 2899,
+              "vram_peak_mb": 2905
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 27.202,
+              "power_peak_w": 27.202,
+              "samples": 6,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 155,
+              "vram_peak_mb": 155
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 61,
+            "cpu_peak_pct": 99,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 1859,
+            "rss_peak_mb": 1859,
+            "samples": 4,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 2,
+          "load_time_ms": 23.83253,
+          "prompt_tok_s": 20217.57251393155,
+          "prompt_tokens": 283,
+          "response_preview": "1) Handling of trailing commas: The current implementation does not handle trailing commas correctly. To fix this, add a…",
+          "server_decode_tok_s": 275.90574888901267,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 502.17789700000003
+        },
+        {
+          "completion_tok_s": 254.15338857510787,
+          "e2e_latency_ms": 503.632868,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 0.526416574,
+            "energy_j": 115.11599999666214,
+            "gco2_per_tok": 1.2490885416304486e-05,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 115.11599999666214,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.899343749973923,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 0.00024981770832608973
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 163.32466666666664,
+              "power_peak_w": 164.378,
+              "samples": 6,
+              "util_avg_pct": 32,
+              "util_peak_pct": 98,
+              "vram_avg_mb": 2899,
+              "vram_peak_mb": 2905
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 27.245,
+              "power_peak_w": 27.245,
+              "samples": 6,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 155,
+              "vram_peak_mb": 155
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 60,
+            "cpu_peak_pct": 104,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 1859,
+            "rss_peak_mb": 1859,
+            "samples": 4,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 3,
+          "load_time_ms": 23.658612,
+          "prompt_tok_s": 20237.590745571437,
+          "prompt_tokens": 283,
+          "response_preview": "1) Handling of trailing commas: The current implementation does not handle trailing commas correctly. To fix this, add a…",
+          "server_decode_tok_s": 274.91735399065766,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 503.632868
+        }
+      ],
+      "load_time_ms": 1997.648017,
+      "model": "granite3.1-dense:2b",
+      "model_fingerprint": {
+        "modified_at": "",
+        "parameter_size": "2.5B",
+        "quantization_level": "Q4_K_M"
+      },
+      "num_ctx": 4096,
+      "prompt": "long",
+      "prompt_chars": 939,
+      "stats": {
+        "Carbon gCO2/tok [gpu]": {
+          "count": 3,
+          "max": 1.2525282117874465e-05,
+          "mean": 1.2462239583395852e-05,
+          "min": 1.2370551216008607e-05,
+          "p50": 1.2490885416304486e-05,
+          "p95": 1.2521842447717466e-05,
+          "stddev": 8.124562022243085e-08,
+          "unit": "g"
+        },
+        "Completion tok/s": {
+          "count": 3,
+          "max": 254.88975274433471,
+          "mean": 240.1043874437455,
+          "min": 211.27002101179392,
+          "p50": 254.15338857510787,
+          "p95": 254.81611632741203,
+          "stddev": 24.97400796220888,
+          "unit": "tok/s"
+        },
+        "E2E latency": {
+          "count": 3,
+          "max": 605.85974,
+          "mean": 537.2235016666666,
+          "min": 502.17789700000003,
+          "p50": 503.632868,
+          "p95": 595.6370528,
+          "stddev": 59.44517763927795,
+          "unit": "ms"
+        },
+        "Energy J/tok [gpu]": {
+          "count": 3,
+          "max": 0.9018203124869615,
+          "mean": 0.8972812500045014,
+          "min": 0.8906796875526197,
+          "p50": 0.899343749973923,
+          "p95": 0.9015726562356576,
+          "stddev": 0.005849684656015,
+          "unit": "J"
+        },
+        "Energy Wh/tok [gpu]": {
+          "count": 3,
+          "max": 0.0002505056423574893,
+          "mean": 0.000249244791667917,
+          "min": 0.00024741102432017213,
+          "p50": 0.00024981770832608973,
+          "p95": 0.00025043684895434935,
+          "stddev": 1.624912404448618e-06,
+          "unit": "Wh"
+        },
+        "Model load": {
+          "count": 1,
+          "max": 1997.648017,
+          "mean": 1997.648017,
+          "min": 1997.648017,
+          "p50": 1997.648017,
+          "p95": 1997.648017,
+          "stddev": 0.0,
+          "unit": "ms"
+        },
+        "Prompt tok/s": {
+          "count": 3,
+          "max": 20237.590745571437,
+          "mean": 14212.502936805473,
+          "min": 2182.3455509134315,
+          "p50": 20217.57251393155,
+          "p95": 20235.588922407445,
+          "stddev": 10418.426715651414,
+          "unit": "tok/s"
+        },
+        "Tokens generated": {
+          "count": 3,
+          "max": 128.0,
+          "mean": 128.0,
+          "min": 128.0,
+          "p50": 128.0,
+          "p95": 128.0,
+          "stddev": 0.0,
+          "unit": "count"
+        }
+      },
+      "target": "LOKEN",
+      "url": "http://127.0.0.1:11435"
+    }
+  ],
+  "schema": "loken/2",
+  "subjects": null,
+  "timestamp": "2026-09-03",
+  "vllm_version": null
+}

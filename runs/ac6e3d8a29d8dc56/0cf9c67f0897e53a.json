@@ -1,0 +1,679 @@
+{
+  "config": {
+    "carbon_intensity_gco2_per_kwh": 50.0,
+    "custom_prompt": null,
+    "energy_measure": true,
+    "gpu_sample": true,
+    "iterations": 3,
+    "max_tokens": 128,
+    "models": [
+      "olmoe:latest"
+    ],
+    "num_ctx": [
+      131072
+    ],
+    "num_gpu": null,
+    "prompts": [
+      "long"
+    ],
+    "session_id": null,
+    "streaming": false,
+    "unique_prompt": false,
+    "warmup": 0
+  },
+  "engine_build": 1792564833,
+  "idle_energy_baseline": null,
+  "machine": {
+    "cpu": "Intel(R) Core(TM) i9-10900K CPU @ 3.70GHz",
+    "driver": "610.43.02",
+    "gpus": [
+      {
+        "index": 0,
+        "name": "NVIDIA GeForce GTX 1650",
+        "power_cap_w": 75,
+        "vram_mib": 4096
+      }
+    ],
+    "kernel": "6.12.90+deb13.1-amd64",
+    "os": "Debian GNU/Linux 13 (trixie)",
+    "ram_gib": 62,
+    "threads": 20
+  },
+  "ollama_version": "0.35.1",
+  "protocol": {
+    "cards_by_uuid": null,
+    "engines_seen": [
+      "llama-server",
+      "ollama"
+    ],
+    "gpu_temps_c_at_start": [
+      32
+    ],
+    "iterations": 3,
+    "max_tokens": 128,
+    "prefix_reuse_offered": false,
+    "streaming": false,
+    "unique_prompt": false,
+    "warmup": 0
+  },
+  "results": [
+    {
+      "coherence_pass": true,
+      "first_response_preview": "```rust pub fn parse_csv_line(line: &str) -> Result<Vec<String>, ParseError> { let mut result = Vec::new(); let mut curr...",
+      "iteration_errors": [],
+      "iterations": [
+        {
+          "completion_tok_s": 166.85934662812642,
+          "degenerate": false,
+          "e2e_latency_ms": 767.113156,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 0.787351265,
+            "energy_j": 4.390999999828637,
+            "gco2_per_tok": 4.7645399303696143e-07,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 4.390999999828637,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.034304687498661224,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied - run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 9.529079860739229e-06
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce GTX 1650",
+              "power_avg_w": 7.13325,
+              "power_peak_w": 7.252,
+              "samples": 8,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 16,
+              "vram_peak_mb": 16
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 0,
+            "cpu_peak_pct": 0,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 40,
+            "rss_peak_mb": 40,
+            "samples": 5,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 1,
+          "load_time_ms": 1.940597,
+          "prompt_tok_s": 3901.313258970273,
+          "prompt_tokens": 284,
+          "response_preview": "```rust pub fn parse_csv_line(line: &str) -> Result<Vec<String>, ParseError> { let mut result = Vec::new(); let mut curr...",
+          "server_decode_tok_s": 185.27498136394232,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 767.113156
+        },
+        {
+          "completion_tok_s": 173.20394253688033,
+          "degenerate": false,
+          "e2e_latency_ms": 739.013201,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 0.7586605,
+            "energy_j": 2.808000000193715,
+            "gco2_per_tok": 3.0468750002101943e-07,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 2.808000000193715,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.0219375000015134,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied - run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 6.093750000420388e-06
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce GTX 1650",
+              "power_avg_w": 7.131125,
+              "power_peak_w": 7.231,
+              "samples": 8,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 16,
+              "vram_peak_mb": 16
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 1,
+            "cpu_peak_pct": 9,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 40,
+            "rss_peak_mb": 40,
+            "samples": 5,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 2,
+          "load_time_ms": 9.799426,
+          "prompt_tok_s": 38707.91876788878,
+          "prompt_tokens": 284,
+          "response_preview": "```rust pub fn parse_csv_line(line: &str) -> Result<Vec<String>, ParseError> { let mut result = Vec::new(); let mut curr...",
+          "server_decode_tok_s": 178.6643998620934,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 739.013201
+        },
+        {
+          "completion_tok_s": 181.93899628949205,
+          "degenerate": false,
+          "e2e_latency_ms": 703.532517,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 0.736245489,
+            "energy_j": 3.4249999998137355,
+            "gco2_per_tok": 3.7163628470201125e-07,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 3.4249999998137355,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.02675781249854481,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied - run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 7.432725694040225e-06
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce GTX 1650",
+              "power_avg_w": 7.083285714285714,
+              "power_peak_w": 7.189,
+              "samples": 7,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 16,
+              "vram_peak_mb": 16
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 2,
+            "cpu_peak_pct": 9,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 40,
+            "rss_peak_mb": 40,
+            "samples": 4,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 3,
+          "load_time_ms": 6.082474,
+          "prompt_tok_s": 42192.83910265934,
+          "prompt_tokens": 284,
+          "response_preview": "```rust pub fn parse_csv_line(line: &str) -> Result<Vec<String>, ParseError> { let mut result = Vec::new(); let mut curr...",
+          "server_decode_tok_s": 185.86119073133474,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 703.532517
+        }
+      ],
+      "load_error": null,
+      "load_time_ms": 2813.23513,
+      "model": "olmoe:latest",
+      "model_fingerprint": {
+        "modified_at": "2026-07-07",
+        "parameter_size": "1.3B",
+        "quantization_level": "Q4_K_M"
+      },
+      "num_ctx": 131072,
+      "prompt": "long",
+      "prompt_chars": 939,
+      "stats": {
+        "Carbon gCO2/tok [gpu]": {
+          "count": 3,
+          "max": 4.7645399303696143e-07,
+          "mean": 3.8425925925333076e-07,
+          "min": 3.0468750002101943e-07,
+          "p50": 3.7163628470201125e-07,
+          "p95": 4.659722222034664e-07,
+          "stddev": 8.657618983093075e-08,
+          "unit": "g"
+        },
+        "Completion tok/s": {
+          "count": 3,
+          "max": 181.93899628949205,
+          "mean": 174.00076181816624,
+          "min": 166.85934662812642,
+          "p50": 173.20394253688033,
+          "p95": 181.06549091423088,
+          "stddev": 7.571337345717265,
+          "unit": "tok/s"
+        },
+        "E2E latency": {
+          "count": 3,
+          "max": 767.113156,
+          "mean": 736.5529580000001,
+          "min": 703.532517,
+          "p50": 739.013201,
+          "p95": 764.3031605,
+          "stddev": 31.861638542711006,
+          "unit": "ms"
+        },
+        "Energy J/tok [gpu]": {
+          "count": 3,
+          "max": 0.034304687498661224,
+          "mean": 0.02766666666623981,
+          "min": 0.0219375000015134,
+          "p50": 0.02675781249854481,
+          "p95": 0.033549999998649584,
+          "stddev": 0.006233485667827015,
+          "unit": "J"
+        },
+        "Energy Wh/tok [gpu]": {
+          "count": 3,
+          "max": 9.529079860739229e-06,
+          "mean": 7.685185185066614e-06,
+          "min": 6.093750000420388e-06,
+          "p50": 7.432725694040225e-06,
+          "p95": 9.319444444069328e-06,
+          "stddev": 1.7315237966186153e-06,
+          "unit": "Wh"
+        },
+        "Model load": {
+          "count": 1,
+          "max": 2813.23513,
+          "mean": 2813.23513,
+          "min": 2813.23513,
+          "p50": 2813.23513,
+          "p95": 2813.23513,
+          "stddev": 0.0,
+          "unit": "ms"
+        },
+        "Prompt tok/s": {
+          "count": 3,
+          "max": 42192.83910265934,
+          "mean": 28267.357043172797,
+          "min": 3901.313258970273,
+          "p50": 38707.91876788878,
+          "p95": 41844.34706918229,
+          "stddev": 21173.432284473394,
+          "unit": "tok/s"
+        },
+        "Tokens generated": {
+          "count": 3,
+          "max": 128.0,
+          "mean": 128.0,
+          "min": 128.0,
+          "p50": 128.0,
+          "p95": 128.0,
+          "stddev": 0.0,
+          "unit": "count"
+        }
+      },
+      "target": "Ollama",
+      "url": "http://127.0.0.1:11434"
+    },
+    {
+      "coherence_pass": true,
+      "first_response_preview": "Here's the function with some improvements: ```rust pub fn parse_csv_line(line: &str) -> Result<Vec<String>, ParseError>...",
+      "iteration_errors": [],
+      "iterations": [
+        {
+          "completion_tok_s": 39.715342750632715,
+          "degenerate": false,
+          "e2e_latency_ms": 3222.935801,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 3.240444056,
+            "energy_j": 17.70600000023842,
+            "gco2_per_tok": 1.9212239583592036e-06,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 17.70600000023842,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.13832812500186265,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied - run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 3.842447916718407e-05
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce GTX 1650",
+              "power_avg_w": 9.504387096774192,
+              "power_peak_w": 11.126,
+              "samples": 31,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 16,
+              "vram_peak_mb": 17
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 96,
+            "cpu_peak_pct": 136,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 1157,
+            "rss_peak_mb": 4423,
+            "samples": 17,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 1,
+          "load_time_ms": 72.793772,
+          "prompt_tok_s": 1086.679961274539,
+          "prompt_tokens": 285,
+          "response_preview": "Here's the function with some improvements: ```rust pub fn parse_csv_line(line: &str) -> Result<Vec<String>, ParseError>...",
+          "server_decode_tok_s": 113.99868036730713,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 3222.935801
+        },
+        {
+          "completion_tok_s": 99.66745882285075,
+          "degenerate": false,
+          "e2e_latency_ms": 1284.2707289999998,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 1.303848621,
+            "energy_j": 4.7950000003911555,
+            "gco2_per_tok": 5.202907986535542e-07,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 4.7950000003911555,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.0374609375030559,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied - run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 1.0405815973071084e-05
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce GTX 1650",
+              "power_avg_w": 7.034615384615384,
+              "power_peak_w": 7.138,
+              "samples": 13,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 16,
+              "vram_peak_mb": 16
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 92,
+            "cpu_peak_pct": 132,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 706,
+            "rss_peak_mb": 707,
+            "samples": 7,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 2,
+          "load_time_ms": 17.533074,
+          "prompt_tok_s": 1324.0448935957802,
+          "prompt_tokens": 285,
+          "response_preview": "Here's the function with some improvements: ```rust pub fn parse_csv_line(line: &str) -> Result<Vec<String>, ParseError>...",
+          "server_decode_tok_s": 121.82715081608887,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 1284.2707289999998
+        },
+        {
+          "completion_tok_s": 99.9615337084997,
+          "degenerate": false,
+          "e2e_latency_ms": 1280.492558,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 1.302023718,
+            "energy_j": 3.719000000040978,
+            "gco2_per_tok": 4.0353732639333533e-07,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 3.719000000040978,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.029054687500320142,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied - run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 8.070746527866706e-06
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce GTX 1650",
+              "power_avg_w": 7.041538461538461,
+              "power_peak_w": 7.162,
+              "samples": 13,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 16,
+              "vram_peak_mb": 16
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 93,
+            "cpu_peak_pct": 127,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 707,
+            "rss_peak_mb": 707,
+            "samples": 7,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 3,
+          "load_time_ms": 14.686354,
+          "prompt_tok_s": 1347.6544202488094,
+          "prompt_tokens": 285,
+          "response_preview": "Here's the function with some improvements: ```rust pub fn parse_csv_line(line: &str) -> Result<Vec<String>, ParseError>...",
+          "server_decode_tok_s": 121.50212561513963,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 1280.492558
+        }
+      ],
+      "load_error": null,
+      "load_time_ms": 2229.356402,
+      "model": "olmoe:latest",
+      "model_fingerprint": {
+        "modified_at": "",
+        "parameter_size": "1.3B",
+        "quantization_level": "Q4_K_M"
+      },
+      "num_ctx": 131072,
+      "prompt": "long",
+      "prompt_chars": 939,
+      "stats": {
+        "Carbon gCO2/tok [gpu]": {
+          "count": 3,
+          "max": 1.9212239583592036e-06,
+          "mean": 9.483506944686977e-07,
+          "min": 4.0353732639333533e-07,
+          "p50": 5.202907986535542e-07,
+          "p95": 1.7811306423886386e-06,
+          "stddev": 8.445529196065387e-07,
+          "unit": "g"
+        },
+        "Completion tok/s": {
+          "count": 3,
+          "max": 99.9615337084997,
+          "mean": 79.78144509399438,
+          "min": 39.715342750632715,
+          "p50": 99.66745882285075,
+          "p95": 99.9321262199348,
+          "stddev": 34.69857400169553,
+          "unit": "tok/s"
+        },
+        "E2E latency": {
+          "count": 3,
+          "max": 3222.935801,
+          "mean": 1929.2330293333332,
+          "min": 1280.492558,
+          "p50": 1284.2707289999998,
+          "p95": 3029.0692937999997,
+          "stddev": 1120.3810578136076,
+          "unit": "ms"
+        },
+        "Energy J/tok [gpu]": {
+          "count": 3,
+          "max": 0.13832812500186265,
+          "mean": 0.06828125000174623,
+          "min": 0.029054687500320142,
+          "p50": 0.0374609375030559,
+          "p95": 0.12824140625198197,
+          "stddev": 0.06080781021167079,
+          "unit": "J"
+        },
+        "Energy Wh/tok [gpu]": {
+          "count": 3,
+          "max": 3.842447916718407e-05,
+          "mean": 1.8967013889373955e-05,
+          "min": 8.070746527866706e-06,
+          "p50": 1.0405815973071084e-05,
+          "p95": 3.5622612847772766e-05,
+          "stddev": 1.6891058392130776e-05,
+          "unit": "Wh"
+        },
+        "Model load": {
+          "count": 1,
+          "max": 2229.356402,
+          "mean": 2229.356402,
+          "min": 2229.356402,
+          "p50": 2229.356402,
+          "p95": 2229.356402,
+          "stddev": 0.0,
+          "unit": "ms"
+        },
+        "Prompt tok/s": {
+          "count": 3,
+          "max": 1347.6544202488094,
+          "mean": 1252.7930917063761,
+          "min": 1086.679961274539,
+          "p50": 1324.0448935957802,
+          "p95": 1345.2934675835063,
+          "stddev": 144.34171785590416,
+          "unit": "tok/s"
+        },
+        "Tokens generated": {
+          "count": 3,
+          "max": 128.0,
+          "mean": 128.0,
+          "min": 128.0,
+          "p50": 128.0,
+          "p95": 128.0,
+          "stddev": 0.0,
+          "unit": "count"
+        }
+      },
+      "target": "LOKEN",
+      "url": "http://127.0.0.1:11435"
+    }
+  ],
+  "schema": "loken/2",
+  "subjects": {
+    "LOKEN": {
+      "says": {
+        "commit": "faf7af64e",
+        "loken": "0.3.1-dev+gfaf7af64e",
+        "version": "0.3.1-dev+gfaf7af64e"
+      },
+      "url": "http://127.0.0.1:11435"
+    },
+    "Ollama": {
+      "says": {
+        "version": "0.35.1"
+      },
+      "url": "http://127.0.0.1:11434"
+    }
+  },
+  "timestamp": "2026-10-21"
+}

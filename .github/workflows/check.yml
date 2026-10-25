@@ -1,0 +1,27 @@
+name: check
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  records:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - name: Check the added and changed records
+        if: github.event_name == 'pull_request'
+        run: |
+          base="$(git merge-base "origin/${{ github.base_ref }}" HEAD)"
+          git diff --name-only --diff-filter=AMR "$base" HEAD -- runs/ | grep '\.json$' > records.txt || true
+          echo "$(wc -l < records.txt) record(s) added or changed"
+          if [ -s records.txt ]; then xargs python3 scripts/check.py < records.txt; fi
+      - name: Check every record
+        if: github.event_name == 'push'
+        run: python3 scripts/check.py runs/*/*.json

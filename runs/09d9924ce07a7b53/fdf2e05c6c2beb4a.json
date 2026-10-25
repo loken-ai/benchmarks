@@ -1,0 +1,723 @@
+{
+  "config": {
+    "carbon_intensity_gco2_per_kwh": 50.0,
+    "custom_prompt": null,
+    "energy_measure": true,
+    "gpu_sample": true,
+    "iterations": 3,
+    "max_tokens": 128,
+    "models": [
+      "qwen3.5:35b"
+    ],
+    "num_ctx": [
+      131072
+    ],
+    "num_gpu": null,
+    "prompts": [
+      "medium"
+    ],
+    "session_id": null,
+    "streaming": false,
+    "unique_prompt": false,
+    "warmup": 0
+  },
+  "converted_from": "qwen3.5_35b_131072_non-stream_medium.json",
+  "idle_energy_baseline": null,
+  "legacy_engine_build": 1788498694,
+  "machine": {
+    "attested": "by the operator, from deepcoder_14b_4096_stream.json; driver, kernel and OS unknown",
+    "cpu": "Intel(R) Core(TM) i9-10900K CPU @ 3.70GHz",
+    "gpus": [
+      {
+        "index": 0,
+        "name": "NVIDIA GeForce RTX 5070 Ti",
+        "power_cap_w": 300,
+        "vram_mib": 16303
+      },
+      {
+        "index": 1,
+        "name": "NVIDIA GeForce RTX 5060 Ti",
+        "power_cap_w": 180,
+        "vram_mib": 16311
+      }
+    ],
+    "hardware_id": "09d9924ce07a7b53",
+    "host_id": "d4b8ae99f4bfcc54",
+    "ram_gib": 62,
+    "threads": 20
+  },
+  "ollama_version": "0.34.2",
+  "protocol": {
+    "cards_by_uuid": null,
+    "engines_alone": null,
+    "iterations": 3,
+    "max_tokens": 128,
+    "prefix_reuse_offered": false,
+    "streaming": false,
+    "thermal_gate_c": null,
+    "unique_prompt": false,
+    "warmup": 0
+  },
+  "results": [
+    {
+      "coherence_pass": true,
+      "first_response_preview": "the development of the ENIAC (Electronic Numerical Integrator and Computer) by John Mauchly and J. Presper Eckert in 194…",
+      "iterations": [
+        {
+          "completion_tok_s": 10.301172374898908,
+          "e2e_latency_ms": 12425.77013,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 12.461127413,
+            "energy_j": 952.6389999985695,
+            "gco2_per_tok": 0.0001033679470484559,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 952.6389999985695,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 7.442492187488824,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 0.0020673589409691178
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 44.61847154471539,
+              "power_peak_w": 70.234,
+              "samples": 123,
+              "util_avg_pct": 17,
+              "util_peak_pct": 91,
+              "vram_avg_mb": 8052,
+              "vram_peak_mb": 14347
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 31.748959349593505,
+              "power_peak_w": 74.908,
+              "samples": 123,
+              "util_avg_pct": 30,
+              "util_peak_pct": 100,
+              "vram_avg_mb": 7300,
+              "vram_peak_mb": 12363
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 9,
+            "cpu_peak_pct": 114,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 74,
+            "rss_peak_mb": 451,
+            "samples": 63,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 1,
+          "load_time_ms": 10909.829509,
+          "prompt_tok_s": 117.64158712180283,
+          "prompt_tokens": 43,
+          "response_preview": "the development of the ENIAC (Electronic Numerical Integrator and Computer) by John Mauchly and J. Presper Eckert in 194…",
+          "server_decode_tok_s": 111.58807262988678,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 12425.77013
+        },
+        {
+          "completion_tok_s": 80.54305353449035,
+          "e2e_latency_ms": 1589.2121590000002,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 1.621033106,
+            "energy_j": 207.37600000202656,
+            "gco2_per_tok": 2.2501736111331006e-05,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 207.37600000202656,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 1.6201250000158325,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 0.0004500347222266201
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 60.40888235294118,
+              "power_peak_w": 76.021,
+              "samples": 17,
+              "util_avg_pct": 13,
+              "util_peak_pct": 24,
+              "vram_avg_mb": 14347,
+              "vram_peak_mb": 14347
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 61.05747058823531,
+              "power_peak_w": 84.124,
+              "samples": 17,
+              "util_avg_pct": 29,
+              "util_peak_pct": 48,
+              "vram_avg_mb": 12363,
+              "vram_peak_mb": 12363
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 23,
+            "cpu_peak_pct": 109,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 64,
+            "rss_peak_mb": 65,
+            "samples": 9,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 2,
+          "load_time_ms": 345.565105,
+          "prompt_tok_s": 657.0703929750067,
+          "prompt_tokens": 43,
+          "response_preview": "the development of the ENIAC (Electronic Numerical Integrator and Computer) by John Mauchly and J. Presper Eckert in 194…",
+          "server_decode_tok_s": 114.1840700733365,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 1589.2121590000002
+        },
+        {
+          "completion_tok_s": 83.9962970757411,
+          "e2e_latency_ms": 1523.8767,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 1.551120861,
+            "energy_j": 198.7259999960661,
+            "gco2_per_tok": 2.1563151041239808e-05,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 198.7259999960661,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 1.5525468749692664,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 0.0004312630208247962
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 62.62075000000001,
+              "power_peak_w": 69.497,
+              "samples": 16,
+              "util_avg_pct": 14,
+              "util_peak_pct": 24,
+              "vram_avg_mb": 14347,
+              "vram_peak_mb": 14347
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 65.02750000000002,
+              "power_peak_w": 75.86,
+              "samples": 16,
+              "util_avg_pct": 29,
+              "util_peak_pct": 48,
+              "vram_avg_mb": 12363,
+              "vram_peak_mb": 12363
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 23,
+            "cpu_peak_pct": 108,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 65,
+            "rss_peak_mb": 66,
+            "samples": 9,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 3,
+          "load_time_ms": 338.595332,
+          "prompt_tok_s": 639.7191186753352,
+          "prompt_tokens": 43,
+          "response_preview": "the development of the ENIAC (Electronic Numerical Integrator and Computer) by John Mauchly and J. Presper Eckert in 194…",
+          "server_decode_tok_s": 114.63853484787558,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 1523.8767
+        }
+      ],
+      "load_time_ms": 55129.52854,
+      "model": "qwen3.5:35b",
+      "model_fingerprint": {
+        "modified_at": "2026-02-27",
+        "parameter_size": "36.0B",
+        "quantization_level": "Q4_K_M"
+      },
+      "num_ctx": 131072,
+      "prompt": "medium",
+      "prompt_chars": 236,
+      "stats": {
+        "Carbon gCO2/tok [gpu]": {
+          "count": 3,
+          "max": 0.0001033679470484559,
+          "mean": 4.914427806700891e-05,
+          "min": 2.1563151041239808e-05,
+          "p50": 2.2501736111331006e-05,
+          "p95": 9.52813259547434e-05,
+          "stddev": 4.6961419738340554e-05,
+          "unit": "g"
+        },
+        "Completion tok/s": {
+          "count": 3,
+          "max": 83.9962970757411,
+          "mean": 58.28017432837678,
+          "min": 10.301172374898908,
+          "p50": 80.54305353449035,
+          "p95": 83.65097272161601,
+          "stddev": 41.5868932967789,
+          "unit": "tok/s"
+        },
+        "E2E latency": {
+          "count": 3,
+          "max": 12425.77013,
+          "mean": 5179.619663,
+          "min": 1523.8767,
+          "p50": 1589.2121590000002,
+          "p95": 11342.114332899999,
+          "stddev": 6275.435413049355,
+          "unit": "ms"
+        },
+        "Energy J/tok [gpu]": {
+          "count": 3,
+          "max": 7.442492187488824,
+          "mean": 3.538388020824641,
+          "min": 1.5525468749692664,
+          "p50": 1.6201250000158325,
+          "p95": 6.860255468741524,
+          "stddev": 3.3812222211605194,
+          "unit": "J"
+        },
+        "Energy Wh/tok [gpu]": {
+          "count": 3,
+          "max": 0.0020673589409691178,
+          "mean": 0.000982885561340178,
+          "min": 0.0004312630208247962,
+          "p50": 0.0004500347222266201,
+          "p95": 0.001905626519094868,
+          "stddev": 0.0009392283947668111,
+          "unit": "Wh"
+        },
+        "Model load": {
+          "count": 1,
+          "max": 55129.52854,
+          "mean": 55129.52854,
+          "min": 55129.52854,
+          "p50": 55129.52854,
+          "p95": 55129.52854,
+          "stddev": 0.0,
+          "unit": "ms"
+        },
+        "Prompt tok/s": {
+          "count": 3,
+          "max": 657.0703929750067,
+          "mean": 471.4770329240482,
+          "min": 117.64158712180283,
+          "p50": 639.7191186753352,
+          "p95": 655.3352655450395,
+          "stddev": 306.55327222117677,
+          "unit": "tok/s"
+        },
+        "Tokens generated": {
+          "count": 3,
+          "max": 128.0,
+          "mean": 128.0,
+          "min": 128.0,
+          "p50": 128.0,
+          "p95": 128.0,
+          "stddev": 0.0,
+          "unit": "count"
+        }
+      },
+      "target": "Ollama",
+      "url": "http://127.0.0.1:11434"
+    },
+    {
+      "coherence_pass": true,
+      "first_response_preview": "Alan Turing's theoretical work on computation and his concept of a universal machine. In the mid-20th century, the ENIAC…",
+      "iterations": [
+        {
+          "completion_tok_s": 61.220459279826585,
+          "e2e_latency_ms": 2090.804308,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 2.11684166,
+            "energy_j": 255.08000000566244,
+            "gco2_per_tok": 2.7677951389503304e-05,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 255.08000000566244,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 1.9928125000442378,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 0.0005535590277900661
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 55.638047619047626,
+              "power_peak_w": 72.337,
+              "samples": 21,
+              "util_avg_pct": 22,
+              "util_peak_pct": 61,
+              "vram_avg_mb": 14204,
+              "vram_peak_mb": 14213
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 38.995142857142866,
+              "power_peak_w": 55.297,
+              "samples": 21,
+              "util_avg_pct": 13,
+              "util_peak_pct": 56,
+              "vram_avg_mb": 10567,
+              "vram_peak_mb": 10635
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 81,
+            "cpu_peak_pct": 104,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 3084,
+            "rss_peak_mb": 3162,
+            "samples": 11,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 1,
+          "load_time_ms": 15.149171,
+          "prompt_tok_s": 38.46377988842552,
+          "prompt_tokens": 43,
+          "response_preview": "Alan Turing's theoretical work on computation and his concept of a universal machine. In the mid-20th century, the ENIAC…",
+          "server_decode_tok_s": 133.79870963583656,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 2090.804308
+        },
+        {
+          "completion_tok_s": 128.67515286537792,
+          "e2e_latency_ms": 994.7530439999999,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 1.019227655,
+            "energy_j": 165.15299999713898,
+            "gco2_per_tok": 1.7920247395522892e-05,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 165.15299999713898,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 1.2902578124776483,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 0.00035840494791045786
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 83.7928181818182,
+              "power_peak_w": 86.196,
+              "samples": 11,
+              "util_avg_pct": 37,
+              "util_peak_pct": 38,
+              "vram_avg_mb": 14213,
+              "vram_peak_mb": 14213
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 83.23554545454544,
+              "power_peak_w": 85.1,
+              "samples": 11,
+              "util_avg_pct": 56,
+              "util_peak_pct": 58,
+              "vram_avg_mb": 10635,
+              "vram_peak_mb": 10635
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 82,
+            "cpu_peak_pct": 99,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 3162,
+            "rss_peak_mb": 3162,
+            "samples": 6,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 2,
+          "load_time_ms": 16.418705,
+          "prompt_tok_s": 28079.322125983428,
+          "prompt_tokens": 43,
+          "response_preview": "Alan Turing's theoretical work on computation and his concept of a universal machine. In the mid-20th century, the ENIAC…",
+          "server_decode_tok_s": 131.15148372508605,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 994.7530439999999
+        },
+        {
+          "completion_tok_s": 134.0206241804724,
+          "e2e_latency_ms": 955.0768830000001,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 0.978693998,
+            "energy_j": 163.7710000053048,
+            "gco2_per_tok": 1.777029079918672e-05,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 163.7710000053048,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 1.2794609375414439,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 0.0003554058159837344
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 78.89454545454545,
+              "power_peak_w": 81.231,
+              "samples": 11,
+              "util_avg_pct": 36,
+              "util_peak_pct": 38,
+              "vram_avg_mb": 14213,
+              "vram_peak_mb": 14213
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 80.94945454545456,
+              "power_peak_w": 82.318,
+              "samples": 11,
+              "util_avg_pct": 52,
+              "util_peak_pct": 57,
+              "vram_avg_mb": 10635,
+              "vram_peak_mb": 10635
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 78,
+            "cpu_peak_pct": 99,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 3162,
+            "rss_peak_mb": 3162,
+            "samples": 6,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 3,
+          "load_time_ms": 12.156652,
+          "prompt_tok_s": 155171.35608939314,
+          "prompt_tokens": 43,
+          "response_preview": "Alan Turing's theoretical work on computation and his concept of a universal machine. In the mid-20th century, the ENIAC…",
+          "server_decode_tok_s": 135.84309334828333,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 955.0768830000001
+        }
+      ],
+      "load_time_ms": 7606.804397,
+      "model": "qwen3.5:35b",
+      "model_fingerprint": {
+        "modified_at": "",
+        "parameter_size": "36.0B",
+        "quantization_level": "Q4_K_M"
+      },
+      "num_ctx": 131072,
+      "prompt": "medium",
+      "prompt_chars": 236,
+      "stats": {
+        "Carbon gCO2/tok [gpu]": {
+          "count": 3,
+          "max": 2.7677951389503304e-05,
+          "mean": 2.1122829861404304e-05,
+          "min": 1.777029079918672e-05,
+          "p50": 1.7920247395522892e-05,
+          "p95": 2.670218099010526e-05,
+          "stddev": 5.677396888654729e-06,
+          "unit": "g"
+        },
+        "Completion tok/s": {
+          "count": 3,
+          "max": 134.0206241804724,
+          "mean": 107.97207877522563,
+          "min": 61.220459279826585,
+          "p50": 128.67515286537792,
+          "p95": 133.48607704896295,
+          "stddev": 40.57621174995341,
+          "unit": "tok/s"
+        },
+        "E2E latency": {
+          "count": 3,
+          "max": 2090.804308,
+          "mean": 1346.8780783333334,
+          "min": 955.0768830000001,
+          "p50": 994.7530439999999,
+          "p95": 1981.1991816000002,
+          "stddev": 644.5643690334358,
+          "unit": "ms"
+        },
+        "Energy J/tok [gpu]": {
+          "count": 3,
+          "max": 1.9928125000442378,
+          "mean": 1.52084375002111,
+          "min": 1.2794609375414439,
+          "p50": 1.2902578124776483,
+          "p95": 1.9225570312875788,
+          "stddev": 0.40877257598314043,
+          "unit": "J"
+        },
+        "Energy Wh/tok [gpu]": {
+          "count": 3,
+          "max": 0.0005535590277900661,
+          "mean": 0.0004224565972280861,
+          "min": 0.0003554058159837344,
+          "p50": 0.00035840494791045786,
+          "p95": 0.0005340436198021051,
+          "stddev": 0.00011354793777309456,
+          "unit": "Wh"
+        },
+        "Model load": {
+          "count": 1,
+          "max": 7606.804397,
+          "mean": 7606.804397,
+          "min": 7606.804397,
+          "p50": 7606.804397,
+          "p95": 7606.804397,
+          "stddev": 0.0,
+          "unit": "ms"
+        },
+        "Prompt tok/s": {
+          "count": 3,
+          "max": 155171.35608939314,
+          "mean": 61096.380665088334,
+          "min": 38.46377988842552,
+          "p50": 28079.322125983428,
+          "p95": 142462.15269305214,
+          "stddev": 82668.90700262769,
+          "unit": "tok/s"
+        },
+        "Tokens generated": {
+          "count": 3,
+          "max": 128.0,
+          "mean": 128.0,
+          "min": 128.0,
+          "p50": 128.0,
+          "p95": 128.0,
+          "stddev": 0.0,
+          "unit": "count"
+        }
+      },
+      "target": "LOKEN",
+      "url": "http://127.0.0.1:11435"
+    }
+  ],
+  "schema": "loken/2",
+  "subjects": null,
+  "timestamp": "2026-09-04",
+  "vllm_version": null
+}

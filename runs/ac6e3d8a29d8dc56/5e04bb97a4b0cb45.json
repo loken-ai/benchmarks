@@ -1,0 +1,679 @@
+{
+  "config": {
+    "carbon_intensity_gco2_per_kwh": 50.0,
+    "custom_prompt": null,
+    "energy_measure": true,
+    "gpu_sample": true,
+    "iterations": 3,
+    "max_tokens": 128,
+    "models": [
+      "gemma3:latest"
+    ],
+    "num_ctx": [
+      131072
+    ],
+    "num_gpu": null,
+    "prompts": [
+      "long"
+    ],
+    "session_id": null,
+    "streaming": false,
+    "unique_prompt": false,
+    "warmup": 0
+  },
+  "engine_build": 1792564833,
+  "idle_energy_baseline": null,
+  "machine": {
+    "cpu": "Intel(R) Core(TM) i9-10900K CPU @ 3.70GHz",
+    "driver": "610.43.02",
+    "gpus": [
+      {
+        "index": 0,
+        "name": "NVIDIA GeForce GTX 1650",
+        "power_cap_w": 75,
+        "vram_mib": 4096
+      }
+    ],
+    "kernel": "6.12.90+deb13.1-amd64",
+    "os": "Debian GNU/Linux 13 (trixie)",
+    "ram_gib": 62,
+    "threads": 20
+  },
+  "ollama_version": "0.35.1",
+  "protocol": {
+    "cards_by_uuid": null,
+    "engines_seen": [
+      "llama-server",
+      "ollama"
+    ],
+    "gpu_temps_c_at_start": [
+      32
+    ],
+    "iterations": 3,
+    "max_tokens": 128,
+    "prefix_reuse_offered": false,
+    "streaming": false,
+    "unique_prompt": false,
+    "warmup": 0
+  },
+  "results": [
+    {
+      "coherence_pass": true,
+      "first_response_preview": "**Review:** This function attempts to parse a CSV line into a `Vec<String>`. However, it has several issues related to r...",
+      "iteration_errors": [],
+      "iterations": [
+        {
+          "completion_tok_s": 25.520233992361803,
+          "degenerate": false,
+          "e2e_latency_ms": 5015.627993,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 5.03685323,
+            "energy_j": 17.375,
+            "gco2_per_tok": 1.8853081597222222e-06,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 17.375,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.1357421875,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied - run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 3.770616319444444e-05
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce GTX 1650",
+              "power_avg_w": 7.126791666666667,
+              "power_peak_w": 7.869,
+              "samples": 48,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 16,
+              "vram_peak_mb": 16
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 2,
+            "cpu_peak_pct": 48,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 40,
+            "rss_peak_mb": 41,
+            "samples": 25,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 1,
+          "load_time_ms": 3596.433909,
+          "prompt_tok_s": 2628.2570604970138,
+          "prompt_tokens": 279,
+          "response_preview": "**Review:** This function attempts to parse a CSV line into a `Vec<String>`. However, it has several issues related to r...",
+          "server_decode_tok_s": 97.61938354884592,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 5015.627993
+        },
+        {
+          "completion_tok_s": 91.98268881197424,
+          "degenerate": false,
+          "e2e_latency_ms": 1391.566192,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 1.410381264,
+            "energy_j": 5.53899999987334,
+            "gco2_per_tok": 6.010199652640343e-07,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 5.53899999987334,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.04327343749901047,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied - run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 1.2020399305280686e-05
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce GTX 1650",
+              "power_avg_w": 6.933071428571429,
+              "power_peak_w": 7.163,
+              "samples": 14,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 16,
+              "vram_peak_mb": 16
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 0,
+            "cpu_peak_pct": 4,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 40,
+            "rss_peak_mb": 40,
+            "samples": 8,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 2,
+          "load_time_ms": 2.033129,
+          "prompt_tok_s": 5154.639175257732,
+          "prompt_tokens": 279,
+          "response_preview": "**Review:** This function attempts to parse a CSV line into a `Vec<String>`. However, it has several issues regarding co...",
+          "server_decode_tok_s": 95.96900201235002,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 1391.566192
+        },
+        {
+          "completion_tok_s": 91.5958541146019,
+          "degenerate": false,
+          "e2e_latency_ms": 1397.443162,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 1.430816547,
+            "energy_j": 4.277999999932945,
+            "gco2_per_tok": 4.641927083260574e-07,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 4.277999999932945,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.03342187499947613,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied - run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 9.283854166521148e-06
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce GTX 1650",
+              "power_avg_w": 6.943214285714285,
+              "power_peak_w": 7.116,
+              "samples": 14,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 16,
+              "vram_peak_mb": 16
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 0,
+            "cpu_peak_pct": 4,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 40,
+            "rss_peak_mb": 40,
+            "samples": 8,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 3,
+          "load_time_ms": 5.521435,
+          "prompt_tok_s": 4674.3847068875975,
+          "prompt_tokens": 279,
+          "response_preview": "**Review:** This function attempts to parse a CSV line into a `Vec<String>`. However, it has several issues regarding co...",
+          "server_decode_tok_s": 96.21897032170963,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 1397.443162
+        }
+      ],
+      "load_error": null,
+      "load_time_ms": 3056.93546,
+      "model": "gemma3:latest",
+      "model_fingerprint": {
+        "modified_at": "2026-09-29",
+        "parameter_size": "4.3B",
+        "quantization_level": "Q4_K_M"
+      },
+      "num_ctx": 131072,
+      "prompt": "long",
+      "prompt_chars": 939,
+      "stats": {
+        "Carbon gCO2/tok [gpu]": {
+          "count": 3,
+          "max": 1.8853081597222222e-06,
+          "mean": 9.835069444374379e-07,
+          "min": 4.641927083260574e-07,
+          "p50": 6.010199652640343e-07,
+          "p95": 1.7568793402764035e-06,
+          "stddev": 7.839735317452548e-07,
+          "unit": "g"
+        },
+        "Completion tok/s": {
+          "count": 3,
+          "max": 91.98268881197424,
+          "mean": 69.69959230631265,
+          "min": 25.520233992361803,
+          "p50": 91.5958541146019,
+          "p95": 91.944005342237,
+          "stddev": 38.260935509277815,
+          "unit": "tok/s"
+        },
+        "E2E latency": {
+          "count": 3,
+          "max": 5015.627993,
+          "mean": 2601.545782333333,
+          "min": 1391.566192,
+          "p50": 1397.443162,
+          "p95": 4653.809509899999,
+          "stddev": 2090.6585863280116,
+          "unit": "ms"
+        },
+        "Energy J/tok [gpu]": {
+          "count": 3,
+          "max": 0.1357421875,
+          "mean": 0.07081249999949553,
+          "min": 0.03342187499947613,
+          "p50": 0.04327343749901047,
+          "p95": 0.12649531249990104,
+          "stddev": 0.05644609428565835,
+          "unit": "J"
+        },
+        "Energy Wh/tok [gpu]": {
+          "count": 3,
+          "max": 3.770616319444444e-05,
+          "mean": 1.9670138888748758e-05,
+          "min": 9.283854166521148e-06,
+          "p50": 1.2020399305280686e-05,
+          "p95": 3.5137586805528064e-05,
+          "stddev": 1.5679470634905095e-05,
+          "unit": "Wh"
+        },
+        "Model load": {
+          "count": 1,
+          "max": 3056.93546,
+          "mean": 3056.93546,
+          "min": 3056.93546,
+          "p50": 3056.93546,
+          "p95": 3056.93546,
+          "stddev": 0.0,
+          "unit": "ms"
+        },
+        "Prompt tok/s": {
+          "count": 3,
+          "max": 5154.639175257732,
+          "mean": 4152.426980880781,
+          "min": 2628.2570604970138,
+          "p50": 4674.3847068875975,
+          "p95": 5106.613728420719,
+          "stddev": 1341.633909920797,
+          "unit": "tok/s"
+        },
+        "Tokens generated": {
+          "count": 3,
+          "max": 128.0,
+          "mean": 128.0,
+          "min": 128.0,
+          "p50": 128.0,
+          "p95": 128.0,
+          "stddev": 0.0,
+          "unit": "count"
+        }
+      },
+      "target": "Ollama",
+      "url": "http://127.0.0.1:11434"
+    },
+    {
+      "coherence_pass": true,
+      "first_response_preview": "**Review:** This function attempts to parse a CSV line into a `Vec<String>`. However, it has several issues related to r...",
+      "iteration_errors": [],
+      "iterations": [
+        {
+          "completion_tok_s": 48.83109144260873,
+          "degenerate": false,
+          "e2e_latency_ms": 2621.28075,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 2.640609166,
+            "energy_j": 8.654999999795109,
+            "gco2_per_tok": 9.391276041444345e-07,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 8.654999999795109,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.06761718749839929,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied - run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 1.878255208288869e-05
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce GTX 1650",
+              "power_avg_w": 7.038653846153846,
+              "power_peak_w": 7.498,
+              "samples": 26,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 16,
+              "vram_peak_mb": 16
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 116,
+            "cpu_peak_pct": 181,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 1321,
+            "rss_peak_mb": 1341,
+            "samples": 14,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 1,
+          "load_time_ms": 94.124304,
+          "prompt_tok_s": 768.4483396653155,
+          "prompt_tokens": 279,
+          "response_preview": "**Review:** This function attempts to parse a CSV line into a `Vec<String>`. However, it has several issues related to r...",
+          "server_decode_tok_s": 76.99332509616234,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 2621.28075
+        },
+        {
+          "completion_tok_s": 68.57963423488205,
+          "degenerate": false,
+          "e2e_latency_ms": 1866.443317,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 1.889750029,
+            "energy_j": 6.143000000156462,
+            "gco2_per_tok": 6.665581597391995e-07,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 6.143000000156462,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.04799218750122236,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied - run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 1.3331163194783989e-05
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce GTX 1650",
+              "power_avg_w": 7.006166666666666,
+              "power_peak_w": 7.121,
+              "samples": 18,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 16,
+              "vram_peak_mb": 16
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 131,
+            "cpu_peak_pct": 191,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 1344,
+            "rss_peak_mb": 1344,
+            "samples": 10,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 2,
+          "load_time_ms": 15.58481,
+          "prompt_tok_s": 942.1137742787785,
+          "prompt_tokens": 279,
+          "response_preview": "**Review:** This function attempts to parse a CSV line into a `Vec<String>`. However, it has several issues related to r...",
+          "server_decode_tok_s": 82.36922037783881,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 1866.443317
+        },
+        {
+          "completion_tok_s": 68.20425042899488,
+          "degenerate": false,
+          "e2e_latency_ms": 1876.715882,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 1.896655969,
+            "energy_j": 6.515000000130385,
+            "gco2_per_tok": 7.069227430697033e-07,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 6.515000000130385,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.050898437501018634,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied - run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 1.4138454861394065e-05
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce GTX 1650",
+              "power_avg_w": 7.041388888888888,
+              "power_peak_w": 7.188,
+              "samples": 18,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 16,
+              "vram_peak_mb": 16
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 132,
+            "cpu_peak_pct": 196,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 1344,
+            "rss_peak_mb": 1344,
+            "samples": 10,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 3,
+          "load_time_ms": 19.073083,
+          "prompt_tok_s": 928.5915927500547,
+          "prompt_tokens": 279,
+          "response_preview": "**Review:** This function attempts to parse a CSV line into a `Vec<String>`. However, it has several issues related to r...",
+          "server_decode_tok_s": 82.31147585509602,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 1876.715882
+        }
+      ],
+      "load_error": null,
+      "load_time_ms": 3367.664217,
+      "model": "gemma3:latest",
+      "model_fingerprint": {
+        "modified_at": "",
+        "parameter_size": "4.3B",
+        "quantization_level": "Q4_K_M"
+      },
+      "num_ctx": 131072,
+      "prompt": "long",
+      "prompt_chars": 939,
+      "stats": {
+        "Carbon gCO2/tok [gpu]": {
+          "count": 3,
+          "max": 9.391276041444345e-07,
+          "mean": 7.70869502317779e-07,
+          "min": 6.665581597391995e-07,
+          "p50": 7.069227430697033e-07,
+          "p95": 9.159071180369613e-07,
+          "stddev": 1.471068200988423e-07,
+          "unit": "g"
+        },
+        "Completion tok/s": {
+          "count": 3,
+          "max": 68.57963423488205,
+          "mean": 61.87165870216188,
+          "min": 48.83109144260873,
+          "p50": 68.20425042899488,
+          "p95": 68.54209585429334,
+          "stddev": 11.295022093321814,
+          "unit": "tok/s"
+        },
+        "E2E latency": {
+          "count": 3,
+          "max": 2621.28075,
+          "mean": 2121.4799829999997,
+          "min": 1866.443317,
+          "p50": 1876.715882,
+          "p95": 2546.8242632,
+          "stddev": 432.87063473774816,
+          "unit": "ms"
+        },
+        "Energy J/tok [gpu]": {
+          "count": 3,
+          "max": 0.06761718749839929,
+          "mean": 0.0555026041668801,
+          "min": 0.04799218750122236,
+          "p50": 0.050898437501018634,
+          "p95": 0.06594531249866123,
+          "stddev": 0.01059169104711665,
+          "unit": "J"
+        },
+        "Energy Wh/tok [gpu]": {
+          "count": 3,
+          "max": 1.878255208288869e-05,
+          "mean": 1.541739004635558e-05,
+          "min": 1.3331163194783989e-05,
+          "p50": 1.4138454861394065e-05,
+          "p95": 1.8318142360739228e-05,
+          "stddev": 2.9421364019768466e-06,
+          "unit": "Wh"
+        },
+        "Model load": {
+          "count": 1,
+          "max": 3367.664217,
+          "mean": 3367.664217,
+          "min": 3367.664217,
+          "p50": 3367.664217,
+          "p95": 3367.664217,
+          "stddev": 0.0,
+          "unit": "ms"
+        },
+        "Prompt tok/s": {
+          "count": 3,
+          "max": 942.1137742787785,
+          "mean": 879.7179022313829,
+          "min": 768.4483396653155,
+          "p50": 928.5915927500547,
+          "p95": 940.7615561259062,
+          "stddev": 96.59916673324324,
+          "unit": "tok/s"
+        },
+        "Tokens generated": {
+          "count": 3,
+          "max": 128.0,
+          "mean": 128.0,
+          "min": 128.0,
+          "p50": 128.0,
+          "p95": 128.0,
+          "stddev": 0.0,
+          "unit": "count"
+        }
+      },
+      "target": "LOKEN",
+      "url": "http://127.0.0.1:11435"
+    }
+  ],
+  "schema": "loken/2",
+  "subjects": {
+    "LOKEN": {
+      "says": {
+        "commit": "faf7af64e",
+        "loken": "0.3.1-dev+gfaf7af64e",
+        "version": "0.3.1-dev+gfaf7af64e"
+      },
+      "url": "http://127.0.0.1:11435"
+    },
+    "Ollama": {
+      "says": {
+        "version": "0.35.1"
+      },
+      "url": "http://127.0.0.1:11434"
+    }
+  },
+  "timestamp": "2026-10-21"
+}

@@ -1,0 +1,704 @@
+{
+  "config": {
+    "carbon_intensity_gco2_per_kwh": 50.0,
+    "custom_prompt": null,
+    "energy_measure": true,
+    "gpu_sample": true,
+    "iterations": 3,
+    "max_tokens": 128,
+    "models": [
+      "olmoe:latest"
+    ],
+    "num_ctx": [
+      4096
+    ],
+    "num_gpu": null,
+    "prompts": [
+      "short"
+    ],
+    "session_id": null,
+    "streaming": false,
+    "unique_prompt": false,
+    "warmup": 0
+  },
+  "engine_build": 1792591072,
+  "idle_energy_baseline": null,
+  "machine": {
+    "cpu": "Intel(R) Core(TM) i9-10900K CPU @ 3.70GHz",
+    "driver": "610.43.02",
+    "gpus": [
+      {
+        "index": 0,
+        "name": "NVIDIA GeForce GTX 1650",
+        "power_cap_w": 75,
+        "vram_mib": 4096
+      }
+    ],
+    "hardware_id": "ac6e3d8a29d8dc56",
+    "host_id": "d4b8ae99f4bfcc54",
+    "kernel": "6.12.90+deb13.1-amd64",
+    "os": "Debian GNU/Linux 13 (trixie)",
+    "ram_gib": 62,
+    "threads": 20
+  },
+  "ollama_version": "0.35.1",
+  "protocol": {
+    "cards_by_uuid": null,
+    "engines_seen": [
+      "llama-server",
+      "ollama"
+    ],
+    "gpu_temps_c_at_start": [
+      32
+    ],
+    "iterations": 3,
+    "max_tokens": 128,
+    "prefix_reuse_offered": false,
+    "streaming": false,
+    "unique_prompt": false,
+    "warmup": 0
+  },
+  "results": [
+    {
+      "coherence_pass": true,
+      "first_response_preview": "beautiful princess named Aurora. She was kind, gentle, and always put others before herself. One day, while out for a wa...",
+      "iteration_errors": [],
+      "iterations": [
+        {
+          "completion_tok_s": 173.06986800960374,
+          "degenerate": false,
+          "e2e_latency_ms": 739.5857030000001,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 0.758758632,
+            "energy_j": 3.908999999985099,
+            "gco2_per_tok": 4.2415364583171646e-07,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 3.908999999985099,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.030539062499883585,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied - run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 8.483072916634329e-06
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce GTX 1650",
+              "power_avg_w": 7.062875,
+              "power_peak_w": 7.145,
+              "samples": 8,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 16,
+              "vram_peak_mb": 16
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 0,
+            "cpu_peak_pct": 0,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 39,
+            "rss_peak_mb": 39,
+            "samples": 5,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 1,
+          "load_time_ms": 1.963826,
+          "prompt_tok_s": 335.292934260232,
+          "prompt_tokens": 15,
+          "response_preview": "beautiful princess named Aurora. She was kind, gentle, and always put others before herself. One day, while out for a wa...",
+          "server_decode_tok_s": 184.98820700180363,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 739.5857030000001
+        },
+        {
+          "completion_tok_s": 181.52319785492222,
+          "degenerate": false,
+          "e2e_latency_ms": 705.144034,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 0.741595664,
+            "energy_j": 1.4929999997839332,
+            "gco2_per_tok": 1.620008680321108e-07,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 1.4929999997839332,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.011664062498311978,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied - run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 3.240017360642216e-06
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce GTX 1650",
+              "power_avg_w": 7.061000000000001,
+              "power_peak_w": 7.168,
+              "samples": 7,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 16,
+              "vram_peak_mb": 16
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 2,
+            "cpu_peak_pct": 4,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 39,
+            "rss_peak_mb": 39,
+            "samples": 4,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 2,
+          "load_time_ms": 5.901595,
+          "prompt_tok_s": 2303.793580095223,
+          "prompt_tokens": 15,
+          "response_preview": "beautiful princess named Aurora. She was known throughout the kingdom for her kindness, grace, and intelligence. She was...",
+          "server_decode_tok_s": 187.65164231837738,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 705.144034
+        },
+        {
+          "completion_tok_s": 181.082235832099,
+          "degenerate": false,
+          "e2e_latency_ms": 706.861164,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 0.739224409,
+            "energy_j": 3.217000000178814,
+            "gco2_per_tok": 3.4906684029718036e-07,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 3.217000000178814,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.025132812501396984,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied - run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 6.9813368059436065e-06
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce GTX 1650",
+              "power_avg_w": 7.051428571428572,
+              "power_peak_w": 7.131,
+              "samples": 7,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 16,
+              "vram_peak_mb": 16
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 2,
+            "cpu_peak_pct": 4,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 39,
+            "rss_peak_mb": 39,
+            "samples": 4,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 3,
+          "load_time_ms": 5.198124,
+          "prompt_tok_s": 2369.29395040278,
+          "prompt_tokens": 15,
+          "response_preview": "beautiful princess named Aurora. She was known throughout the kingdom for her kindness, grace, and intelligence. She was...",
+          "server_decode_tok_s": 188.09698750918443,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 706.861164
+        }
+      ],
+      "load_error": null,
+      "load_time_ms": 2607.8212289999997,
+      "model": "olmoe:latest",
+      "model_fingerprint": {
+        "modified_at": "2026-07-07",
+        "parameter_size": "1.3B",
+        "quantization_level": "Q4_K_M"
+      },
+      "num_ctx": 4096,
+      "prompt": "short",
+      "prompt_chars": 58,
+      "stats": {
+        "Carbon gCO2/tok [gpu]": {
+          "count": 3,
+          "max": 4.2415364583171646e-07,
+          "mean": 3.1174045138700253e-07,
+          "min": 1.620008680321108e-07,
+          "p50": 3.4906684029718036e-07,
+          "p95": 4.1664496527826283e-07,
+          "stddev": 1.3500357109653707e-07,
+          "unit": "g"
+        },
+        "Completion tok/s": {
+          "count": 3,
+          "max": 181.52319785492222,
+          "mean": 178.558433898875,
+          "min": 173.06986800960374,
+          "p50": 181.082235832099,
+          "p95": 181.47910165263988,
+          "stddev": 4.758348297155957,
+          "unit": "tok/s"
+        },
+        "E2E latency": {
+          "count": 3,
+          "max": 739.5857030000001,
+          "mean": 717.196967,
+          "min": 705.144034,
+          "p50": 706.861164,
+          "p95": 736.3132491000001,
+          "stddev": 19.408213689505228,
+          "unit": "ms"
+        },
+        "Energy J/tok [gpu]": {
+          "count": 3,
+          "max": 0.030539062499883585,
+          "mean": 0.022445312499864183,
+          "min": 0.011664062498311978,
+          "p50": 0.025132812501396984,
+          "p95": 0.029998437500034923,
+          "stddev": 0.009720257118950668,
+          "unit": "J"
+        },
+        "Energy Wh/tok [gpu]": {
+          "count": 3,
+          "max": 8.483072916634329e-06,
+          "mean": 6.23480902774005e-06,
+          "min": 3.240017360642216e-06,
+          "p50": 6.9813368059436065e-06,
+          "p95": 8.332899305565257e-06,
+          "stddev": 2.700071421930741e-06,
+          "unit": "Wh"
+        },
+        "Model load": {
+          "count": 1,
+          "max": 2607.8212289999997,
+          "mean": 2607.8212289999997,
+          "min": 2607.8212289999997,
+          "p50": 2607.8212289999997,
+          "p95": 2607.8212289999997,
+          "stddev": 0.0,
+          "unit": "ms"
+        },
+        "Prompt tok/s": {
+          "count": 3,
+          "max": 2369.29395040278,
+          "mean": 1669.4601549194115,
+          "min": 335.292934260232,
+          "p50": 2303.793580095223,
+          "p95": 2362.7439133720245,
+          "stddev": 1155.886760949656,
+          "unit": "tok/s"
+        },
+        "Tokens generated": {
+          "count": 3,
+          "max": 128.0,
+          "mean": 128.0,
+          "min": 128.0,
+          "p50": 128.0,
+          "p95": 128.0,
+          "stddev": 0.0,
+          "unit": "count"
+        }
+      },
+      "target": "Ollama",
+      "url": "http://127.0.0.1:11434"
+    },
+    {
+      "coherence_pass": true,
+      "first_response_preview": "young prince named Leo. He was kind and brave, but he had one major flaw: he loved to eat sweets. Every day, he would sn...",
+      "iteration_errors": [],
+      "iterations": [
+        {
+          "completion_tok_s": 152.43661243231614,
+          "degenerate": false,
+          "e2e_latency_ms": 839.6932860000001,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 0.859269079,
+            "energy_j": 3.9259999999776483,
+            "gco2_per_tok": 4.259982638864636e-07,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 3.9259999999776483,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.030671874999825377,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied - run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 8.519965277729272e-06
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce GTX 1650",
+              "power_avg_w": 7.122875,
+              "power_peak_w": 7.627,
+              "samples": 8,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 16,
+              "vram_peak_mb": 16
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 138,
+            "cpu_peak_pct": 191,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 638,
+            "rss_peak_mb": 639,
+            "samples": 5,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 1,
+          "load_time_ms": 9.554535,
+          "prompt_tok_s": 869.5305306842652,
+          "prompt_tokens": 16,
+          "response_preview": "young prince named Leo. He was kind and brave, but he had one major flaw: he loved to eat sweets. Every day, he would sn...",
+          "server_decode_tok_s": 171.48635406179818,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 839.6932860000001
+        },
+        {
+          "completion_tok_s": 174.58340866107304,
+          "degenerate": false,
+          "e2e_latency_ms": 733.1739080000001,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 0.752765091,
+            "energy_j": 3.6419999999925494,
+            "gco2_per_tok": 3.9518229166585823e-07,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 3.6419999999925494,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.028453124999941792,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied - run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 7.903645833317164e-06
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce GTX 1650",
+              "power_avg_w": 7.108142857142856,
+              "power_peak_w": 7.182,
+              "samples": 7,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 16,
+              "vram_peak_mb": 16
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 162,
+            "cpu_peak_pct": 187,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 639,
+            "rss_peak_mb": 639,
+            "samples": 4,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 2,
+          "load_time_ms": 14.814569,
+          "prompt_tok_s": 829.2776903206552,
+          "prompt_tokens": 16,
+          "response_preview": "young prince named Leo. He was kind and brave, but he had one major flaw: he loved to eat sweets. Every day, he would sn...",
+          "server_decode_tok_s": 183.3889506412178,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 733.1739080000001
+        },
+        {
+          "completion_tok_s": 182.2114272074459,
+          "degenerate": false,
+          "e2e_latency_ms": 702.48064,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 0.723221017,
+            "energy_j": 2.8519999999552965,
+            "gco2_per_tok": 3.094618055507049e-07,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 2.8519999999552965,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.022281249999650754,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied - run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 6.189236111014098e-06
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce GTX 1650",
+              "power_avg_w": 7.10757142857143,
+              "power_peak_w": 7.151,
+              "samples": 7,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 16,
+              "vram_peak_mb": 16
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 156,
+            "cpu_peak_pct": 191,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 639,
+            "rss_peak_mb": 639,
+            "samples": 4,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 3,
+          "load_time_ms": 15.546341,
+          "prompt_tok_s": 845.938790618412,
+          "prompt_tokens": 16,
+          "response_preview": "young prince named Leo. He was kind and brave, but he had one major flaw: he loved to eat sweets. Every day, he would sn...",
+          "server_decode_tok_s": 191.80621702809918,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 702.48064
+        }
+      ],
+      "load_error": null,
+      "load_time_ms": 2586.054416,
+      "model": "olmoe:latest",
+      "model_fingerprint": {
+        "modified_at": "",
+        "parameter_size": "1.3B",
+        "quantization_level": "Q4_K_M"
+      },
+      "num_ctx": 4096,
+      "prompt": "short",
+      "prompt_chars": 58,
+      "stats": {
+        "Carbon gCO2/tok [gpu]": {
+          "count": 3,
+          "max": 4.259982638864636e-07,
+          "mean": 3.768807870343422e-07,
+          "min": 3.094618055507049e-07,
+          "p50": 3.9518229166585823e-07,
+          "p95": 4.2291666666440307e-07,
+          "stddev": 6.038539007238056e-08,
+          "unit": "g"
+        },
+        "Completion tok/s": {
+          "count": 3,
+          "max": 182.2114272074459,
+          "mean": 169.74381610027834,
+          "min": 152.43661243231614,
+          "p50": 174.58340866107304,
+          "p95": 181.44862535280862,
+          "stddev": 15.466128825248925,
+          "unit": "tok/s"
+        },
+        "E2E latency": {
+          "count": 3,
+          "max": 839.6932860000001,
+          "mean": 758.449278,
+          "min": 702.48064,
+          "p50": 733.1739080000001,
+          "p95": 829.0413482000001,
+          "stddev": 72.01361539360461,
+          "unit": "ms"
+        },
+        "Energy J/tok [gpu]": {
+          "count": 3,
+          "max": 0.030671874999825377,
+          "mean": 0.02713541666647264,
+          "min": 0.022281249999650754,
+          "p50": 0.028453124999941792,
+          "p95": 0.030449999999837017,
+          "stddev": 0.004347748085211399,
+          "unit": "J"
+        },
+        "Energy Wh/tok [gpu]": {
+          "count": 3,
+          "max": 8.519965277729272e-06,
+          "mean": 7.537615740686844e-06,
+          "min": 6.189236111014098e-06,
+          "p50": 7.903645833317164e-06,
+          "p95": 8.458333333288061e-06,
+          "stddev": 1.2077078014476109e-06,
+          "unit": "Wh"
+        },
+        "Model load": {
+          "count": 1,
+          "max": 2586.054416,
+          "mean": 2586.054416,
+          "min": 2586.054416,
+          "p50": 2586.054416,
+          "p95": 2586.054416,
+          "stddev": 0.0,
+          "unit": "ms"
+        },
+        "Prompt tok/s": {
+          "count": 3,
+          "max": 869.5305306842652,
+          "mean": 848.2490038744442,
+          "min": 829.2776903206552,
+          "p50": 845.938790618412,
+          "p95": 867.1713566776798,
+          "stddev": 20.22561750110059,
+          "unit": "tok/s"
+        },
+        "Tokens generated": {
+          "count": 3,
+          "max": 128.0,
+          "mean": 128.0,
+          "min": 128.0,
+          "p50": 128.0,
+          "p95": 128.0,
+          "stddev": 0.0,
+          "unit": "count"
+        }
+      },
+      "target": "LOKEN",
+      "url": "http://127.0.0.1:11435"
+    }
+  ],
+  "schema": "loken/2",
+  "subjects": {
+    "LOKEN": {
+      "devices": {
+        "compiled": {
+          "audio": true,
+          "cuda": true,
+          "image": true,
+          "midi": true,
+          "opencl": true,
+          "video": true
+        },
+        "devices": [
+          {
+            "name": "AMD Radeon RX 9070 XT",
+            "status": "available",
+            "type": "CUDA"
+          },
+          {
+            "name": "CPU (20 cores)",
+            "status": "available",
+            "type": "CPU"
+          }
+        ]
+      },
+      "says": {
+        "commit": "718558f3b",
+        "loken": "0.3.1-dev+g718558f3b",
+        "version": "0.3.1-dev+g718558f3b"
+      },
+      "url": "http://127.0.0.1:11435"
+    },
+    "Ollama": {
+      "devices": null,
+      "says": {
+        "version": "0.35.1"
+      },
+      "url": "http://127.0.0.1:11434"
+    }
+  },
+  "timestamp": "2026-10-21"
+}

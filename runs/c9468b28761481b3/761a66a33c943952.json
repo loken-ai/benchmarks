@@ -1,0 +1,703 @@
+{
+  "config": {
+    "carbon_intensity_gco2_per_kwh": 50.0,
+    "custom_prompt": null,
+    "energy_measure": true,
+    "gpu_sample": true,
+    "iterations": 3,
+    "max_tokens": 128,
+    "models": [
+      "qwen3:8b"
+    ],
+    "num_ctx": [
+      4096
+    ],
+    "num_gpu": null,
+    "prompts": [
+      "short"
+    ],
+    "session_id": null,
+    "streaming": false,
+    "unique_prompt": false,
+    "warmup": 0
+  },
+  "engine_build": 1792773905,
+  "idle_energy_baseline": null,
+  "machine": {
+    "cpu": "Intel(R) Core(TM) i9-10900K CPU @ 3.70GHz",
+    "gpus": [
+      {
+        "index": 0,
+        "name": "AMD Radeon RX 9070 XT"
+      }
+    ],
+    "hardware_id": "c9468b28761481b3",
+    "host_id": "d4b8ae99f4bfcc54",
+    "kernel": "6.12.90+deb13.1-amd64",
+    "os": "Debian GNU/Linux 13 (trixie)",
+    "ram_gib": 62,
+    "threads": 20
+  },
+  "ollama_version": "0.35.1",
+  "protocol": {
+    "cards_by_uuid": null,
+    "engines_seen": [
+      "llama-server",
+      "ollama"
+    ],
+    "gpu_temps_c_at_start": [
+      32
+    ],
+    "iterations": 3,
+    "max_tokens": 128,
+    "prefix_reuse_offered": false,
+    "streaming": false,
+    "unique_prompt": false,
+    "warmup": 0
+  },
+  "results": [
+    {
+      "coherence_pass": true,
+      "first_response_preview": "king who was known for his love of mathematics. He had a peculiar habit of asking his courtiers questions that required ...",
+      "iteration_errors": [],
+      "iterations": [
+        {
+          "completion_tok_s": 77.7183873965529,
+          "degenerate": false,
+          "e2e_latency_ms": 1646.9718979999998,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 1.666943753,
+            "energy_j": 5.37099999981001,
+            "gco2_per_tok": 5.827907985904959e-07,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 5.37099999981001,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.041960937498515705,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied - run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 1.1655815971809918e-05
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce GTX 1650",
+              "power_avg_w": 6.9365625,
+              "power_peak_w": 7.112,
+              "samples": 16,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 16,
+              "vram_peak_mb": 16
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 0,
+            "cpu_peak_pct": 4,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 41,
+            "rss_peak_mb": 41,
+            "samples": 9,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 1,
+          "load_time_ms": 2.528991,
+          "prompt_tok_s": 289.33510792199525,
+          "prompt_tokens": 15,
+          "response_preview": "king who was known for his love of mathematics. He had a peculiar habit of asking his courtiers questions that required ...",
+          "server_decode_tok_s": 80.42191346350792,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 1646.9718979999998
+        },
+        {
+          "completion_tok_s": 79.27878577330173,
+          "degenerate": false,
+          "e2e_latency_ms": 1614.555505,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 1.633801684,
+            "energy_j": 4.9979999996721745,
+            "gco2_per_tok": 5.42317708297762e-07,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 4.9979999996721745,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.03904687499743886,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied - run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 1.084635416595524e-05
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce GTX 1650",
+              "power_avg_w": 6.945000000000001,
+              "power_peak_w": 7.128,
+              "samples": 16,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 16,
+              "vram_peak_mb": 16
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 0,
+            "cpu_peak_pct": 4,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 41,
+            "rss_peak_mb": 41,
+            "samples": 9,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 2,
+          "load_time_ms": 2.185003,
+          "prompt_tok_s": 911.964980544747,
+          "prompt_tokens": 15,
+          "response_preview": "king who was known for his love of mathematics. He had a peculiar habit of asking his courtiers questions that required ...",
+          "server_decode_tok_s": 80.68181173529558,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 1614.555505
+        },
+        {
+          "completion_tok_s": 78.56717967413537,
+          "degenerate": false,
+          "e2e_latency_ms": 1629.17901,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 1.6644170539999998,
+            "energy_j": 4.904999999795109,
+            "gco2_per_tok": 5.322265624777679e-07,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 4.904999999795109,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.03832031249839929,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied - run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 1.0644531249555358e-05
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce GTX 1650",
+              "power_avg_w": 6.9199375000000005,
+              "power_peak_w": 7.027,
+              "samples": 16,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 16,
+              "vram_peak_mb": 16
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 1,
+            "cpu_peak_pct": 4,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 41,
+            "rss_peak_mb": 41,
+            "samples": 9,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 3,
+          "load_time_ms": 10.468063,
+          "prompt_tok_s": 913.1864673801575,
+          "prompt_tokens": 15,
+          "response_preview": "king who was known for his love of mathematics. He had a peculiar habit of asking his courtiers questions that required ...",
+          "server_decode_tok_s": 81.1058786554673,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 1629.17901
+        }
+      ],
+      "load_error": null,
+      "load_time_ms": 3361.3820520000004,
+      "model": "qwen3:8b",
+      "model_fingerprint": {
+        "modified_at": "2026-07-04",
+        "parameter_size": "8.2B",
+        "quantization_level": "Q4_K_M"
+      },
+      "num_ctx": 4096,
+      "prompt": "short",
+      "prompt_chars": 58,
+      "stats": {
+        "Carbon gCO2/tok [gpu]": {
+          "count": 3,
+          "max": 5.827907985904959e-07,
+          "mean": 5.524450231220086e-07,
+          "min": 5.322265624777679e-07,
+          "p50": 5.42317708297762e-07,
+          "p95": 5.787434895612225e-07,
+          "stddev": 2.6760182596125537e-08,
+          "unit": "g"
+        },
+        "Completion tok/s": {
+          "count": 3,
+          "max": 79.27878577330173,
+          "mean": 78.52145094799668,
+          "min": 77.7183873965529,
+          "p50": 78.56717967413537,
+          "p95": 79.2076251633851,
+          "stddev": 0.7812036295587739,
+          "unit": "tok/s"
+        },
+        "E2E latency": {
+          "count": 3,
+          "max": 1646.9718979999998,
+          "mean": 1630.235471,
+          "min": 1614.555505,
+          "p50": 1629.17901,
+          "p95": 1645.1926091999999,
+          "stddev": 16.23399877313038,
+          "unit": "ms"
+        },
+        "Energy J/tok [gpu]": {
+          "count": 3,
+          "max": 0.041960937498515705,
+          "mean": 0.03977604166478462,
+          "min": 0.03832031249839929,
+          "p50": 0.03904687499743886,
+          "p95": 0.04166953124840802,
+          "stddev": 0.0019267331469210388,
+          "unit": "J"
+        },
+        "Energy Wh/tok [gpu]": {
+          "count": 3,
+          "max": 1.1655815971809918e-05,
+          "mean": 1.1048900462440174e-05,
+          "min": 1.0644531249555358e-05,
+          "p50": 1.084635416595524e-05,
+          "p95": 1.157486979122445e-05,
+          "stddev": 5.35203651922511e-07,
+          "unit": "Wh"
+        },
+        "Model load": {
+          "count": 1,
+          "max": 3361.3820520000004,
+          "mean": 3361.3820520000004,
+          "min": 3361.3820520000004,
+          "p50": 3361.3820520000004,
+          "p95": 3361.3820520000004,
+          "stddev": 0.0,
+          "unit": "ms"
+        },
+        "Prompt tok/s": {
+          "count": 3,
+          "max": 913.1864673801575,
+          "mean": 704.8288519489665,
+          "min": 289.33510792199525,
+          "p50": 911.964980544747,
+          "p95": 913.0643186966165,
+          "stddev": 359.8286557539367,
+          "unit": "tok/s"
+        },
+        "Tokens generated": {
+          "count": 3,
+          "max": 128.0,
+          "mean": 128.0,
+          "min": 128.0,
+          "p50": 128.0,
+          "p95": 128.0,
+          "stddev": 0.0,
+          "unit": "count"
+        }
+      },
+      "target": "Ollama",
+      "url": "http://127.0.0.1:11434"
+    },
+    {
+      "coherence_pass": true,
+      "first_response_preview": "king who was very greedy. He wanted to collect as much money as possible. So he decided to build a new city with a lot o...",
+      "iteration_errors": [],
+      "iterations": [
+        {
+          "completion_tok_s": 68.1300092050349,
+          "degenerate": false,
+          "e2e_latency_ms": 1878.7609380000001,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 1.897031751,
+            "energy_j": 6.685000000055879,
+            "gco2_per_tok": 7.253689236171745e-07,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 6.685000000055879,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.05222656250043656,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied - run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 1.4507378472343489e-05
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce GTX 1650",
+              "power_avg_w": 6.899222222222223,
+              "power_peak_w": 7.096,
+              "samples": 18,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 16,
+              "vram_peak_mb": 16
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 145,
+            "cpu_peak_pct": 189,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 1361,
+            "rss_peak_mb": 1368,
+            "samples": 10,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 1,
+          "load_time_ms": 9.745357,
+          "prompt_tok_s": 523.476252238079,
+          "prompt_tokens": 15,
+          "response_preview": "king who was very greedy. He wanted to collect as much money as possible. So he decided to build a new city with a lot o...",
+          "server_decode_tok_s": 77.32288549726282,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 1878.7609380000001
+        },
+        {
+          "completion_tok_s": 75.73713184208317,
+          "degenerate": false,
+          "e2e_latency_ms": 1690.056078,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 1.714486744,
+            "energy_j": 5.898999999742955,
+            "gco2_per_tok": 6.400824652498866e-07,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 5.898999999742955,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.046085937497991836,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied - run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 1.2801649304997732e-05
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce GTX 1650",
+              "power_avg_w": 6.905235294117647,
+              "power_peak_w": 7.278,
+              "samples": 17,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 16,
+              "vram_peak_mb": 16
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 165,
+            "cpu_peak_pct": 196,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 1369,
+            "rss_peak_mb": 1369,
+            "samples": 9,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 2,
+          "load_time_ms": 14.420617,
+          "prompt_tok_s": 135.96081167081806,
+          "prompt_tokens": 15,
+          "response_preview": "king who was very greedy. He wanted to collect as much money as possible. So he decided to build a new city with a lot o...",
+          "server_decode_tok_s": 81.82584372169687,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 1690.056078
+        },
+        {
+          "completion_tok_s": 78.03756844015923,
+          "degenerate": false,
+          "e2e_latency_ms": 1640.235627,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 1.6587462309999998,
+            "energy_j": 6.544000000227243,
+            "gco2_per_tok": 7.100694444691019e-07,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 6.544000000227243,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.051125000001775334,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied - run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 1.4201388889382036e-05
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce GTX 1650",
+              "power_avg_w": 6.946625,
+              "power_peak_w": 7.484,
+              "samples": 16,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 16,
+              "vram_peak_mb": 16
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 163,
+            "cpu_peak_pct": 201,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 1369,
+            "rss_peak_mb": 1369,
+            "samples": 9,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 3,
+          "load_time_ms": 16.910677,
+          "prompt_tok_s": 171.9607555749247,
+          "prompt_tokens": 15,
+          "response_preview": "king who was very greedy. He wanted to collect as much money as possible. So he decided to build a new city with a lot o...",
+          "server_decode_tok_s": 83.35244117501585,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 1640.235627
+        }
+      ],
+      "load_error": null,
+      "load_time_ms": 5262.689913,
+      "model": "qwen3:8b",
+      "model_fingerprint": {
+        "modified_at": "",
+        "parameter_size": "8.2B",
+        "quantization_level": "Q4_K_M"
+      },
+      "num_ctx": 4096,
+      "prompt": "short",
+      "prompt_chars": 58,
+      "stats": {
+        "Carbon gCO2/tok [gpu]": {
+          "count": 3,
+          "max": 7.253689236171745e-07,
+          "mean": 6.918402777787211e-07,
+          "min": 6.400824652498866e-07,
+          "p50": 7.100694444691019e-07,
+          "p95": 7.238389757023672e-07,
+          "stddev": 4.547166022786115e-08,
+          "unit": "g"
+        },
+        "Completion tok/s": {
+          "count": 3,
+          "max": 78.03756844015923,
+          "mean": 73.96823649575911,
+          "min": 68.1300092050349,
+          "p50": 75.73713184208317,
+          "p95": 77.80752478035163,
+          "stddev": 5.185236306964188,
+          "unit": "tok/s"
+        },
+        "E2E latency": {
+          "count": 3,
+          "max": 1878.7609380000001,
+          "mean": 1736.350881,
+          "min": 1640.235627,
+          "p50": 1690.056078,
+          "p95": 1859.890452,
+          "stddev": 125.82125251927155,
+          "unit": "ms"
+        },
+        "Energy J/tok [gpu]": {
+          "count": 3,
+          "max": 0.05222656250043656,
+          "mean": 0.04981250000006791,
+          "min": 0.046085937497991836,
+          "p50": 0.051125000001775334,
+          "p95": 0.052116406250570436,
+          "stddev": 0.0032739595364060015,
+          "unit": "J"
+        },
+        "Energy Wh/tok [gpu]": {
+          "count": 3,
+          "max": 1.4507378472343489e-05,
+          "mean": 1.383680555557442e-05,
+          "min": 1.2801649304997732e-05,
+          "p50": 1.4201388889382036e-05,
+          "p95": 1.4476779514047344e-05,
+          "stddev": 9.09433204557223e-07,
+          "unit": "Wh"
+        },
+        "Model load": {
+          "count": 1,
+          "max": 5262.689913,
+          "mean": 5262.689913,
+          "min": 5262.689913,
+          "p50": 5262.689913,
+          "p95": 5262.689913,
+          "stddev": 0.0,
+          "unit": "ms"
+        },
+        "Prompt tok/s": {
+          "count": 3,
+          "max": 523.476252238079,
+          "mean": 277.1326064946073,
+          "min": 135.96081167081806,
+          "p50": 171.9607555749247,
+          "p95": 488.32470257176357,
+          "stddev": 214.0978580904385,
+          "unit": "tok/s"
+        },
+        "Tokens generated": {
+          "count": 3,
+          "max": 128.0,
+          "mean": 128.0,
+          "min": 128.0,
+          "p50": 128.0,
+          "p95": 128.0,
+          "stddev": 0.0,
+          "unit": "count"
+        }
+      },
+      "target": "LOKEN",
+      "url": "http://127.0.0.1:11435"
+    }
+  ],
+  "schema": "loken/2",
+  "subjects": {
+    "LOKEN": {
+      "devices": {
+        "compiled": {
+          "audio": true,
+          "cuda": true,
+          "image": true,
+          "midi": true,
+          "opencl": true,
+          "video": true
+        },
+        "devices": [
+          {
+            "backend": "rocm",
+            "name": "AMD Radeon RX 9070 XT",
+            "status": "available",
+            "type": "CUDA"
+          },
+          {
+            "backend": "cpu",
+            "name": "CPU (20 cores)",
+            "status": "available",
+            "type": "CPU"
+          }
+        ]
+      },
+      "says": {
+        "commit": "c85e5fc96",
+        "loken": "0.3.1-dev+gc85e5fc96",
+        "version": "0.3.1-dev+gc85e5fc96"
+      },
+      "url": "http://127.0.0.1:11435"
+    },
+    "Ollama": {
+      "devices": null,
+      "says": {
+        "version": "0.35.1"
+      },
+      "url": "http://127.0.0.1:11434"
+    }
+  },
+  "timestamp": "2026-10-23"
+}

@@ -28,9 +28,16 @@ def _s(value):
 
 
 def hardware_id(machine):
-    """The id of a `machine` block, or None for a record that never described one."""
+    """The id of a `machine` block, or None for a record that never described one.
+
+    A cluster, a block that lists `nodes`, is named by the sorted ids of its nodes: the same
+    machines joined in another order are the same cluster, and one node changed is another.
+    """
     if not machine:
         return None
+    if machine.get("nodes"):
+        return short_hash("loken/cluster", *sorted(hardware_id(dict(n, hardware_id=None))
+                                                    for n in machine["nodes"]))
     if machine.get("hardware_id"):
         return machine["hardware_id"]
     cards = sorted(f"{_s(g.get('name'))}/{_s(g.get('vram_mib'))}/{_s(g.get('power_cap_w'))}"

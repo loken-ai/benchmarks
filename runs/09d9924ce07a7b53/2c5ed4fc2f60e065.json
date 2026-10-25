@@ -1,0 +1,723 @@
+{
+  "config": {
+    "carbon_intensity_gco2_per_kwh": 50.0,
+    "custom_prompt": null,
+    "energy_measure": true,
+    "gpu_sample": true,
+    "iterations": 3,
+    "max_tokens": 128,
+    "models": [
+      "deepseek-r1:70b"
+    ],
+    "num_ctx": [
+      4096
+    ],
+    "num_gpu": null,
+    "prompts": [
+      "short"
+    ],
+    "session_id": null,
+    "streaming": false,
+    "unique_prompt": false,
+    "warmup": 0
+  },
+  "converted_from": "deepseek-r1_70b_4096_non-stream.json",
+  "idle_energy_baseline": null,
+  "legacy_engine_build": 1788440729,
+  "machine": {
+    "attested": "by the operator, from deepcoder_14b_4096_stream.json; driver, kernel and OS unknown",
+    "cpu": "Intel(R) Core(TM) i9-10900K CPU @ 3.70GHz",
+    "gpus": [
+      {
+        "index": 0,
+        "name": "NVIDIA GeForce RTX 5070 Ti",
+        "power_cap_w": 300,
+        "vram_mib": 16303
+      },
+      {
+        "index": 1,
+        "name": "NVIDIA GeForce RTX 5060 Ti",
+        "power_cap_w": 180,
+        "vram_mib": 16311
+      }
+    ],
+    "hardware_id": "09d9924ce07a7b53",
+    "host_id": "d4b8ae99f4bfcc54",
+    "ram_gib": 62,
+    "threads": 20
+  },
+  "ollama_version": "0.34.2",
+  "protocol": {
+    "cards_by_uuid": null,
+    "engines_alone": null,
+    "iterations": 3,
+    "max_tokens": 128,
+    "prefix_reuse_offered": false,
+    "streaming": false,
+    "thermal_gate_c": null,
+    "unique_prompt": false,
+    "warmup": 0
+  },
+  "results": [
+    {
+      "coherence_pass": true,
+      "first_response_preview": "king who was known for his wisdom and justice. He had a beautiful daughter named Princess Isabella, who was kind and lov…",
+      "iterations": [
+        {
+          "completion_tok_s": 1.296736123787565,
+          "e2e_latency_ms": 98709.3655,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 98.744972747,
+            "energy_j": 7225.165999993682,
+            "gco2_per_tok": 0.0007839806857632033,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 7225.165999993682,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 56.44660937495064,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 0.015679613715264065
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 45.31320731707318,
+              "power_peak_w": 54.07,
+              "samples": 984,
+              "util_avg_pct": 4,
+              "util_peak_pct": 99,
+              "vram_avg_mb": 13466,
+              "vram_peak_mb": 14705
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 33.69325304878056,
+              "power_peak_w": 40.102,
+              "samples": 984,
+              "util_avg_pct": 8,
+              "util_peak_pct": 100,
+              "vram_avg_mb": 13567,
+              "vram_peak_mb": 14521
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 1,
+            "cpu_peak_pct": 108,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 67,
+            "rss_peak_mb": 396,
+            "samples": 487,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 1,
+          "load_time_ms": 15417.326842,
+          "prompt_tok_s": 10.97995403516742,
+          "prompt_tokens": 16,
+          "response_preview": "king who was known for his wisdom and justice. He had a beautiful daughter named Princess Isabella, who was kind and lov…",
+          "server_decode_tok_s": 1.5641996923805779,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 98709.3655
+        },
+        {
+          "completion_tok_s": 1.5510728454204499,
+          "e2e_latency_ms": 82523.525815,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 82.563624624,
+            "energy_j": 6326.157000005245,
+            "gco2_per_tok": 0.0006864319661464024,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 6326.157000005245,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 49.42310156254098,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 0.01372863932292805
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 47.15701454545458,
+              "power_peak_w": 49.848,
+              "samples": 825,
+              "util_avg_pct": 2,
+              "util_peak_pct": 18,
+              "vram_avg_mb": 14415,
+              "vram_peak_mb": 14415
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 35.64083999999993,
+              "power_peak_w": 38.411,
+              "samples": 825,
+              "util_avg_pct": 4,
+              "util_peak_pct": 35,
+              "vram_avg_mb": 14521,
+              "vram_peak_mb": 14521
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 0,
+            "cpu_peak_pct": 98,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 63,
+            "rss_peak_mb": 66,
+            "samples": 408,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 2,
+          "load_time_ms": 277.040348,
+          "prompt_tok_s": 24.948426923718625,
+          "prompt_tokens": 16,
+          "response_preview": "king who was known for his wisdom and justice. He had a beautiful daughter named Princess Isabella, who was kind and lov…",
+          "server_decode_tok_s": 1.5688726642397024,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 82523.525815
+        },
+        {
+          "completion_tok_s": 1.551027071007589,
+          "e2e_latency_ms": 82525.961276,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 82.566977153,
+            "energy_j": 6570.100999996066,
+            "gco2_per_tok": 0.0007129015842009621,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 6570.100999996066,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 51.328914062469266,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 0.014258031684019241
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 49.18535072815529,
+              "power_peak_w": 51.874,
+              "samples": 824,
+              "util_avg_pct": 3,
+              "util_peak_pct": 18,
+              "vram_avg_mb": 14415,
+              "vram_peak_mb": 14415
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 37.36305825242728,
+              "power_peak_w": 40.0,
+              "samples": 824,
+              "util_avg_pct": 5,
+              "util_peak_pct": 36,
+              "vram_avg_mb": 14521,
+              "vram_peak_mb": 14521
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 0,
+            "cpu_peak_pct": 104,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 65,
+            "rss_peak_mb": 66,
+            "samples": 407,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 3,
+          "load_time_ms": 269.320454,
+          "prompt_tok_s": 24.952084200808134,
+          "prompt_tokens": 16,
+          "response_preview": "king who was known for his wisdom and justice. He had a beautiful daughter named Princess Isabella, who was kind and lov…",
+          "server_decode_tok_s": 1.568365653081365,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 82525.961276
+        }
+      ],
+      "load_time_ms": 105268.747131,
+      "model": "deepseek-r1:70b",
+      "model_fingerprint": {
+        "modified_at": "2026-03-01",
+        "parameter_size": "70.6B",
+        "quantization_level": "Q4_K_M"
+      },
+      "num_ctx": 4096,
+      "prompt": "short",
+      "prompt_chars": 58,
+      "stats": {
+        "Carbon gCO2/tok [gpu]": {
+          "count": 3,
+          "max": 0.0007839806857632033,
+          "mean": 0.0007277714120368559,
+          "min": 0.0006864319661464024,
+          "p50": 0.0007129015842009621,
+          "p95": 0.0007768727756069791,
+          "stddev": 5.044573331433641e-05,
+          "unit": "g"
+        },
+        "Completion tok/s": {
+          "count": 3,
+          "max": 1.5510728454204499,
+          "mean": 1.4662786800718681,
+          "min": 1.296736123787565,
+          "p50": 1.551027071007589,
+          "p95": 1.5510682679791639,
+          "stddev": 0.14682816254855965,
+          "unit": "tok/s"
+        },
+        "E2E latency": {
+          "count": 3,
+          "max": 98709.3655,
+          "mean": 87919.61753033334,
+          "min": 82523.525815,
+          "p50": 82525.961276,
+          "p95": 97091.02507759999,
+          "stddev": 9344.195921509889,
+          "unit": "ms"
+        },
+        "Energy J/tok [gpu]": {
+          "count": 3,
+          "max": 56.44660937495064,
+          "mean": 52.399541666653626,
+          "min": 49.42310156254098,
+          "p50": 51.328914062469266,
+          "p95": 55.934839843702505,
+          "stddev": 3.632092798632222,
+          "unit": "J"
+        },
+        "Energy Wh/tok [gpu]": {
+          "count": 3,
+          "max": 0.015679613715264065,
+          "mean": 0.01455542824073712,
+          "min": 0.01372863932292805,
+          "p50": 0.014258031684019241,
+          "p95": 0.015537455512139583,
+          "stddev": 0.0010089146662867273,
+          "unit": "Wh"
+        },
+        "Model load": {
+          "count": 1,
+          "max": 105268.747131,
+          "mean": 105268.747131,
+          "min": 105268.747131,
+          "p50": 105268.747131,
+          "p95": 105268.747131,
+          "stddev": 0.0,
+          "unit": "ms"
+        },
+        "Prompt tok/s": {
+          "count": 3,
+          "max": 24.952084200808134,
+          "mean": 20.29348838656473,
+          "min": 10.97995403516742,
+          "p50": 24.948426923718625,
+          "p95": 24.951718473099184,
+          "stddev": 8.06575755462016,
+          "unit": "tok/s"
+        },
+        "Tokens generated": {
+          "count": 3,
+          "max": 128.0,
+          "mean": 128.0,
+          "min": 128.0,
+          "p50": 128.0,
+          "p95": 128.0,
+          "stddev": 0.0,
+          "unit": "count"
+        }
+      },
+      "target": "Ollama",
+      "url": "http://127.0.0.1:11434"
+    },
+    {
+      "coherence_pass": true,
+      "first_response_preview": "king who was known for his wisdom and justice. He had a beautiful daughter named Princess Isabella, who was kind and lov…",
+      "iterations": [
+        {
+          "completion_tok_s": 1.347851594877184,
+          "e2e_latency_ms": 94965.94468300001,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 94.992362386,
+            "energy_j": 7491.024000003934,
+            "gco2_per_tok": 0.0008128281250004268,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 7491.024000003934,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 58.523625000030734,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 0.016256562500008537
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 49.28714994720169,
+              "power_peak_w": 52.999,
+              "samples": 947,
+              "util_avg_pct": 2,
+              "util_peak_pct": 18,
+              "vram_avg_mb": 14628,
+              "vram_peak_mb": 14629
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 36.07727771911302,
+              "power_peak_w": 42.23,
+              "samples": 947,
+              "util_avg_pct": 4,
+              "util_peak_pct": 42,
+              "vram_avg_mb": 15018,
+              "vram_peak_mb": 15019
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 806,
+            "cpu_peak_pct": 966,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 51887,
+            "rss_peak_mb": 52899,
+            "samples": 469,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 1,
+          "load_time_ms": 14.567358,
+          "prompt_tok_s": 1.7910157304554521,
+          "prompt_tokens": 16,
+          "response_preview": "king who was known for his wisdom and justice. He had a beautiful daughter named Princess Isabella, who was kind and lov…",
+          "server_decode_tok_s": 1.4880731725872263,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 94965.94468300001
+        },
+        {
+          "completion_tok_s": 1.4692614757232454,
+          "e2e_latency_ms": 87118.598095,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 87.161299992,
+            "energy_j": 6797.776999995112,
+            "gco2_per_tok": 0.0007376060112841919,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 6797.776999995112,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 53.107632812461816,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 0.014752120225683838
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 51.40392520138082,
+              "power_peak_w": 58.527,
+              "samples": 869,
+              "util_avg_pct": 2,
+              "util_peak_pct": 18,
+              "vram_avg_mb": 14629,
+              "vram_peak_mb": 14661
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 32.75080092059831,
+              "power_peak_w": 36.921,
+              "samples": 869,
+              "util_avg_pct": 5,
+              "util_peak_pct": 42,
+              "vram_avg_mb": 15019,
+              "vram_peak_mb": 15019
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 869,
+            "cpu_peak_pct": 966,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 53154,
+            "rss_peak_mb": 53157,
+            "samples": 430,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 2,
+          "load_time_ms": 16.321947,
+          "prompt_tok_s": 14.062729482046793,
+          "prompt_tokens": 16,
+          "response_preview": "king who was known for his wisdom and justice. He had a beautiful daughter named Princess Isabella, who was kind and lov…",
+          "server_decode_tok_s": 1.4890007611951503,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 87118.598095
+        },
+        {
+          "completion_tok_s": 1.4702237134082015,
+          "e2e_latency_ms": 87061.580379,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 87.109537737,
+            "energy_j": 6402.336999997497,
+            "gco2_per_tok": 0.0006946980251733394,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 6402.336999997497,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 50.01825781248044,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 0.01389396050346679
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 45.820144994246256,
+              "power_peak_w": 49.924,
+              "samples": 869,
+              "util_avg_pct": 1,
+              "util_peak_pct": 18,
+              "vram_avg_mb": 14629,
+              "vram_peak_mb": 14629
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 33.22879976985043,
+              "power_peak_w": 36.118,
+              "samples": 869,
+              "util_avg_pct": 5,
+              "util_peak_pct": 36,
+              "vram_avg_mb": 15019,
+              "vram_peak_mb": 15051
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 867,
+            "cpu_peak_pct": 962,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 53159,
+            "rss_peak_mb": 53163,
+            "samples": 431,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 3,
+          "load_time_ms": 12.908933,
+          "prompt_tok_s": 14.976546162409015,
+          "prompt_tokens": 16,
+          "response_preview": "king who was known for his wisdom and justice. He had a beautiful daughter named Princess Isabella, who was kind and lov…",
+          "server_decode_tok_s": 1.4887266735107942,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 87061.580379
+        }
+      ],
+      "load_time_ms": 31783.638804,
+      "model": "deepseek-r1:70b",
+      "model_fingerprint": {
+        "modified_at": "",
+        "parameter_size": "70.6B",
+        "quantization_level": "Q4_K_M"
+      },
+      "num_ctx": 4096,
+      "prompt": "short",
+      "prompt_chars": 58,
+      "stats": {
+        "Carbon gCO2/tok [gpu]": {
+          "count": 3,
+          "max": 0.0008128281250004268,
+          "mean": 0.0007483773871526529,
+          "min": 0.0006946980251733394,
+          "p50": 0.0007376060112841919,
+          "p95": 0.0008053059136288033,
+          "stddev": 5.9797132246155016e-05,
+          "unit": "g"
+        },
+        "Completion tok/s": {
+          "count": 3,
+          "max": 1.4702237134082015,
+          "mean": 1.4291122613362104,
+          "min": 1.347851594877184,
+          "p50": 1.4692614757232454,
+          "p95": 1.4701274896397059,
+          "stddev": 0.07037544607577574,
+          "unit": "tok/s"
+        },
+        "E2E latency": {
+          "count": 3,
+          "max": 94965.94468300001,
+          "mean": 89715.37438566667,
+          "min": 87061.580379,
+          "p50": 87118.598095,
+          "p95": 94181.2100242,
+          "stddev": 4547.216631128738,
+          "unit": "ms"
+        },
+        "Energy J/tok [gpu]": {
+          "count": 3,
+          "max": 58.523625000030734,
+          "mean": 53.883171874991,
+          "min": 50.01825781248044,
+          "p50": 53.107632812461816,
+          "p95": 57.98202578127384,
+          "stddev": 4.305393521723162,
+          "unit": "J"
+        },
+        "Energy Wh/tok [gpu]": {
+          "count": 3,
+          "max": 0.016256562500008537,
+          "mean": 0.014967547743053056,
+          "min": 0.01389396050346679,
+          "p50": 0.014752120225683838,
+          "p95": 0.01610611827257607,
+          "stddev": 0.0011959426449231004,
+          "unit": "Wh"
+        },
+        "Model load": {
+          "count": 1,
+          "max": 31783.638804,
+          "mean": 31783.638804,
+          "min": 31783.638804,
+          "p50": 31783.638804,
+          "p95": 31783.638804,
+          "stddev": 0.0,
+          "unit": "ms"
+        },
+        "Prompt tok/s": {
+          "count": 3,
+          "max": 14.976546162409015,
+          "mean": 10.276763791637087,
+          "min": 1.7910157304554521,
+          "p50": 14.062729482046793,
+          "p95": 14.885164494372793,
+          "stddev": 7.363063584521932,
+          "unit": "tok/s"
+        },
+        "Tokens generated": {
+          "count": 3,
+          "max": 128.0,
+          "mean": 128.0,
+          "min": 128.0,
+          "p50": 128.0,
+          "p95": 128.0,
+          "stddev": 0.0,
+          "unit": "count"
+        }
+      },
+      "target": "LOKEN",
+      "url": "http://127.0.0.1:11435"
+    }
+  ],
+  "schema": "loken/2",
+  "subjects": null,
+  "timestamp": "2026-09-03",
+  "vllm_version": null
+}

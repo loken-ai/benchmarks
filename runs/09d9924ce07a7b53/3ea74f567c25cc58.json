@@ -1,0 +1,723 @@
+{
+  "config": {
+    "carbon_intensity_gco2_per_kwh": 50.0,
+    "custom_prompt": null,
+    "energy_measure": true,
+    "gpu_sample": true,
+    "iterations": 3,
+    "max_tokens": 128,
+    "models": [
+      "falcon3:latest"
+    ],
+    "num_ctx": [
+      131072
+    ],
+    "num_gpu": null,
+    "prompts": [
+      "short"
+    ],
+    "session_id": null,
+    "streaming": false,
+    "unique_prompt": false,
+    "warmup": 0
+  },
+  "converted_from": "falcon3_latest_131072_non-stream.json",
+  "idle_energy_baseline": null,
+  "legacy_engine_build": 1788498694,
+  "machine": {
+    "attested": "by the operator, from deepcoder_14b_4096_stream.json; driver, kernel and OS unknown",
+    "cpu": "Intel(R) Core(TM) i9-10900K CPU @ 3.70GHz",
+    "gpus": [
+      {
+        "index": 0,
+        "name": "NVIDIA GeForce RTX 5070 Ti",
+        "power_cap_w": 300,
+        "vram_mib": 16303
+      },
+      {
+        "index": 1,
+        "name": "NVIDIA GeForce RTX 5060 Ti",
+        "power_cap_w": 180,
+        "vram_mib": 16311
+      }
+    ],
+    "hardware_id": "09d9924ce07a7b53",
+    "host_id": "d4b8ae99f4bfcc54",
+    "ram_gib": 62,
+    "threads": 20
+  },
+  "ollama_version": "0.34.2",
+  "protocol": {
+    "cards_by_uuid": null,
+    "engines_alone": null,
+    "iterations": 3,
+    "max_tokens": 128,
+    "prefix_reuse_offered": false,
+    "streaming": false,
+    "thermal_gate_c": null,
+    "unique_prompt": false,
+    "warmup": 0
+  },
+  "results": [
+    {
+      "coherence_pass": true,
+      "first_response_preview": "kind and gentle king named King Leo. King Leo loved his people dearly and wanted to make sure they were safe and happy. …",
+      "iterations": [
+        {
+          "completion_tok_s": 162.23675119364486,
+          "e2e_latency_ms": 788.970434,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 0.815427216,
+            "energy_j": 105.17599999904633,
+            "gco2_per_tok": 1.141232638878541e-05,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 105.17599999904633,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.8216874999925494,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 0.00022824652777570818
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 44.87166666666667,
+              "power_peak_w": 54.337,
+              "samples": 9,
+              "util_avg_pct": 7,
+              "util_peak_pct": 22,
+              "vram_avg_mb": 1437,
+              "vram_peak_mb": 1437
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 36.126666666666665,
+              "power_peak_w": 51.606,
+              "samples": 9,
+              "util_avg_pct": 16,
+              "util_peak_pct": 48,
+              "vram_avg_mb": 1429,
+              "vram_peak_mb": 1429
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 19,
+            "cpu_peak_pct": 99,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 58,
+            "rss_peak_mb": 58,
+            "samples": 5,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 1,
+          "load_time_ms": 150.599704,
+          "prompt_tok_s": 407.23866731146126,
+          "prompt_tokens": 16,
+          "response_preview": "kind and gentle king named King Leo. King Leo loved his people dearly and wanted to make sure they were safe and happy. …",
+          "server_decode_tok_s": 214.26431176796515,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 788.970434
+        },
+        {
+          "completion_tok_s": 167.9220596372125,
+          "e2e_latency_ms": 762.258397,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 0.785044351,
+            "energy_j": 105.31399999558926,
+            "gco2_per_tok": 1.1427300346743625e-05,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 105.31399999558926,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.8227656249655411,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 0.0002285460069348725
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 64.14766666666668,
+              "power_peak_w": 64.821,
+              "samples": 9,
+              "util_avg_pct": 7,
+              "util_peak_pct": 23,
+              "vram_avg_mb": 1437,
+              "vram_peak_mb": 1437
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 62.074999999999996,
+              "power_peak_w": 63.989,
+              "samples": 9,
+              "util_avg_pct": 16,
+              "util_peak_pct": 48,
+              "vram_avg_mb": 1429,
+              "vram_peak_mb": 1429
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 18,
+            "cpu_peak_pct": 89,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 58,
+            "rss_peak_mb": 58,
+            "samples": 5,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 2,
+          "load_time_ms": 150.911926,
+          "prompt_tok_s": 3194.8881789137376,
+          "prompt_tokens": 16,
+          "response_preview": "kind and gentle king named King Leo. King Leo loved his people dearly and wanted them to be happy and healthy. So he mad…",
+          "server_decode_tok_s": 213.1667080232285,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 762.258397
+        },
+        {
+          "completion_tok_s": 168.80098032751835,
+          "e2e_latency_ms": 758.289435,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 0.784560722,
+            "energy_j": 106.00100000202656,
+            "gco2_per_tok": 1.1501844618275451e-05,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 106.00100000202656,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.8281328125158325,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 0.00023003689236550902
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 62.65200000000001,
+              "power_peak_w": 64.836,
+              "samples": 9,
+              "util_avg_pct": 7,
+              "util_peak_pct": 22,
+              "vram_avg_mb": 1437,
+              "vram_peak_mb": 1437
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 59.91966666666666,
+              "power_peak_w": 62.527,
+              "samples": 9,
+              "util_avg_pct": 16,
+              "util_peak_pct": 48,
+              "vram_avg_mb": 1429,
+              "vram_peak_mb": 1429
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 19,
+            "cpu_peak_pct": 89,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 58,
+            "rss_peak_mb": 58,
+            "samples": 5,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 3,
+          "load_time_ms": 145.868804,
+          "prompt_tok_s": 3067.4846625766872,
+          "prompt_tokens": 16,
+          "response_preview": "kind and gentle king named King Leo. King Leo loved his people dearly and wanted them to be happy and healthy. So he mad…",
+          "server_decode_tok_s": 212.97801501162226,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 758.289435
+        }
+      ],
+      "load_time_ms": 6641.8495330000005,
+      "model": "falcon3:latest",
+      "model_fingerprint": {
+        "modified_at": "2026-07-07",
+        "parameter_size": "1.2B",
+        "quantization_level": "Q8_0"
+      },
+      "num_ctx": 131072,
+      "prompt": "short",
+      "prompt_chars": 58,
+      "stats": {
+        "Carbon gCO2/tok [gpu]": {
+          "count": 3,
+          "max": 1.1501844618275451e-05,
+          "mean": 1.1447157117934828e-05,
+          "min": 1.141232638878541e-05,
+          "p50": 1.1427300346743625e-05,
+          "p95": 1.1494390191122268e-05,
+          "stddev": 4.794889857298941e-08,
+          "unit": "g"
+        },
+        "Completion tok/s": {
+          "count": 3,
+          "max": 168.80098032751835,
+          "mean": 166.31993038612524,
+          "min": 162.23675119364486,
+          "p50": 167.9220596372125,
+          "p95": 168.71308825848777,
+          "stddev": 3.5633396741526657,
+          "unit": "tok/s"
+        },
+        "E2E latency": {
+          "count": 3,
+          "max": 788.970434,
+          "mean": 769.839422,
+          "min": 758.289435,
+          "p50": 762.258397,
+          "p95": 786.2992303,
+          "stddev": 16.68636808737804,
+          "unit": "ms"
+        },
+        "Energy J/tok [gpu]": {
+          "count": 3,
+          "max": 0.8281328125158325,
+          "mean": 0.8241953124913076,
+          "min": 0.8216874999925494,
+          "p50": 0.8227656249655411,
+          "p95": 0.8275960937608033,
+          "stddev": 0.003452320697255228,
+          "unit": "J"
+        },
+        "Energy Wh/tok [gpu]": {
+          "count": 3,
+          "max": 0.00023003689236550902,
+          "mean": 0.00022894314235869656,
+          "min": 0.00022824652777570818,
+          "p50": 0.0002285460069348725,
+          "p95": 0.00022988780382244536,
+          "stddev": 9.589779714597814e-07,
+          "unit": "Wh"
+        },
+        "Model load": {
+          "count": 1,
+          "max": 6641.8495330000005,
+          "mean": 6641.8495330000005,
+          "min": 6641.8495330000005,
+          "p50": 6641.8495330000005,
+          "p95": 6641.8495330000005,
+          "stddev": 0.0,
+          "unit": "ms"
+        },
+        "Prompt tok/s": {
+          "count": 3,
+          "max": 3194.8881789137376,
+          "mean": 2223.203836267295,
+          "min": 407.23866731146126,
+          "p50": 3067.4846625766872,
+          "p95": 3182.1478272800327,
+          "stddev": 1573.9615735904592,
+          "unit": "tok/s"
+        },
+        "Tokens generated": {
+          "count": 3,
+          "max": 128.0,
+          "mean": 128.0,
+          "min": 128.0,
+          "p50": 128.0,
+          "p95": 128.0,
+          "stddev": 0.0,
+          "unit": "count"
+        }
+      },
+      "target": "Ollama",
+      "url": "http://127.0.0.1:11434"
+    },
+    {
+      "coherence_pass": true,
+      "first_response_preview": "kind and gentle king named King Leo. King Leo loved his people dearly and wanted to make sure they were safe and happy. …",
+      "iterations": [
+        {
+          "completion_tok_s": 304.03726740605697,
+          "e2e_latency_ms": 421.001021,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 0.446306902,
+            "energy_j": 76.0109999999404,
+            "gco2_per_tok": 8.2477213541602e-06,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 76.0109999999404,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.5938359374995343,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 0.000164954427083204
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 52.5748,
+              "power_peak_w": 52.996,
+              "samples": 5,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 2916,
+              "vram_peak_mb": 2965
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 27.019,
+              "power_peak_w": 27.019,
+              "samples": 5,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 155,
+              "vram_peak_mb": 155
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 69,
+            "cpu_peak_pct": 99,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 3233,
+            "rss_peak_mb": 3233,
+            "samples": 3,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 1,
+          "load_time_ms": 14.250147,
+          "prompt_tok_s": 144.0897593899862,
+          "prompt_tokens": 15,
+          "response_preview": "kind and gentle king named King Leo. King Leo loved his people dearly and wanted to make sure they were safe and happy. …",
+          "server_decode_tok_s": 423.50606350174326,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 421.001021
+        },
+        {
+          "completion_tok_s": 399.40479200128,
+          "e2e_latency_ms": 320.476876,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 0.342694257,
+            "energy_j": 68.40399999916553,
+            "gco2_per_tok": 7.4223090276872324e-06,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 68.40399999916553,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.5344062499934807,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 0.00014844618055374464
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 100.631,
+              "power_peak_w": 100.631,
+              "samples": 4,
+              "util_avg_pct": 5,
+              "util_peak_pct": 5,
+              "vram_avg_mb": 2961,
+              "vram_peak_mb": 2965
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 26.845,
+              "power_peak_w": 26.845,
+              "samples": 4,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 155,
+              "vram_peak_mb": 155
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 51,
+            "cpu_peak_pct": 84,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 3233,
+            "rss_peak_mb": 3233,
+            "samples": 3,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 2,
+          "load_time_ms": 10.066102,
+          "prompt_tok_s": 2977.7951769247074,
+          "prompt_tokens": 15,
+          "response_preview": "kind and gentle king named King Leo. King Leo loved his people dearly and wanted to make sure they were safe and happy. …",
+          "server_decode_tok_s": 419.70984723768225,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 320.476876
+        },
+        {
+          "completion_tok_s": 399.53083468642933,
+          "e2e_latency_ms": 320.375773,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 0.343301571,
+            "energy_j": 65.59899999946356,
+            "gco2_per_tok": 7.117947048552905e-06,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 65.59899999946356,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.512492187495809,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 0.00014235894097105808
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 140.201,
+              "power_peak_w": 140.201,
+              "samples": 4,
+              "util_avg_pct": 7,
+              "util_peak_pct": 7,
+              "vram_avg_mb": 2957,
+              "vram_peak_mb": 2965
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 26.845,
+              "power_peak_w": 26.845,
+              "samples": 4,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 155,
+              "vram_peak_mb": 155
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 52,
+            "cpu_peak_pct": 89,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 3233,
+            "rss_peak_mb": 3233,
+            "samples": 3,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 3,
+          "load_time_ms": 10.957559,
+          "prompt_tok_s": 3325.4033547999206,
+          "prompt_tokens": 15,
+          "response_preview": "kind and gentle king named King Leo. King Leo loved his people dearly and wanted to make sure they were safe and happy. …",
+          "server_decode_tok_s": 420.37634422109704,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 320.375773
+        }
+      ],
+      "load_time_ms": 2228.314085,
+      "model": "falcon3:latest",
+      "model_fingerprint": {
+        "modified_at": "",
+        "parameter_size": "1.2B",
+        "quantization_level": "Q8_0"
+      },
+      "num_ctx": 131072,
+      "prompt": "short",
+      "prompt_chars": 58,
+      "stats": {
+        "Carbon gCO2/tok [gpu]": {
+          "count": 3,
+          "max": 8.2477213541602e-06,
+          "mean": 7.595992476800112e-06,
+          "min": 7.117947048552905e-06,
+          "p50": 7.4223090276872324e-06,
+          "p95": 8.165180121512903e-06,
+          "stddev": 5.845698852784165e-07,
+          "unit": "g"
+        },
+        "Completion tok/s": {
+          "count": 3,
+          "max": 399.53083468642933,
+          "mean": 367.6576313645887,
+          "min": 304.03726740605697,
+          "p50": 399.40479200128,
+          "p95": 399.5182304179144,
+          "stddev": 55.09688742888893,
+          "unit": "tok/s"
+        },
+        "E2E latency": {
+          "count": 3,
+          "max": 421.001021,
+          "mean": 353.9512233333333,
+          "min": 320.375773,
+          "p50": 320.476876,
+          "p95": 410.9486065,
+          "stddev": 58.066850102359226,
+          "unit": "ms"
+        },
+        "Energy J/tok [gpu]": {
+          "count": 3,
+          "max": 0.5938359374995343,
+          "mean": 0.5469114583296081,
+          "min": 0.512492187495809,
+          "p50": 0.5344062499934807,
+          "p95": 0.5878929687489289,
+          "stddev": 0.04208903174004601,
+          "unit": "J"
+        },
+        "Energy Wh/tok [gpu]": {
+          "count": 3,
+          "max": 0.000164954427083204,
+          "mean": 0.00015191984953600223,
+          "min": 0.00014235894097105808,
+          "p50": 0.00014844618055374464,
+          "p95": 0.00016330360243025805,
+          "stddev": 1.1691397705568336e-05,
+          "unit": "Wh"
+        },
+        "Model load": {
+          "count": 1,
+          "max": 2228.314085,
+          "mean": 2228.314085,
+          "min": 2228.314085,
+          "p50": 2228.314085,
+          "p95": 2228.314085,
+          "stddev": 0.0,
+          "unit": "ms"
+        },
+        "Prompt tok/s": {
+          "count": 3,
+          "max": 3325.4033547999206,
+          "mean": 2149.096097038205,
+          "min": 144.0897593899862,
+          "p50": 2977.7951769247074,
+          "p95": 3290.6425370123993,
+          "stddev": 1745.0632286076552,
+          "unit": "tok/s"
+        },
+        "Tokens generated": {
+          "count": 3,
+          "max": 128.0,
+          "mean": 128.0,
+          "min": 128.0,
+          "p50": 128.0,
+          "p95": 128.0,
+          "stddev": 0.0,
+          "unit": "count"
+        }
+      },
+      "target": "LOKEN",
+      "url": "http://127.0.0.1:11435"
+    }
+  ],
+  "schema": "loken/2",
+  "subjects": null,
+  "timestamp": "2026-09-04",
+  "vllm_version": null
+}

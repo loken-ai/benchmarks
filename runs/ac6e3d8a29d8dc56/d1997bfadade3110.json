@@ -1,0 +1,679 @@
+{
+  "config": {
+    "carbon_intensity_gco2_per_kwh": 50.0,
+    "custom_prompt": null,
+    "energy_measure": true,
+    "gpu_sample": true,
+    "iterations": 3,
+    "max_tokens": 128,
+    "models": [
+      "gemma3:latest"
+    ],
+    "num_ctx": [
+      131072
+    ],
+    "num_gpu": null,
+    "prompts": [
+      "medium"
+    ],
+    "session_id": null,
+    "streaming": false,
+    "unique_prompt": false,
+    "warmup": 0
+  },
+  "engine_build": 1792564833,
+  "idle_energy_baseline": null,
+  "machine": {
+    "cpu": "Intel(R) Core(TM) i9-10900K CPU @ 3.70GHz",
+    "driver": "610.43.02",
+    "gpus": [
+      {
+        "index": 0,
+        "name": "NVIDIA GeForce GTX 1650",
+        "power_cap_w": 75,
+        "vram_mib": 4096
+      }
+    ],
+    "kernel": "6.12.90+deb13.1-amd64",
+    "os": "Debian GNU/Linux 13 (trixie)",
+    "ram_gib": 62,
+    "threads": 20
+  },
+  "ollama_version": "0.35.1",
+  "protocol": {
+    "cards_by_uuid": null,
+    "engines_seen": [
+      "llama-server",
+      "ollama"
+    ],
+    "gpu_temps_c_at_start": [
+      32
+    ],
+    "iterations": 3,
+    "max_tokens": 128,
+    "prefix_reuse_offered": false,
+    "streaming": false,
+    "unique_prompt": false,
+    "warmup": 0
+  },
+  "results": [
+    {
+      "coherence_pass": true,
+      "first_response_preview": "the invention of the electronic digital computer in the 1940s, with machines like the ENIAC and Colossus. The developmen...",
+      "iteration_errors": [],
+      "iterations": [
+        {
+          "completion_tok_s": 25.510796840575427,
+          "degenerate": false,
+          "e2e_latency_ms": 5017.483413,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 5.037143322,
+            "energy_j": 14.934999999590218,
+            "gco2_per_tok": 1.6205512152333135e-06,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 14.934999999590218,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.11667968749679858,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied - run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 3.241102430466627e-05
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce GTX 1650",
+              "power_avg_w": 7.156854166666666,
+              "power_peak_w": 7.894,
+              "samples": 48,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 16,
+              "vram_peak_mb": 16
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 2,
+            "cpu_peak_pct": 34,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 42,
+            "rss_peak_mb": 42,
+            "samples": 25,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 1,
+          "load_time_ms": 3634.12504,
+          "prompt_tok_s": 807.962099232436,
+          "prompt_tokens": 44,
+          "response_preview": "the invention of the electronic digital computer in the 1940s, with machines like the ENIAC and Colossus. The developmen...",
+          "server_decode_tok_s": 96.4146553289058,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 5017.483413
+        },
+        {
+          "completion_tok_s": 96.44885285158546,
+          "degenerate": false,
+          "e2e_latency_ms": 1327.128278,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 1.34595258,
+            "energy_j": 4.990000000223517,
+            "gco2_per_tok": 5.414496528020311e-07,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 4.990000000223517,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.03898437500174623,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied - run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 1.082899305604062e-05
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce GTX 1650",
+              "power_avg_w": 6.9440769230769215,
+              "power_peak_w": 7.14,
+              "samples": 13,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 16,
+              "vram_peak_mb": 16
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 0,
+            "cpu_peak_pct": 4,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 42,
+            "rss_peak_mb": 42,
+            "samples": 7,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 2,
+          "load_time_ms": 1.992826,
+          "prompt_tok_s": 1271.860095389507,
+          "prompt_tokens": 44,
+          "response_preview": "the invention of the electronic digital computer in the 1930s and 1940s, with machines like the ENIAC and Colossus. The ...",
+          "server_decode_tok_s": 99.84812164621471,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 1327.128278
+        },
+        {
+          "completion_tok_s": 90.62844249350925,
+          "degenerate": false,
+          "e2e_latency_ms": 1412.3601429999999,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 1.448144028,
+            "energy_j": 4.350000000093132,
+            "gco2_per_tok": 4.720052083434388e-07,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 4.350000000093132,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.033984375000727596,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied - run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 9.440104166868776e-06
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce GTX 1650",
+              "power_avg_w": 6.945285714285714,
+              "power_peak_w": 7.096,
+              "samples": 14,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 16,
+              "vram_peak_mb": 16
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 1,
+            "cpu_peak_pct": 4,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 42,
+            "rss_peak_mb": 42,
+            "samples": 8,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 3,
+          "load_time_ms": 9.539749,
+          "prompt_tok_s": 1181.9060921886753,
+          "prompt_tokens": 44,
+          "response_preview": "the invention of the electronic digital computer in the 1930s and 1940s, with machines like the ENIAC and Colossus. The ...",
+          "server_decode_tok_s": 96.12416839452362,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 1412.3601429999999
+        }
+      ],
+      "load_error": null,
+      "load_time_ms": 3079.365105,
+      "model": "gemma3:latest",
+      "model_fingerprint": {
+        "modified_at": "2026-09-29",
+        "parameter_size": "4.3B",
+        "quantization_level": "Q4_K_M"
+      },
+      "num_ctx": 131072,
+      "prompt": "medium",
+      "prompt_chars": 236,
+      "stats": {
+        "Carbon gCO2/tok [gpu]": {
+          "count": 3,
+          "max": 1.6205512152333135e-06,
+          "mean": 8.780020254595945e-07,
+          "min": 4.720052083434388e-07,
+          "p50": 5.414496528020311e-07,
+          "p95": 1.5126410589901851e-06,
+          "stddev": 6.440031887667526e-07,
+          "unit": "g"
+        },
+        "Completion tok/s": {
+          "count": 3,
+          "max": 96.44885285158546,
+          "mean": 70.86269739522338,
+          "min": 25.510796840575427,
+          "p50": 90.62844249350925,
+          "p95": 95.86681181577784,
+          "stddev": 39.383568364523654,
+          "unit": "tok/s"
+        },
+        "E2E latency": {
+          "count": 3,
+          "max": 5017.483413,
+          "mean": 2585.657278,
+          "min": 1327.128278,
+          "p50": 1412.3601429999999,
+          "p95": 4656.9710860000005,
+          "stddev": 2106.4543386588334,
+          "unit": "ms"
+        },
+        "Energy J/tok [gpu]": {
+          "count": 3,
+          "max": 0.11667968749679858,
+          "mean": 0.0632161458330908,
+          "min": 0.033984375000727596,
+          "p50": 0.03898437500174623,
+          "p95": 0.10891015624729333,
+          "stddev": 0.04636822959120619,
+          "unit": "J"
+        },
+        "Energy Wh/tok [gpu]": {
+          "count": 3,
+          "max": 3.241102430466627e-05,
+          "mean": 1.7560040509191892e-05,
+          "min": 9.440104166868776e-06,
+          "p50": 1.082899305604062e-05,
+          "p95": 3.0252821179803702e-05,
+          "stddev": 1.2880063775335053e-05,
+          "unit": "Wh"
+        },
+        "Model load": {
+          "count": 1,
+          "max": 3079.365105,
+          "mean": 3079.365105,
+          "min": 3079.365105,
+          "p50": 3079.365105,
+          "p95": 3079.365105,
+          "stddev": 0.0,
+          "unit": "ms"
+        },
+        "Prompt tok/s": {
+          "count": 3,
+          "max": 1271.860095389507,
+          "mean": 1087.242762270206,
+          "min": 807.962099232436,
+          "p50": 1181.9060921886753,
+          "p95": 1262.8646950694238,
+          "stddev": 246.01056325506872,
+          "unit": "tok/s"
+        },
+        "Tokens generated": {
+          "count": 3,
+          "max": 128.0,
+          "mean": 128.0,
+          "min": 128.0,
+          "p50": 128.0,
+          "p95": 128.0,
+          "stddev": 0.0,
+          "unit": "count"
+        }
+      },
+      "target": "Ollama",
+      "url": "http://127.0.0.1:11434"
+    },
+    {
+      "coherence_pass": true,
+      "first_response_preview": "the development of electronic computers during World War II, such as ENIAC and Colossus. In the late 20th century, micro...",
+      "iteration_errors": [],
+      "iterations": [
+        {
+          "completion_tok_s": 53.63639543840342,
+          "degenerate": false,
+          "e2e_latency_ms": 2386.4392629999998,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 2.405391071,
+            "energy_j": 8.223000000230968,
+            "gco2_per_tok": 8.922526041917283e-07,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 8.223000000230968,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.06424218750180444,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied - run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 1.7845052083834566e-05
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce GTX 1650",
+              "power_avg_w": 7.015695652173914,
+              "power_peak_w": 7.32,
+              "samples": 23,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 16,
+              "vram_peak_mb": 16
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 121,
+            "cpu_peak_pct": 201,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 1391,
+            "rss_peak_mb": 1408,
+            "samples": 13,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 1,
+          "load_time_ms": 91.9915,
+          "prompt_tok_s": 349.8776422222797,
+          "prompt_tokens": 44,
+          "response_preview": "the development of electronic computers during World War II, such as ENIAC and Colossus. In the late 20th century, micro...",
+          "server_decode_tok_s": 76.81427753121615,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 2386.4392629999998
+        },
+        {
+          "completion_tok_s": 77.65404560781896,
+          "degenerate": false,
+          "e2e_latency_ms": 1648.3365290000002,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 1.667652578,
+            "energy_j": 5.406999999657273,
+            "gco2_per_tok": 5.866970485739229e-07,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 5.406999999657273,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.04224218749732245,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied - run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 1.1733940971478458e-05
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce GTX 1650",
+              "power_avg_w": 6.980812500000001,
+              "power_peak_w": 7.209,
+              "samples": 16,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 16,
+              "vram_peak_mb": 16
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 141,
+            "cpu_peak_pct": 191,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 1408,
+            "rss_peak_mb": 1408,
+            "samples": 9,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 2,
+          "load_time_ms": 15.219532,
+          "prompt_tok_s": 581.3471311318431,
+          "prompt_tokens": 44,
+          "response_preview": "the development of electronic computers during World War II, such as ENIAC and Colossus. In the late 20th century, micro...",
+          "server_decode_tok_s": 82.2552112801959,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 1648.3365290000002
+        },
+        {
+          "completion_tok_s": 78.64651263842607,
+          "degenerate": false,
+          "e2e_latency_ms": 1627.5356109999998,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 1.646239269,
+            "energy_j": 4.75,
+            "gco2_per_tok": 5.154079861111112e-07,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 4.75,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.037109375,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied - run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 1.0308159722222223e-05
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce GTX 1650",
+              "power_avg_w": 6.984000000000001,
+              "power_peak_w": 7.111,
+              "samples": 16,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 16,
+              "vram_peak_mb": 16
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 140,
+            "cpu_peak_pct": 201,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 1408,
+            "rss_peak_mb": 1408,
+            "samples": 9,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 3,
+          "load_time_ms": 15.732908,
+          "prompt_tok_s": 711.1666596923845,
+          "prompt_tokens": 44,
+          "response_preview": "the development of electronic computers during World War II, such as ENIAC and Colossus. In the late 20th century, micro...",
+          "server_decode_tok_s": 82.60965692665123,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 1627.5356109999998
+        }
+      ],
+      "load_error": null,
+      "load_time_ms": 3342.308964,
+      "model": "gemma3:latest",
+      "model_fingerprint": {
+        "modified_at": "",
+        "parameter_size": "4.3B",
+        "quantization_level": "Q4_K_M"
+      },
+      "num_ctx": 131072,
+      "prompt": "medium",
+      "prompt_chars": 236,
+      "stats": {
+        "Carbon gCO2/tok [gpu]": {
+          "count": 3,
+          "max": 8.922526041917283e-07,
+          "mean": 6.647858796255874e-07,
+          "min": 5.154079861111112e-07,
+          "p50": 5.866970485739229e-07,
+          "p95": 8.616970486299478e-07,
+          "stddev": 2.001908232046192e-07,
+          "unit": "g"
+        },
+        "Completion tok/s": {
+          "count": 3,
+          "max": 78.64651263842607,
+          "mean": 69.9789845615495,
+          "min": 53.63639543840342,
+          "p50": 77.65404560781896,
+          "p95": 78.54726593536536,
+          "stddev": 14.161794100243428,
+          "unit": "tok/s"
+        },
+        "E2E latency": {
+          "count": 3,
+          "max": 2386.4392629999998,
+          "mean": 1887.4371343333332,
+          "min": 1627.5356109999998,
+          "p50": 1648.3365290000002,
+          "p95": 2312.6289896,
+          "stddev": 432.2736550587012,
+          "unit": "ms"
+        },
+        "Energy J/tok [gpu]": {
+          "count": 3,
+          "max": 0.06424218750180444,
+          "mean": 0.0478645833330423,
+          "min": 0.037109375,
+          "p50": 0.04224218749732245,
+          "p95": 0.06204218750135624,
+          "stddev": 0.014413739270732586,
+          "unit": "J"
+        },
+        "Energy Wh/tok [gpu]": {
+          "count": 3,
+          "max": 1.7845052083834566e-05,
+          "mean": 1.3295717592511748e-05,
+          "min": 1.0308159722222223e-05,
+          "p50": 1.1733940971478458e-05,
+          "p95": 1.7233940972598955e-05,
+          "stddev": 4.003816464092384e-06,
+          "unit": "Wh"
+        },
+        "Model load": {
+          "count": 1,
+          "max": 3342.308964,
+          "mean": 3342.308964,
+          "min": 3342.308964,
+          "p50": 3342.308964,
+          "p95": 3342.308964,
+          "stddev": 0.0,
+          "unit": "ms"
+        },
+        "Prompt tok/s": {
+          "count": 3,
+          "max": 711.1666596923845,
+          "mean": 547.4638110155024,
+          "min": 349.8776422222797,
+          "p50": 581.3471311318431,
+          "p95": 698.1847068363304,
+          "stddev": 183.012289403494,
+          "unit": "tok/s"
+        },
+        "Tokens generated": {
+          "count": 3,
+          "max": 128.0,
+          "mean": 128.0,
+          "min": 128.0,
+          "p50": 128.0,
+          "p95": 128.0,
+          "stddev": 0.0,
+          "unit": "count"
+        }
+      },
+      "target": "LOKEN",
+      "url": "http://127.0.0.1:11435"
+    }
+  ],
+  "schema": "loken/2",
+  "subjects": {
+    "LOKEN": {
+      "says": {
+        "commit": "faf7af64e",
+        "loken": "0.3.1-dev+gfaf7af64e",
+        "version": "0.3.1-dev+gfaf7af64e"
+      },
+      "url": "http://127.0.0.1:11435"
+    },
+    "Ollama": {
+      "says": {
+        "version": "0.35.1"
+      },
+      "url": "http://127.0.0.1:11434"
+    }
+  },
+  "timestamp": "2026-10-21"
+}

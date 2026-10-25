@@ -1,0 +1,678 @@
+{
+  "config": {
+    "carbon_intensity_gco2_per_kwh": 50.0,
+    "custom_prompt": null,
+    "energy_measure": true,
+    "gpu_sample": true,
+    "iterations": 3,
+    "max_tokens": 128,
+    "models": [
+      "qwen3:8b"
+    ],
+    "num_ctx": [
+      4096
+    ],
+    "num_gpu": null,
+    "prompts": [
+      "medium"
+    ],
+    "session_id": null,
+    "streaming": false,
+    "unique_prompt": false,
+    "warmup": 0
+  },
+  "engine_build": 1792564833,
+  "idle_energy_baseline": null,
+  "machine": {
+    "cpu": "Intel(R) Core(TM) i9-10900K CPU @ 3.70GHz",
+    "driver": "610.43.02",
+    "gpus": [
+      {
+        "index": 0,
+        "name": "NVIDIA GeForce GTX 1650",
+        "power_cap_w": 75,
+        "vram_mib": 4096
+      }
+    ],
+    "kernel": "6.12.90+deb13.1-amd64",
+    "os": "Debian GNU/Linux 13 (trixie)",
+    "ram_gib": 62,
+    "threads": 20
+  },
+  "ollama_version": "0.35.1",
+  "protocol": {
+    "cards_by_uuid": null,
+    "engines_seen": [
+      "ollama"
+    ],
+    "gpu_temps_c_at_start": [
+      32
+    ],
+    "iterations": 3,
+    "max_tokens": 128,
+    "prefix_reuse_offered": false,
+    "streaming": false,
+    "unique_prompt": false,
+    "warmup": 0
+  },
+  "results": [
+    {
+      "coherence_pass": true,
+      "first_response_preview": "the invention of the electronic computer in the 1940s, which used vacuum tubes. The first electronic computers were larg...",
+      "iteration_errors": [],
+      "iterations": [
+        {
+          "completion_tok_s": 76.96962536790122,
+          "degenerate": false,
+          "e2e_latency_ms": 1662.993673,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 1.6827193710000001,
+            "energy_j": 5.230000000447035,
+            "gco2_per_tok": 5.674913194929508e-07,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 5.230000000447035,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.04085937500349246,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied - run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 1.1349826389859017e-05
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce GTX 1650",
+              "power_avg_w": 6.8110625,
+              "power_peak_w": 6.942,
+              "samples": 16,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 16,
+              "vram_peak_mb": 16
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 0,
+            "cpu_peak_pct": 4,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 41,
+            "rss_peak_mb": 41,
+            "samples": 9,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 1,
+          "load_time_ms": 2.115227,
+          "prompt_tok_s": 570.0649608908923,
+          "prompt_tokens": 43,
+          "response_preview": "the invention of the electronic computer in the 1940s, which used vacuum tubes. The first electronic computers were larg...",
+          "server_decode_tok_s": 80.78880166222959,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 1662.993673
+        },
+        {
+          "completion_tok_s": 79.53836188291683,
+          "degenerate": false,
+          "e2e_latency_ms": 1609.286349,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 1.628024087,
+            "energy_j": 7.187000000383705,
+            "gco2_per_tok": 7.798394097638569e-07,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 7.187000000383705,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.056148437502997695,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied - run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 1.5596788195277137e-05
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce GTX 1650",
+              "power_avg_w": 6.8255625,
+              "power_peak_w": 6.939,
+              "samples": 16,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 16,
+              "vram_peak_mb": 16
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 0,
+            "cpu_peak_pct": 4,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 41,
+            "rss_peak_mb": 41,
+            "samples": 9,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 2,
+          "load_time_ms": 2.225514,
+          "prompt_tok_s": 2664.6836462787387,
+          "prompt_tokens": 43,
+          "response_preview": "the invention of the electronic computer in the 1940s, which used vacuum tubes. The first electronic computers were larg...",
+          "server_decode_tok_s": 80.99630517635997,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 1609.286349
+        },
+        {
+          "completion_tok_s": 79.64781845347063,
+          "degenerate": false,
+          "e2e_latency_ms": 1607.0747760000002,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 1.624917934,
+            "energy_j": 4.890999999828637,
+            "gco2_per_tok": 5.307074652591836e-07,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 4.890999999828637,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.038210937498661224,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied - run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 1.0614149305183673e-05
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce GTX 1650",
+              "power_avg_w": 6.822375000000001,
+              "power_peak_w": 6.914,
+              "samples": 16,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 16,
+              "vram_peak_mb": 16
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 0,
+            "cpu_peak_pct": 4,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 41,
+            "rss_peak_mb": 41,
+            "samples": 9,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 3,
+          "load_time_ms": 1.971017,
+          "prompt_tok_s": 2646.6424570689974,
+          "prompt_tokens": 43,
+          "response_preview": "the invention of the electronic computer in the 1940s, which used vacuum tubes. The first electronic computers were larg...",
+          "server_decode_tok_s": 81.11430780344989,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 1607.0747760000002
+        }
+      ],
+      "load_error": null,
+      "load_time_ms": 3407.969186,
+      "model": "qwen3:8b",
+      "model_fingerprint": {
+        "modified_at": "2026-07-04",
+        "parameter_size": "8.2B",
+        "quantization_level": "Q4_K_M"
+      },
+      "num_ctx": 4096,
+      "prompt": "medium",
+      "prompt_chars": 236,
+      "stats": {
+        "Carbon gCO2/tok [gpu]": {
+          "count": 3,
+          "max": 7.798394097638569e-07,
+          "mean": 6.260127315053304e-07,
+          "min": 5.307074652591836e-07,
+          "p50": 5.674913194929508e-07,
+          "p95": 7.586046007367662e-07,
+          "stddev": 1.344814046294577e-07,
+          "unit": "g"
+        },
+        "Completion tok/s": {
+          "count": 3,
+          "max": 79.64781845347063,
+          "mean": 78.71860190142957,
+          "min": 76.96962536790122,
+          "p50": 79.53836188291683,
+          "p95": 79.63687279641525,
+          "stddev": 1.5156465192563762,
+          "unit": "tok/s"
+        },
+        "E2E latency": {
+          "count": 3,
+          "max": 1662.993673,
+          "mean": 1626.4515993333334,
+          "min": 1607.0747760000002,
+          "p50": 1609.286349,
+          "p95": 1657.6229406,
+          "stddev": 31.665677391754116,
+          "unit": "ms"
+        },
+        "Energy J/tok [gpu]": {
+          "count": 3,
+          "max": 0.056148437502997695,
+          "mean": 0.04507291666838379,
+          "min": 0.038210937498661224,
+          "p50": 0.04085937500349246,
+          "p95": 0.054619531253047165,
+          "stddev": 0.009682661133320948,
+          "unit": "J"
+        },
+        "Energy Wh/tok [gpu]": {
+          "count": 3,
+          "max": 1.5596788195277137e-05,
+          "mean": 1.2520254630106609e-05,
+          "min": 1.0614149305183673e-05,
+          "p50": 1.1349826389859017e-05,
+          "p95": 1.5172092014735325e-05,
+          "stddev": 2.689628092589153e-06,
+          "unit": "Wh"
+        },
+        "Model load": {
+          "count": 1,
+          "max": 3407.969186,
+          "mean": 3407.969186,
+          "min": 3407.969186,
+          "p50": 3407.969186,
+          "p95": 3407.969186,
+          "stddev": 0.0,
+          "unit": "ms"
+        },
+        "Prompt tok/s": {
+          "count": 3,
+          "max": 2664.6836462787387,
+          "mean": 1960.463688079543,
+          "min": 570.0649608908923,
+          "p50": 2646.6424570689974,
+          "p95": 2662.879527357765,
+          "stddev": 1204.154407272128,
+          "unit": "tok/s"
+        },
+        "Tokens generated": {
+          "count": 3,
+          "max": 128.0,
+          "mean": 128.0,
+          "min": 128.0,
+          "p50": 128.0,
+          "p95": 128.0,
+          "stddev": 0.0,
+          "unit": "count"
+        }
+      },
+      "target": "Ollama",
+      "url": "http://127.0.0.1:11434"
+    },
+    {
+      "coherence_pass": true,
+      "first_response_preview": "the invention of the electronic computer in the 1940s, which used vacuum tubes. The first electronic computers were larg...",
+      "iteration_errors": [],
+      "iterations": [
+        {
+          "completion_tok_s": 49.73111081896069,
+          "degenerate": false,
+          "e2e_latency_ms": 2573.8415630000004,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 2.593143547,
+            "energy_j": 8.182000000029802,
+            "gco2_per_tok": 8.878038194476782e-07,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 8.182000000029802,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.06392187500023283,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied - run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 1.7756076388953564e-05
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce GTX 1650",
+              "power_avg_w": 6.92088,
+              "power_peak_w": 7.435,
+              "samples": 25,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 16,
+              "vram_peak_mb": 16
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 121,
+            "cpu_peak_pct": 196,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 1387,
+            "rss_peak_mb": 1398,
+            "samples": 14,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 1,
+          "load_time_ms": 84.749881,
+          "prompt_tok_s": 285.1639798660171,
+          "prompt_tokens": 43,
+          "response_preview": "the invention of the electronic computer in the 1940s, which used vacuum tubes. The first electronic computers were larg...",
+          "server_decode_tok_s": 60.19875888181189,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 2573.8415630000004
+        },
+        {
+          "completion_tok_s": 54.878539874403224,
+          "degenerate": false,
+          "e2e_latency_ms": 2332.423572,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 2.35685748,
+            "energy_j": 6.929000000003725,
+            "gco2_per_tok": 7.518446180559597e-07,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 6.929000000003725,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.054132812500029104,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied - run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 1.5036892361119195e-05
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce GTX 1650",
+              "power_avg_w": 6.892695652173912,
+              "power_peak_w": 7.12,
+              "samples": 23,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 16,
+              "vram_peak_mb": 16
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 125,
+            "cpu_peak_pct": 186,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 1398,
+            "rss_peak_mb": 1398,
+            "samples": 12,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 2,
+          "load_time_ms": 15.383669,
+          "prompt_tok_s": 507.03905218317396,
+          "prompt_tokens": 43,
+          "response_preview": "the invention of the electronic computer in the 1940s, which used vacuum tubes. The first electronic computers were larg...",
+          "server_decode_tok_s": 57.35394225908979,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 2332.423572
+        },
+        {
+          "completion_tok_s": 56.254904317940635,
+          "degenerate": false,
+          "e2e_latency_ms": 2275.357172,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 2.293689803,
+            "energy_j": 7.685000000055879,
+            "gco2_per_tok": 8.338758680616189e-07,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 7.685000000055879,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.06003906250043656,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied - run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 1.6677517361232376e-05
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce GTX 1650",
+              "power_avg_w": 6.904454545454545,
+              "power_peak_w": 7.092,
+              "samples": 22,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 16,
+              "vram_peak_mb": 16
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 122,
+            "cpu_peak_pct": 181,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 1398,
+            "rss_peak_mb": 1398,
+            "samples": 12,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 3,
+          "load_time_ms": 18.070961,
+          "prompt_tok_s": 512.8547031340552,
+          "prompt_tokens": 43,
+          "response_preview": "the invention of the electronic computer in the 1940s, which used vacuum tubes. The first electronic computers were larg...",
+          "server_decode_tok_s": 58.906008028687324,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 2275.357172
+        }
+      ],
+      "load_error": null,
+      "load_time_ms": 4371.455172,
+      "model": "qwen3:8b",
+      "model_fingerprint": {
+        "modified_at": "",
+        "parameter_size": "8.2B",
+        "quantization_level": "Q4_K_M"
+      },
+      "num_ctx": 4096,
+      "prompt": "medium",
+      "prompt_chars": 236,
+      "stats": {
+        "Carbon gCO2/tok [gpu]": {
+          "count": 3,
+          "max": 8.878038194476782e-07,
+          "mean": 8.245081018550856e-07,
+          "min": 7.518446180559597e-07,
+          "p50": 8.338758680616189e-07,
+          "p95": 8.824110243090722e-07,
+          "stddev": 6.846197772153291e-08,
+          "unit": "g"
+        },
+        "Completion tok/s": {
+          "count": 3,
+          "max": 56.254904317940635,
+          "mean": 53.62151833710151,
+          "min": 49.73111081896069,
+          "p50": 54.878539874403224,
+          "p95": 56.11726787358689,
+          "stddev": 3.4387567176617075,
+          "unit": "tok/s"
+        },
+        "E2E latency": {
+          "count": 3,
+          "max": 2573.8415630000004,
+          "mean": 2393.8741023333337,
+          "min": 2275.357172,
+          "p50": 2332.423572,
+          "p95": 2549.6997639000006,
+          "stddev": 158.44670610759385,
+          "unit": "ms"
+        },
+        "Energy J/tok [gpu]": {
+          "count": 3,
+          "max": 0.06392187500023283,
+          "mean": 0.059364583333566166,
+          "min": 0.054132812500029104,
+          "p50": 0.06003906250043656,
+          "p95": 0.0635335937502532,
+          "stddev": 0.0049292623959503665,
+          "unit": "J"
+        },
+        "Energy Wh/tok [gpu]": {
+          "count": 3,
+          "max": 1.7756076388953564e-05,
+          "mean": 1.6490162037101713e-05,
+          "min": 1.5036892361119195e-05,
+          "p50": 1.6677517361232376e-05,
+          "p95": 1.7648220486181444e-05,
+          "stddev": 1.3692395544306575e-06,
+          "unit": "Wh"
+        },
+        "Model load": {
+          "count": 1,
+          "max": 4371.455172,
+          "mean": 4371.455172,
+          "min": 4371.455172,
+          "p50": 4371.455172,
+          "p95": 4371.455172,
+          "stddev": 0.0,
+          "unit": "ms"
+        },
+        "Prompt tok/s": {
+          "count": 3,
+          "max": 512.8547031340552,
+          "mean": 435.0192450610821,
+          "min": 285.1639798660171,
+          "p50": 507.03905218317396,
+          "p95": 512.2731380389671,
+          "stddev": 129.81103893355166,
+          "unit": "tok/s"
+        },
+        "Tokens generated": {
+          "count": 3,
+          "max": 128.0,
+          "mean": 128.0,
+          "min": 128.0,
+          "p50": 128.0,
+          "p95": 128.0,
+          "stddev": 0.0,
+          "unit": "count"
+        }
+      },
+      "target": "LOKEN",
+      "url": "http://127.0.0.1:11435"
+    }
+  ],
+  "schema": "loken/2",
+  "subjects": {
+    "LOKEN": {
+      "says": {
+        "commit": "faf7af64e",
+        "loken": "0.3.1-dev+gfaf7af64e",
+        "version": "0.3.1-dev+gfaf7af64e"
+      },
+      "url": "http://127.0.0.1:11435"
+    },
+    "Ollama": {
+      "says": {
+        "version": "0.35.1"
+      },
+      "url": "http://127.0.0.1:11434"
+    }
+  },
+  "timestamp": "2026-10-21"
+}

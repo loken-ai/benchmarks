@@ -1,0 +1,723 @@
+{
+  "config": {
+    "carbon_intensity_gco2_per_kwh": 50.0,
+    "custom_prompt": null,
+    "energy_measure": true,
+    "gpu_sample": true,
+    "iterations": 3,
+    "max_tokens": 128,
+    "models": [
+      "devstral:24b"
+    ],
+    "num_ctx": [
+      131072
+    ],
+    "num_gpu": null,
+    "prompts": [
+      "short"
+    ],
+    "session_id": null,
+    "streaming": false,
+    "unique_prompt": false,
+    "warmup": 0
+  },
+  "converted_from": "devstral_24b_131072_non-stream.json",
+  "idle_energy_baseline": null,
+  "legacy_engine_build": 1788498694,
+  "machine": {
+    "attested": "by the operator, from deepcoder_14b_4096_stream.json; driver, kernel and OS unknown",
+    "cpu": "Intel(R) Core(TM) i9-10900K CPU @ 3.70GHz",
+    "gpus": [
+      {
+        "index": 0,
+        "name": "NVIDIA GeForce RTX 5070 Ti",
+        "power_cap_w": 300,
+        "vram_mib": 16303
+      },
+      {
+        "index": 1,
+        "name": "NVIDIA GeForce RTX 5060 Ti",
+        "power_cap_w": 180,
+        "vram_mib": 16311
+      }
+    ],
+    "hardware_id": "09d9924ce07a7b53",
+    "host_id": "d4b8ae99f4bfcc54",
+    "ram_gib": 62,
+    "threads": 20
+  },
+  "ollama_version": "0.34.2",
+  "protocol": {
+    "cards_by_uuid": null,
+    "engines_alone": null,
+    "iterations": 3,
+    "max_tokens": 128,
+    "prefix_reuse_offered": false,
+    "streaming": false,
+    "thermal_gate_c": null,
+    "unique_prompt": false,
+    "warmup": 0
+  },
+  "results": [
+    {
+      "coherence_pass": true,
+      "first_response_preview": "king who had three sons. The king was very old and he wanted to choose one of his sons as the next ruler. One day, he ca…",
+      "iterations": [
+        {
+          "completion_tok_s": 4.518536384981353,
+          "e2e_latency_ms": 28327.756843,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 28.354938956,
+            "energy_j": 2250.96099999547,
+            "gco2_per_tok": 0.00024424490017311954,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 2250.96099999547,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 17.58563281246461,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 0.004884898003462391
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 47.43316071428565,
+              "power_peak_w": 51.896,
+              "samples": 280,
+              "util_avg_pct": 5,
+              "util_peak_pct": 98,
+              "vram_avg_mb": 10642,
+              "vram_peak_mb": 14151
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 37.84620714285717,
+              "power_peak_w": 42.272,
+              "samples": 280,
+              "util_avg_pct": 13,
+              "util_peak_pct": 99,
+              "vram_avg_mb": 10824,
+              "vram_peak_mb": 14385
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 3,
+            "cpu_peak_pct": 104,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 69,
+            "rss_peak_mb": 354,
+            "samples": 141,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 1,
+          "load_time_ms": 9674.256592,
+          "prompt_tok_s": 50.9207100893022,
+          "prompt_tokens": 16,
+          "response_preview": "king who had three sons. The king was very old and he wanted to choose one of his sons as the next ruler. One day, he ca…",
+          "server_decode_tok_s": 6.980401160382624,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 28327.756843
+        },
+        {
+          "completion_tok_s": 6.81567380161501,
+          "e2e_latency_ms": 18780.241502999997,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 18.820048465,
+            "energy_j": 1592.155000001192,
+            "gco2_per_tok": 0.0001727598741320738,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 1592.155000001192,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 12.438710937509313,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 0.003455197482641476
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 49.481180851063876,
+              "power_peak_w": 50.4,
+              "samples": 188,
+              "util_avg_pct": 4,
+              "util_peak_pct": 7,
+              "vram_avg_mb": 14151,
+              "vram_peak_mb": 14151
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 41.49568085106385,
+              "power_peak_w": 42.87,
+              "samples": 188,
+              "util_avg_pct": 9,
+              "util_peak_pct": 15,
+              "vram_avg_mb": 14385,
+              "vram_peak_mb": 14385
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 1,
+            "cpu_peak_pct": 109,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 69,
+            "rss_peak_mb": 70,
+            "samples": 94,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 2,
+          "load_time_ms": 283.070066,
+          "prompt_tok_s": 110.43622308117062,
+          "prompt_tokens": 16,
+          "response_preview": "king who had three sons. The king was very old and he wanted to choose one of his sons as the next ruler. One day, he ca…",
+          "server_decode_tok_s": 6.978787484744125,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 18780.241502999997
+        },
+        {
+          "completion_tok_s": 6.841516403882555,
+          "e2e_latency_ms": 18709.302506,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 18.750500314,
+            "energy_j": 1613.5209999978542,
+            "gco2_per_tok": 0.0001750782335067116,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 1613.5209999978542,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 12.605632812483236,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 0.0035015646701342324
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 49.749414893617036,
+              "power_peak_w": 50.848,
+              "samples": 188,
+              "util_avg_pct": 4,
+              "util_peak_pct": 7,
+              "vram_avg_mb": 14151,
+              "vram_peak_mb": 14151
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 41.909196808510636,
+              "power_peak_w": 43.267,
+              "samples": 188,
+              "util_avg_pct": 10,
+              "util_peak_pct": 15,
+              "vram_avg_mb": 14385,
+              "vram_peak_mb": 14385
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 1,
+            "cpu_peak_pct": 104,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 69,
+            "rss_peak_mb": 69,
+            "samples": 94,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 3,
+          "load_time_ms": 225.922554,
+          "prompt_tok_s": 110.88779541201747,
+          "prompt_tokens": 16,
+          "response_preview": "king who had three sons. The king was very old and he wanted to choose one of his sons as the next ruler. One day, he ca…",
+          "server_decode_tok_s": 6.980336827428187,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 18709.302506
+        }
+      ],
+      "load_time_ms": 36900.080183,
+      "model": "devstral:24b",
+      "model_fingerprint": {
+        "modified_at": "2026-05-21",
+        "parameter_size": "23.6B",
+        "quantization_level": "Q4_K_M"
+      },
+      "num_ctx": 131072,
+      "prompt": "short",
+      "prompt_chars": 58,
+      "stats": {
+        "Carbon gCO2/tok [gpu]": {
+          "count": 3,
+          "max": 0.00024424490017311954,
+          "mean": 0.00019736100260396832,
+          "min": 0.0001727598741320738,
+          "p50": 0.0001750782335067116,
+          "p95": 0.00023732823350647872,
+          "stddev": 4.061918987379599e-05,
+          "unit": "g"
+        },
+        "Completion tok/s": {
+          "count": 3,
+          "max": 6.841516403882555,
+          "mean": 6.058575530159639,
+          "min": 4.518536384981353,
+          "p50": 6.81567380161501,
+          "p95": 6.838932143655801,
+          "stddev": 1.3337756132626246,
+          "unit": "tok/s"
+        },
+        "E2E latency": {
+          "count": 3,
+          "max": 28327.756843,
+          "mean": 21939.100283999996,
+          "min": 18709.302506,
+          "p50": 18780.241502999997,
+          "p95": 27373.005308999996,
+          "stddev": 5532.852569603147,
+          "unit": "ms"
+        },
+        "Energy J/tok [gpu]": {
+          "count": 3,
+          "max": 17.58563281246461,
+          "mean": 14.20999218748572,
+          "min": 12.438710937509313,
+          "p50": 12.605632812483236,
+          "p95": 17.08763281246647,
+          "stddev": 2.9245816709133132,
+          "unit": "J"
+        },
+        "Energy Wh/tok [gpu]": {
+          "count": 3,
+          "max": 0.004884898003462391,
+          "mean": 0.003947220052079366,
+          "min": 0.003455197482641476,
+          "p50": 0.0035015646701342324,
+          "p95": 0.004746564670129575,
+          "stddev": 0.00081238379747592,
+          "unit": "Wh"
+        },
+        "Model load": {
+          "count": 1,
+          "max": 36900.080183,
+          "mean": 36900.080183,
+          "min": 36900.080183,
+          "p50": 36900.080183,
+          "p95": 36900.080183,
+          "stddev": 0.0,
+          "unit": "ms"
+        },
+        "Prompt tok/s": {
+          "count": 3,
+          "max": 110.88779541201747,
+          "mean": 90.74824286083009,
+          "min": 50.9207100893022,
+          "p50": 110.43622308117062,
+          "p95": 110.84263817893279,
+          "stddev": 34.492394152810604,
+          "unit": "tok/s"
+        },
+        "Tokens generated": {
+          "count": 3,
+          "max": 128.0,
+          "mean": 128.0,
+          "min": 128.0,
+          "p50": 128.0,
+          "p95": 128.0,
+          "stddev": 0.0,
+          "unit": "count"
+        }
+      },
+      "target": "Ollama",
+      "url": "http://127.0.0.1:11434"
+    },
+    {
+      "coherence_pass": true,
+      "first_response_preview": "king who had three sons. The king was very old and he wanted to choose one of his sons as the next ruler. One day, he ca…",
+      "iterations": [
+        {
+          "completion_tok_s": 50.574104591799966,
+          "e2e_latency_ms": 2530.93952,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 2.554714196,
+            "energy_j": 669.3360000029206,
+            "gco2_per_tok": 7.262760416698358e-05,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 669.3360000029206,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 5.229187500022817,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 0.0014525520833396715
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 190.85103846153845,
+              "power_peak_w": 280.888,
+              "samples": 26,
+              "util_avg_pct": 76,
+              "util_peak_pct": 100,
+              "vram_avg_mb": 15266,
+              "vram_peak_mb": 15269
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 27.574846153846156,
+              "power_peak_w": 27.645,
+              "samples": 26,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 155,
+              "vram_peak_mb": 155
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 88,
+            "cpu_peak_pct": 104,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 11930,
+            "rss_peak_mb": 11931,
+            "samples": 14,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 1,
+          "load_time_ms": 14.207773,
+          "prompt_tok_s": 102.91409559115307,
+          "prompt_tokens": 16,
+          "response_preview": "king who had three sons. The king was very old and he wanted to choose one of his sons as the next ruler. One day, he ca…",
+          "server_decode_tok_s": 54.217777776365864,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 2530.93952
+        },
+        {
+          "completion_tok_s": 53.460140921248886,
+          "e2e_latency_ms": 2394.307194,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 2.42318571,
+            "energy_j": 662.542999997735,
+            "gco2_per_tok": 7.189051649280979e-05,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 662.542999997735,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 5.176117187482305,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 0.0014378103298561958
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 249.74747999999997,
+              "power_peak_w": 280.152,
+              "samples": 25,
+              "util_avg_pct": 84,
+              "util_peak_pct": 100,
+              "vram_avg_mb": 15269,
+              "vram_peak_mb": 15269
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 27.68947999999999,
+              "power_peak_w": 27.727,
+              "samples": 25,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 155,
+              "vram_peak_mb": 155
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 91,
+            "cpu_peak_pct": 104,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 11931,
+            "rss_peak_mb": 11931,
+            "samples": 13,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 2,
+          "load_time_ms": 26.176333,
+          "prompt_tok_s": 1378.837617482351,
+          "prompt_tokens": 16,
+          "response_preview": "king who had three sons. The king was very old and he wanted to choose one of his sons as the next ruler. One day, he ca…",
+          "server_decode_tok_s": 54.33814698916626,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 2394.307194
+        },
+        {
+          "completion_tok_s": 53.521765607146826,
+          "e2e_latency_ms": 2391.550401,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 2.414663862,
+            "energy_j": 667.887000001967,
+            "gco2_per_tok": 7.24703776043801e-05,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 667.887000001967,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 5.217867187515367,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 0.001449407552087602
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 262.16816666666665,
+              "power_peak_w": 281.073,
+              "samples": 24,
+              "util_avg_pct": 99,
+              "util_peak_pct": 100,
+              "vram_avg_mb": 15269,
+              "vram_peak_mb": 15269
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 27.641125000000002,
+              "power_peak_w": 27.662,
+              "samples": 24,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 155,
+              "vram_peak_mb": 155
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 91,
+            "cpu_peak_pct": 104,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 11931,
+            "rss_peak_mb": 11931,
+            "samples": 13,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 3,
+          "load_time_ms": 22.34039,
+          "prompt_tok_s": 1306.9043511828424,
+          "prompt_tokens": 16,
+          "response_preview": "king who had three sons. The king was very old and he wanted to choose one of his sons as the next ruler. One day, he ca…",
+          "server_decode_tok_s": 54.316513488688194,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 2391.550401
+        }
+      ],
+      "load_time_ms": 8948.32901,
+      "model": "devstral:24b",
+      "model_fingerprint": {
+        "modified_at": "",
+        "parameter_size": "23.6B",
+        "quantization_level": "Q4_K_M"
+      },
+      "num_ctx": 131072,
+      "prompt": "short",
+      "prompt_chars": 58,
+      "stats": {
+        "Carbon gCO2/tok [gpu]": {
+          "count": 3,
+          "max": 7.262760416698358e-05,
+          "mean": 7.232949942139116e-05,
+          "min": 7.189051649280979e-05,
+          "p50": 7.24703776043801e-05,
+          "p95": 7.261188151072324e-05,
+          "stddev": 3.882132876221936e-07,
+          "unit": "g"
+        },
+        "Completion tok/s": {
+          "count": 3,
+          "max": 53.521765607146826,
+          "mean": 52.51867037339856,
+          "min": 50.574104591799966,
+          "p50": 53.460140921248886,
+          "p95": 53.51560313855703,
+          "stddev": 1.6843252238511173,
+          "unit": "tok/s"
+        },
+        "E2E latency": {
+          "count": 3,
+          "max": 2530.93952,
+          "mean": 2438.9323716666663,
+          "min": 2391.550401,
+          "p50": 2394.307194,
+          "p95": 2517.2762874,
+          "stddev": 79.6924493614998,
+          "unit": "ms"
+        },
+        "Energy J/tok [gpu]": {
+          "count": 3,
+          "max": 5.229187500022817,
+          "mean": 5.207723958340163,
+          "min": 5.176117187482305,
+          "p50": 5.217867187515367,
+          "p95": 5.228055468772072,
+          "stddev": 0.027951356708797684,
+          "unit": "J"
+        },
+        "Energy Wh/tok [gpu]": {
+          "count": 3,
+          "max": 0.0014525520833396715,
+          "mean": 0.0014465899884278232,
+          "min": 0.0014378103298561958,
+          "p50": 0.001449407552087602,
+          "p95": 0.0014522376302144647,
+          "stddev": 7.7642657524438e-06,
+          "unit": "Wh"
+        },
+        "Model load": {
+          "count": 1,
+          "max": 8948.32901,
+          "mean": 8948.32901,
+          "min": 8948.32901,
+          "p50": 8948.32901,
+          "p95": 8948.32901,
+          "stddev": 0.0,
+          "unit": "ms"
+        },
+        "Prompt tok/s": {
+          "count": 3,
+          "max": 1378.837617482351,
+          "mean": 929.5520214187821,
+          "min": 102.91409559115307,
+          "p50": 1306.9043511828424,
+          "p95": 1371.6442908524002,
+          "stddev": 716.7923646444503,
+          "unit": "tok/s"
+        },
+        "Tokens generated": {
+          "count": 3,
+          "max": 128.0,
+          "mean": 128.0,
+          "min": 128.0,
+          "p50": 128.0,
+          "p95": 128.0,
+          "stddev": 0.0,
+          "unit": "count"
+        }
+      },
+      "target": "LOKEN",
+      "url": "http://127.0.0.1:11435"
+    }
+  ],
+  "schema": "loken/2",
+  "subjects": null,
+  "timestamp": "2026-09-04",
+  "vllm_version": null
+}

@@ -1,0 +1,723 @@
+{
+  "config": {
+    "carbon_intensity_gco2_per_kwh": 50.0,
+    "custom_prompt": null,
+    "energy_measure": true,
+    "gpu_sample": true,
+    "iterations": 3,
+    "max_tokens": 128,
+    "models": [
+      "granite3-moe:1b"
+    ],
+    "num_ctx": [
+      4096
+    ],
+    "num_gpu": null,
+    "prompts": [
+      "short"
+    ],
+    "session_id": null,
+    "streaming": false,
+    "unique_prompt": false,
+    "warmup": 0
+  },
+  "converted_from": "granite3-moe_1b_4096_non-stream.json",
+  "idle_energy_baseline": null,
+  "legacy_engine_build": 1788440729,
+  "machine": {
+    "attested": "by the operator, from deepcoder_14b_4096_stream.json; driver, kernel and OS unknown",
+    "cpu": "Intel(R) Core(TM) i9-10900K CPU @ 3.70GHz",
+    "gpus": [
+      {
+        "index": 0,
+        "name": "NVIDIA GeForce RTX 5070 Ti",
+        "power_cap_w": 300,
+        "vram_mib": 16303
+      },
+      {
+        "index": 1,
+        "name": "NVIDIA GeForce RTX 5060 Ti",
+        "power_cap_w": 180,
+        "vram_mib": 16311
+      }
+    ],
+    "hardware_id": "09d9924ce07a7b53",
+    "host_id": "d4b8ae99f4bfcc54",
+    "ram_gib": 62,
+    "threads": 20
+  },
+  "ollama_version": "0.34.2",
+  "protocol": {
+    "cards_by_uuid": null,
+    "engines_alone": null,
+    "iterations": 3,
+    "max_tokens": 128,
+    "prefix_reuse_offered": false,
+    "streaming": false,
+    "thermal_gate_c": null,
+    "unique_prompt": false,
+    "warmup": 0
+  },
+  "results": [
+    {
+      "coherence_pass": true,
+      "first_response_preview": "young girl named Lily. She was known for her radiant smile and her kind heart. One day, she found an old, worn-out book …",
+      "iterations": [
+        {
+          "completion_tok_s": 207.72455972649738,
+          "e2e_latency_ms": 616.200608,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 0.643020219,
+            "energy_j": 57.24000000208616,
+            "gco2_per_tok": 6.210937500226363e-06,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 57.24000000208616,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.44718750001629815,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 0.00012421875000452726
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 40.545857142857145,
+              "power_peak_w": 45.783,
+              "samples": 7,
+              "util_avg_pct": 2,
+              "util_peak_pct": 18,
+              "vram_avg_mb": 782,
+              "vram_peak_mb": 785
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 29.678285714285717,
+              "power_peak_w": 37.81,
+              "samples": 7,
+              "util_avg_pct": 3,
+              "util_peak_pct": 25,
+              "vram_avg_mb": 644,
+              "vram_peak_mb": 649
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 11,
+            "cpu_peak_pct": 39,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 47,
+            "rss_peak_mb": 47,
+            "samples": 4,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 1,
+          "load_time_ms": 60.972992,
+          "prompt_tok_s": 101.24772937077515,
+          "prompt_tokens": 17,
+          "response_preview": "young girl named Lily. She was known for her radiant smile and her kind heart. One day, she found an old, worn-out book …",
+          "server_decode_tok_s": 331.8546787620783,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 616.200608
+        },
+        {
+          "completion_tok_s": 266.44294562701305,
+          "e2e_latency_ms": 480.403036,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 0.521677151,
+            "energy_j": 45.96000000089407,
+            "gco2_per_tok": 4.986979166763679e-06,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 45.96000000089407,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.3590625000069849,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 9.973958333527359e-05
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 46.973000000000006,
+              "power_peak_w": 46.973,
+              "samples": 6,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 785,
+              "vram_peak_mb": 785
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 38.75,
+              "power_peak_w": 38.75,
+              "samples": 6,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 649,
+              "vram_peak_mb": 649
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 13,
+            "cpu_peak_pct": 54,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 47,
+            "rss_peak_mb": 47,
+            "samples": 4,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 2,
+          "load_time_ms": 95.093726,
+          "prompt_tok_s": 4683.195592286502,
+          "prompt_tokens": 17,
+          "response_preview": "young princess named Amelia. She was known for her beauty and grace, but she had one secret that made her unique - she c…",
+          "server_decode_tok_s": 339.4694199051077,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 480.403036
+        },
+        {
+          "completion_tok_s": 288.6956749479224,
+          "e2e_latency_ms": 443.373459,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 0.467923537,
+            "energy_j": 44.9100000038743,
+            "gco2_per_tok": 4.873046875420389e-06,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 44.9100000038743,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.350859375030268,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 9.746093750840777e-05
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 47.263,
+              "power_peak_w": 47.263,
+              "samples": 6,
+              "util_avg_pct": 3,
+              "util_peak_pct": 4,
+              "vram_avg_mb": 785,
+              "vram_peak_mb": 785
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 39.344,
+              "power_peak_w": 39.344,
+              "samples": 6,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 649,
+              "vram_peak_mb": 649
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 11,
+            "cpu_peak_pct": 44,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 49,
+            "rss_peak_mb": 49,
+            "samples": 4,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 3,
+          "load_time_ms": 58.524995,
+          "prompt_tok_s": 4931.824775166811,
+          "prompt_tokens": 17,
+          "response_preview": "young princess named Amelia. She was known for her beauty and grace, but she had one secret that made her unique - she c…",
+          "server_decode_tok_s": 339.75145057943547,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 443.373459
+        }
+      ],
+      "load_time_ms": 4255.008772,
+      "model": "granite3-moe:1b",
+      "model_fingerprint": {
+        "modified_at": "2026-07-06",
+        "parameter_size": "1.3B",
+        "quantization_level": "Q4_K_M"
+      },
+      "num_ctx": 4096,
+      "prompt": "short",
+      "prompt_chars": 58,
+      "stats": {
+        "Carbon gCO2/tok [gpu]": {
+          "count": 3,
+          "max": 6.210937500226363e-06,
+          "mean": 5.356987847470143e-06,
+          "min": 4.873046875420389e-06,
+          "p50": 4.986979166763679e-06,
+          "p95": 6.088541666880094e-06,
+          "stddev": 7.417328689188135e-07,
+          "unit": "g"
+        },
+        "Completion tok/s": {
+          "count": 3,
+          "max": 288.6956749479224,
+          "mean": 254.28772676714425,
+          "min": 207.72455972649738,
+          "p50": 266.44294562701305,
+          "p95": 286.47040201583144,
+          "stddev": 41.831715052084625,
+          "unit": "tok/s"
+        },
+        "E2E latency": {
+          "count": 3,
+          "max": 616.200608,
+          "mean": 513.3257010000001,
+          "min": 443.373459,
+          "p50": 480.403036,
+          "p95": 602.6208508,
+          "stddev": 90.99578155548595,
+          "unit": "ms"
+        },
+        "Energy J/tok [gpu]": {
+          "count": 3,
+          "max": 0.44718750001629815,
+          "mean": 0.38570312501785037,
+          "min": 0.350859375030268,
+          "p50": 0.3590625000069849,
+          "p95": 0.43837500001536683,
+          "stddev": 0.05340476656215457,
+          "unit": "J"
+        },
+        "Energy Wh/tok [gpu]": {
+          "count": 3,
+          "max": 0.00012421875000452726,
+          "mean": 0.00010713975694940288,
+          "min": 9.746093750840777e-05,
+          "p50": 9.973958333527359e-05,
+          "p95": 0.0001217708333376019,
+          "stddev": 1.483465737837627e-05,
+          "unit": "Wh"
+        },
+        "Model load": {
+          "count": 1,
+          "max": 4255.008772,
+          "mean": 4255.008772,
+          "min": 4255.008772,
+          "p50": 4255.008772,
+          "p95": 4255.008772,
+          "stddev": 0.0,
+          "unit": "ms"
+        },
+        "Prompt tok/s": {
+          "count": 3,
+          "max": 4931.824775166811,
+          "mean": 3238.7560322746963,
+          "min": 101.24772937077515,
+          "p50": 4683.195592286502,
+          "p95": 4906.96185687878,
+          "stddev": 2720.004206014802,
+          "unit": "tok/s"
+        },
+        "Tokens generated": {
+          "count": 3,
+          "max": 128.0,
+          "mean": 128.0,
+          "min": 128.0,
+          "p50": 128.0,
+          "p95": 128.0,
+          "stddev": 0.0,
+          "unit": "count"
+        }
+      },
+      "target": "Ollama",
+      "url": "http://127.0.0.1:11434"
+    },
+    {
+      "coherence_pass": true,
+      "first_response_preview": "young princess named Aria. She was known for her beauty and kindness, but she had one secret that made her unique among …",
+      "iterations": [
+        {
+          "completion_tok_s": 239.62636005205877,
+          "e2e_latency_ms": 534.164939,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 0.563602319,
+            "energy_j": 55.60800000280142,
+            "gco2_per_tok": 6.03385416697064e-06,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 55.60800000280142,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.4344375000218861,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 0.0001206770833394128
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 42.099,
+              "power_peak_w": 58.287,
+              "samples": 7,
+              "util_avg_pct": 9,
+              "util_peak_pct": 58,
+              "vram_avg_mb": 2209,
+              "vram_peak_mb": 2215
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 26.707142857142856,
+              "power_peak_w": 26.713,
+              "samples": 7,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 155,
+              "vram_peak_mb": 155
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 63,
+            "cpu_peak_pct": 98,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 5472,
+            "rss_peak_mb": 5472,
+            "samples": 4,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 1,
+          "load_time_ms": 11.523568,
+          "prompt_tok_s": 109.82970568184344,
+          "prompt_tokens": 17,
+          "response_preview": "young princess named Aria. She was known for her beauty and kindness, but she had one secret that made her unique among …",
+          "server_decode_tok_s": 348.81987287859266,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 534.164939
+        },
+        {
+          "completion_tok_s": 319.86830542063376,
+          "e2e_latency_ms": 400.164686,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 0.426662811,
+            "energy_j": 41.0629999935627,
+            "gco2_per_tok": 4.45562065902373e-06,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 41.0629999935627,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.3208046874497086,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 8.91124131804746e-05
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 63.5554,
+              "power_peak_w": 71.458,
+              "samples": 5,
+              "util_avg_pct": 57,
+              "util_peak_pct": 58,
+              "vram_avg_mb": 2215,
+              "vram_peak_mb": 2215
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 26.672000000000004,
+              "power_peak_w": 26.672,
+              "samples": 5,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 155,
+              "vram_peak_mb": 155
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 66,
+            "cpu_peak_pct": 99,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 5472,
+            "rss_peak_mb": 5472,
+            "samples": 3,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 2,
+          "load_time_ms": 9.436901,
+          "prompt_tok_s": 2368.376764719322,
+          "prompt_tokens": 17,
+          "response_preview": "young princess named Aria. She was known for her beauty and kindness, but she had one secret that made her unique - she …",
+          "server_decode_tok_s": 334.086058804356,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 400.164686
+        },
+        {
+          "completion_tok_s": 332.46856959675864,
+          "e2e_latency_ms": 384.998799,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 0.0,
+            "cpu_rapl_available": false,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 0.411579616,
+            "energy_j": 39.872999995946884,
+            "gco2_per_tok": 4.326497395393542e-06,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 39.872999995946884,
+            "gpu_path": "nvml_counter",
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.31150781246833503,
+            "note": "CPU RAPL unavailable (needs root): energy_uj is permission-denied — run as root or `sudo chmod a+r /sys/class/powercap/intel-rapl:*/energy_uj`",
+            "wh_per_tok": 8.652994790787085e-05
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 73.24179999999998,
+              "power_peak_w": 74.431,
+              "samples": 5,
+              "util_avg_pct": 47,
+              "util_peak_pct": 57,
+              "vram_avg_mb": 2215,
+              "vram_peak_mb": 2215
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 26.7098,
+              "power_peak_w": 26.735,
+              "samples": 5,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 155,
+              "vram_peak_mb": 155
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 62,
+            "cpu_peak_pct": 99,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 5472,
+            "rss_peak_mb": 5472,
+            "samples": 3,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 3,
+          "load_time_ms": 9.253109,
+          "prompt_tok_s": 2720.7169633341778,
+          "prompt_tokens": 17,
+          "response_preview": "young princess named Aria. She was known for her beauty and kindness, but she had one secret that made her unique among …",
+          "server_decode_tok_s": 346.76566060502773,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 384.998799
+        }
+      ],
+      "load_time_ms": 3941.695912,
+      "model": "granite3-moe:1b",
+      "model_fingerprint": {
+        "modified_at": "",
+        "parameter_size": "1.3B",
+        "quantization_level": "Q4_K_M"
+      },
+      "num_ctx": 4096,
+      "prompt": "short",
+      "prompt_chars": 58,
+      "stats": {
+        "Carbon gCO2/tok [gpu]": {
+          "count": 3,
+          "max": 6.03385416697064e-06,
+          "mean": 4.938657407129304e-06,
+          "min": 4.326497395393542e-06,
+          "p50": 4.45562065902373e-06,
+          "p95": 5.876030816175949e-06,
+          "stddev": 9.506630114703365e-07,
+          "unit": "g"
+        },
+        "Completion tok/s": {
+          "count": 3,
+          "max": 332.46856959675864,
+          "mean": 297.3210783564837,
+          "min": 239.62636005205877,
+          "p50": 319.86830542063376,
+          "p95": 331.20854317914615,
+          "stddev": 50.36071936040276,
+          "unit": "tok/s"
+        },
+        "E2E latency": {
+          "count": 3,
+          "max": 534.164939,
+          "mean": 439.7761413333333,
+          "min": 384.998799,
+          "p50": 400.164686,
+          "p95": 520.7649137,
+          "stddev": 82.0940611484375,
+          "unit": "ms"
+        },
+        "Energy J/tok [gpu]": {
+          "count": 3,
+          "max": 0.4344375000218861,
+          "mean": 0.3555833333133099,
+          "min": 0.31150781246833503,
+          "p50": 0.3208046874497086,
+          "p95": 0.42307421876466833,
+          "stddev": 0.06844773682586419,
+          "unit": "J"
+        },
+        "Energy Wh/tok [gpu]": {
+          "count": 3,
+          "max": 0.0001206770833394128,
+          "mean": 9.877314814258607e-05,
+          "min": 8.652994790787085e-05,
+          "p50": 8.91124131804746e-05,
+          "p95": 0.00011752061632351898,
+          "stddev": 1.9013260229406724e-05,
+          "unit": "Wh"
+        },
+        "Model load": {
+          "count": 1,
+          "max": 3941.695912,
+          "mean": 3941.695912,
+          "min": 3941.695912,
+          "p50": 3941.695912,
+          "p95": 3941.695912,
+          "stddev": 0.0,
+          "unit": "ms"
+        },
+        "Prompt tok/s": {
+          "count": 3,
+          "max": 2720.7169633341778,
+          "mean": 1732.974477911781,
+          "min": 109.82970568184344,
+          "p50": 2368.376764719322,
+          "p95": 2685.482943472692,
+          "stddev": 1416.6810218263747,
+          "unit": "tok/s"
+        },
+        "Tokens generated": {
+          "count": 3,
+          "max": 128.0,
+          "mean": 128.0,
+          "min": 128.0,
+          "p50": 128.0,
+          "p95": 128.0,
+          "stddev": 0.0,
+          "unit": "count"
+        }
+      },
+      "target": "LOKEN",
+      "url": "http://127.0.0.1:11435"
+    }
+  ],
+  "schema": "loken/2",
+  "subjects": null,
+  "timestamp": "2026-09-03",
+  "vllm_version": null
+}
