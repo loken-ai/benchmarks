@@ -274,6 +274,8 @@ failure_reason() { # failure_reason <engine>
     echo "the checkpoint is a gated repository on Hugging Face and the engine has no access to it"
   elif grep -qiE "out of memory|OOM|OutOfMemory|not enough memory" "$log" 2>/dev/null; then
     echo "the weights do not fit the cards the engine was given"
+  elif [ "${2:-0}" = 1 ]; then
+    echo "the engine answered and the measurement produced nothing"
   else
     echo "the engine stopped before it answered"
   fi
@@ -522,8 +524,8 @@ if _want vllm && [ "$BENCH_MODE" = gpu ] && [ -n "${VLLM_SERVE:-}" ]; then
   # vLLM parses CUDA_VISIBLE_DEVICES as integers and a UUID breaks it. The card SET is the
   # policy's; this only says which of those it starts on.
   # The number of cards it shards across is the policy's: the same cards the others were given.
-  # shellcheck disable=SC2046
-  set -- $(gpu_extra_args_for vllm); _tp="${2:-1}"; set --
+  _vllm_args="$(gpu_extra_args_for vllm)"; _tp="${_vllm_args##* }"
+  [ -n "$_tp" ] || _tp=1
   if [[ "$VLLM_SERVE" == hf:* ]]; then
     E_BIN[vllm]="$VLLM_HF_LAUNCHER"
     E_ARGS[vllm]="${VLLM_SERVE#hf:} --gpu ${GPU_PIN:-0} --tp $_tp --port $VLLM_PORT"
@@ -532,7 +534,7 @@ if _want vllm && [ "$BENCH_MODE" = gpu ] && [ -n "${VLLM_SERVE:-}" ]; then
     E_ARGS[vllm]="$VLLM_SERVE --gpu ${GPU_PIN:-0} --tp $_tp --port $VLLM_PORT"
   fi
   echo "  waiting for vLLM to finish loading weights (minutes)..."
-  engine_start vllm || true
+  engine_start vllm && _vllm_up=1 || true
   "$LOKPROF" --vllm "$VLLM_PORT" "${COMMON[@]}" "$@" -o "$TMP/vllm.json" || true
   if [ -f "$TMP/vllm.json" ]; then PARTS+=("$TMP/vllm.json"); fi
 fi
@@ -572,7 +574,7 @@ jq -s '
 # A peer that did not start is a visible "impossible" cell for the model, never a silent absence.
 if _want ollama && [ ! -f "$TMP/ollama.json" ]; then FAILED+=("Ollama|$(failure_reason ollama)"); fi
 if _want vllm && [ "$BENCH_MODE" = gpu ] && [ -n "${VLLM_SERVE:-}" ] && [ ! -f "$TMP/vllm.json" ]; then
-  FAILED+=("vLLM|$(failure_reason vllm)")
+  FAILED+=("vLLM|$(failure_reason vllm "${_vllm_up:-0}")")
 fi
 for failed in "${FAILED[@]}"; do
   [ -s "$OUT" ] || break
