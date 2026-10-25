@@ -4,7 +4,8 @@ The bench campaign of [loken](https://github.com/loken-ai/loken): the driver, th
 protocol that makes a comparison fair, and the runs that every machine which ran it has shared. You
 run the campaign with the released builds of loken and
 [lokprof](https://github.com/loken-ai/lokprof), file your runs here, and the site shows the
-results of every machine, one page per hardware configuration.
+results of every machine, one page per hardware configuration, at
+<https://loken-ai.github.io/benchmarks/>.
 
 ## Run the campaign
 
@@ -89,8 +90,7 @@ python3 -m http.server -d site
 ```
 
 Then open `http://localhost:8000/`. The search page reads `index.json`, which a browser does not load
-from a `file://` page. When the repository is public, CI publishes `site/` to GitHub Pages on every
-push to `main`. Dates are UTC days; a record holds no time of day. A loken row whose record does not
+from a `file://` page. CI publishes `site/` to GitHub Pages on every push to `main`. Dates are UTC days; a record holds no time of day. A loken row whose record does not
 state the loken version is labelled `loken` without a number.
 
 ## Layout
