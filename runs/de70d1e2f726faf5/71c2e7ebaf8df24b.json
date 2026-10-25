@@ -1,0 +1,842 @@
+{
+  "config": {
+    "carbon_intensity_gco2_per_kwh": 50.0,
+    "custom_prompt": null,
+    "energy_measure": true,
+    "gpu_sample": true,
+    "iterations": 3,
+    "max_tokens": 128,
+    "models": [
+      "granite3.1-dense:2b"
+    ],
+    "num_ctx": [
+      4096
+    ],
+    "num_gpu": null,
+    "prompts": [
+      "1000"
+    ],
+    "session_id": null,
+    "streaming": false,
+    "unique_prompt": false,
+    "warmup": 0
+  },
+  "engine_build": 1792905946,
+  "idle_energy_baseline": null,
+  "machine": {
+    "cpu": "AMD Ryzen 9 9950X3D 16-Core Processor",
+    "cpu_flags": [
+      "avx2",
+      "fma",
+      "bmi2",
+      "f16c",
+      "avx512f",
+      "avx512bw",
+      "avx512vl",
+      "avx512_vnni",
+      "avx512_bf16"
+    ],
+    "driver": "615.71.09",
+    "gpus": [
+      {
+        "arch": "sm_120",
+        "index": 0,
+        "name": "NVIDIA GeForce RTX 5070 Ti",
+        "pcie_gen": 5,
+        "pcie_width": 8,
+        "power_cap_w": 300,
+        "vendor": "nvidia",
+        "vram_mib": 16303
+      },
+      {
+        "arch": "sm_120",
+        "index": 1,
+        "name": "NVIDIA GeForce RTX 5060 Ti",
+        "pcie_gen": 5,
+        "pcie_width": 8,
+        "power_cap_w": 180,
+        "vendor": "nvidia",
+        "vram_mib": 16311
+      }
+    ],
+    "hardware_id": "de70d1e2f726faf5",
+    "host_id": "12973014bbf73a88",
+    "kernel": "6.12.111+deb13-amd64",
+    "os": "Debian GNU/Linux 13 (trixie)",
+    "ram_gib": 60,
+    "sockets": 1,
+    "threads": 32
+  },
+  "ollama_version": "0.40.6",
+  "protocol": {
+    "cards_by_uuid": null,
+    "engines_seen": [
+      "llama-server",
+      "ollama"
+    ],
+    "gpu_temps_c_at_start": [
+      49,
+      54
+    ],
+    "iterations": 3,
+    "max_tokens": 128,
+    "prefix_reuse_offered": false,
+    "streaming": false,
+    "unique_prompt": false,
+    "warmup": 0
+  },
+  "results": [
+    {
+      "coherence_pass": true,
+      "first_response_preview": "miles to see it? Now, I have been to sea, and I have seen the ocean. I have seen it in all its grandeur, its terrors, it...",
+      "iteration_errors": [],
+      "iterations": [
+        {
+          "completion_tok_s": 35.39426638091983,
+          "degenerate": false,
+          "e2e_latency_ms": 3616.4049459999997,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 290.211356,
+            "cpu_rapl_available": true,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 3.636983566,
+            "energy_j": 633.0523560018776,
+            "gco2_per_tok": 6.869057682312039e-05,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 342.84100000187755,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": null,
+            "j_per_tok": 4.9457215312646685,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": 0.0013738115364624079
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 46.08845714285716,
+              "power_peak_w": 86.248,
+              "samples": 35,
+              "util_avg_pct": 6,
+              "util_peak_pct": 35,
+              "vram_avg_mb": 522,
+              "vram_peak_mb": 2817
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 33.65148571428572,
+              "power_peak_w": 77.691,
+              "samples": 35,
+              "util_avg_pct": 9,
+              "util_peak_pct": 60,
+              "vram_avg_mb": 456,
+              "vram_peak_mb": 2565
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 15,
+            "cpu_peak_pct": 94,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 91,
+            "rss_peak_mb": 560,
+            "samples": 19,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 1,
+          "load_time_ms": 2985.032147,
+          "prompt_tok_s": 12620.52710520677,
+          "prompt_tokens": 1178,
+          "response_preview": "miles to see it? Now, I have been to sea, and I have seen the ocean. I have seen it in all its grandeur, its terrors, it...",
+          "server_decode_tok_s": 239.8261260586075,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 3616.4049459999997
+        },
+        {
+          "completion_tok_s": 238.43512479322808,
+          "degenerate": false,
+          "e2e_latency_ms": 536.833657,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 60.608529,
+            "cpu_rapl_available": true,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 0.558839423,
+            "energy_j": 177.41252899767542,
+            "gco2_per_tok": 1.9250491427699156e-05,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 116.80399999767542,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": null,
+            "j_per_tok": 1.3860353827943392,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": 0.00038500982855398314
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 90.65371428571427,
+              "power_peak_w": 93.958,
+              "samples": 7,
+              "util_avg_pct": 5,
+              "util_peak_pct": 36,
+              "vram_avg_mb": 1295,
+              "vram_peak_mb": 1295
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 83.71285714285715,
+              "power_peak_w": 94.116,
+              "samples": 7,
+              "util_avg_pct": 24,
+              "util_peak_pct": 58,
+              "vram_avg_mb": 1193,
+              "vram_peak_mb": 1193
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 0,
+            "cpu_peak_pct": 0,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 38,
+            "rss_peak_mb": 38,
+            "samples": 4,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 2,
+          "load_time_ms": 0.988728,
+          "prompt_tok_s": 224809.1603053435,
+          "prompt_tokens": 1178,
+          "response_preview": "miles to see it? Now, I have been to sea, and I have seen the ocean. I have seen it in all its moods - from the calmest ...",
+          "server_decode_tok_s": 242.59194329413327,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 536.833657
+        },
+        {
+          "completion_tok_s": 233.94170153059025,
+          "degenerate": false,
+          "e2e_latency_ms": 547.144862,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 61.403395,
+            "cpu_rapl_available": true,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 0.567748072,
+            "energy_j": 177.86839500357627,
+            "gco2_per_tok": 1.929995605507555e-05,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 116.46500000357628,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": null,
+            "j_per_tok": 1.3895968359654396,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": 0.000385999121101511
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 81.56385714285715,
+              "power_peak_w": 90.671,
+              "samples": 7,
+              "util_avg_pct": 23,
+              "util_peak_pct": 29,
+              "vram_avg_mb": 1295,
+              "vram_peak_mb": 1295
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 81.97857142857141,
+              "power_peak_w": 90.07,
+              "samples": 7,
+              "util_avg_pct": 17,
+              "util_peak_pct": 60,
+              "vram_avg_mb": 1193,
+              "vram_peak_mb": 1193
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 1,
+            "cpu_peak_pct": 4,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 38,
+            "rss_peak_mb": 38,
+            "samples": 4,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 3,
+          "load_time_ms": 11.190882,
+          "prompt_tok_s": 232118.22660098525,
+          "prompt_tokens": 1178,
+          "response_preview": "miles to see it? Now, I have been to sea, and I have seen the ocean. I have seen it in all its moods - from the calmest ...",
+          "server_decode_tok_s": 242.89761675689934,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 547.144862
+        }
+      ],
+      "load_error": null,
+      "load_time_ms": 1806.887385,
+      "model": "granite3.1-dense:2b",
+      "model_fingerprint": {
+        "modified_at": "2026-10-14",
+        "parameter_size": "2.5B",
+        "quantization_level": "Q4_K_M"
+      },
+      "num_ctx": 4096,
+      "prompt": "1000",
+      "prompt_chars": 4384,
+      "stats": {
+        "Carbon gCO2/tok [gpu+cpu_pkg]": {
+          "count": 3,
+          "max": 6.869057682312039e-05,
+          "mean": 3.574700810196504e-05,
+          "min": 1.9250491427699156e-05,
+          "p50": 1.929995605507555e-05,
+          "p95": 6.37515147463159e-05,
+          "stddev": 2.852997812392177e-05,
+          "unit": "g"
+        },
+        "Completion tok/s": {
+          "count": 3,
+          "max": 238.43512479322808,
+          "mean": 169.25703090157938,
+          "min": 35.39426638091983,
+          "p50": 233.94170153059025,
+          "p95": 237.98578246696428,
+          "stddev": 115.95032344495407,
+          "unit": "tok/s"
+        },
+        "E2E latency": {
+          "count": 3,
+          "max": 3616.4049459999997,
+          "mean": 1566.7944883333332,
+          "min": 536.833657,
+          "p50": 547.144862,
+          "p95": 3309.4789375999994,
+          "stddev": 1775.022211514425,
+          "unit": "ms"
+        },
+        "Energy J/tok [gpu+cpu_pkg]": {
+          "count": 3,
+          "max": 4.9457215312646685,
+          "mean": 2.573784583341482,
+          "min": 1.3860353827943392,
+          "p50": 1.3895968359654396,
+          "p95": 4.590109061734745,
+          "stddev": 2.0541584249223677,
+          "unit": "J"
+        },
+        "Energy Wh/tok [gpu+cpu_pkg]": {
+          "count": 3,
+          "max": 0.0013738115364624079,
+          "mean": 0.0007149401620393007,
+          "min": 0.00038500982855398314,
+          "p50": 0.000385999121101511,
+          "p95": 0.001275030294926318,
+          "stddev": 0.0005705995624784354,
+          "unit": "Wh"
+        },
+        "Model load": {
+          "count": 1,
+          "max": 1806.887385,
+          "mean": 1806.887385,
+          "min": 1806.887385,
+          "p50": 1806.887385,
+          "p95": 1806.887385,
+          "stddev": 0.0,
+          "unit": "ms"
+        },
+        "Prompt tok/s": {
+          "count": 3,
+          "max": 232118.22660098525,
+          "mean": 156515.97133717852,
+          "min": 12620.52710520677,
+          "p50": 224809.1603053435,
+          "p95": 231387.31997142106,
+          "stddev": 124670.68526949665,
+          "unit": "tok/s"
+        },
+        "Tokens generated": {
+          "count": 3,
+          "max": 128.0,
+          "mean": 128.0,
+          "min": 128.0,
+          "p50": 128.0,
+          "p95": 128.0,
+          "stddev": 0.0,
+          "unit": "count"
+        }
+      },
+      "target": "Ollama",
+      "url": "http://127.0.0.1:11434"
+    },
+    {
+      "coherence_pass": true,
+      "first_response_preview": "miles to see it? Now, I have been in many parts of the world; and yet I never saw anything like this. In all my travels,...",
+      "iteration_errors": [],
+      "iterations": [
+        {
+          "completion_tok_s": 238.2611699814752,
+          "degenerate": false,
+          "e2e_latency_ms": 537.2256,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 50.241573,
+            "cpu_rapl_available": true,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 0.558636813,
+            "energy_j": 192.5765730008941,
+            "gco2_per_tok": 2.0895895507909514e-05,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 142.33500000089407,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": null,
+            "j_per_tok": 1.504504476569485,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": 0.0004179179101581903
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 68.38071428571428,
+              "power_peak_w": 86.664,
+              "samples": 7,
+              "util_avg_pct": 56,
+              "util_peak_pct": 98,
+              "vram_avg_mb": 2612,
+              "vram_peak_mb": 2631
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 29.837857142857143,
+              "power_peak_w": 29.883,
+              "samples": 7,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 19,
+              "vram_peak_mb": 19
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 67,
+            "cpu_peak_pct": 99,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 1576,
+            "rss_peak_mb": 1577,
+            "samples": 4,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 1,
+          "load_time_ms": 6.819999,
+          "prompt_tok_s": 15372.17189554095,
+          "prompt_tokens": 1178,
+          "response_preview": "miles to see it? Now, I have been in many parts of the world; and yet I never saw anything like this. In all my travels,...",
+          "server_decode_tok_s": 283.10419896874515,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 537.2256
+        },
+        {
+          "completion_tok_s": 209.24827345244432,
+          "degenerate": false,
+          "e2e_latency_ms": 611.71353,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 53.284827,
+            "cpu_rapl_available": true,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 0.631222977,
+            "energy_j": 183.54782699654294,
+            "gco2_per_tok": 1.9916213866812386e-05,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 130.26299999654293,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": null,
+            "j_per_tok": 1.4339673984104917,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": 0.0003983242773362477
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 154.85471428571427,
+              "power_peak_w": 160.569,
+              "samples": 7,
+              "util_avg_pct": 42,
+              "util_peak_pct": 98,
+              "vram_avg_mb": 2653,
+              "vram_peak_mb": 2791
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 29.79942857142857,
+              "power_peak_w": 29.804,
+              "samples": 7,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 19,
+              "vram_peak_mb": 19
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 75,
+            "cpu_peak_pct": 99,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 1595,
+            "rss_peak_mb": 1595,
+            "samples": 4,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 2,
+          "load_time_ms": 7.963691,
+          "prompt_tok_s": 7115.435835696614,
+          "prompt_tokens": 1178,
+          "response_preview": "miles to see it? Now, I have been in many parts of the world; and yet I never saw anything like this. In all my travels,...",
+          "server_decode_tok_s": 292.730943851902,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 611.71353
+        },
+        {
+          "completion_tok_s": 211.96010071674993,
+          "degenerate": false,
+          "e2e_latency_ms": 603.8872389999999,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 53.084688,
+            "cpu_rapl_available": true,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 0.627238739,
+            "energy_j": 176.94468799940395,
+            "gco2_per_tok": 1.9199727430490878e-05,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 123.85999999940395,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": null,
+            "j_per_tok": 1.3823803749953434,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": 0.0003839945486098176
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 147.229,
+              "power_peak_w": 160.569,
+              "samples": 7,
+              "util_avg_pct": 28,
+              "util_peak_pct": 98,
+              "vram_avg_mb": 2631,
+              "vram_peak_mb": 2631
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 29.783000000000005,
+              "power_peak_w": 29.788,
+              "samples": 7,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 19,
+              "vram_peak_mb": 19
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 74,
+            "cpu_peak_pct": 99,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 1597,
+            "rss_peak_mb": 1597,
+            "samples": 4,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 3,
+          "load_time_ms": 6.315587,
+          "prompt_tok_s": 7188.746119251828,
+          "prompt_tokens": 1178,
+          "response_preview": "miles to see it? Now, I have been in many parts of the world; and yet I never saw anything like this. In all my travels,...",
+          "server_decode_tok_s": 296.1217407557247,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 603.8872389999999
+        }
+      ],
+      "load_error": null,
+      "load_time_ms": 1679.419866,
+      "model": "granite3.1-dense:2b",
+      "model_fingerprint": {
+        "modified_at": "",
+        "parameter_size": "2.5B",
+        "quantization_level": "Q4_K_M"
+      },
+      "num_ctx": 4096,
+      "prompt": "1000",
+      "prompt_chars": 4384,
+      "stats": {
+        "Carbon gCO2/tok [gpu+cpu_pkg]": {
+          "count": 3,
+          "max": 2.0895895507909514e-05,
+          "mean": 2.0003945601737593e-05,
+          "min": 1.9199727430490878e-05,
+          "p50": 1.9916213866812386e-05,
+          "p95": 2.07979273437998e-05,
+          "stddev": 8.514805809284489e-07,
+          "unit": "g"
+        },
+        "Completion tok/s": {
+          "count": 3,
+          "max": 238.2611699814752,
+          "mean": 219.8231813835565,
+          "min": 209.24827345244432,
+          "p50": 211.96010071674993,
+          "p95": 235.63106305500267,
+          "stddev": 16.02523227384219,
+          "unit": "tok/s"
+        },
+        "E2E latency": {
+          "count": 3,
+          "max": 611.71353,
+          "mean": 584.2754563333333,
+          "min": 537.2256,
+          "p50": 603.8872389999999,
+          "p95": 610.9309009,
+          "stddev": 40.93384227561162,
+          "unit": "ms"
+        },
+        "Energy J/tok [gpu+cpu_pkg]": {
+          "count": 3,
+          "max": 1.504504476569485,
+          "mean": 1.4402840833251067,
+          "min": 1.3823803749953434,
+          "p50": 1.4339673984104917,
+          "p95": 1.4974507687535858,
+          "stddev": 0.06130660182684823,
+          "unit": "J"
+        },
+        "Energy Wh/tok [gpu+cpu_pkg]": {
+          "count": 3,
+          "max": 0.0004179179101581903,
+          "mean": 0.00040007891203475187,
+          "min": 0.0003839945486098176,
+          "p50": 0.0003983242773362477,
+          "p95": 0.00041595854687599606,
+          "stddev": 1.702961161856897e-05,
+          "unit": "Wh"
+        },
+        "Model load": {
+          "count": 1,
+          "max": 1679.419866,
+          "mean": 1679.419866,
+          "min": 1679.419866,
+          "p50": 1679.419866,
+          "p95": 1679.419866,
+          "stddev": 0.0,
+          "unit": "ms"
+        },
+        "Prompt tok/s": {
+          "count": 3,
+          "max": 15372.17189554095,
+          "mean": 9892.11795016313,
+          "min": 7115.435835696614,
+          "p50": 7188.746119251828,
+          "p95": 14553.829317912037,
+          "stddev": 4746.007483412452,
+          "unit": "tok/s"
+        },
+        "Tokens generated": {
+          "count": 3,
+          "max": 128.0,
+          "mean": 128.0,
+          "min": 128.0,
+          "p50": 128.0,
+          "p95": 128.0,
+          "stddev": 0.0,
+          "unit": "count"
+        }
+      },
+      "target": "LOKEN",
+      "url": "http://127.0.0.1:11435"
+    }
+  ],
+  "schema": "loken/2",
+  "subjects": {
+    "LOKEN": {
+      "devices": {
+        "compiled": {
+          "audio": true,
+          "cuda": true,
+          "image": true,
+          "midi": true,
+          "opencl": true,
+          "video": true,
+          "vulkan": false
+        },
+        "devices": [
+          {
+            "backend": "cuda",
+            "name": "NVIDIA GeForce RTX 5070 Ti",
+            "status": "available",
+            "type": "CUDA"
+          },
+          {
+            "backend": "cuda",
+            "name": "NVIDIA GeForce RTX 5060 Ti",
+            "status": "available",
+            "type": "CUDA"
+          },
+          {
+            "backend": "cpu",
+            "name": "CPU (32 cores)",
+            "status": "available",
+            "type": "CPU"
+          }
+        ]
+      },
+      "says": {
+        "commit": "cc42b7aa5",
+        "loken": "0.4.0-dev+gcc42b7aa5",
+        "version": "0.4.0-dev+gcc42b7aa5"
+      },
+      "url": "http://127.0.0.1:11435"
+    },
+    "Ollama": {
+      "devices": null,
+      "says": {
+        "version": "0.40.6"
+      },
+      "url": "http://127.0.0.1:11434"
+    }
+  },
+  "timestamp": "2026-10-25"
+}

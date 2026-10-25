@@ -1,0 +1,842 @@
+{
+  "config": {
+    "carbon_intensity_gco2_per_kwh": 50.0,
+    "custom_prompt": null,
+    "energy_measure": true,
+    "gpu_sample": true,
+    "iterations": 3,
+    "max_tokens": 128,
+    "models": [
+      "qwen3:latest"
+    ],
+    "num_ctx": [
+      4096
+    ],
+    "num_gpu": null,
+    "prompts": [
+      "100"
+    ],
+    "session_id": null,
+    "streaming": false,
+    "unique_prompt": false,
+    "warmup": 0
+  },
+  "engine_build": 1792905946,
+  "idle_energy_baseline": null,
+  "machine": {
+    "cpu": "AMD Ryzen 9 9950X3D 16-Core Processor",
+    "cpu_flags": [
+      "avx2",
+      "fma",
+      "bmi2",
+      "f16c",
+      "avx512f",
+      "avx512bw",
+      "avx512vl",
+      "avx512_vnni",
+      "avx512_bf16"
+    ],
+    "driver": "615.71.09",
+    "gpus": [
+      {
+        "arch": "sm_120",
+        "index": 0,
+        "name": "NVIDIA GeForce RTX 5070 Ti",
+        "pcie_gen": 5,
+        "pcie_width": 8,
+        "power_cap_w": 300,
+        "vendor": "nvidia",
+        "vram_mib": 16303
+      },
+      {
+        "arch": "sm_120",
+        "index": 1,
+        "name": "NVIDIA GeForce RTX 5060 Ti",
+        "pcie_gen": 5,
+        "pcie_width": 8,
+        "power_cap_w": 180,
+        "vendor": "nvidia",
+        "vram_mib": 16311
+      }
+    ],
+    "hardware_id": "de70d1e2f726faf5",
+    "host_id": "12973014bbf73a88",
+    "kernel": "6.12.111+deb13-amd64",
+    "os": "Debian GNU/Linux 13 (trixie)",
+    "ram_gib": 60,
+    "sockets": 1,
+    "threads": 32
+  },
+  "ollama_version": "0.40.6",
+  "protocol": {
+    "cards_by_uuid": null,
+    "engines_seen": [
+      "llama-server",
+      "ollama"
+    ],
+    "gpu_temps_c_at_start": [
+      47,
+      50
+    ],
+    "iterations": 3,
+    "max_tokens": 128,
+    "prefix_reuse_offered": false,
+    "streaming": false,
+    "unique_prompt": false,
+    "warmup": 0
+  },
+  "results": [
+    {
+      "coherence_pass": true,
+      "first_response_preview": "... (The rest of the text is cut off). This is the beginning of which famous novel? The text provided is the opening par...",
+      "iteration_errors": [],
+      "iterations": [
+        {
+          "completion_tok_s": 26.116246461664577,
+          "degenerate": false,
+          "e2e_latency_ms": 4901.163732999999,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 415.281945,
+            "cpu_rapl_available": true,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 4.922590139,
+            "energy_j": 959.6649450013113,
+            "gco2_per_tok": 0.0001041303108725381,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 544.3830000013113,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": null,
+            "j_per_tok": 7.497382382822744,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": 0.002082606217450762
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 52.75414583333335,
+              "power_peak_w": 111.052,
+              "samples": 48,
+              "util_avg_pct": 8,
+              "util_peak_pct": 33,
+              "vram_avg_mb": 1451,
+              "vram_peak_mb": 5539
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 41.299729166666644,
+              "power_peak_w": 104.609,
+              "samples": 48,
+              "util_avg_pct": 12,
+              "util_peak_pct": 65,
+              "vram_avg_mb": 1455,
+              "vram_peak_mb": 5319
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 11,
+            "cpu_peak_pct": 74,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 57,
+            "rss_peak_mb": 345,
+            "samples": 25,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 1,
+          "load_time_ms": 3522.194425,
+          "prompt_tok_s": 1214.8306526070267,
+          "prompt_tokens": 100,
+          "response_preview": "... (The rest of the text is cut off). This is the beginning of which famous novel? The text provided is the opening par...",
+          "server_decode_tok_s": 98.8077456009325,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 4901.163732999999
+        },
+        {
+          "completion_tok_s": 98.36209445970286,
+          "degenerate": false,
+          "e2e_latency_ms": 1301.314299,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 135.266213,
+            "cpu_rapl_available": true,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 1.321416652,
+            "energy_j": 418.05221300217556,
+            "gco2_per_tok": 4.536156825110412e-05,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 282.78600000217557,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": null,
+            "j_per_tok": 3.2660329140794966,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": 0.0009072313650220824
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 104.6702857142857,
+              "power_peak_w": 105.357,
+              "samples": 14,
+              "util_avg_pct": 20,
+              "util_peak_pct": 34,
+              "vram_avg_mb": 3017,
+              "vram_peak_mb": 3017
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 107.94614285714287,
+              "power_peak_w": 116.634,
+              "samples": 14,
+              "util_avg_pct": 40,
+              "util_peak_pct": 65,
+              "vram_avg_mb": 3091,
+              "vram_peak_mb": 3091
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 0,
+            "cpu_peak_pct": 4,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 37,
+            "rss_peak_mb": 37,
+            "samples": 8,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 2,
+          "load_time_ms": 1.162879,
+          "prompt_tok_s": 9828.97582071948,
+          "prompt_tokens": 100,
+          "response_preview": "... (The rest of the text is cut off). This is the beginning of which famous novel? The text provided is the opening par...",
+          "server_decode_tok_s": 99.86105270713172,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 1301.314299
+        },
+        {
+          "completion_tok_s": 98.85369303889763,
+          "degenerate": false,
+          "e2e_latency_ms": 1294.842874,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 132.344031,
+            "cpu_rapl_available": true,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 1.315660723,
+            "energy_j": 408.7760310000298,
+            "gco2_per_tok": 4.4355038085940724e-05,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 276.4320000000298,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": null,
+            "j_per_tok": 3.1935627421877326,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": 0.0008871007617188146
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 94.31707142857144,
+              "power_peak_w": 111.013,
+              "samples": 14,
+              "util_avg_pct": 18,
+              "util_peak_pct": 33,
+              "vram_avg_mb": 3017,
+              "vram_peak_mb": 3017
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 97.12950000000001,
+              "power_peak_w": 117.726,
+              "samples": 14,
+              "util_avg_pct": 37,
+              "util_peak_pct": 66,
+              "vram_avg_mb": 3091,
+              "vram_peak_mb": 3091
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 0,
+            "cpu_peak_pct": 0,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 37,
+            "rss_peak_mb": 37,
+            "samples": 8,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 3,
+          "load_time_ms": 1.166269,
+          "prompt_tok_s": 9873.617693522907,
+          "prompt_tokens": 100,
+          "response_preview": "... (The rest of the text is cut off). This is the beginning of which famous novel? The text provided is the opening par...",
+          "server_decode_tok_s": 100.35508451387761,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 1294.842874
+        }
+      ],
+      "load_error": null,
+      "load_time_ms": 2267.8667020000003,
+      "model": "qwen3:latest",
+      "model_fingerprint": {
+        "modified_at": "2026-10-14",
+        "parameter_size": "8.2B",
+        "quantization_level": "Q4_K_M"
+      },
+      "num_ctx": 4096,
+      "prompt": "100",
+      "prompt_chars": 451,
+      "stats": {
+        "Carbon gCO2/tok [gpu+cpu_pkg]": {
+          "count": 3,
+          "max": 0.0001041303108725381,
+          "mean": 6.461563906986099e-05,
+          "min": 4.4355038085940724e-05,
+          "p50": 4.536156825110412e-05,
+          "p95": 9.82534366103947e-05,
+          "stddev": 3.422441002410868e-05,
+          "unit": "g"
+        },
+        "Completion tok/s": {
+          "count": 3,
+          "max": 98.85369303889763,
+          "mean": 74.44401132008835,
+          "min": 26.116246461664577,
+          "p50": 98.36209445970286,
+          "p95": 98.80453318097815,
+          "stddev": 41.85379384773968,
+          "unit": "tok/s"
+        },
+        "E2E latency": {
+          "count": 3,
+          "max": 4901.163732999999,
+          "mean": 2499.1069686666665,
+          "min": 1294.842874,
+          "p50": 1301.314299,
+          "p95": 4541.1787896,
+          "stddev": 2080.244695737745,
+          "unit": "ms"
+        },
+        "Energy J/tok [gpu+cpu_pkg]": {
+          "count": 3,
+          "max": 7.497382382822744,
+          "mean": 4.652326013029992,
+          "min": 3.1935627421877326,
+          "p50": 3.2660329140794966,
+          "p95": 7.074247435948418,
+          "stddev": 2.4641575217358254,
+          "unit": "J"
+        },
+        "Energy Wh/tok [gpu+cpu_pkg]": {
+          "count": 3,
+          "max": 0.002082606217450762,
+          "mean": 0.0012923127813972198,
+          "min": 0.0008871007617188146,
+          "p50": 0.0009072313650220824,
+          "p95": 0.001965068732207894,
+          "stddev": 0.0006844882004821736,
+          "unit": "Wh"
+        },
+        "Model load": {
+          "count": 1,
+          "max": 2267.8667020000003,
+          "mean": 2267.8667020000003,
+          "min": 2267.8667020000003,
+          "p50": 2267.8667020000003,
+          "p95": 2267.8667020000003,
+          "stddev": 0.0,
+          "unit": "ms"
+        },
+        "Prompt tok/s": {
+          "count": 3,
+          "max": 9873.617693522907,
+          "mean": 6972.474722283138,
+          "min": 1214.8306526070267,
+          "p50": 9828.97582071948,
+          "p95": 9869.153506242565,
+          "stddev": 4986.3159896870975,
+          "unit": "tok/s"
+        },
+        "Tokens generated": {
+          "count": 3,
+          "max": 128.0,
+          "mean": 128.0,
+          "min": 128.0,
+          "p50": 128.0,
+          "p95": 128.0,
+          "stddev": 0.0,
+          "unit": "count"
+        }
+      },
+      "target": "Ollama",
+      "url": "http://127.0.0.1:11434"
+    },
+    {
+      "coherence_pass": true,
+      "first_response_preview": "... (The rest of the text is cut off). This is the beginning of which famous novel? The text provided is the opening par...",
+      "iteration_errors": [],
+      "iterations": [
+        {
+          "completion_tok_s": 133.44867037796942,
+          "degenerate": false,
+          "e2e_latency_ms": 959.1702909999999,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 84.200785,
+            "cpu_rapl_available": true,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 0.978908478,
+            "energy_j": 347.32978500065565,
+            "gco2_per_tok": 3.768769368496698e-05,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 263.12900000065565,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": null,
+            "j_per_tok": 2.7135139453176222,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": 0.0007537538736993396
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 132.56336363636362,
+              "power_peak_w": 238.317,
+              "samples": 11,
+              "util_avg_pct": 72,
+              "util_peak_pct": 99,
+              "vram_avg_mb": 6555,
+              "vram_peak_mb": 6567
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 29.01209090909091,
+              "power_peak_w": 29.019,
+              "samples": 11,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 19,
+              "vram_peak_mb": 19
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 78,
+            "cpu_peak_pct": 99,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 1925,
+            "rss_peak_mb": 1927,
+            "samples": 6,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 1,
+          "load_time_ms": 8.658889,
+          "prompt_tok_s": 4581.660072894212,
+          "prompt_tokens": 100,
+          "response_preview": "... (The rest of the text is cut off). This is the beginning of which famous novel? The text provided is the opening par...",
+          "server_decode_tok_s": 137.94296773863152,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 959.1702909999999
+        },
+        {
+          "completion_tok_s": 125.00687904065813,
+          "degenerate": false,
+          "e2e_latency_ms": 1023.94365,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 87.151835,
+            "cpu_rapl_available": true,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 1.044959118,
+            "energy_j": 351.34683500029803,
+            "gco2_per_tok": 3.812357150610873e-05,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 264.195000000298,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": null,
+            "j_per_tok": 2.7448971484398283,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": 0.0007624714301221746
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 201.3145454545455,
+              "power_peak_w": 238.317,
+              "samples": 11,
+              "util_avg_pct": 62,
+              "util_peak_pct": 99,
+              "vram_avg_mb": 6567,
+              "vram_peak_mb": 6567
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 24.24609090909091,
+              "power_peak_w": 29.019,
+              "samples": 11,
+              "util_avg_pct": 0,
+              "util_peak_pct": 1,
+              "vram_avg_mb": 27,
+              "vram_peak_mb": 113
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 85,
+            "cpu_peak_pct": 104,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 1941,
+            "rss_peak_mb": 1941,
+            "samples": 6,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 2,
+          "load_time_ms": 8.855331,
+          "prompt_tok_s": 856.1941304433334,
+          "prompt_tokens": 100,
+          "response_preview": "... (The rest of the text is cut off). This is the beginning of which famous novel? The text provided is the opening par...",
+          "server_decode_tok_s": 142.55722060285512,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 1023.94365
+        },
+        {
+          "completion_tok_s": 127.15907011162894,
+          "degenerate": false,
+          "e2e_latency_ms": 1006.613212,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 86.756408,
+            "cpu_rapl_available": true,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 1.026648513,
+            "energy_j": 344.95740800128146,
+            "gco2_per_tok": 3.74302743056946e-05,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 258.2010000012815,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": null,
+            "j_per_tok": 2.6949797500100114,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": 0.000748605486113892
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 226.2898181818182,
+              "power_peak_w": 235.766,
+              "samples": 11,
+              "util_avg_pct": 55,
+              "util_peak_pct": 99,
+              "vram_avg_mb": 6567,
+              "vram_peak_mb": 6567
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 28.150545454545455,
+              "power_peak_w": 29.225,
+              "samples": 11,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 19,
+              "vram_peak_mb": 19
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 82,
+            "cpu_peak_pct": 104,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 1946,
+            "rss_peak_mb": 1946,
+            "samples": 6,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 3,
+          "load_time_ms": 7.082204,
+          "prompt_tok_s": 897.3956009218945,
+          "prompt_tokens": 100,
+          "response_preview": "... (The rest of the text is cut off). This is the beginning of which famous novel? The text provided is the opening par...",
+          "server_decode_tok_s": 144.20429178672683,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 1006.613212
+        }
+      ],
+      "load_error": null,
+      "load_time_ms": 2491.752509,
+      "model": "qwen3:latest",
+      "model_fingerprint": {
+        "modified_at": "",
+        "parameter_size": "8.2B",
+        "quantization_level": "Q4_K_M"
+      },
+      "num_ctx": 4096,
+      "prompt": "100",
+      "prompt_chars": 451,
+      "stats": {
+        "Carbon gCO2/tok [gpu+cpu_pkg]": {
+          "count": 3,
+          "max": 3.812357150610873e-05,
+          "mean": 3.774717983225677e-05,
+          "min": 3.74302743056946e-05,
+          "p50": 3.768769368496698e-05,
+          "p95": 3.8079983723994556e-05,
+          "stddev": 3.504557080645913e-07,
+          "unit": "g"
+        },
+        "Completion tok/s": {
+          "count": 3,
+          "max": 133.44867037796942,
+          "mean": 128.5382065100855,
+          "min": 125.00687904065813,
+          "p50": 127.15907011162894,
+          "p95": 132.81971035133537,
+          "stddev": 4.386624345648573,
+          "unit": "tok/s"
+        },
+        "E2E latency": {
+          "count": 3,
+          "max": 1023.94365,
+          "mean": 996.5757176666666,
+          "min": 959.1702909999999,
+          "p50": 1006.613212,
+          "p95": 1022.2106062,
+          "stddev": 33.53297598490923,
+          "unit": "ms"
+        },
+        "Energy J/tok [gpu+cpu_pkg]": {
+          "count": 3,
+          "max": 2.7448971484398283,
+          "mean": 2.717796947922487,
+          "min": 2.6949797500100114,
+          "p50": 2.7135139453176222,
+          "p95": 2.7417588281276077,
+          "stddev": 0.025232810980650427,
+          "unit": "J"
+        },
+        "Energy Wh/tok [gpu+cpu_pkg]": {
+          "count": 3,
+          "max": 0.0007624714301221746,
+          "mean": 0.0007549435966451353,
+          "min": 0.000748605486113892,
+          "p50": 0.0007537538736993396,
+          "p95": 0.0007615996744798911,
+          "stddev": 7.0091141612918015e-06,
+          "unit": "Wh"
+        },
+        "Model load": {
+          "count": 1,
+          "max": 2491.752509,
+          "mean": 2491.752509,
+          "min": 2491.752509,
+          "p50": 2491.752509,
+          "p95": 2491.752509,
+          "stddev": 0.0,
+          "unit": "ms"
+        },
+        "Prompt tok/s": {
+          "count": 3,
+          "max": 4581.660072894212,
+          "mean": 2111.7499347531466,
+          "min": 856.1941304433334,
+          "p50": 897.3956009218945,
+          "p95": 4213.233625696979,
+          "stddev": 2139.104125133092,
+          "unit": "tok/s"
+        },
+        "Tokens generated": {
+          "count": 3,
+          "max": 128.0,
+          "mean": 128.0,
+          "min": 128.0,
+          "p50": 128.0,
+          "p95": 128.0,
+          "stddev": 0.0,
+          "unit": "count"
+        }
+      },
+      "target": "LOKEN",
+      "url": "http://127.0.0.1:11435"
+    }
+  ],
+  "schema": "loken/2",
+  "subjects": {
+    "LOKEN": {
+      "devices": {
+        "compiled": {
+          "audio": true,
+          "cuda": true,
+          "image": true,
+          "midi": true,
+          "opencl": true,
+          "video": true,
+          "vulkan": false
+        },
+        "devices": [
+          {
+            "backend": "cuda",
+            "name": "NVIDIA GeForce RTX 5070 Ti",
+            "status": "available",
+            "type": "CUDA"
+          },
+          {
+            "backend": "cuda",
+            "name": "NVIDIA GeForce RTX 5060 Ti",
+            "status": "available",
+            "type": "CUDA"
+          },
+          {
+            "backend": "cpu",
+            "name": "CPU (32 cores)",
+            "status": "available",
+            "type": "CPU"
+          }
+        ]
+      },
+      "says": {
+        "commit": "cc42b7aa5",
+        "loken": "0.4.0-dev+gcc42b7aa5",
+        "version": "0.4.0-dev+gcc42b7aa5"
+      },
+      "url": "http://127.0.0.1:11435"
+    },
+    "Ollama": {
+      "devices": null,
+      "says": {
+        "version": "0.40.6"
+      },
+      "url": "http://127.0.0.1:11434"
+    }
+  },
+  "timestamp": "2026-10-25"
+}
