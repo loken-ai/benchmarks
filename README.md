@@ -99,7 +99,7 @@ state the loken version is labelled `loken` without a number.
 |---|---|
 | `scripts/bench` | the campaign driver |
 | `scripts/engines/` | the isolation protocol (`fair-run.sh`), the card policy and the vLLM launchers |
-| `scripts/records/` | the record store, the hardware identity, the equivalence classes and the archive converters |
+| `scripts/records/` | the record store, the hardware identity, the equivalence classes and the converter of old reports |
 | `scripts/architecture.py` | describes the machine and its cluster |
 | `scripts/add.py`, `scripts/check.py`, `scripts/site.py` | file a run, check it, build the site |
 | `scripts/bench_row.py`, `scripts/scoreboard.py`, `scripts/plot-bench.py` | the table rows, the win count and the plot |

@@ -168,10 +168,6 @@ def main():
             backends.setdefault(R.C.loken_backend(rec), []).append((rec, rec.get("converted_from") or path.name, rid))
         sections, tabled, row_count = [], [], 0
         for backend, triples in sorted(backends.items(), key=lambda kv: -len(kv[1])):
-            replays = sum(1 for d, _, _ in triples if d.get("replay"))
-            triples = [t for t in triples if not t[0].get("replay")]
-            archived = sum(1 for d, _, _ in triples if d.get("archive"))
-            triples = [t for t in triples if not t[0].get("archive")]
             tabled += [d for d, _, _ in triples]
             rows_ = [r[:17] + [str(r[17])[:10]] + r[18:] for r in B.cells(B.load_docs(triples))]
             row_count += len(rows_)
@@ -195,10 +191,6 @@ def main():
             notes = [f"{len(triples)} run(s), {first} to {last}."]
             if builds:
                 notes.append(f"loken builds measured: {', '.join(builds)}.")
-            if replays:
-                notes.append(f"{replays} replayable record(s) are held and not tabled.")
-            if archived:
-                notes.append(f"{archived} archived run(s) (superseded builds or another protocol) are held and not tabled.")
             notes += backend_note(backend)
             sections.append(f"<h2>Results, backend {esc(backend)}</h2>\n<p>{esc(' '.join(notes))}</p>\n"
                             + table(head, lines, classes))
