@@ -36,7 +36,7 @@
   }
 
   function hardwareLabel(row) {
-    const cards = row.cards.length ? row.cards.join(" + ") : "CPU only";
+    const cards = row.title || (row.cards.length ? row.cards.join(" + ") : "CPU only");
     return row.backend && row.backend !== "unstated" ? cards + " (" + row.backend + ")" : cards;
   }
 

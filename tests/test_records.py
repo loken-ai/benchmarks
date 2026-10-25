@@ -129,6 +129,36 @@ class Checks(unittest.TestCase):
         self.assertTrue(any("hashes to run_id" in why for why in K.problems(wrong, rec, {})))
 
 
+class CpuRuns(unittest.TestCase):
+    def cpu_record(self):
+        rec = record()
+        rec["config"] = {"num_gpu": 0}
+        return rec
+
+    def test_a_run_that_gave_no_engine_a_card_is_a_cpu_run(self):
+        self.assertTrue(R.is_cpu_run(self.cpu_record()))
+        self.assertFalse(R.is_cpu_run(record()))
+
+    def test_a_cpu_run_names_no_card_and_is_filed_under_the_host_alone(self):
+        gpu, cpu = R.anonymised(record()), R.anonymised(self.cpu_record())
+        self.assertEqual(cpu["machine"]["gpus"], [])
+        self.assertNotIn("driver", cpu["machine"])
+        self.assertNotEqual(cpu["machine"]["hardware_id"], gpu["machine"]["hardware_id"])
+        self.assertEqual(K.problems(filed(cpu), cpu, {}), [])
+
+    def test_the_same_host_has_one_cpu_hardware_whatever_its_cards(self):
+        one = R.anonymised(self.cpu_record())
+        other = self.cpu_record()
+        other["machine"]["gpus"] = [card("Other", index=1)]
+        self.assertEqual(R.anonymised(other)["machine"]["hardware_id"], one["machine"]["hardware_id"])
+
+    def test_a_cpu_run_that_still_names_a_card_is_refused(self):
+        rec = R.anonymised(self.cpu_record())
+        rec["machine"]["gpus"] = [card()]
+        rec["machine"]["hardware_id"] = H.hardware_id({k: v for k, v in rec["machine"].items() if k != "hardware_id"})
+        self.assertTrue(any("names a card" in why for why in K.problems(filed(rec), rec, {})))
+
+
 class Confirmation(unittest.TestCase):
     def test_a_second_host_confirms_a_run_and_the_same_host_does_not(self):
         one, two = R.anonymised(record()), R.anonymised(record(host_id="bbbb"))

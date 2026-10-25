@@ -115,7 +115,7 @@ def main():
         machine = next(d["machine"] for d in reversed(docs) if d.get("machine"))
         label = R.H.label(machine)
         nodes = machine.get("nodes") or [machine]
-        cards = sorted({g.get("name") or "?" for n in nodes for g in n.get("gpus", [])}) or ["no card"]
+        cards = sorted({g.get("name") or "?" for n in nodes for g in n.get("gpus", [])})
         backends = {}
         for rid, rec, path in group:
             backends.setdefault(R.C.loken_backend(rec), []).append((rec, rec.get("converted_from") or path.name, rid))
@@ -165,6 +165,7 @@ def main():
         first, last = span(tabled)
         info = {"hid": hid, "title": P.cards_title(machine), "cpu": nodes[0].get("cpu") or "?",
                 "backends": sorted(backends), "vram": P.vram_gb(machine),
+                "cpu_only": not cards,
                 "archs": sorted({g["arch"] for n in nodes for g in n.get("gpus", []) if g.get("arch")}),
                 "runs": len(tabled), "rows": row_count, "confirmed": confirmed, "hosts": len(hosts),
                 "wins": wins, "losses": losses, "span": f"{first} to {last}"}
@@ -173,6 +174,8 @@ def main():
             ("runs", info["runs"]), ("rows", row_count), ("confirmed records", f"{confirmed} / {len(group)}"),
             ("hosts", len(hosts)), ("from", first), ("to", last)))
         chips = "".join(P.backend_chip(b) for b in info["backends"])
+        if info["cpu_only"]:
+            chips += '<span class="chip">CPU only</span>'
         body = (f'<div class="crumbs"><a href="../index.html">Hardware</a> / {P.esc(info["title"])}</div>\n'
                 f'<h1>{P.esc(info["title"])}</h1>\n<p class="sub">{P.esc(info["cpu"])}</p>\n'
                 f'<div class="chips">{chips}<span class="chip">hardware id {P.esc(hid)}</span></div>\n'

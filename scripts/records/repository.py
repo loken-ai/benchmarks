@@ -129,10 +129,26 @@ def local_strings(record):
     return found
 
 
+def is_cpu_run(record):
+    """True for a run that gave no engine a card: the host alone was measured."""
+    return (record.get("config") or {}).get("num_gpu") == 0
+
+
+def host_only(machine):
+    """The machine block of a CPU run: the host, with no card and no card driver, and its own id."""
+    machine = {k: v for k, v in machine.items() if k not in ("gpus", "nodes", "driver", "hardware_id")}
+    machine["gpus"] = []
+    machine["hardware_id"] = H.hardware_id({k: v for k, v in machine.items() if k != "hardware_id"})
+    return machine
+
+
 def anonymised(record):
-    """The record with its dates cut to the day and its machine block cut to the listed fields."""
+    """The record with its dates cut to the day, its machine block cut to the listed fields, and no
+    card named when only the host was measured."""
     for container, key in clock_fields(record):
         container[key] = day_of(container[key])
     if isinstance(record.get("machine"), dict):
         record["machine"] = kept_machine(record["machine"])
+        if is_cpu_run(record):
+            record["machine"] = host_only(record["machine"])
     return record

@@ -82,7 +82,7 @@ def cards_title(machine):
     nodes = machine.get("nodes") or [machine]
     names = [short_card(g.get("name")) for n in nodes for g in n.get("gpus", [])]
     if not names:
-        return "CPU only"
+        return nodes[0].get("cpu") or "CPU only"
     counts = {}
     for n in names:
         counts[n] = counts.get(n, 0) + 1
@@ -103,6 +103,8 @@ def backend_chip(backend):
 
 def hardware_card(info):
     chips = "".join(backend_chip(b) for b in info["backends"])
+    if info["cpu_only"]:
+        chips += '<span class="chip">CPU only</span>'
     if info["vram"]:
         chips += f'<span class="chip">{esc(info["vram"])} VRAM</span>'
     for arch in info["archs"]:
@@ -145,7 +147,7 @@ def specs(machine, docs):
                 g.get("arch"), f"{g['vram_mib'] / 1024:.0f} GB" if g.get("vram_mib") else "",
                 f"{g['power_cap_w']} W cap" if g.get("power_cap_w") else "",
                 f"PCIe {g['pcie_gen']}.0 x{g['pcie_width']}" if g.get("pcie_gen") and g.get("pcie_width") else "") if x))
-            + "</span></div>" for g in node.get("gpus", [])) or '<span class="muted">no card recorded</span>'
+            + "</span></div>" for g in node.get("gpus", [])) or '<span class="muted">none: this hardware is measured on its processor alone</span>'
         blocks.append(f'<div class="spec"><h3>{esc(tag)}Cards</h3>{gpus}</div>')
         cpu = [("Processor", node.get("cpu")), ("Threads", node.get("threads")), ("Sockets", node.get("sockets")),
                ("Memory", f"{node['ram_gib']} GB" if node.get("ram_gib") else ""),

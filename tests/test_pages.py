@@ -67,7 +67,7 @@ class Tables(unittest.TestCase):
 class Cards(unittest.TestCase):
     def info(self, **over):
         base = {"hid": "abc", "title": "RTX 5070 Ti", "cpu": "Cpu", "backends": ["cuda"], "vram": "16 GB",
-                "archs": ["sm_120"], "runs": 3, "rows": 9, "confirmed": 1, "hosts": 2, "wins": 6, "losses": 2,
+                "archs": ["sm_120"], "cpu_only": False, "runs": 3, "rows": 9, "confirmed": 1, "hosts": 2, "wins": 6, "losses": 2,
                 "span": "2026-10-01 to 2026-10-02"}
         base.update(over)
         return base
@@ -83,6 +83,12 @@ class Cards(unittest.TestCase):
 
     def test_an_unrecorded_backend_is_said_plainly(self):
         self.assertIn("backend not recorded", P.hardware_card(self.info(backends=["unstated"])))
+
+    def test_a_hardware_without_a_card_is_named_by_its_processor(self):
+        machine = {"cpu": "Some Cpu @ 3 GHz", "gpus": []}
+        self.assertEqual(P.cards_title(machine), "Some Cpu @ 3 GHz")
+        html = P.hardware_card(self.info(title="Some Cpu @ 3 GHz", cpu_only=True, vram="", archs=[]))
+        self.assertIn("CPU only", html)
 
     def test_the_title_counts_identical_cards(self):
         machine = {"gpus": [{"name": "NVIDIA GeForce RTX 5070 Ti"}, {"name": "NVIDIA GeForce RTX 5070 Ti"}]}

@@ -44,6 +44,9 @@ def protocol_problems(record):
 
 def anonymity_problems(record):
     out = []
+    machine = record.get("machine")
+    if R.is_cpu_run(record) and isinstance(machine, dict) and (machine.get("gpus") or machine.get("nodes")):
+        out.append("a CPU run names a card; the host alone was measured (scripts/add.py removes it)")
     if R.clock_fields(record):
         out.append("a date carries a time of day; keep the day only (scripts/add.py does)")
     machine = record.get("machine")
