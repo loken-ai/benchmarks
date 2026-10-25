@@ -26,6 +26,7 @@ VENV="${VLLM_VENV:?set VLLM_VENV to a vLLM environment}"
 OLLAMA_MODELS="${OLLAMA_MODELS:-$HOME/.ollama/models}"
 PORT=8000
 GPU=1
+TP=1
 GMU=0.85
 MAXLEN=8192
 TOKENIZER=""
@@ -39,6 +40,7 @@ while [[ $# -gt 0 ]]; do
   case "$1" in
     --port)      PORT="$2"; shift 2 ;;
     --gpu)       GPU="$2"; shift 2 ;;
+    --tp)        TP="$2"; shift 2 ;;
     --gpu-mem)   GMU="$2"; shift 2 ;;
     --max-len)   MAXLEN="$2"; shift 2 ;;
     --dtype)     DTYPE="$2"; shift 2 ;;
@@ -119,7 +121,7 @@ esac
 sz=$(du -h "$BLOB" | cut -f1)
 echo "  Ollama tag : $TAG  (arch=$ARCH, $sz)"
 echo "  GGUF blob  : $BLOB"
-echo "  Serving on : GPU$GPU  port $PORT  max-len $MAXLEN  gpu-mem $GMU"
+echo "  Serving on : GPU$GPU  tp=$TP  port $PORT  max-len $MAXLEN  gpu-mem $GMU"
 [[ -n "$TOKENIZER" ]] && echo "  Tokenizer  : $TOKENIZER (HF)" \
                       || echo "  Tokenizer  : <from GGUF metadata> (pass --tokenizer <hf-repo> if this fails)"
 echo
@@ -128,12 +130,17 @@ echo
 # PCI bus order. --served-model-name set to the Ollama tag so the bench's
 # --models value matches what /v1/models reports.
 export PATH="$VENV/bin:$PATH"
-export CUDA_VISIBLE_DEVICES="$GPU"
 export CUDA_DEVICE_ORDER=PCI_BUS_ID
+if [[ "$TP" -gt 1 ]]; then
+  unset CUDA_VISIBLE_DEVICES   # tensor-parallel: every visible GPU
+else
+  export CUDA_VISIBLE_DEVICES="$GPU"
+fi
 
 cmd=( "$VENV/bin/vllm" serve "$BLOB"
       --served-model-name "$TAG"
       --port "$PORT"
+      --tensor-parallel-size "$TP"
       --max-model-len "$MAXLEN"
       --dtype "$DTYPE"
       --gpu-memory-utilization "$GMU" )

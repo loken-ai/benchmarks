@@ -268,8 +268,13 @@ kill_all() {
 # vLLM serves /v1/models while the weights are still loading, so the third argument lets a
 # probe demand a substring rather than a status code.
 wait_url() {
-  local url="$1" secs="${2:-60}" want="${3:-}"
+  local url="$1" secs="${2:-60}" want="${3:-}" pidfile="${4:-}" pid
   for _ in $(seq 1 "$secs"); do
+    # An engine whose process is already gone will not answer: stop waiting for it.
+    if [ -n "$pidfile" ] && [ -s "$pidfile" ]; then
+      pid="$(cat "$pidfile")"
+      kill -0 "$pid" 2>/dev/null || return 2
+    fi
     if [ -n "$want" ]; then
       curl -s -m2 "$url" 2>/dev/null | grep -q "$want" && return 0
     else
@@ -300,9 +305,14 @@ engine_start() {
   # gpu_env_for prints KEY=VALUE words, and the split is the point.
   # shellcheck disable=SC2046
   ( cd "${E_CWD[$n]:-$PWD}" \
-    && env $(gpu_env_for "$n") ${E_ENV[$n]:-} nohup "${E_BIN[$n]}" ${E_ARGS[$n]:-} >"$log" 2>&1 & )
-  wait_url "${E_PROBE[$n]}" "${E_WAIT[$n]:-60}" "${E_WANT[$n]:-}" \
-    || { echo "  warning: $n did not come up within ${E_WAIT[$n]:-60}s - see $log" >&2; return 1; }
+    && env $(gpu_env_for "$n") ${E_ENV[$n]:-} nohup "${E_BIN[$n]}" ${E_ARGS[$n]:-} >"$log" 2>&1 & echo $! >"$LOGDIR/$n.pid" )
+  local up=0
+  wait_url "${E_PROBE[$n]}" "${E_WAIT[$n]:-60}" "${E_WANT[$n]:-}" "$LOGDIR/$n.pid" || up=$?
+  if [ "$up" = 2 ]; then
+    echo "  warning: $n stopped before it answered - see $log" >&2; return 1
+  elif [ "$up" != 0 ]; then
+    echo "  warning: $n did not come up within ${E_WAIT[$n]:-60}s - see $log" >&2; return 1
+  fi
   return 0
 }
 
@@ -499,12 +509,15 @@ if _want vllm && [ "$BENCH_MODE" = gpu ] && [ -n "${VLLM_SERVE:-}" ]; then
   # Which wrapper depends on where the weights come from; its own index flag stays because
   # vLLM parses CUDA_VISIBLE_DEVICES as integers and a UUID breaks it. The card SET is the
   # policy's; this only says which of those it starts on.
+  # The number of cards it shards across is the policy's: the same cards the others were given.
+  # shellcheck disable=SC2046
+  set -- $(gpu_extra_args_for vllm); _tp="${2:-1}"; set --
   if [[ "$VLLM_SERVE" == hf:* ]]; then
     E_BIN[vllm]="$VLLM_HF_LAUNCHER"
-    E_ARGS[vllm]="${VLLM_SERVE#hf:} --gpu ${GPU_PIN:-0} --port $VLLM_PORT"
+    E_ARGS[vllm]="${VLLM_SERVE#hf:} --gpu ${GPU_PIN:-0} --tp $_tp --port $VLLM_PORT"
   else
     E_BIN[vllm]="$VLLM_TAG_LAUNCHER"
-    E_ARGS[vllm]="$VLLM_SERVE --gpu ${GPU_PIN:-0} --port $VLLM_PORT"
+    E_ARGS[vllm]="$VLLM_SERVE --gpu ${GPU_PIN:-0} --tp $_tp --port $VLLM_PORT"
   fi
   echo "  waiting for vLLM to finish loading weights (minutes)..."
   engine_start vllm || true
