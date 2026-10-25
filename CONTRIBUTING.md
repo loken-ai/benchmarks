@@ -9,7 +9,7 @@ first. Do not edit a record, and do not add one taken with a protocol other than
 ## Code
 
 - Python 3 and the standard library only; the scripts run on Linux.
-- `python3 -m unittest discover tests` passes before a pull request.
+- `python3 -m unittest discover tests` and `node --test tests/*.test.js` pass before a pull request.
 - A change to how a record is filed, checked or described comes with a test in `tests/`.
 - One commit, one capability. The subject follows Conventional Commits, in lower case and in the
   imperative (`feat(runs): file a run without the time it was taken`). The body says what was wrong

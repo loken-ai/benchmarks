@@ -4,8 +4,8 @@ The bench campaign of [loken](https://github.com/loken-ai/loken): the driver, th
 protocol that makes a comparison fair, and the runs that every machine which ran it has shared. You
 run the campaign with the released builds of loken and
 [lokprof](https://github.com/loken-ai/lokprof), file your runs here, and the site shows the
-results of every machine, one page per hardware configuration, at
-<https://loken-ai.github.io/benchmarks/>.
+results of every machine at <https://loken-ai.github.io/benchmarks/>: one page per hardware
+configuration, charts of a rate across context sizes, models and hardware, and a search over every row.
 
 ## Run the campaign
 
@@ -70,6 +70,7 @@ Each refused record gets one line naming every reason. Run the same checks local
 ```sh
 scripts/check.py runs/<hardware_id>/<run_id>.json
 python3 -m unittest discover tests
+node --test tests/*.test.js
 ```
 
 ## Statuses
@@ -103,7 +104,8 @@ state the loken version is labelled `loken` without a number.
 | `scripts/records/` | the record store, the hardware identity, the equivalence classes and the converter of old reports |
 | `scripts/architecture.py` | describes the machine and its cluster |
 | `scripts/add.py`, `scripts/check.py`, `scripts/site.py` | file a run, check it, build the site |
-| `scripts/bench_row.py`, `scripts/scoreboard.py`, `scripts/plot-bench.py` | the table rows, the win count and the plot |
+| `scripts/bench_row.py`, `scripts/scoreboard.py` | the table rows and the win count |
+| `web/` | the scripts of the site: the charts and the search |
 | `matrix.toml`, `fixtures/` | the matrix axes and the speech recognition fixtures, credited in `NOTICE.md` |
 | `bench.toml.example` | the settings a campaign reads |
 | `runs/` | the shared runs, one folder per hardware |

@@ -46,7 +46,13 @@ th { background: var(--head); position: sticky; top: 0; }
 td.num { text-align: right; font-variant-numeric: tabular-nums; }
 .confirmed { color: var(--ok); }
 .submitted { color: var(--wait); }
-form { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 12px; }
+form { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 12px; align-items: end; }
+form.controls label { display: flex; flex-direction: column; font-size: 13px; color: var(--muted); }
+fieldset { border: 1px solid var(--line); padding: 2px 10px 6px; }
+fieldset label { margin-right: 12px; }
+button { background: var(--head); color: var(--fg); border: 1px solid var(--line); padding: 4px 10px; font: inherit; cursor: pointer; }
+ul.legend { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 4px 20px; font-size: 13px; }
+svg text { fill: var(--fg); }
 input, select { background: var(--bg); color: var(--fg); border: 1px solid var(--line);
   padding: 4px 6px; font: inherit; }
 """
@@ -77,13 +83,24 @@ def plain(value):
     return value.replace("**", "").strip()
 
 
+def figures(cell):
+    """The numbers of a table cell: `120.5 / 118.2` is [120.5, 118.2]; a dash is None."""
+    out = []
+    for part in plain(cell).split("/"):
+        try:
+            out.append(float(part.replace(",", "").split()[0]))
+        except (ValueError, IndexError):
+            out.append(None)
+    return out
+
+
 def page(title, body, depth=0):
     up = "../" * depth
     return (f"<!doctype html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n"
             f"<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n"
             f"<title>{esc(title)}</title>\n<link rel=\"stylesheet\" href=\"{up}style.css\">\n"
             f"</head>\n<body>\n<nav><a href=\"{up}index.html\">Hardware</a>"
-            f"<a href=\"{up}search.html\">Search</a></nav>\n{body}\n</body>\n</html>\n")
+            f"<a href=\"{up}charts.html\">Charts</a><a href=\"{up}search.html\">Search</a></nav>\n{body}\n</body>\n</html>\n")
 
 
 def table(head, rows, classes=None):
@@ -100,16 +117,25 @@ def table(head, rows, classes=None):
 
 def hardware_block(machine, docs, backends):
     rows = []
-    for i, g in enumerate(machine.get("gpus", [])):
-        cap = f", {g['power_cap_w']} W" if g.get("power_cap_w") else ""
-        mem = f" - {g['vram_mib'] / 1024:.0f} GB" if g.get("vram_mib") else ""
-        rows.append([f"GPU {i}", esc(f"{g.get('name') or '?'}{mem}{cap}")])
-    if not machine.get("gpus"):
-        rows.append(["GPU", "none recorded"])
-    threads = f" - {machine['threads']} threads" if machine.get("threads") else ""
-    rows.append(["CPU", esc(f"{machine.get('cpu') or '?'}{threads}")])
-    if machine.get("ram_gib"):
-        rows.append(["RAM", esc(f"{machine['ram_gib']} GB")])
+    nodes = machine.get("nodes") or [machine]
+    for n, node in enumerate(nodes):
+        tag = f"Node {n + 1} " if machine.get("nodes") else ""
+        for i, g in enumerate(node.get("gpus", [])):
+            cap = f", {g['power_cap_w']} W" if g.get("power_cap_w") else ""
+            mem = f" - {g['vram_mib'] / 1024:.0f} GB" if g.get("vram_mib") else ""
+            arch = f", {g['arch']}" if g.get("arch") else ""
+            link = (f", PCIe {g['pcie_gen']}.0 x{g['pcie_width']}"
+                    if g.get("pcie_gen") and g.get("pcie_width") else "")
+            rows.append([f"{tag}GPU {i}", esc(f"{g.get('name') or '?'}{mem}{cap}{arch}{link}")])
+        if not node.get("gpus"):
+            rows.append([f"{tag}GPU", "none recorded"])
+        threads = f" - {node['threads']} threads" if node.get("threads") else ""
+        sockets = f", {node['sockets']} socket(s)" if node.get("sockets") else ""
+        rows.append([f"{tag}CPU", esc(f"{node.get('cpu') or '?'}{threads}{sockets}")])
+        if node.get("cpu_flags"):
+            rows.append([f"{tag}Instruction sets", esc(", ".join(node["cpu_flags"]))])
+        if node.get("ram_gib"):
+            rows.append([f"{tag}RAM", esc(f"{node['ram_gib']} GB")])
     rows.append(["Backend", esc(", ".join(backends))])
     for key, name in (("driver", "Driver"), ("kernel", "Kernel")):
         seen = sorted({(d.get("machine") or {}).get(key) for d in docs} - {None})
@@ -187,7 +213,10 @@ def main():
                                "tokens": plain(r[9]), "e2e": plain(r[10]), "jreq": plain(r[11]),
                                "jtok": plain(r[12]), "dprefill": plain(r[13]), "dttft": plain(r[14]),
                                "ddecode": plain(r[15]), "denergy": plain(r[16]), "date": r[17],
-                               "run": r[18], "status": st})
+                               "run": r[18], "status": st,
+                               "m": {"prefill": figures(r[6]), "ttft": figures(r[7]), "decode": figures(r[8]),
+                                     "tokens": figures(r[9]), "e2e": figures(r[10]), "jreq": figures(r[11]),
+                                     "jtok": figures(r[12])}})
             notes = [f"{len(triples)} run(s), {first} to {last}."]
             if builds:
                 notes.append(f"loken builds measured: {', '.join(builds)}.")
@@ -199,7 +228,9 @@ def main():
         host_count = len({h for h in hosts if h})
         body = (f"<h1>{esc(label)}</h1>\n<p>hardware_id <code>{esc(hid)}</code>. "
                 f"{len(group)} record(s), {confirmed} confirmed, from {host_count} host(s).</p>\n"
-                "<h2>Hardware</h2>\n" + hardware_block(machine, docs, sorted(backends))
+                + "<p>" + " ".join(f"<a href=\"../charts.html#view=models&amp;hw1={esc(hid)}/{esc(b)}\">Charts"
+                                   f"{' (' + esc(b) + ')' if len(backends) > 1 else ''}</a>" for b in sorted(backends))
+                + "</p>\n<h2>Hardware</h2>\n" + hardware_block(machine, docs, sorted(backends))
                 + "\n<p class=\"note\">Columns as in loken's BENCHMARKS.md. A row's Date (UTC) and "
                 "Run name the record behind it; Status is that record's.</p>\n"
                 + "\n".join(sections))
@@ -221,6 +252,9 @@ def main():
     (OUT / "index.html").write_text(page("loken benchmarks", body))
     (OUT / "index.json").write_text(json.dumps(search, ensure_ascii=False, separators=(",", ":")))
     (OUT / "search.html").write_text(page("Search benchmarks", SEARCH))
+    (OUT / "charts.html").write_text(page("Benchmark charts", CHARTS))
+    for asset in (R.ROOT / "web").glob("*.js"):
+        (OUT / asset.name).write_text(asset.read_text())
     print(f"wrote {len(written)} hardware page(s), {len(search)} row(s) in index.json, "
           f"{len(entries)} record(s)")
     return 0
@@ -228,49 +262,48 @@ def main():
 
 SEARCH = """<h1>Search</h1>
 <form onsubmit="return false">
-<label>Card <select id="card"><option value="">any</option></select></label>
-<label>Model <input id="model" placeholder="part of the name"></label>
-<label>Engine <select id="engine"><option value="">any</option></select></label>
+<label>Words <input id="words" placeholder="model, card, engine..." size="28"></label>
+<label>Hardware <select id="hardware"></select></label>
+<label>Engine <select id="engine"></select></label>
+<label>Device <select id="device"></select></label>
+<label>Mode <select id="mode"></select></label>
+<label>Prompt <select id="prompt"></select></label>
+<label>Context <select id="ctx"></select></label>
+<button id="csv" type="button">Download CSV</button>
 </form>
 <p id="count" class="note"></p>
 <div class="scroll"><table id="out"></table></div>
-<script>
-const COLS = [["Hardware","label"],["Model","model"],["Ctx","ctx"],["Prompt","prompt"],["Mode","mode"],
-  ["Device","device"],["Engine","engine"],["Prefill tok/s","prefill"],["TTFT ms","ttft"],["Decode tok/s","decode"],
-  ["Tokens","tokens"],["E2E ms","e2e"],["J/req","jreq"],["J/token","jtok"],["\\u0394 prefill","dprefill"],
-  ["\\u0394 TTFT","dttft"],["\\u0394 decode","ddecode"],["\\u0394 energy","denergy"],["Date (UTC)","date"],
-  ["Run","run"],["Status","status"]];
-const NUM = new Set(["ctx","prefill","ttft","decode","tokens","e2e","jreq","jtok","dprefill","dttft","ddecode","denergy"]);
-const family = e => e.split(" ")[0];
-let rows = [];
-function el(tag, text, cls) { const n = document.createElement(tag); n.textContent = text; if (cls) n.className = cls; return n; }
-function fill(id, values) { const s = document.getElementById(id); for (const v of values) s.appendChild(el("option", v)).value = v; }
-function render() {
-  const card = document.getElementById("card").value, engine = document.getElementById("engine").value;
-  const model = document.getElementById("model").value.trim().toLowerCase();
-  const hits = rows.filter(r => (!card || r.cards.includes(card)) && (!engine || family(r.engine) === engine)
-    && (!model || r.model.toLowerCase().includes(model)));
-  const t = document.getElementById("out"); t.replaceChildren();
-  const h = t.insertRow(); for (const [name] of COLS) h.appendChild(el("th", name));
-  for (const r of hits.slice(0, 2000)) {
-    const tr = t.insertRow();
-    for (const [, key] of COLS) {
-      let td;
-      if (key === "label") { td = document.createElement("td"); const a = el("a", r.label); a.href = "hw/" + r.hw + ".html"; td.appendChild(a); }
-      else td = el("td", r[key], NUM.has(key) ? "num" : key === "status" ? r.status : "");
-      tr.appendChild(td);
-    }
-  }
-  document.getElementById("count").textContent = hits.length + " row(s)" + (hits.length > 2000 ? ", the first 2000 shown" : "");
-}
-fetch("index.json").then(r => r.json()).then(data => {
-  rows = data;
-  fill("card", [...new Set(rows.flatMap(r => r.cards))].sort());
-  fill("engine", [...new Set(rows.map(r => family(r.engine)))].sort());
-  for (const id of ["card", "model", "engine"]) document.getElementById(id).addEventListener("input", render);
-  render();
-});
-</script>"""
+<p><button id="more" type="button" style="display:none">Show every row</button></p>
+<script src="search.js"></script>"""
+
+CHARTS = """<h1>Charts</h1>
+<form onsubmit="return false" class="controls">
+<label>Chart <select id="view"></select></label>
+<label>Metric <select id="metric"></select></label>
+<label id="half-row">Figure <select id="half"></select></label>
+<label>Prompt <select id="prompt"></select></label>
+<label>Mode <select id="mode"></select></label>
+<label>Device <select id="device"></select></label>
+<fieldset><legend>Engines</legend><span id="engines"></span></fieldset>
+</form>
+<form onsubmit="return false" class="controls" id="ctx-only">
+<label>Model <input id="model" list="models" size="40" placeholder="start typing a model"></label>
+<label><input type="checkbox" id="log"> logarithmic scale</label>
+<fieldset><legend>Hardware</legend><span id="hw"></span></fieldset>
+</form>
+<form onsubmit="return false" class="controls" id="models-only">
+<label>Hardware <select id="hw1"></select></label>
+<label>Context <select id="ctx"></select></label>
+</form>
+<form onsubmit="return false" class="controls" id="hw-only">
+<label>Model <input id="model2" list="models" size="40" placeholder="start typing a model"></label>
+<label>Context <select id="ctx2"></select></label>
+</form>
+<datalist id="models"></datalist>
+<div id="chart"></div>
+<p class="note">A point or a bar is the newest run of its cell; hover it for the engine build and the date. Rates are
+the warm figure (median of the later requests) or the cold one (the first request).</p>
+<script src="charts.js"></script>"""
 
 
 if __name__ == "__main__":

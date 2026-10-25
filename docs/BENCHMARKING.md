@@ -130,9 +130,12 @@ A card is measured through its native runtime unless `BACKEND` says otherwise:
 | `vulkan` | the card's Vulkan device, the vendor runtimes hidden from every engine | loken and ollama |
 | `opencl` | the OpenCL GPU | loken alone |
 
-A machine whose only cards are AMD runs its campaign on them; on a machine with both, `GPU_VENDOR=amd`
-picks the AMD cards and hides the NVIDIA ones from every engine. The loken measured is then a ROCm
-build, and ollama gets its ROCm libraries, unpacked over its release.
+A campaign measures every card of the machine, all at once. On a machine with NVIDIA and AMD cards
+that is `GPU_VENDOR=all`, chosen by default: every card of both vendors is exposed to every engine, loken
+drives both vendors together, and an engine that drives one vendor only (vLLM is the CUDA build) uses
+the cards of that vendor. `GPU_VENDOR=nvidia` or `amd` restricts the run to one vendor and hides the
+other's cards from every engine. ollama gets its ROCm libraries, unpacked over its release, whenever an
+AMD card is present. The record lists the cards loken saw, so a mixed machine is one hardware of its own.
 
 `VULKAN_CARD` names the card by a part of its name when the vendor's own is not the one (the default
 is `AMD`, `NVIDIA` or `Intel` by `GPU_VENDOR`). loken is given the card through `vulkan_devices` in a

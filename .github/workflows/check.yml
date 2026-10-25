@@ -29,6 +29,8 @@ jobs:
         run: python3 scripts/site.py
       - name: Test
         run: python3 -m unittest discover tests
+      - name: Test the charts
+        run: node --test tests/*.test.js
 
   scripts:
     runs-on: ubuntu-latest

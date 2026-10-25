@@ -554,9 +554,7 @@ PY
             python3 scripts/architecture.py enrich "$out" "${node_args[@]}" \
                 || echo "  (the architecture of $m was not added to $out)"
             python3 scripts/add.py "$out" >/dev/null 2>&1 || echo "  (the record of $m was not filed: run scripts/add.py $out)"
-            # The plot and the score follow every cell, so a regression shows while the
-            # campaign still runs.
-            python3 scripts/plot-bench.py >/dev/null 2>&1 || true
+            # The score follows every cell, so a regression shows while the campaign still runs.
             python3 scripts/scoreboard.py results --brief 2>/dev/null || true
         done <<< "$models"
         first=0
