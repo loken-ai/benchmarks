@@ -135,6 +135,23 @@ for m in json.load(sys.stdin).get("models", []):
 ' 2>/dev/null
 }
 
+# loken must answer for the catalogue. When it does not, start the lokend named in bench.toml with
+# its configuration and wait for it; the campaign's own runs stop and start their servers anyway.
+STARTED=""
+trap '[ -n "$STARTED" ] && kill "$STARTED" 2>/dev/null' EXIT
+ensure_catalogue() {
+    curl -sf -m 5 "$LOKEN_URL/api/tags" >/dev/null && return 0
+    mkdir -p "$ROOT/results"
+    (cd "$LOKEN_CWD" && exec "$LOKEN_BIN" serve) >"$ROOT/results/lokend-catalogue.log" 2>&1 &
+    STARTED=$!
+    local waited=0
+    until curl -sf -m 5 "$LOKEN_URL/api/tags" >/dev/null; do
+        [ "$waited" -lt 120 ] || die "lokend did not answer at $LOKEN_URL (see results/lokend-catalogue.log)"
+        kill -0 "$STARTED" 2>/dev/null || die "lokend stopped at start (see results/lokend-catalogue.log)"
+        sleep 1; waited=$((waited + 1))
+    done
+}
+
 # The context window a model declares, in tokens, from the metadata loken shows for it; nothing
 # when the metadata states none (a checkpoint, a media model). A cell asking for more than a model
 # declares is skipped, never measured past the window.
@@ -267,6 +284,7 @@ plan() {
     echo "store (hf):      ${HF_STORE:-<none>}"
     echo "loken:           $LOKEN_URL"
     local models
+    ensure_catalogue
     models="$(loken_models)"
     [ -n "$models" ] || die "loken returned no catalogue at $LOKEN_URL/api/tags (is it serving?)"
     local n_models
@@ -386,7 +404,14 @@ print(r["tag_name"].lstrip("v"), url)' "$1"
 # only. A generated-media cell has no such axes and is measured once, in the first sweep.
 run() {
     provision
-    local models; models="$(loken_models)"
+    local models
+    ensure_catalogue
+    models="$(loken_models)"
+    # Each declared window is read now, while loken answers: the first cell stops that server.
+    local name kind
+    while IFS=$'\t' read -r name kind _; do
+        case "$kind" in text|vision) model_context "$name" >/dev/null ;; esac
+    done <<< "$models"
     [ -n "$models" ] || die "loken returned no catalogue at $LOKEN_URL/api/tags (is it serving?)"
 
     local ctxs prompts streams devices

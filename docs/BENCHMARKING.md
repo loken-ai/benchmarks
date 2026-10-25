@@ -42,8 +42,8 @@ scripts/bench run                  # run the campaign
 
 Plan first. It prints the stores it will use, the models loken is serving, each model's engines, and
 the context sizes of the full matrix, so what a campaign will do is visible before it does it. `run`
-is the deliberate step: it monopolizes the machine for hours. `bench` needs loken already serving (it
-asks loken for the catalogue), `python3` and `curl`.
+is the deliberate step: it monopolizes the machine for hours. `bench` asks loken for the catalogue and
+starts the `lokend` named in `bench.toml` when none answers. It needs `python3` and `curl`.
 
 `BENCH_ONLY="a b" scripts/bench run` measures only the named models. Without `FULL=1` the run is a
 fast pass: GPU, context 4096, the short prompt, streaming. `FULL=1` sweeps the whole matrix.
