@@ -154,10 +154,11 @@ gpu_policy_banner
 # for all three engines. STREAM=0 lifts it so the non-streaming path can be covered too -
 # most integrations call it, and it had never been measured.
 # -- THE PROTOCOL - what this script forces on every engine, and will not let a caller relax.
-# Cold (no warm-up), greedy through the tool's own default, one carbon intensity so the gCO2
-# column means the same thing across runs, and streaming unless STREAM=0 asks for the other
-# path. These are the reason a number from here can be compared with a number from there.
-COMMON=(--warmup 0 --carbon-intensity 50)
+# Cold (no warm-up), greedy through the tool's own default, a prompt no engine has seen at every
+# iteration (an engine reuses a prefix it has computed, and replaying one prompt then measures
+# that cache, not the prefill), one carbon intensity so the gCO2 column means the same thing
+# across runs, and streaming unless STREAM=0 asks for the other path. These are the reason a number from here can be compared with a number from there.
+COMMON=(--warmup 0 --carbon-intensity 50 --unique-prompt)
 [ "${STREAM:-1}" = 1 ] && COMMON+=(--stream)
 
 # Thermal fairness: the two engines run back-to-back, so without a gate the SECOND engine

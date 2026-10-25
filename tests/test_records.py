@@ -27,7 +27,7 @@ def record(**machine):
         "schema": "loken/2",
         "timestamp": "2026-10-21T12:38:57.420195068+02:00",
         "machine": block,
-        "protocol": {"iterations": 3, "warmup": 0, "max_tokens": 128, "streaming": True},
+        "protocol": {"iterations": 3, "warmup": 0, "max_tokens": 128, "streaming": True, "unique_prompt": True},
         "results": [{"model": "m", "prompt": "1000", "prompt_chars": 4384, "iterations": [{}], "model_fingerprint": {"modified_at": "2026-09-29T12:35:31+02:00"}}],
     }
 
@@ -160,6 +160,16 @@ class Energy(unittest.TestCase):
         self.assertTrue(any("left out" in why for why in self.reasons(rec)))
         rec = self.with_energy(missing_domains=["card0"])
         self.assertTrue(any("left out" in why for why in self.reasons(rec)))
+
+
+class UniquePrompt(unittest.TestCase):
+    def test_a_record_whose_iterations_replayed_one_prompt_is_refused(self):
+        replayed = {"protocol": {"iterations": 3, "warmup": 0, "max_tokens": 128, "streaming": True,
+                                 "unique_prompt": False}, "results": []}
+        self.assertTrue(any("unique_prompt" in why for why in K.protocol_problems(replayed)))
+        unique = {"protocol": {"iterations": 3, "warmup": 0, "max_tokens": 128, "streaming": True,
+                               "unique_prompt": True}, "results": []}
+        self.assertEqual(K.protocol_problems(unique), [])
 
 
 class PromptChecks(unittest.TestCase):

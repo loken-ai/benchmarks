@@ -19,9 +19,10 @@ import repository as R  # noqa: E402
 # The schema majors lokprof writes (`SCHEMA` in lokprof/src/provenance.rs).
 KNOWN_MAJORS = ("2",)
 
-# The protocol of `scripts/bench run`: three iterations, no warm-up (engines/fair-run.sh),
-# 128 tokens, streaming on or off (matrix.toml).
-CAMPAIGN = {"iterations": 3, "warmup": 0, "max_tokens": 128}
+# The protocol of `scripts/bench run`: three iterations, no warm-up (engines/fair-run.sh), a prompt
+# no engine has seen at each iteration (replaying one prompt measures an engine's prefix cache, not
+# its prefill), 128 tokens, streaming on or off (matrix.toml).
+CAMPAIGN = {"iterations": 3, "warmup": 0, "max_tokens": 128, "unique_prompt": True}
 
 
 def error_cell(cell):

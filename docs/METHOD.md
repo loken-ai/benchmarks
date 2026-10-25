@@ -80,13 +80,16 @@ architecture, not the brand.
 
 ## Cold and warm
 
-Every cell runs its prompt three times, the same prompt each time. An engine that keeps a
-prompt cache answers the second and third request from it, so one number per cell would
-mostly measure the cache. Each rate column therefore shows two figures, `cold / warm`.
+Every cell runs three times. Each iteration is given a prompt that no engine has seen: the text of
+the cell with a counter in front of it, so an engine that keeps a prefix cache cannot answer from
+it. Replaying one prompt would measure that cache and report a prefill rate of hundreds of
+thousands of tokens per second, a cache hit in the units of a rate. Each rate column shows two
+figures, `cold / warm`.
 
-**Cold** is the first iteration of the cell: the first request, which no prompt cache has
-served. **Warm** is the median of the following iterations, served from the cache by an
-engine that keeps one. A cell of a single iteration shows its cold figure and a dash.
+**Cold** is the first iteration of the cell: the first request after the engine started, which pays
+what a first request pays (loading, compiling, filling caches). **Warm** is the median of the
+following iterations, on an engine that has served a request. A cell of a single iteration shows
+its cold figure and a dash.
 
 The columns that split are Prefill, TTFT and Decode, and so are their three Delta columns, each
 printed `cold / warm`. A Delta is blank for a half that cannot be compared. Joules, E2E and the
