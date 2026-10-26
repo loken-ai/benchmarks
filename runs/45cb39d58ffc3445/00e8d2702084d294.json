@@ -1,0 +1,179 @@
+{
+  "config": {
+    "carbon_intensity_gco2_per_kwh": 50.0,
+    "custom_prompt": null,
+    "energy_measure": true,
+    "gpu_sample": true,
+    "iterations": 3,
+    "max_tokens": 128,
+    "models": [
+      "Qwen/Qwen-Image"
+    ],
+    "num_ctx": [
+      4096
+    ],
+    "num_gpu": null,
+    "prompts": [
+      "100"
+    ],
+    "session_id": null,
+    "streaming": true,
+    "unique_prompt": true,
+    "warmup": 0
+  },
+  "engine_build": 1792957681,
+  "idle_energy_baseline": null,
+  "machine": {
+    "cpu": "Intel(R) Core(TM) i9-10900K CPU @ 3.70GHz",
+    "cpu_flags": [
+      "avx2",
+      "fma",
+      "bmi2",
+      "f16c"
+    ],
+    "driver": "610.43.02",
+    "gpus": [
+      {
+        "arch": "sm_75",
+        "index": 0,
+        "name": "NVIDIA GeForce GTX 1650",
+        "pcie_gen": 3,
+        "pcie_width": 4,
+        "power_cap_w": 75,
+        "vendor": "nvidia",
+        "vram_mib": 4096
+      },
+      {
+        "arch": "gfx1201",
+        "index": 1,
+        "name": "AMD Radeon RX 9070 XT",
+        "pcie_gen": 5,
+        "pcie_width": 16,
+        "power_cap_w": 304,
+        "vendor": "amd",
+        "vram_mib": 16304
+      }
+    ],
+    "hardware_id": "45cb39d58ffc3445",
+    "host_id": "d4b8ae99f4bfcc54",
+    "kernel": "6.12.90+deb13.1-amd64",
+    "os": "Debian GNU/Linux 13 (trixie)",
+    "ram_gib": 62,
+    "sockets": 1,
+    "threads": 20
+  },
+  "ollama_version": "0.35.1",
+  "protocol": {
+    "cards_by_uuid": null,
+    "engines_seen": [
+      "lokend"
+    ],
+    "gpu_temps_c_at_start": [
+      35
+    ],
+    "iterations": 3,
+    "max_tokens": 128,
+    "prefix_reuse_offered": false,
+    "streaming": true,
+    "unique_prompt": true,
+    "warmup": 0
+  },
+  "results": [
+    {
+      "coherence_pass": null,
+      "first_response_preview": null,
+      "iteration_errors": [
+        "image request: error sending request for url (http://127.0.0.1:11435/v1/images/generations)",
+        "image request: error sending request for url (http://127.0.0.1:11435/v1/images/generations)",
+        "image request: error sending request for url (http://127.0.0.1:11435/v1/images/generations)"
+      ],
+      "iterations": [],
+      "load_error": "image request: error sending request for url (http://127.0.0.1:11435/v1/images/generations)",
+      "load_time_ms": null,
+      "model": "Qwen/Qwen-Image",
+      "model_fingerprint": null,
+      "num_ctx": 4096,
+      "prompt": "100",
+      "prompt_chars": 451,
+      "stats": {},
+      "target": "LOKEN",
+      "url": "http://127.0.0.1:11435"
+    },
+    {
+      "coherence_pass": null,
+      "first_response_preview": "",
+      "iteration_errors": [],
+      "iterations": [],
+      "load_error": "not run: no image generation endpoint in the harness",
+      "load_time_ms": null,
+      "model": "Qwen/Qwen-Image",
+      "model_fingerprint": null,
+      "num_ctx": 4096,
+      "prompt": "100",
+      "prompt_chars": 0,
+      "stats": {},
+      "target": "Ollama",
+      "url": ""
+    },
+    {
+      "coherence_pass": null,
+      "first_response_preview": "",
+      "iteration_errors": [],
+      "iterations": [],
+      "load_error": "not run: no image generation endpoint in the harness",
+      "load_time_ms": null,
+      "model": "Qwen/Qwen-Image",
+      "model_fingerprint": null,
+      "num_ctx": 4096,
+      "prompt": "100",
+      "prompt_chars": 0,
+      "stats": {},
+      "target": "vLLM",
+      "url": ""
+    }
+  ],
+  "schema": "loken/2",
+  "subjects": {
+    "LOKEN": {
+      "devices": {
+        "compiled": {
+          "audio": true,
+          "cuda": true,
+          "image": true,
+          "midi": true,
+          "opencl": true,
+          "video": true,
+          "vulkan": false
+        },
+        "devices": [
+          {
+            "backend": "cuda",
+            "name": "NVIDIA GeForce GTX 1650",
+            "status": "available",
+            "type": "CUDA"
+          },
+          {
+            "backend": "rocm",
+            "name": "AMD Radeon RX 9070 XT",
+            "status": "available",
+            "type": "CUDA"
+          },
+          {
+            "backend": "cpu",
+            "name": "CPU (20 cores)",
+            "status": "available",
+            "type": "CPU"
+          }
+        ]
+      },
+      "says": {
+        "commit": "d180c2295",
+        "loken": "0.4.0-dev+gd180c2295",
+        "version": "0.4.0-dev+gd180c2295"
+      },
+      "url": "http://127.0.0.1:11435"
+    }
+  },
+  "timestamp": "2026-10-25",
+  "vllm_version": "0.32.0"
+}
