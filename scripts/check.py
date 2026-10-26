@@ -30,6 +30,19 @@ def error_cell(cell):
     return bool(cell.get("load_error")) and not cell.get("iterations")
 
 
+# What a cached prompt changes in the iterations that replayed it (records/transform-replayed.py).
+REPLAYED_FIELDS = ("prompt_tok_s", "ttft_ms", "e2e_latency_ms", "wall_clock_ms")
+
+
+def replay_removed(record):
+    """A record that replayed one prompt and kept, of its replayed iterations, only what the
+    prompt cache does not touch, saying so in its protocol block."""
+    if not record["protocol"].get("replayed_prompt_removed"):
+        return False
+    return all(it.get(f) is None for c in record["results"]
+               for it in (c.get("iterations") or [])[1:] for f in REPLAYED_FIELDS)
+
+
 def protocol_problems(record):
     protocol = record.get("protocol")
     if protocol is None:
@@ -37,7 +50,8 @@ def protocol_problems(record):
             return []
         return ["no protocol block, and not every cell is an error cell"]
     out = [f"protocol {k} is {protocol.get(k)!r}, the campaign uses {v!r}"
-           for k, v in CAMPAIGN.items() if protocol.get(k) != v]
+           for k, v in CAMPAIGN.items() if protocol.get(k) != v
+           and not (k == "unique_prompt" and replay_removed(record))]
     if not isinstance(protocol.get("streaming"), bool):
         out.append(f"protocol streaming is {protocol.get('streaming')!r}, the campaign sets true or false")
     return out

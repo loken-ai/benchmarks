@@ -3,6 +3,7 @@
     python3 -m unittest discover tests
 """
 import copy
+import importlib
 import pathlib
 import sys
 import unittest
@@ -14,6 +15,8 @@ import architecture as A
 import check as K
 import hardware as H
 import repository as R
+
+T = importlib.import_module("transform-replayed")
 
 
 def card(name="Card", **more):
@@ -127,6 +130,42 @@ class Checks(unittest.TestCase):
         rec = R.anonymised(record())
         wrong = pathlib.Path("runs") / rec["machine"]["hardware_id"] / "0000000000000000.json"
         self.assertTrue(any("hashes to run_id" in why for why in K.problems(wrong, rec, {})))
+
+
+class Replayed(unittest.TestCase):
+    """A record that replayed its prompt is kept once the cached figures are removed."""
+
+    def replayed(self):
+        rec = record()
+        rec["protocol"]["unique_prompt"] = False
+        rec["results"][0]["iterations"] = [
+            {"ttft_ms": 900.0, "prompt_tok_s": 1100.0, "completion_tok_s": 40.0},
+            {"ttft_ms": 40.0, "prompt_tok_s": 25000.0, "completion_tok_s": 41.0},
+        ]
+        rec["results"][0]["stats"] = {"TTFT": {"mean": 470.0}, "Completion tok/s": {"mean": 40.5}}
+        return rec
+
+    def problems(self, rec):
+        rec = R.anonymised(rec)
+        return K.problems(filed(rec), rec, {})
+
+    def test_a_replayed_record_is_refused(self):
+        self.assertTrue(any("unique_prompt" in why for why in self.problems(self.replayed())))
+
+    def test_a_transformed_record_keeps_the_first_iteration_and_the_decode(self):
+        rec = T.transform(self.replayed())
+        its = rec["results"][0]["iterations"]
+        self.assertEqual(its[0]["ttft_ms"], 900.0)
+        self.assertIsNone(its[1]["ttft_ms"])
+        self.assertEqual(its[1]["completion_tok_s"], 41.0)
+        self.assertIsNone(rec["results"][0]["stats"]["TTFT"])
+        self.assertEqual(rec["results"][0]["stats"]["Completion tok/s"], {"mean": 40.5})
+        self.assertEqual(self.problems(rec), [])
+
+    def test_a_transformed_record_that_kept_a_cached_figure_is_refused(self):
+        rec = T.transform(self.replayed())
+        rec["results"][0]["iterations"][1]["ttft_ms"] = 40.0
+        self.assertTrue(any("unique_prompt" in why for why in self.problems(rec)))
 
 
 class Energy(unittest.TestCase):
