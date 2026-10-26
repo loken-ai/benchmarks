@@ -354,6 +354,28 @@ def pair(c, w, n=1, bold=False):
     return f"**{out}**" if bold else out
 
 
+def version_key(version):
+    """Release order of a version: 0.40.11 above 0.40.6, a release above its pre-releases, and a
+    version that says no number below every numbered one."""
+    m = re.match(r"(\d+)\.(\d+)\.(\d+)(.*)", version or "")
+    if not m:
+        return (-1,)
+    return (int(m[1]), int(m[2]), int(m[3]), 0 if m[4] else 1)
+
+
+def newest_peers(by):
+    """The column of each peer engine's newest version in a cell. A cell measured against an older
+    release keeps it until the newer release is measured there; an older release beside a newer
+    one is shown but no longer compared."""
+    newest = {}
+    for k in by:
+        family, _, ver = k.partition("@")
+        if family in ("ollama", "vllm") and (
+                family not in newest or version_key(ver) > version_key(newest[family].partition("@")[2])):
+            newest[family] = k
+    return list(newest.values())
+
+
 def delta(mine, others, lower_is_better=False):
     """Percent by which `mine` beats the best of `others`, positive meaning better; None if not comparable."""
     others = [o for o in others if o]
@@ -399,7 +421,9 @@ def cells_detail(merged):
         # reference it would flatter us, and as our own cell it would publish a delta
         # against work nobody did.
         ok = lambda v: v.get("coh") is not False and not looks_looping(v.get("preview", ""))
-        peers = [v for k, v in by.items() if k.split("@")[0] in ("ollama", "vllm") and same(v) and ok(v)]
+        # Each peer at its newest version in this cell: an upgrade replaces the reference, it
+        # does not leave the best of two releases standing against us.
+        peers = [by[k] for k in newest_peers(by) if same(by[k]) and ok(by[k])]
         # Energy is comparable only when both sides counted the same domains: a total over the
         # cards alone against one that also counted the host is not a delta.
         mydom = by.get("loken", {}).get("jdom")

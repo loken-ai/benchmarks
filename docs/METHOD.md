@@ -60,7 +60,10 @@ The `incoherent` gemma4 cells are a tracked defect here, not a verdict on the mo
 weights answer correctly under ollama on several of those rows.
 
 **Delta** compares loken to the best other engine, cold with cold and warm with warm, blank when
-token counts differ. A positive Delta means loken is better: faster for prefill and decode, a
+token counts differ. Each engine counts at the newest version measured in the cell: an older
+release stays in the table beside a newer one but is no longer compared, and a cell not yet
+measured with the newest release keeps the older one until it is. The share of decode cells
+loken wins reads the same Deltas. A positive Delta means loken is better: faster for prefill and decode, a
 shorter time to first token, fewer joules. **Energy** sums
 NVML GPU draw with the RAPL package and DRAM domains. **vLLM rows read a different file** - an
 AWQ 4-bit checkpoint against the GGUF Q4_K_M the other two share - so every vLLM comparison

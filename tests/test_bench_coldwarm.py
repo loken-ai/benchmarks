@@ -45,6 +45,24 @@ class ColdWarm(unittest.TestCase):
         self.assertAlmostEqual(loken["ttft"][0], (151.7508 / 664.7946 - 1) * 100, 2)
         self.assertLess(loken["ttft"][1], loken["ttft"][0])
 
+    def test_each_peer_is_compared_at_its_newest_version_in_the_cell(self):
+        by = self.merged[GPU]
+        old = by["ollama@0.35.1"]
+        newer = dict(old, dec_c=old["dec_c"] / 2, dec_w=old["dec_w"] / 2)
+        mine = by["loken"]
+        info = lambda: next(i for _, i in B.cells_detail({GPU: by}) if i["plain"])
+        against_old = info()["dec"]
+        by["ollama@0.36.0"] = newer
+        self.assertEqual(B.newest_peers(by), ["ollama@0.36.0"])
+        self.assertAlmostEqual(info()["dec"][1], (mine["dec_w"] / newer["dec_w"] - 1) * 100)
+        self.assertNotEqual(info()["dec"], against_old)
+        del by["ollama@0.36.0"]
+
+    def test_a_release_ranks_above_its_pre_release(self):
+        self.assertGreater(B.version_key("0.40.11"), B.version_key("0.40.6"))
+        self.assertGreater(B.version_key("0.4.1"), B.version_key("0.4.1-dev+g1234"))
+        self.assertGreater(B.version_key("0.4.1-dev"), B.version_key("0.4.0"))
+
     def test_table_prints_cold_and_warm_side_by_side(self):
         row = next(r for r in B.cells(self.merged) if key(r) == GPU and "loken" in r[5])
         self.assertIn("353.5 / 689.5", row[B.COLS.index("Prefill tok/s")])
