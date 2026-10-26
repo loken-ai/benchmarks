@@ -306,6 +306,10 @@ if "ollama" in targets and str(d.get("ollama_version") or "") != over:
     sys.exit(1)
 if "vllm" in targets and str(d.get("vllm_version") or "") != vver:
     sys.exit(1)
+# A row that kept no iteration and says no reason is a measurement that was cut short (a stopped
+# campaign, a crashed server): it is measured again, not kept.
+if any(not r.get("iterations") and not r.get("load_error") for r in d.get("results", [])):
+    sys.exit(1)
 sys.exit(0)
 PY
 }
