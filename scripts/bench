@@ -345,8 +345,10 @@ plan() {
 }
 
 # --- provision the bench-only engine compartment (never ~/vllm, never the PATH) ----------------
-# A fresh uv venv for vLLM and the latest ollama release, both under the bench working tree, so the
-# comparison runs against current engines without touching any other environment. Versions printed.
+# A uv venv for vLLM and an ollama release, both under the bench working tree, each at the latest
+# version published when the campaign starts, so the comparison runs against current engines
+# without touching any other environment. A campaign that cannot read the latest versions does not
+# start. Versions printed.
 provision() {
     # loken alone is measured on OpenCL: no peer engine is fetched or run.
     if [ "$BACKEND" = opencl ]; then
@@ -361,10 +363,19 @@ provision() {
     local venv="$comp/vllm-venv"
     # The download cache stays in the compartment too, on the same disk as the venv it feeds.
     export UV_CACHE_DIR="$comp/uv-cache"
+    local vlatest
+    vlatest="$(curl -sf https://pypi.org/pypi/vllm/json \
+        | python3 -c 'import json, sys; print(json.load(sys.stdin)["info"]["version"])' 2>/dev/null)"
+    [ -n "$vlatest" ] || die "cannot read the latest vLLM release; a campaign measures the latest engines"
     if [ ! -x "$venv/bin/vllm" ]; then
-        echo "provisioning vLLM into $venv (uv pip install vllm)..."
+        echo "provisioning vLLM $vlatest into $venv..."
         uv venv "$venv" >&2 || die "uv venv failed"
-        uv pip install --python "$venv/bin/python" "vllm[audio]" >&2 || die "vllm install failed"
+    fi
+    local vheld
+    vheld="$("$venv/bin/python" -c 'import vllm;print(vllm.__version__)' 2>/dev/null | tail -1)"
+    if [ "$vheld" != "$vlatest" ]; then
+        echo "updating vLLM ${vheld:-none} -> $vlatest in $venv..."
+        uv pip install --python "$venv/bin/python" "vllm[audio]==$vlatest" >&2 || die "vllm install failed"
     fi
     # The audio extra serves the transcription route; a venv provisioned without it gets it at
     # the vLLM version it already holds.
@@ -376,15 +387,14 @@ provision() {
     fi
     export VLLM_VENV="$venv"
     have zstd || die "zstd is required to unpack the ollama release (.tar.zst)"
-    local obin
-    obin="$(ls -d "$comp"/ollama-*/bin/ollama 2>/dev/null | sort -V | tail -1)"
-    if [ -z "$obin" ]; then
-        # Read the version and the real asset URL from the release API: ollama now ships the plain
-        # linux amd64 build as ollama-linux-amd64.tar.zst (no .tgz, no -rocm/-mlx). Reading the URL
-        # rather than constructing it self-heals if the naming shifts again.
-        local ver url dir arc
-        read -r ver url < <(ollama_asset ollama-linux-amd64.tar.zst)
-        [ -n "$ver" ] && [ -n "$url" ] || die "cannot resolve latest ollama linux amd64 asset"
+    # Read the version and the real asset URL from the release API: ollama now ships the plain
+    # linux amd64 build as ollama-linux-amd64.tar.zst (no .tgz, no -rocm/-mlx). Reading the URL
+    # rather than constructing it self-heals if the naming shifts again.
+    local ver url dir arc
+    read -r ver url < <(ollama_asset ollama-linux-amd64.tar.zst)
+    [ -n "$ver" ] && [ -n "$url" ] || die "cannot read the latest ollama release; a campaign measures the latest engines"
+    local obin="$comp/ollama-$ver/bin/ollama"
+    if [ ! -x "$obin" ]; then
         dir="$comp/ollama-$ver"; arc="$comp/ollama-$ver.tar.zst"; mkdir -p "$dir"
         echo "provisioning ollama $ver into $dir..."
         curl -fL "$url" -o "$arc" || die "ollama download failed"
