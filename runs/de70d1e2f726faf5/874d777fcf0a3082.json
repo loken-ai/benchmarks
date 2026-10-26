@@ -1,0 +1,753 @@
+{
+  "config": {
+    "carbon_intensity_gco2_per_kwh": 50.0,
+    "custom_prompt": null,
+    "energy_measure": true,
+    "gpu_sample": true,
+    "iterations": 3,
+    "max_tokens": 128,
+    "models": [
+      "shieldgemma:2b"
+    ],
+    "num_ctx": [
+      4096
+    ],
+    "num_gpu": null,
+    "prompts": [
+      "1000"
+    ],
+    "session_id": null,
+    "streaming": false,
+    "unique_prompt": false,
+    "warmup": 0
+  },
+  "engine_build": 1792905946,
+  "idle_energy_baseline": null,
+  "machine": {
+    "cpu": "AMD Ryzen 9 9950X3D 16-Core Processor",
+    "cpu_flags": [
+      "avx2",
+      "fma",
+      "bmi2",
+      "f16c",
+      "avx512f",
+      "avx512bw",
+      "avx512vl",
+      "avx512_vnni",
+      "avx512_bf16"
+    ],
+    "driver": "615.71.09",
+    "gpus": [
+      {
+        "arch": "sm_120",
+        "index": 0,
+        "name": "NVIDIA GeForce RTX 5070 Ti",
+        "pcie_gen": 5,
+        "pcie_width": 8,
+        "power_cap_w": 300,
+        "vendor": "nvidia",
+        "vram_mib": 16303
+      },
+      {
+        "arch": "sm_120",
+        "index": 1,
+        "name": "NVIDIA GeForce RTX 5060 Ti",
+        "pcie_gen": 5,
+        "pcie_width": 8,
+        "power_cap_w": 180,
+        "vendor": "nvidia",
+        "vram_mib": 16311
+      }
+    ],
+    "hardware_id": "de70d1e2f726faf5",
+    "host_id": "12973014bbf73a88",
+    "kernel": "6.12.111+deb13-amd64",
+    "os": "Debian GNU/Linux 13 (trixie)",
+    "ram_gib": 60,
+    "sockets": 1,
+    "threads": 32
+  },
+  "ollama_version": "0.40.6",
+  "protocol": {
+    "cards_by_uuid": null,
+    "engines_seen": [
+      "llama-server",
+      "ollama"
+    ],
+    "gpu_temps_c_at_start": [
+      44,
+      49
+    ],
+    "iterations": 3,
+    "max_tokens": 128,
+    "prefix_reuse_offered": false,
+    "streaming": false,
+    "unique_prompt": false,
+    "warmup": 0,
+    "replayed_prompt_removed": "one prompt was replayed at every iteration: the prefill, first-token time, end-to-end latency and whole-request energy of the second and third iterations, and the aggregates built on them, are removed; the decode figures and the first iteration are kept"
+  },
+  "results": [
+    {
+      "coherence_pass": true,
+      "first_response_preview": "miles to see it? The human soul is a restless thing. It craves the water. It is a thirst that cannot be quenched. It is ...",
+      "iteration_errors": [],
+      "iterations": [
+        {
+          "completion_tok_s": 29.742569211149664,
+          "degenerate": false,
+          "e2e_latency_ms": 3832.890131,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 308.752908,
+            "cpu_rapl_available": true,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 3.855367842,
+            "energy_j": 646.9559080016093,
+            "gco2_per_tok": 7.882016423021555e-05,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 338.2030000016093,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": null,
+            "j_per_tok": 5.67505182457552,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": 0.0015764032846043111
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 42.79241666666666,
+              "power_peak_w": 61.934,
+              "samples": 36,
+              "util_avg_pct": 5,
+              "util_peak_pct": 30,
+              "vram_avg_mb": 464,
+              "vram_peak_mb": 1613
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 31.566222222222237,
+              "power_peak_w": 60.41,
+              "samples": 36,
+              "util_avg_pct": 8,
+              "util_peak_pct": 65,
+              "vram_avg_mb": 497,
+              "vram_peak_mb": 1753
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 13,
+            "cpu_peak_pct": 94,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 83,
+            "rss_peak_mb": 543,
+            "samples": 20,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 1,
+          "load_time_ms": 3150.381125,
+          "prompt_tok_s": 9060.086117519591,
+          "prompt_tokens": 970,
+          "response_preview": "miles to see it? The human soul is a restless thing. It craves the water. It is a thirst that cannot be quenched. It is ...",
+          "server_decode_tok_s": 200.15309956387694,
+          "tokens_generated": 114,
+          "ttft_ms": null,
+          "wall_clock_ms": 3832.890131
+        },
+        {
+          "completion_tok_s": 180.8326692253556,
+          "degenerate": false,
+          "e2e_latency_ms": null,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": null,
+            "cpu_rapl_available": true,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": null,
+            "dram_rapl_available": false,
+            "duration_s": null,
+            "energy_j": null,
+            "gco2_per_tok": null,
+            "gpu_decode_j": null,
+            "gpu_energy_j": null,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": null,
+            "j_per_tok": null,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": null
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 77.11,
+              "power_peak_w": 77.11,
+              "samples": 5,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 1285,
+              "vram_peak_mb": 1285
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 78.493,
+              "power_peak_w": 78.493,
+              "samples": 5,
+              "util_avg_pct": 7,
+              "util_peak_pct": 9,
+              "vram_avg_mb": 1481,
+              "vram_peak_mb": 1481
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 0,
+            "cpu_peak_pct": 0,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 37,
+            "rss_peak_mb": 37,
+            "samples": 3,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 2,
+          "load_time_ms": 1.049615,
+          "prompt_tok_s": null,
+          "prompt_tokens": 970,
+          "response_preview": "miles to see it? The human soul is a restless thing. It craves the water. It is a universal thirst. It is a thirst for t...",
+          "server_decode_tok_s": 203.1641172846788,
+          "tokens_generated": 62,
+          "ttft_ms": null,
+          "wall_clock_ms": null
+        },
+        {
+          "completion_tok_s": 181.85871924665295,
+          "degenerate": false,
+          "e2e_latency_ms": null,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": null,
+            "cpu_rapl_available": true,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": null,
+            "dram_rapl_available": false,
+            "duration_s": null,
+            "energy_j": null,
+            "gco2_per_tok": null,
+            "gpu_decode_j": null,
+            "gpu_energy_j": null,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": null,
+            "j_per_tok": null,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": null
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 67.091,
+              "power_peak_w": 67.091,
+              "samples": 5,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 1285,
+              "vram_peak_mb": 1285
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 82.235,
+              "power_peak_w": 82.235,
+              "samples": 5,
+              "util_avg_pct": 6,
+              "util_peak_pct": 8,
+              "vram_avg_mb": 1481,
+              "vram_peak_mb": 1481
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 0,
+            "cpu_peak_pct": 0,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 38,
+            "rss_peak_mb": 38,
+            "samples": 3,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 3,
+          "load_time_ms": 1.071015,
+          "prompt_tok_s": null,
+          "prompt_tokens": 970,
+          "response_preview": "miles to see it? The human soul is a restless thing. It craves the water. It is a universal thirst. It is a thirst for t...",
+          "server_decode_tok_s": 203.57838260258544,
+          "tokens_generated": 62,
+          "ttft_ms": null,
+          "wall_clock_ms": null
+        }
+      ],
+      "load_error": null,
+      "load_time_ms": 2352.7700889999996,
+      "model": "shieldgemma:2b",
+      "model_fingerprint": {
+        "modified_at": "2026-09-07",
+        "parameter_size": "2.6B",
+        "quantization_level": "Q4_K_M"
+      },
+      "num_ctx": 4096,
+      "prompt": "1000",
+      "prompt_chars": 4384,
+      "stats": {
+        "Carbon gCO2/tok [gpu+cpu_pkg]": null,
+        "Completion tok/s": {
+          "count": 3,
+          "max": 181.85871924665295,
+          "mean": 130.8113192277194,
+          "min": 29.742569211149664,
+          "p50": 180.8326692253556,
+          "p95": 181.75611424452322,
+          "stddev": 87.52960851674965,
+          "unit": "tok/s"
+        },
+        "E2E latency": null,
+        "Energy J/tok [gpu+cpu_pkg]": null,
+        "Energy Wh/tok [gpu+cpu_pkg]": null,
+        "Model load": {
+          "count": 1,
+          "max": 2352.7700889999996,
+          "mean": 2352.7700889999996,
+          "min": 2352.7700889999996,
+          "p50": 2352.7700889999996,
+          "p95": 2352.7700889999996,
+          "stddev": 0.0,
+          "unit": "ms"
+        },
+        "Prompt tok/s": null,
+        "Tokens generated": {
+          "count": 3,
+          "max": 114.0,
+          "mean": 79.33333333333333,
+          "min": 62.0,
+          "p50": 62.0,
+          "p95": 108.8,
+          "stddev": 30.02221399786054,
+          "unit": "count"
+        }
+      },
+      "target": "Ollama",
+      "url": "http://127.0.0.1:11434"
+    },
+    {
+      "coherence_pass": true,
+      "first_response_preview": "miles to see it? The human soul is like a ship. It needs its sea. The ocean is the source of all our dreams and desires....",
+      "iteration_errors": [],
+      "iterations": [
+        {
+          "completion_tok_s": 162.38174282164636,
+          "degenerate": false,
+          "e2e_latency_ms": 387.974651,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 35.641467,
+            "cpu_rapl_available": true,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 0.408800552,
+            "energy_j": 107.76246699934435,
+            "gco2_per_tok": 2.375715762772142e-05,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 72.12099999934435,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": null,
+            "j_per_tok": 1.7105153491959422,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": 0.0004751431525544284
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 51.904999999999994,
+              "power_peak_w": 51.905,
+              "samples": 5,
+              "util_avg_pct": 21,
+              "util_peak_pct": 21,
+              "vram_avg_mb": 3315,
+              "vram_peak_mb": 3335
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 28.565999999999995,
+              "power_peak_w": 28.566,
+              "samples": 5,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 19,
+              "vram_peak_mb": 19
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 61,
+            "cpu_peak_pct": 94,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 1823,
+            "rss_peak_mb": 1824,
+            "samples": 3,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 1,
+          "load_time_ms": 7.510746,
+          "prompt_tok_s": 11845.035045490002,
+          "prompt_tokens": 970,
+          "response_preview": "miles to see it? The human soul is like a ship. It needs its sea. The ocean is the source of all our dreams and desires....",
+          "server_decode_tok_s": 212.16264384235762,
+          "tokens_generated": 63,
+          "ttft_ms": null,
+          "wall_clock_ms": 387.974651
+        },
+        {
+          "completion_tok_s": 117.70122172360102,
+          "degenerate": false,
+          "e2e_latency_ms": null,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": null,
+            "cpu_rapl_available": true,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": null,
+            "dram_rapl_available": false,
+            "duration_s": null,
+            "energy_j": null,
+            "gco2_per_tok": null,
+            "gpu_decode_j": null,
+            "gpu_energy_j": null,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": null,
+            "j_per_tok": null,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": null
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 115.277,
+              "power_peak_w": 115.277,
+              "samples": 4,
+              "util_avg_pct": 43,
+              "util_peak_pct": 43,
+              "vram_avg_mb": 3352,
+              "vram_peak_mb": 3401
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 28.614,
+              "power_peak_w": 28.614,
+              "samples": 4,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 19,
+              "vram_peak_mb": 19
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 44,
+            "cpu_peak_pct": 89,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 1829,
+            "rss_peak_mb": 1829,
+            "samples": 3,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 2,
+          "load_time_ms": 10.388475,
+          "prompt_tok_s": null,
+          "prompt_tokens": 219,
+          "response_preview": "miles to see it? The human soul is like a ship. It needs its sea. The ocean is the great mystery that calls us all.",
+          "server_decode_tok_s": 216.39181232348935,
+          "tokens_generated": 32,
+          "ttft_ms": null,
+          "wall_clock_ms": null
+        },
+        {
+          "completion_tok_s": 149.8924280638099,
+          "degenerate": false,
+          "e2e_latency_ms": null,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": null,
+            "cpu_rapl_available": true,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": null,
+            "dram_rapl_available": false,
+            "duration_s": null,
+            "energy_j": null,
+            "gco2_per_tok": null,
+            "gpu_decode_j": null,
+            "gpu_energy_j": null,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": null,
+            "j_per_tok": null,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": null
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 122.5554,
+              "power_peak_w": 137.971,
+              "samples": 5,
+              "util_avg_pct": 62,
+              "util_peak_pct": 99,
+              "vram_avg_mb": 3439,
+              "vram_peak_mb": 3593
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 27.181,
+              "power_peak_w": 27.607,
+              "samples": 5,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 38,
+              "vram_peak_mb": 115
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 59,
+            "cpu_peak_pct": 89,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 1829,
+            "rss_peak_mb": 1829,
+            "samples": 3,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 3,
+          "load_time_ms": 7.499055,
+          "prompt_tok_s": null,
+          "prompt_tokens": 219,
+          "response_preview": "miles to see it? The human soul is like a ship. It needs its sea. The ocean is the source of all our dreams and desires....",
+          "server_decode_tok_s": 231.75895723402948,
+          "tokens_generated": 55,
+          "ttft_ms": null,
+          "wall_clock_ms": null
+        }
+      ],
+      "load_error": null,
+      "load_time_ms": 1871.9359290000002,
+      "model": "shieldgemma:2b",
+      "model_fingerprint": {
+        "modified_at": "",
+        "parameter_size": "2.6B",
+        "quantization_level": "Q4_K_M"
+      },
+      "num_ctx": 4096,
+      "prompt": "1000",
+      "prompt_chars": 4384,
+      "stats": {
+        "Carbon gCO2/tok [gpu+cpu_pkg]": null,
+        "Completion tok/s": {
+          "count": 3,
+          "max": 162.38174282164636,
+          "mean": 143.32513086968575,
+          "min": 117.70122172360102,
+          "p50": 149.8924280638099,
+          "p95": 161.1328113458627,
+          "stddev": 23.05285851527271,
+          "unit": "tok/s"
+        },
+        "E2E latency": null,
+        "Energy J/tok [gpu+cpu_pkg]": null,
+        "Energy Wh/tok [gpu+cpu_pkg]": null,
+        "Model load": {
+          "count": 1,
+          "max": 1871.9359290000002,
+          "mean": 1871.9359290000002,
+          "min": 1871.9359290000002,
+          "p50": 1871.9359290000002,
+          "p95": 1871.9359290000002,
+          "stddev": 0.0,
+          "unit": "ms"
+        },
+        "Prompt tok/s": null,
+        "Tokens generated": {
+          "count": 3,
+          "max": 63.0,
+          "mean": 50.0,
+          "min": 32.0,
+          "p50": 55.0,
+          "p95": 62.2,
+          "stddev": 16.09347693943108,
+          "unit": "count"
+        }
+      },
+      "target": "LOKEN",
+      "url": "http://127.0.0.1:11435"
+    }
+  ],
+  "schema": "loken/2",
+  "subjects": {
+    "LOKEN": {
+      "devices": {
+        "compiled": {
+          "audio": true,
+          "cuda": true,
+          "image": true,
+          "midi": true,
+          "opencl": true,
+          "video": true,
+          "vulkan": false
+        },
+        "devices": [
+          {
+            "backend": "cuda",
+            "name": "NVIDIA GeForce RTX 5070 Ti",
+            "status": "available",
+            "type": "CUDA"
+          },
+          {
+            "backend": "cuda",
+            "name": "NVIDIA GeForce RTX 5060 Ti",
+            "status": "available",
+            "type": "CUDA"
+          },
+          {
+            "backend": "cpu",
+            "name": "CPU (32 cores)",
+            "status": "available",
+            "type": "CPU"
+          }
+        ]
+      },
+      "says": {
+        "commit": "cc42b7aa5",
+        "loken": "0.4.0-dev+gcc42b7aa5",
+        "version": "0.4.0-dev+gcc42b7aa5"
+      },
+      "url": "http://127.0.0.1:11435"
+    },
+    "Ollama": {
+      "devices": null,
+      "says": {
+        "version": "0.40.6"
+      },
+      "url": "http://127.0.0.1:11434"
+    }
+  },
+  "timestamp": "2026-10-25"
+}
