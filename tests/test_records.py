@@ -126,6 +126,10 @@ class Checks(unittest.TestCase):
         path = pathlib.Path("runs") / "0000000000000000" / f"{R.S.run_id(rec)}.json"
         self.assertTrue(any("no machine block" in why for why in K.problems(path, rec, {})))
 
+    def test_a_card_read_without_its_memory_is_refused(self):
+        rec = R.anonymised(record(gpus=[card(), {"index": 1, "name": "Other"}]))
+        self.assertTrue(any("card 1 states no vram_mib" in why for why in K.problems(filed(rec), rec, {})))
+
     def test_a_record_named_by_something_else_than_its_hash_is_refused(self):
         rec = R.anonymised(record())
         wrong = pathlib.Path("runs") / rec["machine"]["hardware_id"] / "0000000000000000.json"

@@ -100,6 +100,23 @@ def anonymity_problems(record):
     return out
 
 
+# What every card of a machine block states: the hardware id and the pages' memory totals rest on them.
+CARD_REQUIRED = ("name", "vram_mib")
+
+
+def card_problems(machine):
+    """Reasons to refuse a machine block whose cards were not all read: a card known by its name
+    alone would be filed as another machine, with its memory missing from every total."""
+    out = []
+    nodes = machine.get("nodes") if isinstance(machine.get("nodes"), list) else [machine]
+    for node in nodes:
+        for i, card in enumerate((node.get("gpus") or []) if isinstance(node, dict) else []):
+            missing = [k for k in CARD_REQUIRED if not isinstance(card, dict) or card.get(k) in (None, "")]
+            if missing:
+                out.append(f"card {i} states no {' and no '.join(missing)}: the run did not read the machine whole")
+    return out
+
+
 # The energy figures of an iteration: null unless the window was complete.
 ENERGY_FIGURES = ("energy_j", "gpu_energy_j", "cpu_pkg_energy_j", "dram_energy_j", "j_per_tok",
                   "wh_per_tok", "gco2_per_tok", "gpu_decode_j", "cpu_pkg_decode_j",
@@ -153,6 +170,7 @@ def problems(path, record, holders):
             out.append(f"machine states hardware_id {stated}, its block hashes to {computed}")
         if path.parent.name != computed:
             out.append(f"in folder {path.parent.name}, its machine is hardware_id {computed}")
+        out += card_problems(machine)
     out += anonymity_problems(record)
     out += energy_problems(record)
     out += prompt_problems(record)
