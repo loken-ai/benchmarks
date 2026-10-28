@@ -181,6 +181,35 @@ def problems(path, record, holders):
     return out
 
 
+def host_of(record):
+    """What a run says of the host it ran on, cards aside; `None` for a cluster, a CPU run or a
+    record that names no host."""
+    m = record.get("machine")
+    if not isinstance(m, dict) or not m.get("host_id") or m.get("nodes") or R.is_cpu_run(record):
+        return None
+    return tuple(str(m.get(k)) for k in ("host_id", "cpu", "threads", "ram_gib", "driver", "kernel"))
+
+
+def partial_machine_problems(records):
+    """{path: reason} for the card runs of a host that list only part of the cards its other card
+    runs list: a card the run could not see was missing from the machine, not absent from it."""
+    by_host = {}
+    for path, record in records:
+        host = host_of(record)
+        if host is not None:
+            cards = sorted(str(g.get("name")) for g in record["machine"].get("gpus") or [] if isinstance(g, dict))
+            by_host.setdefault(host, []).append((path, cards))
+    out = {}
+    for runs in by_host.values():
+        sets = {tuple(cards) for _, cards in runs}
+        for path, cards in runs:
+            fuller = [s for s in sets if len(s) > len(cards) and all(s.count(c) >= cards.count(c) for c in cards)]
+            if fuller:
+                out[path] = ("a card of this host was not read: its other runs list "
+                             + ", ".join(max(fuller, key=len)))
+    return out
+
+
 def holders_of(paths):
     held = {}
     for p in set(R.all_paths()) | {p.resolve() for p in paths}:
@@ -192,6 +221,14 @@ def check(paths):
     """(accepted paths, [(path, reasons)])."""
     paths = [pathlib.Path(p).resolve() for p in paths]
     holders = holders_of(paths)
+    # A run is held against every other record of its host, filed or being checked.
+    every = []
+    for p in sorted(set(R.all_paths()) | set(paths)):
+        try:
+            every.append((pathlib.Path(p).resolve(), json.loads(pathlib.Path(p).read_text())))
+        except Exception:
+            continue
+    partial = partial_machine_problems(every)
     accepted, refused, seen = [], [], set()
     for path in paths:
         try:
@@ -200,6 +237,8 @@ def check(paths):
             refused.append((path, [f"not readable JSON: {e}"]))
             continue
         why = problems(path, record, holders)
+        if path in partial:
+            why.append(partial[path])
         if path in seen:
             why.append("listed twice")
         seen.add(path)

@@ -130,6 +130,15 @@ class Checks(unittest.TestCase):
         rec = R.anonymised(record(gpus=[card(), {"index": 1, "name": "Other"}]))
         self.assertTrue(any("card 1 states no vram_mib" in why for why in K.problems(filed(rec), rec, {})))
 
+    def test_a_run_that_saw_part_of_its_hosts_cards_is_refused(self):
+        whole = R.anonymised(record(gpus=[card("A"), card("B", index=1)]))
+        part = R.anonymised(record(gpus=[card("A")]))
+        host = R.anonymised(record(gpus=[]))
+        host["config"] = {"num_gpu": 0}
+        got = K.partial_machine_problems([("whole", whole), ("part", part), ("host", host)])
+        self.assertEqual(list(got), ["part"])
+        self.assertIn("A, B", got["part"])
+
     def test_a_record_named_by_something_else_than_its_hash_is_refused(self):
         rec = R.anonymised(record())
         wrong = pathlib.Path("runs") / rec["machine"]["hardware_id"] / "0000000000000000.json"

@@ -29,6 +29,7 @@ def main(argv):
     holders = K.holders_of([])
     new = known = 0
     refused = []
+    incoming = []
     for src in map(pathlib.Path, argv):
         try:
             record = R.anonymised(R.read(src))
@@ -38,11 +39,22 @@ def main(argv):
         if not isinstance(record.get("machine"), dict):
             refused.append((src, ["no machine block: a run must say what it ran on"]))
             continue
-        dest = target(record)
+        incoming.append((src, record, target(record)))
+    # Each run is held against every record of its host, filed or arriving with it.
+    filed = []
+    for p in R.all_paths():
+        try:
+            filed.append((p.resolve(), json.loads(p.read_text())))
+        except Exception:
+            continue
+    partial = K.partial_machine_problems(filed + [(dest, record) for _, record, dest in incoming])
+    for src, record, dest in incoming:
         if dest.stem in held:
             known += 1
             continue
         why = K.problems(dest, record, holders)
+        if dest in partial:
+            why.append(partial[dest])
         if why:
             refused.append((src, why))
             continue
