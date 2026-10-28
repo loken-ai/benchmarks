@@ -103,12 +103,27 @@ for _a in "$@"; do
   if [ "$_seen_models" = 1 ]; then _probe_model="${_a%%,*}"; break; fi
   [ "$_a" = "--models" ] && _seen_models=1
 done
+# OLLAMA_AS: the name ollama serves the model under, when it is not the cell's own (a Hugging Face
+# repository imported into the ollama store). OLLAMA_CELL_ARGS are the arguments with that name.
+OLLAMA_CELL_ARGS=("$@")
+if [ -n "${OLLAMA_AS:-}" ]; then
+  _probe_model="$OLLAMA_AS"
+  for _i in "${!OLLAMA_CELL_ARGS[@]}"; do
+    if [ "${OLLAMA_CELL_ARGS[$_i]}" = "--models" ]; then OLLAMA_CELL_ARGS[$((_i + 1))]="$OLLAMA_AS"; fi
+  done
+fi
 
 # Weight bytes behind an ollama tag, read from its manifest.
 blob_bytes_of() {
-  local tag mf blob
-  case "$1" in *:*) tag="${1/:/\/}";; *) tag="$1/latest";; esac
-  mf="$MODELS_DIR/manifests/registry.ollama.ai/library/$tag"
+  local name tag mf blob
+  name="$1"; case "$name" in *:*) ;; *) name="$name:latest";; esac
+  tag="${name%:*}/${name##*:}"
+  # A name that starts with a host (hf.co/...) keeps it; a bare one is the library's.
+  case "${tag%%/*}" in
+    *.*) mf="$MODELS_DIR/manifests/$tag" ;;
+    *) case "${name%:*}" in */*) mf="$MODELS_DIR/manifests/registry.ollama.ai/$tag" ;;
+                             *) mf="$MODELS_DIR/manifests/registry.ollama.ai/library/$tag" ;; esac ;;
+  esac
   [ -f "$mf" ] || { echo 0; return; }
   blob=$(python3 -c "import json;d=json.load(open('$mf'));print([l['digest'] for l in d['layers'] if 'model' in l['mediaType']][0].replace('sha256:','sha256-'))" 2>/dev/null) || { echo 0; return; }
   stat -c%s "$MODELS_DIR/blobs/$blob" 2>/dev/null || echo 0
@@ -487,7 +502,7 @@ for _att in 1 2 3; do
     [ "$cpubuf" -gt 2000 ] && echo "  warning: ollama STILL CPU-fell after 3 tries (CPU buffer ${cpubuf} MiB) - model is VRAM-marginal on this box; recording ollama's CPU-fallback as its real default behaviour" >&2
   fi
   cool_wait
-  "$LOKPROF" --ollama http://127.0.0.1:$OLLAMA_PORT "${NUMGPU[@]}" "${COMMON[@]}" "$@" -o "$TMP/ollama.json" || true
+  "$LOKPROF" --ollama http://127.0.0.1:$OLLAMA_PORT "${NUMGPU[@]}" "${COMMON[@]}" "${OLLAMA_CELL_ARGS[@]}" -o "$TMP/ollama.json" || true
   break
 done
 fi

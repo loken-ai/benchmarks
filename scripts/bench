@@ -151,6 +151,74 @@ ensure_catalogue() {
     done
 }
 
+# The name ollama serves a gguf model under. A model of the ollama store keeps its name. A
+# Hugging Face repository is imported once into the ollama store from the very file loken loads
+# (`ollama create` from `FROM <file>`), under the name ollama itself gives such a model,
+# `hf.co/<repository>:<quantisation>`; the blob it copies is then replaced by a hard link to that
+# file, so the import takes no disk space. Nothing when ollama cannot import it, with the reason.
+declare -A OLLAMA_AS=()
+ollama_name() { # ollama_name <model>
+    local m="$1"
+    if [ -z "${OLLAMA_AS[$m]+set}" ]; then
+        OLLAMA_AS[$m]="$m"
+        if [ -n "$HF_STORE" ] && [ -n "$(hf_source "$m")" ]; then
+            OLLAMA_AS[$m]="$(ollama_import "$m")"
+        fi
+    fi
+    printf '%s' "${OLLAMA_AS[$m]}"
+}
+# "<file>\t<quantisation>" of a model loken reads from the Hugging Face store; nothing otherwise.
+hf_source() { # hf_source <model>
+    curl -sf -m 30 -X POST "$LOKEN_URL/api/show" -d "{\"name\":\"$1\"}" | python3 -c '
+import sys, json
+d = json.load(sys.stdin)
+src = (d.get("modelfile") or "").partition("FROM ")[2].strip()
+hf = sys.argv[1]
+if src.startswith(hf.rstrip("/") + "/"):
+    print(src + "\t" + ((d.get("details") or {}).get("quantization_level") or "latest"))
+' "$HF_STORE" 2>/dev/null
+}
+ollama_import() { # ollama_import <model>
+    local m="$1" src quant name manifest port="${OLLAMA_PORT:-11434}" pid mf out
+    IFS=$'\t' read -r src quant <<< "$(hf_source "$m")"
+    name="hf.co/$m:$quant"
+    manifest="$OLLAMA_STORE/manifests/hf.co/$m/$quant"
+    if [ ! -s "$manifest" ]; then
+        mf="$(mktemp -d)"
+        printf 'FROM %s\n' "$src" > "$mf/Modelfile"
+        OLLAMA_HOST="127.0.0.1:$port" OLLAMA_MODELS="$OLLAMA_STORE" "$OLLAMA_BIN" serve >"$mf/serve.log" 2>&1 &
+        pid=$!
+        for _ in $(seq 1 60); do curl -sf -m 2 "http://127.0.0.1:$port/api/version" >/dev/null && break; sleep 1; done
+        out="$(OLLAMA_HOST="127.0.0.1:$port" "$OLLAMA_BIN" create "$name" -f "$mf/Modelfile" 2>&1 | tail -1)"
+        kill "$pid" 2>/dev/null; wait "$pid" 2>/dev/null
+        rm -rf "$mf"
+        if [ ! -s "$manifest" ]; then
+            echo "ollama could not import $m from $src: $out" >&2
+            return 0
+        fi
+    fi
+    dedupe_blob "$manifest" "$src"
+    printf '%s' "$name"
+}
+# The model blob of an ollama manifest made a hard link to the file it was copied from, when both
+# sit on one filesystem and hold the same bytes.
+dedupe_blob() { # dedupe_blob <manifest> <source file>
+    local digest blob
+    digest="$(python3 -c '
+import sys, json
+for l in json.load(open(sys.argv[1])).get("layers", []):
+    if l.get("mediaType", "").endswith(".model"):
+        print(l["digest"].replace(":", "-"))
+' "$1")"
+    blob="$OLLAMA_STORE/blobs/$digest"
+    [ -f "$blob" ] && [ -f "$2" ] || return 0
+    [ "$(stat -c %i "$blob")" = "$(stat -Lc %i "$2")" ] && return 0
+    [ "$(stat -c %d "$blob")" = "$(stat -Lc %d "$2")" ] || return 0
+    [ "$(stat -c %s "$blob")" = "$(stat -Lc %s "$2")" ] || return 0
+    cmp -s "$blob" "$2" || return 0
+    ln -f "$(readlink -f "$2")" "$blob"
+}
+
 # The context window a model declares, in tokens, from the metadata loken shows for it; nothing
 # when the metadata states none (a checkpoint, a media model). A cell asking for more than a model
 # declares is skipped, never measured past the window.
@@ -601,7 +669,15 @@ PY
             # Measured into a file of its own: a run that writes nothing leaves no earlier result
             # to be stamped with this build.
             rm -f "$out.part"
-            env ENGINES="$engines" STREAM="$st" BENCH_MODE="$dev" OUT="$out.part" VLLM_SERVE="$vserve" \
+            oname=""
+            if [[ " $engines " == *" ollama "* ]]; then
+                oname="$(ollama_name "$m")"
+                if [ -z "$oname" ]; then
+                    engines=$(echo " $engines " | sed 's/ ollama / /; s/^ //; s/ $//')
+                    echo "  ollama left out of $m: it could not import the model"
+                fi
+            fi
+            env ENGINES="$engines" STREAM="$st" BENCH_MODE="$dev" OUT="$out.part" VLLM_SERVE="$vserve" OLLAMA_AS="$oname" \
                 GPU_PIN="$([ "$dev" = gpu ] && echo "${PIN:-}")" ASR_AUDIO="$ASR_AUDIO" \
                 timeout --kill-after=60 "${CELL_CAP:-7200}" \
                 scripts/engines/fair-run.sh --models "$m" --prompt "$(cat "$ROOT/prompts/$pr.txt")" --num-ctx "$ctx" \
