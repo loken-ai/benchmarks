@@ -4,6 +4,10 @@ All notable changes to the benchmarks. The format follows [Keep a Changelog](htt
 
 ## [Unreleased]
 
+### Added
+
+- Campaign: resume with a new loken release on the failed cells only.
+
 ### Fixed
 
 - Records: accept a run of a host whose set of cards changed.

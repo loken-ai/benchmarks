@@ -11,6 +11,7 @@
 #   bench                 # PLAN: print the cells a campaign would run (no side effects) [default]
 #   bench --plan          # same, explicit
 #   BENCH_ONLY="a b" bench run   # RUN only the named models
+#   KEEP_EARLIER_BUILDS=1 bench run   # RUN again only the cells an earlier binary left failed or empty
 #   BACKEND=vulkan bench run     # measure the card through Vulkan (opencl: loken alone)
 #   bench run             # RUN the campaign (provisions engines, measures) - see `run` below
 #
@@ -291,15 +292,18 @@ PY
 # True when a result file can be kept on resume: measured by the CURRENT binary AND, for each engine
 # that produced a row, the CURRENT version of that engine. Change ollama or vLLM and the cells they
 # measured are re-run, not relabelled - a version is never claimed for a bench not run with it.
+# KEEP_EARLIER_BUILDS=1 also keeps a complete cell an earlier loken binary measured.
+# A corrective release then re-measures only the cells that failed, lost an iteration or are missing.
+# Each record keeps its own build.
 cell_current() { # cell_current <file> <stamp>
-    python3 - "$1" "$2" "${OLLAMA_VER:-}" "${VLLM_VER:-}" <<'PY'
+    python3 - "$1" "$2" "${OLLAMA_VER:-}" "${VLLM_VER:-}" "${KEEP_EARLIER_BUILDS:-}" <<'PY'
 import json, sys
 try:
     d = json.load(open(sys.argv[1]))
 except Exception:
     sys.exit(1)
-stamp, over, vver = int(sys.argv[2]), sys.argv[3], sys.argv[4]
-if d.get("engine_build") != stamp:
+stamp, over, vver, keep_earlier = int(sys.argv[2]), sys.argv[3], sys.argv[4], sys.argv[5] == "1"
+if d.get("engine_build") != stamp and not keep_earlier:
     sys.exit(1)
 targets = {r.get("target", "").lower() for r in d.get("results", [])}
 if "ollama" in targets and str(d.get("ollama_version") or "") != over:
@@ -314,6 +318,10 @@ def measured(r):
         s.get("count") for s in (r.get("stats") or {}).values()
     )
 if any(not measured(r) and not r.get("load_error") for r in d.get("results", [])):
+    sys.exit(1)
+# A cell of an earlier build where an iteration failed is measured again.
+# A corrective run exists to redo the cells that did not complete.
+if keep_earlier and any(r.get("iteration_errors") for r in d.get("results", [])):
     sys.exit(1)
 sys.exit(0)
 PY
