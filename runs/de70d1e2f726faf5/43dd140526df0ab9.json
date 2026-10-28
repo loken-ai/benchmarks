@@ -1,0 +1,830 @@
+{
+  "config": {
+    "carbon_intensity_gco2_per_kwh": 50.0,
+    "custom_prompt": null,
+    "energy_measure": true,
+    "gpu_sample": true,
+    "iterations": 3,
+    "max_tokens": 128,
+    "models": [
+      "Qwen/Qwen3-8B-AWQ"
+    ],
+    "num_ctx": [
+      4096
+    ],
+    "num_gpu": null,
+    "prompts": [
+      "1000"
+    ],
+    "session_id": null,
+    "streaming": false,
+    "unique_prompt": true,
+    "warmup": 0
+  },
+  "engine_build": 1793028381,
+  "idle_energy_baseline": null,
+  "machine": {
+    "cpu": "AMD Ryzen 9 9950X3D 16-Core Processor",
+    "cpu_flags": [
+      "avx2",
+      "fma",
+      "bmi2",
+      "f16c",
+      "avx512f",
+      "avx512bw",
+      "avx512vl",
+      "avx512_vnni",
+      "avx512_bf16"
+    ],
+    "driver": "615.71.10",
+    "gpus": [
+      {
+        "arch": "sm_120",
+        "index": 0,
+        "name": "NVIDIA GeForce RTX 5070 Ti",
+        "pcie_gen": 5,
+        "pcie_width": 8,
+        "power_cap_w": 300,
+        "vendor": "nvidia",
+        "vram_mib": 16303
+      },
+      {
+        "arch": "sm_120",
+        "index": 1,
+        "name": "NVIDIA GeForce RTX 5060 Ti",
+        "pcie_gen": 5,
+        "pcie_width": 8,
+        "power_cap_w": 180,
+        "vendor": "nvidia",
+        "vram_mib": 16311
+      }
+    ],
+    "hardware_id": "de70d1e2f726faf5",
+    "host_id": "12973014bbf73a88",
+    "kernel": "6.12.113+deb13-amd64",
+    "os": "Debian GNU/Linux 13 (trixie)",
+    "ram_gib": 60,
+    "sockets": 1,
+    "threads": 32
+  },
+  "ollama_version": "0.40.11",
+  "protocol": {
+    "cards_by_uuid": null,
+    "engines_seen": [
+      "lokend"
+    ],
+    "gpu_temps_c_at_start": [
+      45,
+      40
+    ],
+    "iterations": 3,
+    "max_tokens": 128,
+    "prefix_reuse_offered": false,
+    "streaming": false,
+    "unique_prompt": true,
+    "warmup": 0
+  },
+  "results": [
+    {
+      "coherence_pass": true,
+      "first_response_preview": "miles to see it? What is the matter with the Saco? Why does it lie so still and quiet? But here again comes that same ol...",
+      "iteration_errors": [],
+      "iterations": [
+        {
+          "completion_tok_s": 101.89408113291213,
+          "degenerate": false,
+          "e2e_latency_ms": 1256.206431,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 102.63013,
+            "cpu_rapl_available": true,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 1.276570163,
+            "energy_j": 356.98912999999675,
+            "gco2_per_tok": 3.873579969618021e-05,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 254.35899999999674,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": null,
+            "j_per_tok": 2.7889775781249746,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": 0.000774715993923604
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 116.09946153846155,
+              "power_peak_w": 154.507,
+              "samples": 13,
+              "util_avg_pct": 76,
+              "util_peak_pct": 100,
+              "vram_avg_mb": 5577,
+              "vram_peak_mb": 5669
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 25.83023076923076,
+              "power_peak_w": 26.641,
+              "samples": 13,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 19,
+              "vram_peak_mb": 19
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 88,
+            "cpu_peak_pct": 104,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 4356,
+            "rss_peak_mb": 4360,
+            "samples": 7,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 1,
+          "load_time_ms": 8.719646,
+          "prompt_tok_s": 4783.024522115944,
+          "prompt_tokens": 1008,
+          "response_preview": "miles to see it? What is the matter with the Saco? Why does it lie so still and quiet? But here again comes that same ol...",
+          "server_decode_tok_s": 123.74989547484414,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 1256.206431
+        },
+        {
+          "completion_tok_s": 99.82690576067444,
+          "degenerate": false,
+          "e2e_latency_ms": 1282.219448,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 108.593871,
+            "cpu_rapl_available": true,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 1.304569418,
+            "energy_j": 385.39387099998834,
+            "gco2_per_tok": 4.1817911349825124e-05,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 276.79999999998836,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": null,
+            "j_per_tok": 3.010889617187409,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": 0.0008363582269965025
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 190.99857142857135,
+              "power_peak_w": 209.53,
+              "samples": 14,
+              "util_avg_pct": 99,
+              "util_peak_pct": 99,
+              "vram_avg_mb": 5616,
+              "vram_peak_mb": 5861
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 20.1155,
+              "power_peak_w": 21.973,
+              "samples": 14,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 145,
+              "vram_peak_mb": 155
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 79,
+            "cpu_peak_pct": 104,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 4507,
+            "rss_peak_mb": 4507,
+            "samples": 8,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 2,
+          "load_time_ms": 11.191832,
+          "prompt_tok_s": 3755.69376028368,
+          "prompt_tokens": 1008,
+          "response_preview": "miles to see it? What is the matter with the Saco? Why does it lie so still and quiet? But here again comes that same ol...",
+          "server_decode_tok_s": 127.80727940338762,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 1282.219448
+        },
+        {
+          "completion_tok_s": 104.59477568821359,
+          "degenerate": false,
+          "e2e_latency_ms": 1223.770491,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 102.386734,
+            "cpu_rapl_available": true,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 1.243345071,
+            "energy_j": 366.9637340000484,
+            "gco2_per_tok": 3.9818113498269143e-05,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 264.57700000004843,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": null,
+            "j_per_tok": 2.8669041718753783,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": 0.0007963622699653828
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 176.13653846153846,
+              "power_peak_w": 211.95,
+              "samples": 13,
+              "util_avg_pct": 98,
+              "util_peak_pct": 100,
+              "vram_avg_mb": 5656,
+              "vram_peak_mb": 5925
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 26.439538461538458,
+              "power_peak_w": 26.613,
+              "samples": 13,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 155,
+              "vram_peak_mb": 155
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 86,
+            "cpu_peak_pct": 104,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 4508,
+            "rss_peak_mb": 4508,
+            "samples": 7,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 3,
+          "load_time_ms": 6.391341,
+          "prompt_tok_s": 4787.353180711754,
+          "prompt_tokens": 1008,
+          "response_preview": "miles to see it? What is the matter with the Saco? Why does it lie so still and quiet? But here again comes that same ol...",
+          "server_decode_tok_s": 127.31855822817478,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 1223.770491
+        }
+      ],
+      "load_error": null,
+      "load_time_ms": 15743.422899000001,
+      "model": "Qwen/Qwen3-8B-AWQ",
+      "model_fingerprint": null,
+      "num_ctx": 4096,
+      "prompt": "1000",
+      "prompt_chars": 4384,
+      "stats": {
+        "Carbon gCO2/tok [gpu+cpu_pkg]": {
+          "count": 3,
+          "max": 4.1817911349825124e-05,
+          "mean": 4.0123941514758154e-05,
+          "min": 3.873579969618021e-05,
+          "p50": 3.9818113498269143e-05,
+          "p95": 4.1617931564669525e-05,
+          "stddev": 1.563649942645621e-06,
+          "unit": "g"
+        },
+        "Completion tok/s": {
+          "count": 3,
+          "max": 104.59477568821359,
+          "mean": 102.10525419393339,
+          "min": 99.82690576067444,
+          "p50": 101.89408113291213,
+          "p95": 104.32470623268344,
+          "stddev": 2.3909394508767603,
+          "unit": "tok/s"
+        },
+        "E2E latency": {
+          "count": 3,
+          "max": 1282.219448,
+          "mean": 1254.065456666667,
+          "min": 1223.770491,
+          "p50": 1256.206431,
+          "p95": 1279.6181463,
+          "stddev": 29.283237046456428,
+          "unit": "ms"
+        },
+        "Energy J/tok [gpu+cpu_pkg]": {
+          "count": 3,
+          "max": 3.010889617187409,
+          "mean": 2.8889237890625874,
+          "min": 2.7889775781249746,
+          "p50": 2.8669041718753783,
+          "p95": 2.9964910726562057,
+          "stddev": 0.11258279587048485,
+          "unit": "J"
+        },
+        "Energy Wh/tok [gpu+cpu_pkg]": {
+          "count": 3,
+          "max": 0.0008363582269965025,
+          "mean": 0.000802478830295163,
+          "min": 0.000774715993923604,
+          "p50": 0.0007963622699653828,
+          "p95": 0.0008323586312933904,
+          "stddev": 3.127299885291247e-05,
+          "unit": "Wh"
+        },
+        "Model load": {
+          "count": 1,
+          "max": 15743.422899000001,
+          "mean": 15743.422899000001,
+          "min": 15743.422899000001,
+          "p50": 15743.422899000001,
+          "p95": 15743.422899000001,
+          "stddev": 0.0,
+          "unit": "ms"
+        },
+        "Prompt tok/s": {
+          "count": 3,
+          "max": 4787.353180711754,
+          "mean": 4442.023821037126,
+          "min": 3755.69376028368,
+          "p50": 4783.024522115944,
+          "p95": 4786.920314852173,
+          "stddev": 594.3832084957324,
+          "unit": "tok/s"
+        },
+        "Tokens generated": {
+          "count": 3,
+          "max": 128.0,
+          "mean": 128.0,
+          "min": 128.0,
+          "p50": 128.0,
+          "p95": 128.0,
+          "stddev": 0.0,
+          "unit": "count"
+        }
+      },
+      "target": "LOKEN",
+      "url": "http://127.0.0.1:11435"
+    },
+    {
+      "coherence_pass": false,
+      "first_response_preview": "miles to see it? What is the one thing needful? - Water. What is the one thing needful for the soul? - Water. But the so...",
+      "iteration_errors": [],
+      "iterations": [
+        {
+          "completion_tok_s": 104.69360137106936,
+          "degenerate": true,
+          "e2e_latency_ms": 1222.615311,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 133.747615,
+            "cpu_rapl_available": true,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 1.242931587,
+            "energy_j": 412.35461499995995,
+            "gco2_per_tok": 4.474333930121093e-05,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 278.60699999995995,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": null,
+            "j_per_tok": 3.221520429687187,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": 0.0008948667860242186
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 68.5983846153846,
+              "power_peak_w": 123.309,
+              "samples": 13,
+              "util_avg_pct": 66,
+              "util_peak_pct": 99,
+              "vram_avg_mb": 14070,
+              "vram_peak_mb": 14077
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 58.98992307692306,
+              "power_peak_w": 117.444,
+              "samples": 13,
+              "util_avg_pct": 91,
+              "util_peak_pct": 100,
+              "vram_avg_mb": 13941,
+              "vram_peak_mb": 13947
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 0,
+            "cpu_peak_pct": 4,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 1521,
+            "rss_peak_mb": 1521,
+            "samples": 7,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 1,
+          "load_time_ms": null,
+          "prompt_tok_s": null,
+          "prompt_tokens": 1008,
+          "response_preview": "miles to see it? What is the one thing needful? - Water. What is the one thing needful for the soul? - Water. But the so...",
+          "server_decode_tok_s": null,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 1222.615311
+        },
+        {
+          "completion_tok_s": 104.73445072189558,
+          "degenerate": false,
+          "e2e_latency_ms": 1222.138457,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 134.634761,
+            "cpu_rapl_available": true,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 1.243242404,
+            "energy_j": 423.11176100001353,
+            "gco2_per_tok": 4.5910564344619524e-05,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 288.4770000000135,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": null,
+            "j_per_tok": 3.3055606328126057,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": 0.0009182112868923904
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 119.57384615384618,
+              "power_peak_w": 124.047,
+              "samples": 13,
+              "util_avg_pct": 64,
+              "util_peak_pct": 99,
+              "vram_avg_mb": 14077,
+              "vram_peak_mb": 14077
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 106.06361538461536,
+              "power_peak_w": 115.079,
+              "samples": 13,
+              "util_avg_pct": 79,
+              "util_peak_pct": 99,
+              "vram_avg_mb": 13947,
+              "vram_peak_mb": 13947
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 0,
+            "cpu_peak_pct": 4,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 1521,
+            "rss_peak_mb": 1521,
+            "samples": 7,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 2,
+          "load_time_ms": null,
+          "prompt_tok_s": null,
+          "prompt_tokens": 1008,
+          "response_preview": "miles to see it? What is the one thing needful? - Water. What is the one thing needful for the soul? - Water. But here i...",
+          "server_decode_tok_s": null,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 1222.138457
+        },
+        {
+          "completion_tok_s": 104.65328973000894,
+          "degenerate": false,
+          "e2e_latency_ms": 1223.086253,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 132.604532,
+            "cpu_rapl_available": true,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 1.244454203,
+            "energy_j": 421.9105320000405,
+            "gco2_per_tok": 4.5780222656254395e-05,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 289.3060000000405,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": null,
+            "j_per_tok": 3.2961760312503166,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": 0.0009156044531250879
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 120.36207692307693,
+              "power_peak_w": 123.861,
+              "samples": 13,
+              "util_avg_pct": 59,
+              "util_peak_pct": 99,
+              "vram_avg_mb": 14077,
+              "vram_peak_mb": 14077
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 106.62353846153844,
+              "power_peak_w": 114.553,
+              "samples": 13,
+              "util_avg_pct": 76,
+              "util_peak_pct": 99,
+              "vram_avg_mb": 13947,
+              "vram_peak_mb": 13947
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 1,
+            "cpu_peak_pct": 4,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 1521,
+            "rss_peak_mb": 1521,
+            "samples": 7,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 3,
+          "load_time_ms": null,
+          "prompt_tok_s": null,
+          "prompt_tokens": 1008,
+          "response_preview": "miles to see it? What is the one thing needful? - Water. What is the one thing needful for the soul? - Water. But here i...",
+          "server_decode_tok_s": null,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 1223.086253
+        }
+      ],
+      "load_error": null,
+      "load_time_ms": null,
+      "model": "Qwen/Qwen3-8B-AWQ",
+      "model_fingerprint": null,
+      "num_ctx": 4096,
+      "prompt": "1000",
+      "prompt_chars": 4384,
+      "stats": {
+        "Carbon gCO2/tok [gpu+cpu_pkg]": {
+          "count": 3,
+          "max": 4.5910564344619524e-05,
+          "mean": 4.547804210069495e-05,
+          "min": 4.474333930121093e-05,
+          "p50": 4.5780222656254395e-05,
+          "p95": 4.589753017578301e-05,
+          "stddev": 6.396001810574403e-07,
+          "unit": "g"
+        },
+        "Completion tok/s": {
+          "count": 3,
+          "max": 104.73445072189558,
+          "mean": 104.69378060765796,
+          "min": 104.65328973000894,
+          "p50": 104.69360137106936,
+          "p95": 104.73036578681297,
+          "stddev": 0.04058079281288325,
+          "unit": "tok/s"
+        },
+        "E2E latency": {
+          "count": 3,
+          "max": 1223.086253,
+          "mean": 1222.6133403333333,
+          "min": 1222.138457,
+          "p50": 1222.615311,
+          "p95": 1223.0391588,
+          "stddev": 0.4739010730619822,
+          "unit": "ms"
+        },
+        "Energy J/tok [gpu+cpu_pkg]": {
+          "count": 3,
+          "max": 3.3055606328126057,
+          "mean": 3.2744190312500367,
+          "min": 3.221520429687187,
+          "p50": 3.2961760312503166,
+          "p95": 3.304622172656377,
+          "stddev": 0.0460512130361356,
+          "unit": "J"
+        },
+        "Energy Wh/tok [gpu+cpu_pkg]": {
+          "count": 3,
+          "max": 0.0009182112868923904,
+          "mean": 0.0009095608420138989,
+          "min": 0.0008948667860242186,
+          "p50": 0.0009156044531250879,
+          "p95": 0.0009179506035156601,
+          "stddev": 1.2792003621148773e-05,
+          "unit": "Wh"
+        },
+        "Tokens generated": {
+          "count": 3,
+          "max": 128.0,
+          "mean": 128.0,
+          "min": 128.0,
+          "p50": 128.0,
+          "p95": 128.0,
+          "stddev": 0.0,
+          "unit": "count"
+        }
+      },
+      "target": "vLLM",
+      "url": "http://localhost:8000"
+    },
+    {
+      "coherence_pass": null,
+      "first_response_preview": "",
+      "iteration_errors": [],
+      "iterations": [],
+      "load_error": "not run: paired with GGUF weights only",
+      "load_time_ms": null,
+      "model": "Qwen/Qwen3-8B-AWQ",
+      "model_fingerprint": null,
+      "num_ctx": 4096,
+      "prompt": "1000",
+      "prompt_chars": 0,
+      "stats": {},
+      "target": "Ollama",
+      "url": ""
+    }
+  ],
+  "schema": "loken/2",
+  "subjects": {
+    "LOKEN": {
+      "devices": {
+        "compiled": {
+          "audio": true,
+          "cuda": true,
+          "image": true,
+          "midi": true,
+          "opencl": true,
+          "video": true,
+          "vulkan": false
+        },
+        "devices": [
+          {
+            "backend": "cuda",
+            "name": "NVIDIA GeForce RTX 5070 Ti",
+            "status": "available",
+            "type": "CUDA"
+          },
+          {
+            "backend": "cuda",
+            "name": "NVIDIA GeForce RTX 5060 Ti",
+            "status": "available",
+            "type": "CUDA"
+          },
+          {
+            "backend": "cpu",
+            "name": "CPU (32 cores)",
+            "status": "available",
+            "type": "CPU"
+          }
+        ]
+      },
+      "says": {
+        "commit": "dfc01f3be",
+        "loken": "0.4.1",
+        "version": "0.4.1"
+      },
+      "url": "http://127.0.0.1:11435"
+    },
+    "vLLM": {
+      "devices": null,
+      "says": {
+        "version": "0.32.0"
+      },
+      "url": "http://localhost:8000"
+    }
+  },
+  "timestamp": "2026-10-27",
+  "vllm_version": "0.32.0"
+}

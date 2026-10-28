@@ -1,0 +1,859 @@
+{
+  "config": {
+    "carbon_intensity_gco2_per_kwh": 50.0,
+    "custom_prompt": null,
+    "energy_measure": true,
+    "gpu_sample": true,
+    "iterations": 3,
+    "max_tokens": 128,
+    "models": [
+      "qwen3next:latest"
+    ],
+    "num_ctx": [
+      4096
+    ],
+    "num_gpu": null,
+    "prompts": [
+      "1000"
+    ],
+    "session_id": null,
+    "streaming": false,
+    "unique_prompt": true,
+    "warmup": 0
+  },
+  "engine_build": 1793028381,
+  "idle_energy_baseline": null,
+  "machine": {
+    "cpu": "AMD Ryzen 9 9950X3D 16-Core Processor",
+    "cpu_flags": [
+      "avx2",
+      "fma",
+      "bmi2",
+      "f16c",
+      "avx512f",
+      "avx512bw",
+      "avx512vl",
+      "avx512_vnni",
+      "avx512_bf16"
+    ],
+    "driver": "615.71.10",
+    "gpus": [
+      {
+        "arch": "sm_120",
+        "index": 0,
+        "name": "NVIDIA GeForce RTX 5070 Ti",
+        "pcie_gen": 5,
+        "pcie_width": 8,
+        "power_cap_w": 300,
+        "vendor": "nvidia",
+        "vram_mib": 16303
+      },
+      {
+        "arch": "sm_120",
+        "index": 1,
+        "name": "NVIDIA GeForce RTX 5060 Ti",
+        "pcie_gen": 5,
+        "pcie_width": 8,
+        "power_cap_w": 180,
+        "vendor": "nvidia",
+        "vram_mib": 16311
+      }
+    ],
+    "hardware_id": "de70d1e2f726faf5",
+    "host_id": "12973014bbf73a88",
+    "kernel": "6.12.113+deb13-amd64",
+    "os": "Debian GNU/Linux 13 (trixie)",
+    "ram_gib": 60,
+    "sockets": 1,
+    "threads": 32
+  },
+  "ollama_version": "0.40.11",
+  "protocol": {
+    "cards_by_uuid": null,
+    "engines_seen": [
+      "llama-server",
+      "ollama"
+    ],
+    "gpu_temps_c_at_start": [
+      44,
+      48
+    ],
+    "iterations": 3,
+    "max_tokens": 128,
+    "prefix_reuse_offered": false,
+    "streaming": false,
+    "unique_prompt": true,
+    "warmup": 0
+  },
+  "results": [
+    {
+      "coherence_pass": true,
+      "first_response_preview": "miles to see it? Why did the poor poet of Tennessee, upon suddenly receiving two handfuls of silver, deliberate whether ...",
+      "iteration_errors": [],
+      "iterations": [
+        {
+          "completion_tok_s": 9.078938908451496,
+          "degenerate": false,
+          "e2e_latency_ms": 14098.563862,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 1202.584583,
+            "cpu_rapl_available": true,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 14.12977621,
+            "energy_j": 2412.4795830000185,
+            "gco2_per_tok": 0.00026177078808593953,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 1209.8950000000186,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": null,
+            "j_per_tok": 18.847496742187644,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": 0.00523541576171879
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 49.40075539568352,
+              "power_peak_w": 80.524,
+              "samples": 139,
+              "util_avg_pct": 8,
+              "util_peak_pct": 84,
+              "vram_avg_mb": 9283,
+              "vram_peak_mb": 14805
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 35.498877697841756,
+              "power_peak_w": 74.332,
+              "samples": 139,
+              "util_avg_pct": 8,
+              "util_peak_pct": 84,
+              "vram_avg_mb": 9407,
+              "vram_peak_mb": 14879
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 4,
+            "cpu_peak_pct": 99,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 41,
+            "rss_peak_mb": 483,
+            "samples": 71,
+            "swap_peak_mb": 5
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 1,
+          "load_time_ms": 7626.146127,
+          "prompt_tok_s": 207.17163244875022,
+          "prompt_tokens": 1008,
+          "response_preview": "miles to see it? Why did the poor poet of Tennessee, upon suddenly receiving two handfuls of silver, deliberate whether ...",
+          "server_decode_tok_s": 80.47348587250234,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 14098.563862
+        },
+        {
+          "completion_tok_s": 43.65729632766359,
+          "degenerate": false,
+          "e2e_latency_ms": 2931.926866,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 330.154039,
+            "cpu_rapl_available": true,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 2.952177095,
+            "energy_j": 730.3990389999954,
+            "gco2_per_tok": 7.925336794704811e-05,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 400.24499999999534,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": null,
+            "j_per_tok": 5.706242492187464,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": 0.0015850673589409621
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 74.10877419354843,
+              "power_peak_w": 82.934,
+              "samples": 31,
+              "util_avg_pct": 28,
+              "util_peak_pct": 70,
+              "vram_avg_mb": 14673,
+              "vram_peak_mb": 14673
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 64.14374193548387,
+              "power_peak_w": 76.376,
+              "samples": 31,
+              "util_avg_pct": 23,
+              "util_peak_pct": 43,
+              "vram_avg_mb": 14879,
+              "vram_peak_mb": 14879
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 0,
+            "cpu_peak_pct": 0,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 28,
+            "rss_peak_mb": 28,
+            "samples": 16,
+            "swap_peak_mb": 2
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 2,
+          "load_time_ms": 1.010545,
+          "prompt_tok_s": 785.5686059352513,
+          "prompt_tokens": 1008,
+          "response_preview": "miles to see it? Why did the poor poet of Tennessee, upon suddenly receiving two handfuls of silver, deliberate whether ...",
+          "server_decode_tok_s": 80.92937268355477,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 2931.926866
+        },
+        {
+          "completion_tok_s": 43.07460836343973,
+          "degenerate": false,
+          "e2e_latency_ms": 2971.5882479999996,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 332.468036,
+            "cpu_rapl_available": true,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 2.992494017,
+            "energy_j": 744.203035999986,
+            "gco2_per_tok": 8.075119748263737e-05,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 411.73499999998603,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": null,
+            "j_per_tok": 5.814086218749891,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": 0.0016150239496527474
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 73.64848387096771,
+              "power_peak_w": 84.978,
+              "samples": 31,
+              "util_avg_pct": 28,
+              "util_peak_pct": 71,
+              "vram_avg_mb": 14673,
+              "vram_peak_mb": 14673
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 62.97383870967743,
+              "power_peak_w": 75.275,
+              "samples": 31,
+              "util_avg_pct": 22,
+              "util_peak_pct": 41,
+              "vram_avg_mb": 14879,
+              "vram_peak_mb": 14879
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 0,
+            "cpu_peak_pct": 4,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 28,
+            "rss_peak_mb": 28,
+            "samples": 16,
+            "swap_peak_mb": 2
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 3,
+          "load_time_ms": 1.269898,
+          "prompt_tok_s": 777.825191504729,
+          "prompt_tokens": 1008,
+          "response_preview": "miles to see it? Why did the poor poet of Tennessee, upon suddenly receiving two handfuls of silver, deliberate whether ...",
+          "server_decode_tok_s": 79.03688614427813,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 2971.5882479999996
+        }
+      ],
+      "load_error": null,
+      "load_time_ms": 14880.480977,
+      "model": "qwen3next:latest",
+      "model_fingerprint": {
+        "modified_at": "2026-07-07",
+        "parameter_size": "8.2B",
+        "quantization_level": "Q4_K_M"
+      },
+      "num_ctx": 4096,
+      "prompt": "1000",
+      "prompt_chars": 4384,
+      "stats": {
+        "Carbon gCO2/tok [gpu+cpu_pkg]": {
+          "count": 3,
+          "max": 0.00026177078808593953,
+          "mean": 0.00014059178450520832,
+          "min": 7.925336794704811e-05,
+          "p50": 8.075119748263737e-05,
+          "p95": 0.00024366882902560928,
+          "stddev": 0.00010494676772032365,
+          "unit": "g"
+        },
+        "Completion tok/s": {
+          "count": 3,
+          "max": 43.65729632766359,
+          "mean": 31.93694786651827,
+          "min": 9.078938908451496,
+          "p50": 43.07460836343973,
+          "p95": 43.599027531241205,
+          "stddev": 19.79776026375733,
+          "unit": "tok/s"
+        },
+        "E2E latency": {
+          "count": 3,
+          "max": 14098.563862,
+          "mean": 6667.359658666667,
+          "min": 2931.926866,
+          "p50": 2971.5882479999996,
+          "p95": 12985.8663006,
+          "stddev": 6435.642173865386,
+          "unit": "ms"
+        },
+        "Energy J/tok [gpu+cpu_pkg]": {
+          "count": 3,
+          "max": 18.847496742187644,
+          "mean": 10.122608484375,
+          "min": 5.706242492187464,
+          "p50": 5.814086218749891,
+          "p95": 17.544155689843866,
+          "stddev": 7.556167275863302,
+          "unit": "J"
+        },
+        "Energy Wh/tok [gpu+cpu_pkg]": {
+          "count": 3,
+          "max": 0.00523541576171879,
+          "mean": 0.0028118356901041665,
+          "min": 0.0015850673589409621,
+          "p50": 0.0016150239496527474,
+          "p95": 0.004873376580512186,
+          "stddev": 0.0020989353544064726,
+          "unit": "Wh"
+        },
+        "Model load": {
+          "count": 1,
+          "max": 14880.480977,
+          "mean": 14880.480977,
+          "min": 14880.480977,
+          "p50": 14880.480977,
+          "p95": 14880.480977,
+          "stddev": 0.0,
+          "unit": "ms"
+        },
+        "Prompt tok/s": {
+          "count": 3,
+          "max": 785.5686059352513,
+          "mean": 590.1884766295768,
+          "min": 207.17163244875022,
+          "p50": 777.825191504729,
+          "p95": 784.794264492199,
+          "stddev": 331.72491210555836,
+          "unit": "tok/s"
+        },
+        "Tokens generated": {
+          "count": 3,
+          "max": 128.0,
+          "mean": 128.0,
+          "min": 128.0,
+          "p50": 128.0,
+          "p95": 128.0,
+          "stddev": 0.0,
+          "unit": "count"
+        }
+      },
+      "target": "Ollama",
+      "url": "http://127.0.0.1:11434"
+    },
+    {
+      "coherence_pass": false,
+      "first_response_preview": "miles to see it? Why did the poor poet of Tennessee, upon suddenly receiving two handfuls of silver, deliberate whether ...",
+      "iteration_errors": [],
+      "iterations": [
+        {
+          "completion_tok_s": 29.747533240827327,
+          "degenerate": true,
+          "e2e_latency_ms": 4302.877786999999,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 437.479955,
+            "cpu_rapl_available": true,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 4.32393862,
+            "energy_j": 1025.305955000001,
+            "gco2_per_tok": 0.00011125281629774317,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 587.8260000000009,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": null,
+            "j_per_tok": 8.010202773437507,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": 0.0022250563259548634
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 68.78679545454544,
+              "power_peak_w": 89.723,
+              "samples": 44,
+              "util_avg_pct": 26,
+              "util_peak_pct": 63,
+              "vram_avg_mb": 12877,
+              "vram_peak_mb": 13811
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 56.21225000000004,
+              "power_peak_w": 91.077,
+              "samples": 44,
+              "util_avg_pct": 38,
+              "util_peak_pct": 69,
+              "vram_avg_mb": 14290,
+              "vram_peak_mb": 15161
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 395,
+            "cpu_peak_pct": 1570,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 43530,
+            "rss_peak_mb": 46698,
+            "samples": 23,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 1,
+          "load_time_ms": 29.998562,
+          "prompt_tok_s": 363.3564459946832,
+          "prompt_tokens": 1008,
+          "response_preview": "miles to see it? Why did the poor poet of Tennessee, upon suddenly receiving two handfuls of silver, deliberate whether ...",
+          "server_decode_tok_s": 85.49870521395384,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 4302.877786999999
+        },
+        {
+          "completion_tok_s": 33.77140783031139,
+          "degenerate": false,
+          "e2e_latency_ms": 3790.1884529999998,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 383.414498,
+            "cpu_rapl_available": true,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 3.8129440900000002,
+            "energy_j": 918.6694980000046,
+            "gco2_per_tok": 9.968202018229217e-05,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 535.2550000000047,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": null,
+            "j_per_tok": 7.177105453125036,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": 0.0019936404036458434
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 74.92120512820512,
+              "power_peak_w": 89.042,
+              "samples": 39,
+              "util_avg_pct": 35,
+              "util_peak_pct": 81,
+              "vram_avg_mb": 12919,
+              "vram_peak_mb": 13747
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 67.67497435897438,
+              "power_peak_w": 92.256,
+              "samples": 39,
+              "util_avg_pct": 44,
+              "util_peak_pct": 82,
+              "vram_avg_mb": 14378,
+              "vram_peak_mb": 15389
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 464,
+            "cpu_peak_pct": 1211,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 46771,
+            "rss_peak_mb": 46886,
+            "samples": 20,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 2,
+          "load_time_ms": 9.911822,
+          "prompt_tok_s": 432.49774385921467,
+          "prompt_tokens": 1008,
+          "response_preview": "miles to see it? Why did the poor poet of Tennessee, upon suddenly receiving two handfuls of silver, deliberate whether ...",
+          "server_decode_tok_s": 88.35782766482204,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 3790.1884529999998
+        },
+        {
+          "completion_tok_s": 34.03470184741407,
+          "degenerate": false,
+          "e2e_latency_ms": 3760.8673809999996,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 363.243514,
+            "cpu_rapl_available": true,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 3.780559874,
+            "energy_j": 895.2645140000661,
+            "gco2_per_tok": 9.714241688368773e-05,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 532.0210000000661,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": null,
+            "j_per_tok": 6.994254015625517,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": 0.0019428483376737547
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 76.10371794871793,
+              "power_peak_w": 89.144,
+              "samples": 39,
+              "util_avg_pct": 35,
+              "util_peak_pct": 80,
+              "vram_avg_mb": 12929,
+              "vram_peak_mb": 13971
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 68.13438461538463,
+              "power_peak_w": 93.068,
+              "samples": 39,
+              "util_avg_pct": 46,
+              "util_peak_pct": 83,
+              "vram_avg_mb": 14376,
+              "vram_peak_mb": 15389
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 337,
+            "cpu_peak_pct": 945,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 46914,
+            "rss_peak_mb": 47052,
+            "samples": 20,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 3,
+          "load_time_ms": 10.286189,
+          "prompt_tok_s": 433.10496268651,
+          "prompt_tokens": 1008,
+          "response_preview": "miles to see it? Why did the poor poet of Tennessee, upon suddenly receiving two handfuls of silver, deliberate whether ...",
+          "server_decode_tok_s": 90.00598321101941,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 3760.8673809999996
+        }
+      ],
+      "load_error": null,
+      "load_time_ms": 5451.317405,
+      "model": "qwen3next:latest",
+      "model_fingerprint": {
+        "modified_at": "",
+        "parameter_size": "8.2B",
+        "quantization_level": "Q4_K_M"
+      },
+      "num_ctx": 4096,
+      "prompt": "1000",
+      "prompt_chars": 4384,
+      "stats": {
+        "Carbon gCO2/tok [gpu+cpu_pkg]": {
+          "count": 3,
+          "max": 0.00011125281629774317,
+          "mean": 0.00010269241778790768,
+          "min": 9.714241688368773e-05,
+          "p50": 9.968202018229217e-05,
+          "p95": 0.00011009573668619807,
+          "stddev": 7.521483445037009e-06,
+          "unit": "g"
+        },
+        "Completion tok/s": {
+          "count": 3,
+          "max": 34.03470184741407,
+          "mean": 32.517880972850925,
+          "min": 29.747533240827327,
+          "p50": 33.77140783031139,
+          "p95": 34.008372445703806,
+          "stddev": 2.4028006267909023,
+          "unit": "tok/s"
+        },
+        "E2E latency": {
+          "count": 3,
+          "max": 4302.877786999999,
+          "mean": 3951.3112069999993,
+          "min": 3760.8673809999996,
+          "p50": 3790.1884529999998,
+          "p95": 4251.6088536,
+          "stddev": 304.8183499159451,
+          "unit": "ms"
+        },
+        "Energy J/tok [gpu+cpu_pkg]": {
+          "count": 3,
+          "max": 8.010202773437507,
+          "mean": 7.393854080729352,
+          "min": 6.994254015625517,
+          "p50": 7.177105453125036,
+          "p95": 7.9268930414062595,
+          "stddev": 0.5415468080426641,
+          "unit": "J"
+        },
+        "Energy Wh/tok [gpu+cpu_pkg]": {
+          "count": 3,
+          "max": 0.0022250563259548634,
+          "mean": 0.002053848355758154,
+          "min": 0.0019428483376737547,
+          "p50": 0.0019936404036458434,
+          "p95": 0.0022019147337239615,
+          "stddev": 0.0001504296689007401,
+          "unit": "Wh"
+        },
+        "Model load": {
+          "count": 1,
+          "max": 5451.317405,
+          "mean": 5451.317405,
+          "min": 5451.317405,
+          "p50": 5451.317405,
+          "p95": 5451.317405,
+          "stddev": 0.0,
+          "unit": "ms"
+        },
+        "Prompt tok/s": {
+          "count": 3,
+          "max": 433.10496268651,
+          "mean": 409.65305084680267,
+          "min": 363.3564459946832,
+          "p50": 432.49774385921467,
+          "p95": 433.0442408037805,
+          "stddev": 40.095185425447546,
+          "unit": "tok/s"
+        },
+        "Tokens generated": {
+          "count": 3,
+          "max": 128.0,
+          "mean": 128.0,
+          "min": 128.0,
+          "p50": 128.0,
+          "p95": 128.0,
+          "stddev": 0.0,
+          "unit": "count"
+        }
+      },
+      "target": "LOKEN",
+      "url": "http://127.0.0.1:11435"
+    },
+    {
+      "coherence_pass": null,
+      "first_response_preview": "",
+      "iteration_errors": [],
+      "iterations": [],
+      "load_error": "not run: paired with safetensors weights only",
+      "load_time_ms": null,
+      "model": "qwen3next:latest",
+      "model_fingerprint": null,
+      "num_ctx": 4096,
+      "prompt": "1000",
+      "prompt_chars": 0,
+      "stats": {},
+      "target": "vLLM",
+      "url": ""
+    }
+  ],
+  "schema": "loken/2",
+  "subjects": {
+    "LOKEN": {
+      "devices": {
+        "compiled": {
+          "audio": true,
+          "cuda": true,
+          "image": true,
+          "midi": true,
+          "opencl": true,
+          "video": true,
+          "vulkan": false
+        },
+        "devices": [
+          {
+            "backend": "cuda",
+            "name": "NVIDIA GeForce RTX 5070 Ti",
+            "status": "available",
+            "type": "CUDA"
+          },
+          {
+            "backend": "cuda",
+            "name": "NVIDIA GeForce RTX 5060 Ti",
+            "status": "available",
+            "type": "CUDA"
+          },
+          {
+            "backend": "cpu",
+            "name": "CPU (32 cores)",
+            "status": "available",
+            "type": "CPU"
+          }
+        ]
+      },
+      "says": {
+        "commit": "dfc01f3be",
+        "loken": "0.4.1",
+        "version": "0.4.1"
+      },
+      "url": "http://127.0.0.1:11435"
+    },
+    "Ollama": {
+      "devices": null,
+      "says": {
+        "version": "0.40.11"
+      },
+      "url": "http://127.0.0.1:11434"
+    }
+  },
+  "timestamp": "2026-10-27",
+  "vllm_version": "0.32.0"
+}

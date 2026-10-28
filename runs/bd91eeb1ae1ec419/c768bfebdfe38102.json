@@ -1,0 +1,693 @@
+{
+  "config": {
+    "carbon_intensity_gco2_per_kwh": 50.0,
+    "custom_prompt": null,
+    "energy_measure": true,
+    "gpu_sample": true,
+    "iterations": 3,
+    "max_tokens": 128,
+    "models": [
+      "deepseek-v4.1-flash:iq3"
+    ],
+    "num_ctx": [
+      4096
+    ],
+    "num_gpu": 0,
+    "prompts": [
+      "100"
+    ],
+    "session_id": null,
+    "streaming": true,
+    "unique_prompt": true,
+    "warmup": 0
+  },
+  "engine_build": 1793028381,
+  "idle_energy_baseline": null,
+  "machine": {
+    "cpu": "AMD Ryzen 9 9950X3D 16-Core Processor",
+    "cpu_flags": [
+      "avx2",
+      "fma",
+      "bmi2",
+      "f16c",
+      "avx512f",
+      "avx512bw",
+      "avx512vl",
+      "avx512_vnni",
+      "avx512_bf16"
+    ],
+    "gpus": [],
+    "hardware_id": "bd91eeb1ae1ec419",
+    "host_id": "12973014bbf73a88",
+    "kernel": "6.12.113+deb13-amd64",
+    "os": "Debian GNU/Linux 13 (trixie)",
+    "ram_gib": 60,
+    "sockets": 1,
+    "threads": 32
+  },
+  "ollama_version": "0.40.11",
+  "protocol": {
+    "cards_by_uuid": null,
+    "engines_seen": [
+      "ollama"
+    ],
+    "gpu_temps_c_at_start": [
+      40,
+      47
+    ],
+    "iterations": 3,
+    "max_tokens": 128,
+    "prefix_reuse_offered": false,
+    "streaming": true,
+    "unique_prompt": true,
+    "warmup": 0
+  },
+  "results": [
+    {
+      "coherence_pass": null,
+      "first_response_preview": null,
+      "iteration_errors": [],
+      "iterations": [],
+      "load_error": "Load failed: {\"error\":\"llama-server process has terminated: exit status 1: error loading model: unknown model architecture: 'deepseek_v41'\\nerror loading model: unknown model architecture: 'deepseek_v41'\"}",
+      "load_time_ms": null,
+      "model": "deepseek-v4.1-flash:iq3",
+      "model_fingerprint": null,
+      "num_ctx": 4096,
+      "prompt": "100",
+      "prompt_chars": 451,
+      "stats": {},
+      "target": "Ollama",
+      "url": "http://127.0.0.1:11434"
+    },
+    {
+      "coherence_pass": true,
+      "first_response_preview": "--- **Output from anthropic/claude-opus-4.5** Call me Ishmael. Some years ago—never mind how long precisely—having littl...",
+      "iteration_errors": [],
+      "iterations": [
+        {
+          "completion_tok_s": 2.4840833941111238,
+          "degenerate": false,
+          "e2e_latency_ms": 95325.78421,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": 6449.503022541637,
+            "cpu_pkg_energy_j": 10912.400116,
+            "cpu_rapl_available": true,
+            "decode_duration_s": 50.801469546999996,
+            "decode_energy_j": 9230.99760799448,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 95.350599307,
+            "energy_j": 16441.020116000112,
+            "gco2_per_tok": 0.0017839648563368177,
+            "gpu_decode_j": 2781.4945854528437,
+            "gpu_energy_j": 5528.620000000112,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": 72.11716881245688,
+            "j_per_tok": 128.44546965625088,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": 0.035679297126736356
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 15.611820784729685,
+              "power_peak_w": 40.423,
+              "samples": 943,
+              "util_avg_pct": 0,
+              "util_peak_pct": 9,
+              "vram_avg_mb": 261,
+              "vram_peak_mb": 263
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 13.867812301166508,
+              "power_peak_w": 28.488,
+              "samples": 943,
+              "util_avg_pct": 0,
+              "util_peak_pct": 10,
+              "vram_avg_mb": 184,
+              "vram_peak_mb": 185
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 731,
+            "cpu_peak_pct": 1557,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 44400,
+            "rss_peak_mb": 57113,
+            "samples": 474,
+            "swap_peak_mb": 7338
+          },
+          "inter_token_latencies_ms": [
+            383.72188400000596,
+            414.60484500000166,
+            558.195575999991,
+            517.1610300000102,
+            532.8146299999935,
+            453.10737700000027,
+            537.2604560000036,
+            498.7851429999937,
+            534.9280960000033,
+            573.636222000001,
+            724.3854160000046,
+            540.1557249999969,
+            1242.4356019999977,
+            533.0496530000019,
+            426.59431100000074,
+            500.583964999998,
+            4732.135276000001,
+            0.01630999999906635,
+            0.0008199999938369729,
+            0.0004400000034365803,
+            0.0004900000058114529,
+            0.0003999999971711077,
+            0.00033999999868683517,
+            0.25502399999822956,
+            541.7558630000058,
+            834.8474270000006,
+            833.5891949999932,
+            2796.3863820000042,
+            0.09288200000446523,
+            0.00482999999076128,
+            441.1923430000097,
+            468.3477889999922,
+            726.9585200000001,
+            2045.0541830000002,
+            0.041771000003791414,
+            0.16604199999710545,
+            0.13816299999598414,
+            0.047841000006883405,
+            0.13701200000650715,
+            0.137801999997464,
+            0.11043199998675846,
+            0.11844200000632554,
+            2925.6809980000107,
+            0.0423809999920195,
+            0.03701000000000931,
+            0.0762609999947017,
+            0.08451200000126846,
+            0.000830000004498288,
+            0.1421519999857992,
+            0.15372300002491102,
+            0.00031999999191612005,
+            3041.9819480000006,
+            0.060761999993701465,
+            0.12337200000183657,
+            0.13838200000463985,
+            0.0005999999848427251,
+            0.000470000013592653,
+            0.12179199999081902,
+            0.13177200000791345,
+            0.3648269999976037,
+            2243.638909000001,
+            0.10067200000048615,
+            0.0013599999947473407,
+            0.0585609999980079,
+            0.1284520000044722,
+            0.12688200001139194,
+            0.12583199999062344,
+            0.0006609999982174486,
+            0.09676099999342114,
+            2212.160348999998,
+            0.7118020000052638,
+            0.0007300000143004581,
+            0.08149099998991005,
+            0.12879299999622162,
+            0.0003799999976763502,
+            0.2266340000060154,
+            0.0003600000054575503,
+            0.030689999999594875,
+            2147.8644519999943,
+            0.007789999988744967,
+            0.0007300000143004581,
+            0.06202099999063648,
+            0.0004400000034365803,
+            0.03984100000525359,
+            0.1185119999863673,
+            0.08918100001756102,
+            0.1364329999923939,
+            2546.765634999989,
+            0.0075010000000474975,
+            0.007330000007641502,
+            0.08453100000042468,
+            0.08726200000091922,
+            0.1406320000096457,
+            0.0007499999919673428,
+            0.0005200000014156103,
+            0.0836120000021765,
+            2409.165466999999,
+            0.006609999996726401,
+            0.0005700000037904829,
+            0.00031999999191612005,
+            0.0003600000054575503,
+            0.014980000007199124,
+            0.2145440000022063,
+            0.00039999998989515007,
+            0.0002800000074785203,
+            3048.259574999989,
+            0.005161000008229166,
+            0.0005800000071758404,
+            0.037999999985913746,
+            0.153613000002224,
+            0.11466200000722893,
+            0.11526199999207165,
+            1325.8565360000066,
+            508.16147400000773,
+            565.8287869999767,
+            517.7669300000125,
+            419.66820200000075,
+            403.0618059999979,
+            349.0596969999897,
+            378.18993700000283,
+            403.17236799999955,
+            594.2380260000064,
+            378.55865400000766,
+            383.2263149999926,
+            861.4534540000022,
+            661.3876610000007
+          ],
+          "iteration": 1,
+          "load_time_ms": null,
+          "prompt_tok_s": 2.4892383553228448,
+          "prompt_tokens": 107,
+          "response_preview": "--- **Output from anthropic/claude-opus-4.5** Call me Ishmael. Some years ago—never mind how long precisely—having littl...",
+          "server_decode_tok_s": 2.448323206128499,
+          "tokens_generated": 128,
+          "ttft_ms": 44549.129759999996,
+          "wall_clock_ms": 95325.78421
+        },
+        {
+          "completion_tok_s": 1.79773984997251,
+          "degenerate": false,
+          "e2e_latency_ms": 50404.672144000004,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": 1739.1891230578212,
+            "cpu_pkg_energy_j": 5436.419464,
+            "cpu_rapl_available": true,
+            "decode_duration_s": 15.073446112,
+            "decode_energy_j": 2564.39494347491,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 50.443774946,
+            "energy_j": 8215.825463999958,
+            "gco2_per_tok": 0.004075310249999979,
+            "gpu_decode_j": 825.2058204170887,
+            "gpu_energy_j": 2779.405999999959,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": 91.5855336955325,
+            "j_per_tok": 293.4223379999985,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": 0.08150620499999958
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 9.632419678714879,
+              "power_peak_w": 9.706,
+              "samples": 498,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 263,
+              "vram_peak_mb": 263
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 10.168793172690764,
+              "power_peak_w": 10.276,
+              "samples": 498,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 185,
+              "vram_peak_mb": 185
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 530,
+            "cpu_peak_pct": 1310,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 50253,
+            "rss_peak_mb": 53513,
+            "samples": 251,
+            "swap_peak_mb": 7309
+          },
+          "inter_token_latencies_ms": [
+            382.1627759999974,
+            904.857090999998,
+            516.0496400000047,
+            369.4769970000052,
+            346.12357599999086,
+            368.5363020000077,
+            469.241863999996,
+            409.5972079999992,
+            468.1131150000001,
+            329.1130830000038,
+            287.1057109999965,
+            286.5611110000027,
+            308.4587679999968,
+            403.68457599999965,
+            2538.5957720000006,
+            0.006500000003143214,
+            0.09501199999795062,
+            270.1265970000022,
+            270.5304169999945,
+            3524.033918000001,
+            499.4462630000053,
+            293.57883199999196,
+            251.0986910000065,
+            264.047802999994,
+            261.40002800000366,
+            440.56260199999815
+          ],
+          "iteration": 2,
+          "load_time_ms": null,
+          "prompt_tok_s": 3.085291289840439,
+          "prompt_tokens": 105,
+          "response_preview": "--- {\"prompt_tokens\": 128, \"completion_tokens\": 64, \"total_tokens\": 192}",
+          "server_decode_tok_s": 1.7169479802558139,
+          "tokens_generated": 28,
+          "ttft_ms": 35370.328834,
+          "wall_clock_ms": 50404.672144000004
+        },
+        {
+          "completion_tok_s": 2.7464921776730558,
+          "degenerate": false,
+          "e2e_latency_ms": 39425.964692999994,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": 439.304431905623,
+            "cpu_pkg_energy_j": 4214.031463,
+            "cpu_rapl_available": true,
+            "decode_duration_s": 3.690655393,
+            "decode_energy_j": 656.6913693692579,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 39.459212756,
+            "energy_j": 6373.7354630003765,
+            "gco2_per_tok": 0.008047645786616636,
+            "gpu_decode_j": 217.38693746363492,
+            "gpu_energy_j": 2159.7040000003763,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": 59.699215397205265,
+            "j_per_tok": 579.4304966363978,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": 0.16095291573233272
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 9.58864194373401,
+              "power_peak_w": 9.693,
+              "samples": 391,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 263,
+              "vram_peak_mb": 263
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 10.10985421994888,
+              "power_peak_w": 10.195,
+              "samples": 391,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 185,
+              "vram_peak_mb": 185
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 416,
+            "cpu_peak_pct": 1449,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 50622,
+            "rss_peak_mb": 53274,
+            "samples": 197,
+            "swap_peak_mb": 6682
+          },
+          "inter_token_latencies_ms": [
+            442.15930699999444,
+            375.38659000000916,
+            387.79527199999575,
+            340.5807099999947,
+            329.98157800000627,
+            343.74179500000173,
+            358.31171399999585,
+            346.1230760000035,
+            352.82716100000107
+          ],
+          "iteration": 3,
+          "load_time_ms": null,
+          "prompt_tok_s": 3.052736655991542,
+          "prompt_tokens": 105,
+          "response_preview": "--- Continue this passage naturally, maintaining thes...",
+          "server_decode_tok_s": 2.2124057319536266,
+          "tokens_generated": 11,
+          "ttft_ms": 35768.557363,
+          "wall_clock_ms": 39425.964692999994
+        }
+      ],
+      "load_error": null,
+      "load_time_ms": 1882.284305,
+      "model": "deepseek-v4.1-flash:iq3",
+      "model_fingerprint": {
+        "modified_at": "",
+        "parameter_size": "768.9B",
+        "quantization_level": "Q6_K"
+      },
+      "num_ctx": 4096,
+      "prompt": "100",
+      "prompt_chars": 451,
+      "stats": {
+        "Carbon gCO2/tok [gpu+cpu_pkg]": {
+          "count": 3,
+          "max": 0.008047645786616636,
+          "mean": 0.004635640297651144,
+          "min": 0.0017839648563368177,
+          "p50": 0.004075310249999979,
+          "p95": 0.00765041223295497,
+          "stddev": 0.0031692115771613178,
+          "unit": "g"
+        },
+        "Completion tok/s": {
+          "count": 3,
+          "max": 2.7464921776730558,
+          "mean": 2.34277180725223,
+          "min": 1.79773984997251,
+          "p50": 2.4840833941111238,
+          "p95": 2.7202512993168626,
+          "stddev": 0.48990761196855787,
+          "unit": "tok/s"
+        },
+        "Decode ms/tok": {
+          "count": 3,
+          "max": 556.2540097307691,
+          "mean": 440.9725948494099,
+          "min": 364.10080033333367,
+          "p50": 402.56297448412704,
+          "p95": 540.8849062061049,
+          "stddev": 101.67196355381131,
+          "unit": "ms"
+        },
+        "E2E latency": {
+          "count": 3,
+          "max": 95325.78421,
+          "mean": 61718.80701566666,
+          "min": 39425.964692999994,
+          "p50": 50404.672144000004,
+          "p95": 90833.67300339999,
+          "stddev": 29617.64155750743,
+          "unit": "ms"
+        },
+        "Energy J/tok [gpu+cpu_pkg]": {
+          "count": 3,
+          "max": 579.4304966363978,
+          "mean": 333.76610143088243,
+          "min": 128.44546965625088,
+          "p50": 293.4223379999985,
+          "p95": 550.8296807727579,
+          "stddev": 228.18323355561495,
+          "unit": "J"
+        },
+        "Energy Wh/tok [gpu+cpu_pkg]": {
+          "count": 3,
+          "max": 0.16095291573233272,
+          "mean": 0.09271280595302289,
+          "min": 0.035679297126736356,
+          "p50": 0.08150620499999958,
+          "p95": 0.1530082446590994,
+          "stddev": 0.06338423154322637,
+          "unit": "Wh"
+        },
+        "Energy decode J/tok [gpu+cpu_pkg]": {
+          "count": 3,
+          "max": 91.5855336955325,
+          "mean": 74.46730596839821,
+          "min": 59.699215397205265,
+          "p50": 72.11716881245688,
+          "p95": 89.63869720722494,
+          "stddev": 16.072544358139492,
+          "unit": "J"
+        },
+        "ITL (per token)": {
+          "count": 161,
+          "max": 4732.135276000001,
+          "mean": 425.23258534782605,
+          "min": 0.0002800000074785203,
+          "p50": 0.7118020000052638,
+          "p95": 2409.165466999999,
+          "stddev": 776.0508271200251,
+          "unit": "ms"
+        },
+        "Model load": {
+          "count": 1,
+          "max": 1882.284305,
+          "mean": 1882.284305,
+          "min": 1882.284305,
+          "p50": 1882.284305,
+          "p95": 1882.284305,
+          "stddev": 0.0,
+          "unit": "ms"
+        },
+        "Prompt tok/s": {
+          "count": 3,
+          "max": 3.085291289840439,
+          "mean": 2.8757554337182754,
+          "min": 2.4892383553228448,
+          "p50": 3.052736655991542,
+          "p95": 3.082035826455549,
+          "stddev": 0.33512913923555415,
+          "unit": "tok/s"
+        },
+        "TTFT": {
+          "count": 3,
+          "max": 44549.129759999996,
+          "mean": 38562.67198566667,
+          "min": 35370.328834,
+          "p50": 35768.557363,
+          "p95": 43671.07252029999,
+          "stddev": 5188.2467176527325,
+          "unit": "ms"
+        },
+        "Tokens generated": {
+          "count": 3,
+          "max": 128.0,
+          "mean": 55.666666666666664,
+          "min": 11.0,
+          "p50": 28.0,
+          "p95": 117.99999999999999,
+          "stddev": 63.216559012123824,
+          "unit": "count"
+        }
+      },
+      "target": "LOKEN",
+      "url": "http://127.0.0.1:11435"
+    },
+    {
+      "coherence_pass": null,
+      "first_response_preview": "",
+      "iteration_errors": [],
+      "iterations": [],
+      "load_error": "not run: paired with safetensors weights only",
+      "load_time_ms": null,
+      "model": "deepseek-v4.1-flash:iq3",
+      "model_fingerprint": null,
+      "num_ctx": 4096,
+      "prompt": "100",
+      "prompt_chars": 0,
+      "stats": {},
+      "target": "vLLM",
+      "url": ""
+    }
+  ],
+  "schema": "loken/2",
+  "subjects": {
+    "LOKEN": {
+      "devices": {
+        "compiled": {
+          "audio": true,
+          "cuda": true,
+          "image": true,
+          "midi": true,
+          "opencl": true,
+          "video": true,
+          "vulkan": false
+        },
+        "devices": [
+          {
+            "backend": "cpu",
+            "name": "CPU (32 cores)",
+            "status": "available",
+            "type": "CPU"
+          }
+        ]
+      },
+      "says": {
+        "commit": "dfc01f3be",
+        "loken": "0.4.1",
+        "version": "0.4.1"
+      },
+      "url": "http://127.0.0.1:11435"
+    },
+    "Ollama": {
+      "devices": null,
+      "says": {
+        "version": "0.40.11"
+      },
+      "url": "http://127.0.0.1:11434"
+    }
+  },
+  "timestamp": "2026-10-27",
+  "vllm_version": "0.32.0"
+}

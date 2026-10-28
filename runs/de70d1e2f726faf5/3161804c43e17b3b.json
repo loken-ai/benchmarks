@@ -1,0 +1,859 @@
+{
+  "config": {
+    "carbon_intensity_gco2_per_kwh": 50.0,
+    "custom_prompt": null,
+    "energy_measure": true,
+    "gpu_sample": true,
+    "iterations": 3,
+    "max_tokens": 128,
+    "models": [
+      "granite3-moe:1b"
+    ],
+    "num_ctx": [
+      4096
+    ],
+    "num_gpu": null,
+    "prompts": [
+      "1000"
+    ],
+    "session_id": null,
+    "streaming": false,
+    "unique_prompt": true,
+    "warmup": 0
+  },
+  "engine_build": 1793028381,
+  "idle_energy_baseline": null,
+  "machine": {
+    "cpu": "AMD Ryzen 9 9950X3D 16-Core Processor",
+    "cpu_flags": [
+      "avx2",
+      "fma",
+      "bmi2",
+      "f16c",
+      "avx512f",
+      "avx512bw",
+      "avx512vl",
+      "avx512_vnni",
+      "avx512_bf16"
+    ],
+    "driver": "615.71.10",
+    "gpus": [
+      {
+        "arch": "sm_120",
+        "index": 0,
+        "name": "NVIDIA GeForce RTX 5070 Ti",
+        "pcie_gen": 5,
+        "pcie_width": 8,
+        "power_cap_w": 300,
+        "vendor": "nvidia",
+        "vram_mib": 16303
+      },
+      {
+        "arch": "sm_120",
+        "index": 1,
+        "name": "NVIDIA GeForce RTX 5060 Ti",
+        "pcie_gen": 5,
+        "pcie_width": 8,
+        "power_cap_w": 180,
+        "vendor": "nvidia",
+        "vram_mib": 16311
+      }
+    ],
+    "hardware_id": "de70d1e2f726faf5",
+    "host_id": "12973014bbf73a88",
+    "kernel": "6.12.113+deb13-amd64",
+    "os": "Debian GNU/Linux 13 (trixie)",
+    "ram_gib": 60,
+    "sockets": 1,
+    "threads": 32
+  },
+  "ollama_version": "0.40.11",
+  "protocol": {
+    "cards_by_uuid": null,
+    "engines_seen": [
+      "llama-server",
+      "ollama"
+    ],
+    "gpu_temps_c_at_start": [
+      46,
+      51
+    ],
+    "iterations": 3,
+    "max_tokens": 128,
+    "prefix_reuse_offered": false,
+    "streaming": false,
+    "unique_prompt": true,
+    "warmup": 0
+  },
+  "results": [
+    {
+      "coherence_pass": true,
+      "first_response_preview": "miles to see it? And yet, I say, I am not a bit surprised that you, my fellow-citizens, should be so easily impressed. F...",
+      "iteration_errors": [],
+      "iterations": [
+        {
+          "completion_tok_s": 338.32329712250277,
+          "degenerate": false,
+          "e2e_latency_ms": 378.336346,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 52.700293,
+            "cpu_rapl_available": true,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 0.399110131,
+            "energy_j": 101.7912930000149,
+            "gco2_per_tok": 1.1045062174480784e-05,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 49.0910000000149,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.7952444765626164,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": 0.00022090124348961567
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 42.08,
+              "power_peak_w": 42.08,
+              "samples": 5,
+              "util_avg_pct": 0,
+              "util_peak_pct": 1,
+              "vram_avg_mb": 829,
+              "vram_peak_mb": 839
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 30.127999999999997,
+              "power_peak_w": 30.128,
+              "samples": 5,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 675,
+              "vram_peak_mb": 695
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 0,
+            "cpu_peak_pct": 0,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 38,
+            "rss_peak_mb": 38,
+            "samples": 3,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 1,
+          "load_time_ms": 0.910335,
+          "prompt_tok_s": 7895.209043603087,
+          "prompt_tokens": 1188,
+          "response_preview": "miles to see it? And yet, I say, I am not a bit surprised that you, my fellow-citizens, should be so easily impressed. F...",
+          "server_decode_tok_s": 574.8287863478163,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 378.336346
+        },
+        {
+          "completion_tok_s": 442.42159765642094,
+          "degenerate": false,
+          "e2e_latency_ms": 289.316798,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 39.622845,
+            "cpu_rapl_available": true,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 0.310229445,
+            "energy_j": 79.61384500003818,
+            "gco2_per_tok": 8.638655056427754e-06,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 39.991000000038184,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.6219831640627983,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": 0.00017277310112855508
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 51.757,
+              "power_peak_w": 51.757,
+              "samples": 4,
+              "util_avg_pct": 19,
+              "util_peak_pct": 26,
+              "vram_avg_mb": 839,
+              "vram_peak_mb": 839
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 40.015,
+              "power_peak_w": 40.015,
+              "samples": 4,
+              "util_avg_pct": 18,
+              "util_peak_pct": 25,
+              "vram_avg_mb": 695,
+              "vram_peak_mb": 695
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 1,
+            "cpu_peak_pct": 4,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 38,
+            "rss_peak_mb": 38,
+            "samples": 3,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 2,
+          "load_time_ms": 0.934765,
+          "prompt_tok_s": 22765.162402989365,
+          "prompt_tokens": 1188,
+          "response_preview": "miles to see it? And yet, I am told, there are many who, in the midst of all this beauty, are so much engrossed with the...",
+          "server_decode_tok_s": 584.8541063155105,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 289.316798
+        },
+        {
+          "completion_tok_s": 444.0754593697825,
+          "degenerate": false,
+          "e2e_latency_ms": 288.239301,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 39.43453,
+            "cpu_rapl_available": true,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 0.308845112,
+            "energy_j": 78.60552999997299,
+            "gco2_per_tok": 8.529245876733181e-06,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 39.17099999997299,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.614105703124789,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": 0.0001705849175346636
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 62.391,
+              "power_peak_w": 62.391,
+              "samples": 4,
+              "util_avg_pct": 17,
+              "util_peak_pct": 23,
+              "vram_avg_mb": 840,
+              "vram_peak_mb": 841
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 50.265,
+              "power_peak_w": 50.265,
+              "samples": 4,
+              "util_avg_pct": 16,
+              "util_peak_pct": 22,
+              "vram_avg_mb": 695,
+              "vram_peak_mb": 695
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 0,
+            "cpu_peak_pct": 0,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 38,
+            "rss_peak_mb": 38,
+            "samples": 3,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 3,
+          "load_time_ms": 1.399932,
+          "prompt_tok_s": 22284.749577940347,
+          "prompt_tokens": 1188,
+          "response_preview": "miles to see it? And yet, I am told, there are many who, when they hear of such a picture, say, \"I can't see it.\" They s...",
+          "server_decode_tok_s": 586.6608000586662,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 288.239301
+        }
+      ],
+      "load_error": null,
+      "load_time_ms": 2180.8641199999997,
+      "model": "granite3-moe:1b",
+      "model_fingerprint": {
+        "modified_at": "2026-10-14",
+        "parameter_size": "1.3B",
+        "quantization_level": "Q4_K_M"
+      },
+      "num_ctx": 4096,
+      "prompt": "1000",
+      "prompt_chars": 4384,
+      "stats": {
+        "Carbon gCO2/tok [gpu+cpu_pkg]": {
+          "count": 3,
+          "max": 1.1045062174480784e-05,
+          "mean": 9.404321035880573e-06,
+          "min": 8.529245876733181e-06,
+          "p50": 8.638655056427754e-06,
+          "p95": 1.0804421462675481e-05,
+          "stddev": 1.4219761619210422e-06,
+          "unit": "g"
+        },
+        "Completion tok/s": {
+          "count": 3,
+          "max": 444.0754593697825,
+          "mean": 408.27345138290207,
+          "min": 338.32329712250277,
+          "p50": 442.42159765642094,
+          "p95": 443.91007319844636,
+          "stddev": 60.58425435236432,
+          "unit": "tok/s"
+        },
+        "E2E latency": {
+          "count": 3,
+          "max": 378.336346,
+          "mean": 318.630815,
+          "min": 288.239301,
+          "p50": 289.316798,
+          "p95": 369.4343912,
+          "stddev": 51.70931322247687,
+          "unit": "ms"
+        },
+        "Energy J/tok [gpu+cpu_pkg]": {
+          "count": 3,
+          "max": 0.7952444765626164,
+          "mean": 0.6771111145834011,
+          "min": 0.614105703124789,
+          "p50": 0.6219831640627983,
+          "p95": 0.7779183453126346,
+          "stddev": 0.10238228365831503,
+          "unit": "J"
+        },
+        "Energy Wh/tok [gpu+cpu_pkg]": {
+          "count": 3,
+          "max": 0.00022090124348961567,
+          "mean": 0.00018808642071761145,
+          "min": 0.0001705849175346636,
+          "p50": 0.00017277310112855508,
+          "p95": 0.0002160884292535096,
+          "stddev": 2.8439523238420836e-05,
+          "unit": "Wh"
+        },
+        "Model load": {
+          "count": 1,
+          "max": 2180.8641199999997,
+          "mean": 2180.8641199999997,
+          "min": 2180.8641199999997,
+          "p50": 2180.8641199999997,
+          "p95": 2180.8641199999997,
+          "stddev": 0.0,
+          "unit": "ms"
+        },
+        "Prompt tok/s": {
+          "count": 3,
+          "max": 22765.162402989365,
+          "mean": 17648.373674844264,
+          "min": 7895.209043603087,
+          "p50": 22284.749577940347,
+          "p95": 22717.121120484466,
+          "stddev": 8449.903216232025,
+          "unit": "tok/s"
+        },
+        "Tokens generated": {
+          "count": 3,
+          "max": 128.0,
+          "mean": 128.0,
+          "min": 128.0,
+          "p50": 128.0,
+          "p95": 128.0,
+          "stddev": 0.0,
+          "unit": "count"
+        }
+      },
+      "target": "Ollama",
+      "url": "http://127.0.0.1:11434"
+    },
+    {
+      "coherence_pass": true,
+      "first_response_preview": "miles to see it? And yet this artist has no idea that he is painting a picture of water. He does not know what the magic...",
+      "iteration_errors": [],
+      "iterations": [
+        {
+          "completion_tok_s": 594.5250218605224,
+          "degenerate": false,
+          "e2e_latency_ms": 215.297919,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 24.304194,
+            "cpu_rapl_available": true,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 0.236576904,
+            "energy_j": 65.56319399996181,
+            "gco2_per_tok": 7.114061848954188e-06,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 41.258999999961816,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.5122124531247016,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": 0.00014228123697908378
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 45.055,
+              "power_peak_w": 48.724,
+              "samples": 4,
+              "util_avg_pct": 13,
+              "util_peak_pct": 27,
+              "vram_avg_mb": 1344,
+              "vram_peak_mb": 1385
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 28.543,
+              "power_peak_w": 28.627,
+              "samples": 4,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 19,
+              "vram_peak_mb": 19
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 34,
+            "cpu_peak_pct": 84,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 1210,
+            "rss_peak_mb": 1210,
+            "samples": 3,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 1,
+          "load_time_ms": 7.077625,
+          "prompt_tok_s": 49906.62252479115,
+          "prompt_tokens": 1188,
+          "response_preview": "miles to see it? And yet this artist has no idea that he is painting a picture of water. He does not know what the magic...",
+          "server_decode_tok_s": 700.5077970075073,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 215.297919
+        },
+        {
+          "completion_tok_s": 502.36234322016963,
+          "degenerate": false,
+          "e2e_latency_ms": 254.796168,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 25.422147,
+            "cpu_rapl_available": true,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 0.274362214,
+            "energy_j": 65.43114700007823,
+            "gco2_per_tok": 7.099733832473767e-06,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 40.00900000007823,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.5111808359381111,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": 0.00014199467664947532
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 66.60775000000001,
+              "power_peak_w": 72.569,
+              "samples": 4,
+              "util_avg_pct": 6,
+              "util_peak_pct": 27,
+              "vram_avg_mb": 1393,
+              "vram_peak_mb": 1417
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 28.85725,
+              "power_peak_w": 28.934,
+              "samples": 4,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 121,
+              "vram_peak_mb": 155
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 41,
+            "cpu_peak_pct": 89,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 1353,
+            "rss_peak_mb": 1353,
+            "samples": 3,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 2,
+          "load_time_ms": 7.245347,
+          "prompt_tok_s": 15732.24586258487,
+          "prompt_tokens": 1188,
+          "response_preview": "miles to see it? And yet this artist has no need of a compass or a sextant. He knows the power of his own imagination. A...",
+          "server_decode_tok_s": 748.442810645764,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 254.796168
+        },
+        {
+          "completion_tok_s": 634.4911605690471,
+          "degenerate": false,
+          "e2e_latency_ms": 201.736459,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 19.128054,
+            "cpu_rapl_available": true,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 0.221174984,
+            "energy_j": 43.682054000003724,
+            "gco2_per_tok": 4.739806206597626e-06,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 24.554000000003725,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": null,
+            "j_per_tok": 0.3412660468750291,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": 9.479612413195252e-05
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 91.39799999999998,
+              "power_peak_w": 91.398,
+              "samples": 3,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 1427,
+              "vram_peak_mb": 1449
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 29.226,
+              "power_peak_w": 29.226,
+              "samples": 3,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 155,
+              "vram_peak_mb": 155
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 49,
+            "cpu_peak_pct": 89,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 1353,
+            "rss_peak_mb": 1353,
+            "samples": 2,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 3,
+          "load_time_ms": 6.20176,
+          "prompt_tok_s": 51505.73192029583,
+          "prompt_tokens": 1188,
+          "response_preview": "miles to see it? And yet this artist has no idea that he is painting a picture. He does not even know what the picture i...",
+          "server_decode_tok_s": 746.1440673618864,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 201.736459
+        }
+      ],
+      "load_error": null,
+      "load_time_ms": 5720.630046,
+      "model": "granite3-moe:1b",
+      "model_fingerprint": {
+        "modified_at": "",
+        "parameter_size": "1.3B",
+        "quantization_level": "Q4_K_M"
+      },
+      "num_ctx": 4096,
+      "prompt": "1000",
+      "prompt_chars": 4384,
+      "stats": {
+        "Carbon gCO2/tok [gpu+cpu_pkg]": {
+          "count": 3,
+          "max": 7.114061848954188e-06,
+          "mean": 6.317867296008527e-06,
+          "min": 4.739806206597626e-06,
+          "p50": 7.099733832473767e-06,
+          "p95": 7.112629047306146e-06,
+          "stddev": 1.3666597690898073e-06,
+          "unit": "g"
+        },
+        "Completion tok/s": {
+          "count": 3,
+          "max": 634.4911605690471,
+          "mean": 577.1261752165797,
+          "min": 502.36234322016963,
+          "p50": 594.5250218605224,
+          "p95": 630.4945466981945,
+          "stddev": 67.76094739529424,
+          "unit": "tok/s"
+        },
+        "E2E latency": {
+          "count": 3,
+          "max": 254.796168,
+          "mean": 223.94351533333335,
+          "min": 201.736459,
+          "p50": 215.297919,
+          "p95": 250.84634309999998,
+          "stddev": 27.566155549158104,
+          "unit": "ms"
+        },
+        "Energy J/tok [gpu+cpu_pkg]": {
+          "count": 3,
+          "max": 0.5122124531247016,
+          "mean": 0.45488644531261396,
+          "min": 0.3412660468750291,
+          "p50": 0.5111808359381111,
+          "p95": 0.5121092914060427,
+          "stddev": 0.09839950337446612,
+          "unit": "J"
+        },
+        "Energy Wh/tok [gpu+cpu_pkg]": {
+          "count": 3,
+          "max": 0.00014228123697908378,
+          "mean": 0.00012635734592017053,
+          "min": 9.479612413195252e-05,
+          "p50": 0.00014199467664947532,
+          "p95": 0.00014225258094612293,
+          "stddev": 2.7333195381796144e-05,
+          "unit": "Wh"
+        },
+        "Model load": {
+          "count": 1,
+          "max": 5720.630046,
+          "mean": 5720.630046,
+          "min": 5720.630046,
+          "p50": 5720.630046,
+          "p95": 5720.630046,
+          "stddev": 0.0,
+          "unit": "ms"
+        },
+        "Prompt tok/s": {
+          "count": 3,
+          "max": 51505.73192029583,
+          "mean": 39048.20010255728,
+          "min": 15732.24586258487,
+          "p50": 49906.62252479115,
+          "p95": 51345.82098074536,
+          "stddev": 20208.032544141042,
+          "unit": "tok/s"
+        },
+        "Tokens generated": {
+          "count": 3,
+          "max": 128.0,
+          "mean": 128.0,
+          "min": 128.0,
+          "p50": 128.0,
+          "p95": 128.0,
+          "stddev": 0.0,
+          "unit": "count"
+        }
+      },
+      "target": "LOKEN",
+      "url": "http://127.0.0.1:11435"
+    },
+    {
+      "coherence_pass": null,
+      "first_response_preview": "",
+      "iteration_errors": [],
+      "iterations": [],
+      "load_error": "not run: paired with safetensors weights only",
+      "load_time_ms": null,
+      "model": "granite3-moe:1b",
+      "model_fingerprint": null,
+      "num_ctx": 4096,
+      "prompt": "1000",
+      "prompt_chars": 0,
+      "stats": {},
+      "target": "vLLM",
+      "url": ""
+    }
+  ],
+  "schema": "loken/2",
+  "subjects": {
+    "LOKEN": {
+      "devices": {
+        "compiled": {
+          "audio": true,
+          "cuda": true,
+          "image": true,
+          "midi": true,
+          "opencl": true,
+          "video": true,
+          "vulkan": false
+        },
+        "devices": [
+          {
+            "backend": "cuda",
+            "name": "NVIDIA GeForce RTX 5070 Ti",
+            "status": "available",
+            "type": "CUDA"
+          },
+          {
+            "backend": "cuda",
+            "name": "NVIDIA GeForce RTX 5060 Ti",
+            "status": "available",
+            "type": "CUDA"
+          },
+          {
+            "backend": "cpu",
+            "name": "CPU (32 cores)",
+            "status": "available",
+            "type": "CPU"
+          }
+        ]
+      },
+      "says": {
+        "commit": "dfc01f3be",
+        "loken": "0.4.1",
+        "version": "0.4.1"
+      },
+      "url": "http://127.0.0.1:11435"
+    },
+    "Ollama": {
+      "devices": null,
+      "says": {
+        "version": "0.40.11"
+      },
+      "url": "http://127.0.0.1:11434"
+    }
+  },
+  "timestamp": "2026-10-27",
+  "vllm_version": "0.32.0"
+}

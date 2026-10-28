@@ -1,0 +1,859 @@
+{
+  "config": {
+    "carbon_intensity_gco2_per_kwh": 50.0,
+    "custom_prompt": null,
+    "energy_measure": true,
+    "gpu_sample": true,
+    "iterations": 3,
+    "max_tokens": 128,
+    "models": [
+      "deepseek-r1:32b"
+    ],
+    "num_ctx": [
+      131072
+    ],
+    "num_gpu": null,
+    "prompts": [
+      "10000"
+    ],
+    "session_id": null,
+    "streaming": false,
+    "unique_prompt": true,
+    "warmup": 0
+  },
+  "engine_build": 1793028381,
+  "idle_energy_baseline": null,
+  "machine": {
+    "cpu": "AMD Ryzen 9 9950X3D 16-Core Processor",
+    "cpu_flags": [
+      "avx2",
+      "fma",
+      "bmi2",
+      "f16c",
+      "avx512f",
+      "avx512bw",
+      "avx512vl",
+      "avx512_vnni",
+      "avx512_bf16"
+    ],
+    "driver": "615.71.10",
+    "gpus": [
+      {
+        "arch": "sm_120",
+        "index": 0,
+        "name": "NVIDIA GeForce RTX 5070 Ti",
+        "pcie_gen": 5,
+        "pcie_width": 8,
+        "power_cap_w": 300,
+        "vendor": "nvidia",
+        "vram_mib": 16303
+      },
+      {
+        "arch": "sm_120",
+        "index": 1,
+        "name": "NVIDIA GeForce RTX 5060 Ti",
+        "pcie_gen": 5,
+        "pcie_width": 8,
+        "power_cap_w": 180,
+        "vendor": "nvidia",
+        "vram_mib": 16311
+      }
+    ],
+    "hardware_id": "de70d1e2f726faf5",
+    "host_id": "12973014bbf73a88",
+    "kernel": "6.12.113+deb13-amd64",
+    "os": "Debian GNU/Linux 13 (trixie)",
+    "ram_gib": 60,
+    "sockets": 1,
+    "threads": 32
+  },
+  "ollama_version": "0.40.11",
+  "protocol": {
+    "cards_by_uuid": null,
+    "engines_seen": [
+      "llama-server",
+      "ollama"
+    ],
+    "gpu_temps_c_at_start": [
+      47,
+      47
+    ],
+    "iterations": 3,
+    "max_tokens": 128,
+    "prefix_reuse_offered": false,
+    "streaming": false,
+    "unique_prompt": true,
+    "warmup": 0
+  },
+  "results": [
+    {
+      "coherence_pass": true,
+      "first_response_preview": "with something else, I cannot say; but it was the most wretched bed I ever lay in. The sheets were as rough as the bark ...",
+      "iteration_errors": [],
+      "iterations": [
+        {
+          "completion_tok_s": 2.6818027700490696,
+          "degenerate": false,
+          "e2e_latency_ms": 47729.087847,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 6020.977079,
+            "cpu_rapl_available": true,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 47.750648996,
+            "energy_j": 11908.434078999937,
+            "gco2_per_tok": 0.001292147795030375,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 5887.456999999937,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": null,
+            "j_per_tok": 93.034641242187,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": 0.025842955900607503
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 79.13035517970393,
+              "power_peak_w": 153.114,
+              "samples": 473,
+              "util_avg_pct": 27,
+              "util_peak_pct": 97,
+              "vram_avg_mb": 12723,
+              "vram_peak_mb": 14379
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 46.17917547568707,
+              "power_peak_w": 80.276,
+              "samples": 473,
+              "util_avg_pct": 11,
+              "util_peak_pct": 100,
+              "vram_avg_mb": 12993,
+              "vram_peak_mb": 14659
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 1,
+            "cpu_peak_pct": 99,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 44,
+            "rss_peak_mb": 515,
+            "samples": 236,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 1,
+          "load_time_ms": 9195.778719,
+          "prompt_tok_s": 601.1313208577012,
+          "prompt_tokens": 10009,
+          "response_preview": "with something else, I cannot say; but it was the most wretched bed I ever lay in. The sheets were as rough as the bark ...",
+          "server_decode_tok_s": 5.852670541561323,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 47729.087847
+        },
+        {
+          "completion_tok_s": 3.263064407855687,
+          "degenerate": false,
+          "e2e_latency_ms": 39226.930272,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 5166.3272,
+            "cpu_rapl_available": true,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 39.248867677,
+            "energy_j": 10400.487200000149,
+            "gco2_per_tok": 0.0011285250868055719,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 5234.160000000149,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": null,
+            "j_per_tok": 81.25380625000116,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": 0.022570501736111435
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 86.33281122448963,
+              "power_peak_w": 150.94,
+              "samples": 392,
+              "util_avg_pct": 31,
+              "util_peak_pct": 100,
+              "vram_avg_mb": 14379,
+              "vram_peak_mb": 14379
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 49.88133418367351,
+              "power_peak_w": 80.535,
+              "samples": 392,
+              "util_avg_pct": 14,
+              "util_peak_pct": 100,
+              "vram_avg_mb": 14659,
+              "vram_peak_mb": 14659
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 0,
+            "cpu_peak_pct": 4,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 41,
+            "rss_peak_mb": 41,
+            "samples": 194,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 2,
+          "load_time_ms": 11.788916,
+          "prompt_tok_s": 598.8628367167479,
+          "prompt_tokens": 10009,
+          "response_preview": "with something else, I cannot say; but it was the most wretched bed I ever lay in. The sheets were as rough as the bark ...",
+          "server_decode_tok_s": 5.826265761926491,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 39226.930272
+        },
+        {
+          "completion_tok_s": 3.2742291194686732,
+          "degenerate": false,
+          "e2e_latency_ms": 39093.171347999996,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 5210.50883,
+            "cpu_rapl_available": true,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 39.113772203,
+            "energy_j": 10474.638829999887,
+            "gco2_per_tok": 0.0011365710536024184,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 5264.129999999888,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": null,
+            "j_per_tok": 81.83311585937412,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": 0.022731421072048365
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 86.92006842105253,
+              "power_peak_w": 149.039,
+              "samples": 380,
+              "util_avg_pct": 30,
+              "util_peak_pct": 97,
+              "vram_avg_mb": 14379,
+              "vram_peak_mb": 14379
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 50.372805263157844,
+              "power_peak_w": 83.961,
+              "samples": 380,
+              "util_avg_pct": 14,
+              "util_peak_pct": 100,
+              "vram_avg_mb": 14659,
+              "vram_peak_mb": 14659
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 0,
+            "cpu_peak_pct": 4,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 40,
+            "rss_peak_mb": 40,
+            "samples": 193,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 3,
+          "load_time_ms": 1.299041,
+          "prompt_tok_s": 598.7596958212209,
+          "prompt_tokens": 10009,
+          "response_preview": "with something else, I cannot say; but it was the most wretched bed I ever lay in. The sheets were as rough as the bark ...",
+          "server_decode_tok_s": 5.862223101555688,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 39093.171347999996
+        }
+      ],
+      "load_error": null,
+      "load_time_ms": 6091.856831,
+      "model": "deepseek-r1:32b",
+      "model_fingerprint": {
+        "modified_at": "2026-04-10",
+        "parameter_size": "32.8B",
+        "quantization_level": "Q4_K_M"
+      },
+      "num_ctx": 131072,
+      "prompt": "10000",
+      "prompt_chars": 42295,
+      "stats": {
+        "Carbon gCO2/tok [gpu+cpu_pkg]": {
+          "count": 3,
+          "max": 0.001292147795030375,
+          "mean": 0.001185747978479455,
+          "min": 0.0011285250868055719,
+          "p50": 0.0011365710536024184,
+          "p95": 0.0012765901208875794,
+          "stddev": 9.223272259331858e-05,
+          "unit": "g"
+        },
+        "Completion tok/s": {
+          "count": 3,
+          "max": 3.2742291194686732,
+          "mean": 3.0730320991244766,
+          "min": 2.6818027700490696,
+          "p50": 3.263064407855687,
+          "p95": 3.2731126483073747,
+          "stddev": 0.33886052240257364,
+          "unit": "tok/s"
+        },
+        "E2E latency": {
+          "count": 3,
+          "max": 47729.087847,
+          "mean": 42016.396489,
+          "min": 39093.171347999996,
+          "p50": 39226.930272,
+          "p95": 46878.8720895,
+          "stddev": 4947.787866942494,
+          "unit": "ms"
+        },
+        "Energy J/tok [gpu+cpu_pkg]": {
+          "count": 3,
+          "max": 93.034641242187,
+          "mean": 85.37385445052075,
+          "min": 81.25380625000116,
+          "p50": 81.83311585937412,
+          "p95": 91.91448870390572,
+          "stddev": 6.640756026718942,
+          "unit": "J"
+        },
+        "Energy Wh/tok [gpu+cpu_pkg]": {
+          "count": 3,
+          "max": 0.025842955900607503,
+          "mean": 0.023714959569589102,
+          "min": 0.022570501736111435,
+          "p50": 0.022731421072048365,
+          "p95": 0.025531802417751586,
+          "stddev": 0.001844654451866373,
+          "unit": "Wh"
+        },
+        "Model load": {
+          "count": 1,
+          "max": 6091.856831,
+          "mean": 6091.856831,
+          "min": 6091.856831,
+          "p50": 6091.856831,
+          "p95": 6091.856831,
+          "stddev": 0.0,
+          "unit": "ms"
+        },
+        "Prompt tok/s": {
+          "count": 3,
+          "max": 601.1313208577012,
+          "mean": 599.5846177985567,
+          "min": 598.7596958212209,
+          "p50": 598.8628367167479,
+          "p95": 600.9044724436059,
+          "stddev": 1.3404765107818264,
+          "unit": "tok/s"
+        },
+        "Tokens generated": {
+          "count": 3,
+          "max": 128.0,
+          "mean": 128.0,
+          "min": 128.0,
+          "p50": 128.0,
+          "p95": 128.0,
+          "stddev": 0.0,
+          "unit": "count"
+        }
+      },
+      "target": "Ollama",
+      "url": "http://127.0.0.1:11434"
+    },
+    {
+      "coherence_pass": true,
+      "first_response_preview": "something else, I know not; but in any case it was a very hard one. But perhaps the harpooneer had been lying on his bac...",
+      "iteration_errors": [],
+      "iterations": [
+        {
+          "completion_tok_s": 4.394377974359772,
+          "degenerate": false,
+          "e2e_latency_ms": 29128.127063,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 2448.251945,
+            "cpu_rapl_available": true,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 29.148568584,
+            "energy_j": 10894.41994499983,
+            "gco2_per_tok": 0.001182120219726544,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 8446.16799999983,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": null,
+            "j_per_tok": 85.11265582031118,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": 0.023642404394530882
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 199.02694137931013,
+              "power_peak_w": 247.45,
+              "samples": 290,
+              "util_avg_pct": 92,
+              "util_peak_pct": 99,
+              "vram_avg_mb": 15738,
+              "vram_peak_mb": 15929
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 105.4866448275862,
+              "power_peak_w": 121.33,
+              "samples": 290,
+              "util_avg_pct": 75,
+              "util_peak_pct": 97,
+              "vram_avg_mb": 7169,
+              "vram_peak_mb": 7253
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 104,
+            "cpu_peak_pct": 788,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 3699,
+            "rss_peak_mb": 4903,
+            "samples": 146,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 1,
+          "load_time_ms": 21.334167,
+          "prompt_tok_s": 391.1487309532353,
+          "prompt_tokens": 10009,
+          "response_preview": "something else, I know not; but in any case it was a very hard one. But perhaps the harpooneer had been lying on his bac...",
+          "server_decode_tok_s": 36.472985846354376,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 29128.127063
+        },
+        {
+          "completion_tok_s": 9.07712981830824,
+          "degenerate": false,
+          "e2e_latency_ms": 14101.373733999999,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 1174.374341,
+            "cpu_rapl_available": true,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 14.122259473,
+            "energy_j": 5289.613341000059,
+            "gco2_per_tok": 0.0005739597809244856,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 4115.23900000006,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": null,
+            "j_per_tok": 41.325104226562964,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": 0.011479195618489712
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 203.64683453237404,
+              "power_peak_w": 248.438,
+              "samples": 139,
+              "util_avg_pct": 95,
+              "util_peak_pct": 99,
+              "vram_avg_mb": 15897,
+              "vram_peak_mb": 15929
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 102.96512949640297,
+              "power_peak_w": 121.33,
+              "samples": 139,
+              "util_avg_pct": 78,
+              "util_peak_pct": 97,
+              "vram_avg_mb": 7159,
+              "vram_peak_mb": 7159
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 97,
+            "cpu_peak_pct": 104,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 3763,
+            "rss_peak_mb": 3764,
+            "samples": 72,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 2,
+          "load_time_ms": 12.114352,
+          "prompt_tok_s": 939.1460315803533,
+          "prompt_tokens": 10009,
+          "response_preview": "something else, I know not; but in any case it was a most unyielding one. The sheets were as rough as the bark of a tree...",
+          "server_decode_tok_s": 37.35959339931696,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 14101.373733999999
+        },
+        {
+          "completion_tok_s": 9.071535886012377,
+          "degenerate": false,
+          "e2e_latency_ms": 14110.069298999999,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 1175.846754,
+            "cpu_rapl_available": true,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 14.130445191,
+            "energy_j": 5285.379754000054,
+            "gco2_per_tok": 0.0005735004073350754,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 4109.533000000054,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": null,
+            "j_per_tok": 41.29202932812542,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": 0.011470008146701507
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 200.4630857142859,
+              "power_peak_w": 248.381,
+              "samples": 140,
+              "util_avg_pct": 92,
+              "util_peak_pct": 99,
+              "vram_avg_mb": 15897,
+              "vram_peak_mb": 15929
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 100.95417142857134,
+              "power_peak_w": 120.097,
+              "samples": 140,
+              "util_avg_pct": 74,
+              "util_peak_pct": 96,
+              "vram_avg_mb": 7159,
+              "vram_peak_mb": 7159
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 98,
+            "cpu_peak_pct": 104,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 3766,
+            "rss_peak_mb": 3766,
+            "samples": 71,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 3,
+          "load_time_ms": 10.645018,
+          "prompt_tok_s": 938.2677177393808,
+          "prompt_tokens": 10009,
+          "response_preview": "something else, I know not; but in any case it was a most unyielding one. The sheets were as rough as the bark of a tree...",
+          "server_decode_tok_s": 37.366242848347795,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 14110.069298999999
+        }
+      ],
+      "load_error": null,
+      "load_time_ms": 7091.556832,
+      "model": "deepseek-r1:32b",
+      "model_fingerprint": {
+        "modified_at": "",
+        "parameter_size": "32.8B",
+        "quantization_level": "Q4_K_M"
+      },
+      "num_ctx": 131072,
+      "prompt": "10000",
+      "prompt_chars": 42295,
+      "stats": {
+        "Carbon gCO2/tok [gpu+cpu_pkg]": {
+          "count": 3,
+          "max": 0.001182120219726544,
+          "mean": 0.0007765268026620351,
+          "min": 0.0005735004073350754,
+          "p50": 0.0005739597809244856,
+          "p95": 0.0011213041758463382,
+          "stddev": 0.0003512542778822377,
+          "unit": "g"
+        },
+        "Completion tok/s": {
+          "count": 3,
+          "max": 9.07712981830824,
+          "mean": 7.514347892893464,
+          "min": 4.394377974359772,
+          "p50": 9.071535886012377,
+          "p95": 9.076570425078653,
+          "stddev": 2.7019746561424256,
+          "unit": "tok/s"
+        },
+        "E2E latency": {
+          "count": 3,
+          "max": 29128.127063,
+          "mean": 19113.190032,
+          "min": 14101.373733999999,
+          "p50": 14110.069298999999,
+          "p95": 27626.3212866,
+          "stddev": 8673.190975897163,
+          "unit": "ms"
+        },
+        "Energy J/tok [gpu+cpu_pkg]": {
+          "count": 3,
+          "max": 85.11265582031118,
+          "mean": 55.909929791666514,
+          "min": 41.29202932812542,
+          "p50": 41.325104226562964,
+          "p95": 80.73390066093634,
+          "stddev": 25.290308007521116,
+          "unit": "J"
+        },
+        "Energy Wh/tok [gpu+cpu_pkg]": {
+          "count": 3,
+          "max": 0.023642404394530882,
+          "mean": 0.015530536053240701,
+          "min": 0.011470008146701507,
+          "p50": 0.011479195618489712,
+          "p95": 0.02242608351692676,
+          "stddev": 0.0070250855576447545,
+          "unit": "Wh"
+        },
+        "Model load": {
+          "count": 1,
+          "max": 7091.556832,
+          "mean": 7091.556832,
+          "min": 7091.556832,
+          "p50": 7091.556832,
+          "p95": 7091.556832,
+          "stddev": 0.0,
+          "unit": "ms"
+        },
+        "Prompt tok/s": {
+          "count": 3,
+          "max": 939.1460315803533,
+          "mean": 756.1874934243232,
+          "min": 391.1487309532353,
+          "p50": 938.2677177393808,
+          "p95": 939.058200196256,
+          "stddev": 316.13314669394964,
+          "unit": "tok/s"
+        },
+        "Tokens generated": {
+          "count": 3,
+          "max": 128.0,
+          "mean": 128.0,
+          "min": 128.0,
+          "p50": 128.0,
+          "p95": 128.0,
+          "stddev": 0.0,
+          "unit": "count"
+        }
+      },
+      "target": "LOKEN",
+      "url": "http://127.0.0.1:11435"
+    },
+    {
+      "coherence_pass": null,
+      "first_response_preview": "",
+      "iteration_errors": [],
+      "iterations": [],
+      "load_error": "not run: paired with safetensors weights only",
+      "load_time_ms": null,
+      "model": "deepseek-r1:32b",
+      "model_fingerprint": null,
+      "num_ctx": 131072,
+      "prompt": "10000",
+      "prompt_chars": 0,
+      "stats": {},
+      "target": "vLLM",
+      "url": ""
+    }
+  ],
+  "schema": "loken/2",
+  "subjects": {
+    "LOKEN": {
+      "devices": {
+        "compiled": {
+          "audio": true,
+          "cuda": true,
+          "image": true,
+          "midi": true,
+          "opencl": true,
+          "video": true,
+          "vulkan": false
+        },
+        "devices": [
+          {
+            "backend": "cuda",
+            "name": "NVIDIA GeForce RTX 5070 Ti",
+            "status": "available",
+            "type": "CUDA"
+          },
+          {
+            "backend": "cuda",
+            "name": "NVIDIA GeForce RTX 5060 Ti",
+            "status": "available",
+            "type": "CUDA"
+          },
+          {
+            "backend": "cpu",
+            "name": "CPU (32 cores)",
+            "status": "available",
+            "type": "CPU"
+          }
+        ]
+      },
+      "says": {
+        "commit": "dfc01f3be",
+        "loken": "0.4.1",
+        "version": "0.4.1"
+      },
+      "url": "http://127.0.0.1:11435"
+    },
+    "Ollama": {
+      "devices": null,
+      "says": {
+        "version": "0.40.11"
+      },
+      "url": "http://127.0.0.1:11434"
+    }
+  },
+  "timestamp": "2026-10-27",
+  "vllm_version": "0.32.0"
+}

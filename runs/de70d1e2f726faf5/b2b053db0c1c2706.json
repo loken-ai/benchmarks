@@ -1,0 +1,830 @@
+{
+  "config": {
+    "carbon_intensity_gco2_per_kwh": 50.0,
+    "custom_prompt": null,
+    "energy_measure": true,
+    "gpu_sample": true,
+    "iterations": 3,
+    "max_tokens": 128,
+    "models": [
+      "mistralai/Voxtral-Mini-3B-2507"
+    ],
+    "num_ctx": [
+      4096
+    ],
+    "num_gpu": null,
+    "prompts": [
+      "1000"
+    ],
+    "session_id": null,
+    "streaming": false,
+    "unique_prompt": true,
+    "warmup": 0
+  },
+  "engine_build": 1793028381,
+  "idle_energy_baseline": null,
+  "machine": {
+    "cpu": "AMD Ryzen 9 9950X3D 16-Core Processor",
+    "cpu_flags": [
+      "avx2",
+      "fma",
+      "bmi2",
+      "f16c",
+      "avx512f",
+      "avx512bw",
+      "avx512vl",
+      "avx512_vnni",
+      "avx512_bf16"
+    ],
+    "driver": "615.71.10",
+    "gpus": [
+      {
+        "arch": "sm_120",
+        "index": 0,
+        "name": "NVIDIA GeForce RTX 5070 Ti",
+        "pcie_gen": 5,
+        "pcie_width": 8,
+        "power_cap_w": 300,
+        "vendor": "nvidia",
+        "vram_mib": 16303
+      },
+      {
+        "arch": "sm_120",
+        "index": 1,
+        "name": "NVIDIA GeForce RTX 5060 Ti",
+        "pcie_gen": 5,
+        "pcie_width": 8,
+        "power_cap_w": 180,
+        "vendor": "nvidia",
+        "vram_mib": 16311
+      }
+    ],
+    "hardware_id": "de70d1e2f726faf5",
+    "host_id": "12973014bbf73a88",
+    "kernel": "6.12.113+deb13-amd64",
+    "os": "Debian GNU/Linux 13 (trixie)",
+    "ram_gib": 60,
+    "sockets": 1,
+    "threads": 32
+  },
+  "ollama_version": "0.40.11",
+  "protocol": {
+    "cards_by_uuid": null,
+    "engines_seen": [
+      "lokend"
+    ],
+    "gpu_temps_c_at_start": [
+      44,
+      44
+    ],
+    "iterations": 3,
+    "max_tokens": 128,
+    "prefix_reuse_offered": false,
+    "streaming": false,
+    "unique_prompt": true,
+    "warmup": 0
+  },
+  "results": [
+    {
+      "coherence_pass": true,
+      "first_response_preview": "miles to see it? Why did the poor Pharaoh's daughter not heed the mermaids' song, and let the baby Moses go - when his m...",
+      "iteration_errors": [],
+      "iterations": [
+        {
+          "completion_tok_s": 127.53952987839223,
+          "degenerate": false,
+          "e2e_latency_ms": 1003.6104109999999,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 86.812665,
+            "cpu_rapl_available": true,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 1.023870021,
+            "energy_j": 305.01966500005307,
+            "gco2_per_tok": 3.309675184462381e-05,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 218.20700000005309,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": null,
+            "j_per_tok": 2.3829661328129146,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": 0.0006619350368924763
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 80.56890909090909,
+              "power_peak_w": 169.008,
+              "samples": 11,
+              "util_avg_pct": 44,
+              "util_peak_pct": 81,
+              "vram_avg_mb": 5099,
+              "vram_peak_mb": 5117
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 34.043727272727274,
+              "power_peak_w": 46.156,
+              "samples": 11,
+              "util_avg_pct": 9,
+              "util_peak_pct": 19,
+              "vram_avg_mb": 3657,
+              "vram_peak_mb": 3681
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 82,
+            "cpu_peak_pct": 99,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 5327,
+            "rss_peak_mb": 5328,
+            "samples": 6,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 1,
+          "load_time_ms": 8.626937,
+          "prompt_tok_s": 12475.81769649563,
+          "prompt_tokens": 1019,
+          "response_preview": "miles to see it? Why did the poor Pharaoh's daughter not heed the mermaids' song, and let the baby Moses go - when his m...",
+          "server_decode_tok_s": 140.42448271805875,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 1003.6104109999999
+        },
+        {
+          "completion_tok_s": 131.50117891217835,
+          "degenerate": false,
+          "e2e_latency_ms": 973.375304,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 86.257472,
+            "cpu_rapl_available": true,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 0.992867623,
+            "energy_j": 300.56147200000373,
+            "gco2_per_tok": 3.261300694444485e-05,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 214.30400000000373,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": null,
+            "j_per_tok": 2.348136500000029,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": 0.000652260138888897
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 163.29427272727273,
+              "power_peak_w": 169.008,
+              "samples": 11,
+              "util_avg_pct": 80,
+              "util_peak_pct": 81,
+              "vram_avg_mb": 5117,
+              "vram_peak_mb": 5117
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 44.733181818181826,
+              "power_peak_w": 46.156,
+              "samples": 11,
+              "util_avg_pct": 18,
+              "util_peak_pct": 19,
+              "vram_avg_mb": 3681,
+              "vram_peak_mb": 3681
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 80,
+            "cpu_peak_pct": 99,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 5340,
+            "rss_peak_mb": 5340,
+            "samples": 6,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 2,
+          "load_time_ms": 7.274835,
+          "prompt_tok_s": 12456.22794100129,
+          "prompt_tokens": 1019,
+          "response_preview": "miles to see it? Why did the poor Pharaoh's daughter not heed the mermaids' song, and let the baby Moses go on his way, ...",
+          "server_decode_tok_s": 144.96413819956337,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 973.375304
+        },
+        {
+          "completion_tok_s": 131.63909078994445,
+          "degenerate": false,
+          "e2e_latency_ms": 972.355546,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 85.703118,
+            "cpu_rapl_available": true,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 0.991211736,
+            "energy_j": 295.8091180000289,
+            "gco2_per_tok": 3.209734353298925e-05,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 210.10600000002887,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": null,
+            "j_per_tok": 2.3110087343752257,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": 0.000641946870659785
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 157.71509090909092,
+              "power_peak_w": 162.821,
+              "samples": 11,
+              "util_avg_pct": 43,
+              "util_peak_pct": 81,
+              "vram_avg_mb": 5122,
+              "vram_peak_mb": 5181
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 43.609909090909085,
+              "power_peak_w": 44.189,
+              "samples": 11,
+              "util_avg_pct": 10,
+              "util_peak_pct": 19,
+              "vram_avg_mb": 3681,
+              "vram_peak_mb": 3681
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 81,
+            "cpu_peak_pct": 104,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 5340,
+            "rss_peak_mb": 5340,
+            "samples": 6,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 3,
+          "load_time_ms": 7.734063,
+          "prompt_tok_s": 12639.934400353015,
+          "prompt_tokens": 1019,
+          "response_preview": "miles to see it? Why did the poor poet of Tennessee, upon suddenly receiving two tickets from Philadelphia, sit down in ...",
+          "server_decode_tok_s": 144.93745916365856,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 972.355546
+        }
+      ],
+      "load_error": null,
+      "load_time_ms": 22874.692863,
+      "model": "mistralai/Voxtral-Mini-3B-2507",
+      "model_fingerprint": null,
+      "num_ctx": 4096,
+      "prompt": "1000",
+      "prompt_chars": 4384,
+      "stats": {
+        "Carbon gCO2/tok [gpu+cpu_pkg]": {
+          "count": 3,
+          "max": 3.309675184462381e-05,
+          "mean": 3.260236744068597e-05,
+          "min": 3.209734353298925e-05,
+          "p50": 3.261300694444485e-05,
+          "p95": 3.3048377354605916e-05,
+          "stddev": 4.99789098141646e-07,
+          "unit": "g"
+        },
+        "Completion tok/s": {
+          "count": 3,
+          "max": 131.63909078994445,
+          "mean": 130.22659986017166,
+          "min": 127.53952987839223,
+          "p50": 131.50117891217835,
+          "p95": 131.62529960216784,
+          "stddev": 2.328092295580736,
+          "unit": "tok/s"
+        },
+        "E2E latency": {
+          "count": 3,
+          "max": 1003.6104109999999,
+          "mean": 983.1137536666665,
+          "min": 972.355546,
+          "p50": 973.375304,
+          "p95": 1000.5869002999999,
+          "stddev": 17.757947459509605,
+          "unit": "ms"
+        },
+        "Energy J/tok [gpu+cpu_pkg]": {
+          "count": 3,
+          "max": 2.3829661328129146,
+          "mean": 2.3473704557293895,
+          "min": 2.3110087343752257,
+          "p50": 2.348136500000029,
+          "p95": 2.379483169531626,
+          "stddev": 0.035984815066198585,
+          "unit": "J"
+        },
+        "Energy Wh/tok [gpu+cpu_pkg]": {
+          "count": 3,
+          "max": 0.0006619350368924763,
+          "mean": 0.0006520473488137194,
+          "min": 0.000641946870659785,
+          "p50": 0.000652260138888897,
+          "p95": 0.0006609675470921183,
+          "stddev": 9.99578196283292e-06,
+          "unit": "Wh"
+        },
+        "Model load": {
+          "count": 1,
+          "max": 22874.692863,
+          "mean": 22874.692863,
+          "min": 22874.692863,
+          "p50": 22874.692863,
+          "p95": 22874.692863,
+          "stddev": 0.0,
+          "unit": "ms"
+        },
+        "Prompt tok/s": {
+          "count": 3,
+          "max": 12639.934400353015,
+          "mean": 12523.993345949979,
+          "min": 12456.22794100129,
+          "p50": 12475.81769649563,
+          "p95": 12623.522729967275,
+          "stddev": 100.88451666211188,
+          "unit": "tok/s"
+        },
+        "Tokens generated": {
+          "count": 3,
+          "max": 128.0,
+          "mean": 128.0,
+          "min": 128.0,
+          "p50": 128.0,
+          "p95": 128.0,
+          "stddev": 0.0,
+          "unit": "count"
+        }
+      },
+      "target": "LOKEN",
+      "url": "http://127.0.0.1:11435"
+    },
+    {
+      "coherence_pass": true,
+      "first_response_preview": "miles to see it? Why did the poor Pharaoh's daughter not heed the mermaids' song, and let the baby Moses go - when, afte...",
+      "iteration_errors": [],
+      "iterations": [
+        {
+          "completion_tok_s": 91.23427390098682,
+          "degenerate": false,
+          "e2e_latency_ms": 1402.981517,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 153.547525,
+            "cpu_rapl_available": true,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 1.422460766,
+            "energy_j": 502.53352500003353,
+            "gco2_per_tok": 5.4528377278649474e-05,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 348.9860000000335,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": null,
+            "j_per_tok": 3.926043164062762,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": 0.0010905675455729895
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 84.60993333333334,
+              "power_peak_w": 136.961,
+              "samples": 15,
+              "util_avg_pct": 59,
+              "util_peak_pct": 99,
+              "vram_avg_mb": 13539,
+              "vram_peak_mb": 13543
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 58.95706666666667,
+              "power_peak_w": 88.129,
+              "samples": 15,
+              "util_avg_pct": 92,
+              "util_peak_pct": 100,
+              "vram_avg_mb": 13417,
+              "vram_peak_mb": 13421
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 29,
+            "cpu_peak_pct": 198,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 1165,
+            "rss_peak_mb": 1165,
+            "samples": 8,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 1,
+          "load_time_ms": null,
+          "prompt_tok_s": null,
+          "prompt_tokens": 1019,
+          "response_preview": "miles to see it? Why did the poor Pharaoh's daughter not heed the mermaids' song, and let the baby Moses go - when, afte...",
+          "server_decode_tok_s": null,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 1402.981517
+        },
+        {
+          "completion_tok_s": 91.41662960894801,
+          "degenerate": false,
+          "e2e_latency_ms": 1400.182883,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 151.499184,
+            "cpu_rapl_available": true,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 1.420916681,
+            "energy_j": 504.52818400009687,
+            "gco2_per_tok": 5.474481163195496e-05,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 353.02900000009686,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": null,
+            "j_per_tok": 3.941626437500757,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": 0.001094896232639099
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 127.05733333333337,
+              "power_peak_w": 136.977,
+              "samples": 15,
+              "util_avg_pct": 86,
+              "util_peak_pct": 99,
+              "vram_avg_mb": 13543,
+              "vram_peak_mb": 13543
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 116.04260000000002,
+              "power_peak_w": 129.758,
+              "samples": 15,
+              "util_avg_pct": 91,
+              "util_peak_pct": 99,
+              "vram_avg_mb": 13421,
+              "vram_peak_mb": 13421
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 0,
+            "cpu_peak_pct": 4,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 1165,
+            "rss_peak_mb": 1165,
+            "samples": 8,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 2,
+          "load_time_ms": null,
+          "prompt_tok_s": null,
+          "prompt_tokens": 1019,
+          "response_preview": "miles to see it? Why did the poor Pharaoh's daughter not heed the mermaids' song, and let the baby go? - \"It is a little...",
+          "server_decode_tok_s": null,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 1400.182883
+        },
+        {
+          "completion_tok_s": 91.40345134447934,
+          "degenerate": false,
+          "e2e_latency_ms": 1400.3847569999998,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 152.174504,
+            "cpu_rapl_available": true,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 1.422100631,
+            "energy_j": 512.0275040000029,
+            "gco2_per_tok": 5.555853993055587e-05,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 359.8530000000028,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": null,
+            "j_per_tok": 4.000214875000022,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": 0.0011111707986111174
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 126.96886666666667,
+              "power_peak_w": 136.595,
+              "samples": 15,
+              "util_avg_pct": 83,
+              "util_peak_pct": 99,
+              "vram_avg_mb": 13543,
+              "vram_peak_mb": 13543
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 116.0044,
+              "power_peak_w": 129.673,
+              "samples": 15,
+              "util_avg_pct": 87,
+              "util_peak_pct": 99,
+              "vram_avg_mb": 13421,
+              "vram_peak_mb": 13421
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 1,
+            "cpu_peak_pct": 4,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 1165,
+            "rss_peak_mb": 1165,
+            "samples": 8,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 3,
+          "load_time_ms": null,
+          "prompt_tok_s": null,
+          "prompt_tokens": 1019,
+          "response_preview": "miles to see it? Why did the poor Pharaoh's daughter not heed the mermaids' song, and let the baby Moses go - when, afte...",
+          "server_decode_tok_s": null,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 1400.3847569999998
+        }
+      ],
+      "load_error": null,
+      "load_time_ms": null,
+      "model": "mistralai/Voxtral-Mini-3B-2507",
+      "model_fingerprint": null,
+      "num_ctx": 4096,
+      "prompt": "1000",
+      "prompt_chars": 4384,
+      "stats": {
+        "Carbon gCO2/tok [gpu+cpu_pkg]": {
+          "count": 3,
+          "max": 5.555853993055587e-05,
+          "mean": 5.49439096137201e-05,
+          "min": 5.4528377278649474e-05,
+          "p50": 5.474481163195496e-05,
+          "p95": 5.547716710069578e-05,
+          "stddev": 5.431747206037114e-07,
+          "unit": "g"
+        },
+        "Completion tok/s": {
+          "count": 3,
+          "max": 91.41662960894801,
+          "mean": 91.35145161813806,
+          "min": 91.23427390098682,
+          "p50": 91.40345134447934,
+          "p95": 91.41531178250115,
+          "stddev": 0.10169257451349588,
+          "unit": "tok/s"
+        },
+        "E2E latency": {
+          "count": 3,
+          "max": 1402.981517,
+          "mean": 1401.183052333333,
+          "min": 1400.182883,
+          "p50": 1400.3847569999998,
+          "p95": 1402.721841,
+          "stddev": 1.5607833436788818,
+          "unit": "ms"
+        },
+        "Energy J/tok [gpu+cpu_pkg]": {
+          "count": 3,
+          "max": 4.000214875000022,
+          "mean": 3.9559614921878468,
+          "min": 3.926043164062762,
+          "p50": 3.941626437500757,
+          "p95": 3.9943560312500956,
+          "stddev": 0.039108579883467116,
+          "unit": "J"
+        },
+        "Energy Wh/tok [gpu+cpu_pkg]": {
+          "count": 3,
+          "max": 0.0011111707986111174,
+          "mean": 0.001098878192274402,
+          "min": 0.0010905675455729895,
+          "p50": 0.001094896232639099,
+          "p95": 0.0011095433420139156,
+          "stddev": 1.0863494412074221e-05,
+          "unit": "Wh"
+        },
+        "Tokens generated": {
+          "count": 3,
+          "max": 128.0,
+          "mean": 128.0,
+          "min": 128.0,
+          "p50": 128.0,
+          "p95": 128.0,
+          "stddev": 0.0,
+          "unit": "count"
+        }
+      },
+      "target": "vLLM",
+      "url": "http://localhost:8000"
+    },
+    {
+      "coherence_pass": null,
+      "first_response_preview": "",
+      "iteration_errors": [],
+      "iterations": [],
+      "load_error": "not run: paired with GGUF weights only",
+      "load_time_ms": null,
+      "model": "mistralai/Voxtral-Mini-3B-2507",
+      "model_fingerprint": null,
+      "num_ctx": 4096,
+      "prompt": "1000",
+      "prompt_chars": 0,
+      "stats": {},
+      "target": "Ollama",
+      "url": ""
+    }
+  ],
+  "schema": "loken/2",
+  "subjects": {
+    "LOKEN": {
+      "devices": {
+        "compiled": {
+          "audio": true,
+          "cuda": true,
+          "image": true,
+          "midi": true,
+          "opencl": true,
+          "video": true,
+          "vulkan": false
+        },
+        "devices": [
+          {
+            "backend": "cuda",
+            "name": "NVIDIA GeForce RTX 5070 Ti",
+            "status": "available",
+            "type": "CUDA"
+          },
+          {
+            "backend": "cuda",
+            "name": "NVIDIA GeForce RTX 5060 Ti",
+            "status": "available",
+            "type": "CUDA"
+          },
+          {
+            "backend": "cpu",
+            "name": "CPU (32 cores)",
+            "status": "available",
+            "type": "CPU"
+          }
+        ]
+      },
+      "says": {
+        "commit": "dfc01f3be",
+        "loken": "0.4.1",
+        "version": "0.4.1"
+      },
+      "url": "http://127.0.0.1:11435"
+    },
+    "vLLM": {
+      "devices": null,
+      "says": {
+        "version": "0.32.0"
+      },
+      "url": "http://localhost:8000"
+    }
+  },
+  "timestamp": "2026-10-27",
+  "vllm_version": "0.32.0"
+}

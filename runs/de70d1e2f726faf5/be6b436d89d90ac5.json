@@ -1,0 +1,674 @@
+{
+  "config": {
+    "carbon_intensity_gco2_per_kwh": 50.0,
+    "custom_prompt": null,
+    "energy_measure": true,
+    "gpu_sample": true,
+    "iterations": 3,
+    "max_tokens": 128,
+    "models": [
+      "fixie-ai/ultravox-v0_5-llama-3_2-1b"
+    ],
+    "num_ctx": [
+      131072
+    ],
+    "num_gpu": null,
+    "prompts": [
+      "10000"
+    ],
+    "session_id": null,
+    "streaming": true,
+    "unique_prompt": true,
+    "warmup": 0
+  },
+  "engine_build": 1793028381,
+  "idle_energy_baseline": null,
+  "machine": {
+    "cpu": "AMD Ryzen 9 9950X3D 16-Core Processor",
+    "cpu_flags": [
+      "avx2",
+      "fma",
+      "bmi2",
+      "f16c",
+      "avx512f",
+      "avx512bw",
+      "avx512vl",
+      "avx512_vnni",
+      "avx512_bf16"
+    ],
+    "driver": "615.71.10",
+    "gpus": [
+      {
+        "arch": "sm_120",
+        "index": 0,
+        "name": "NVIDIA GeForce RTX 5070 Ti",
+        "pcie_gen": 5,
+        "pcie_width": 8,
+        "power_cap_w": 300,
+        "vendor": "nvidia",
+        "vram_mib": 16303
+      },
+      {
+        "arch": "sm_120",
+        "index": 1,
+        "name": "NVIDIA GeForce RTX 5060 Ti",
+        "pcie_gen": 5,
+        "pcie_width": 8,
+        "power_cap_w": 180,
+        "vendor": "nvidia",
+        "vram_mib": 16311
+      }
+    ],
+    "hardware_id": "de70d1e2f726faf5",
+    "host_id": "12973014bbf73a88",
+    "kernel": "6.12.113+deb13-amd64",
+    "os": "Debian GNU/Linux 13 (trixie)",
+    "ram_gib": 60,
+    "sockets": 1,
+    "threads": 32
+  },
+  "ollama_version": "0.40.11",
+  "protocol": {
+    "cards_by_uuid": null,
+    "engines_seen": [
+      "lokend"
+    ],
+    "gpu_temps_c_at_start": [
+      43,
+      42
+    ],
+    "iterations": 3,
+    "max_tokens": 128,
+    "prefix_reuse_offered": false,
+    "streaming": true,
+    "unique_prompt": true,
+    "warmup": 0
+  },
+  "results": [
+    {
+      "coherence_pass": true,
+      "first_response_preview": "not, I never knew. But as for sleeping with this harpooneer - I'll tell you one thing, landlord; if he ever comes back, ...",
+      "iteration_errors": [],
+      "iterations": [
+        {
+          "completion_tok_s": 239.24902250247234,
+          "degenerate": false,
+          "e2e_latency_ms": 563.171695,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": 17.862182883417105,
+            "cpu_pkg_energy_j": 51.165414,
+            "cpu_rapl_available": true,
+            "decode_duration_s": 0.18452532200000005,
+            "decode_energy_j": 78.07727550887373,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 0.58480684,
+            "energy_j": 184.869414000027,
+            "gco2_per_tok": 6.583668589744551e-05,
+            "gpu_decode_j": 60.21509262545662,
+            "gpu_energy_j": 133.704000000027,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": 2.0019814233044544,
+            "j_per_tok": 4.740241384616077,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": 0.0013167337179489102
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 66.85814285714285,
+              "power_peak_w": 82.828,
+              "samples": 7,
+              "util_avg_pct": 42,
+              "util_peak_pct": 74,
+              "vram_avg_mb": 2681,
+              "vram_peak_mb": 2791
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 27.400571428571425,
+              "power_peak_w": 27.636,
+              "samples": 7,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 2781,
+              "vram_peak_mb": 2781
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 67,
+            "cpu_peak_pct": 99,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 4766,
+            "rss_peak_mb": 4768,
+            "samples": 4,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [
+            13.49975999999998,
+            14.077080000000024,
+            7.029205999999988,
+            9.465096999999957,
+            7.064307000000042,
+            3.306348000000014,
+            3.290617999999995,
+            3.299019000000044,
+            3.2984389999999735,
+            3.3052089999999907,
+            3.292597999999998,
+            3.294038999999998,
+            3.296748999999977,
+            9.434117000000015,
+            0.0007400000000075124,
+            0.0005299999999692773,
+            3.2768590000000586,
+            3.268637999999953,
+            3.2633880000000204,
+            3.267057999999963,
+            3.2653480000000172,
+            3.2695380000000682,
+            3.270308999999884,
+            3.2569680000001426,
+            3.2650770000000193,
+            3.2755979999999454,
+            3.2774089999999205,
+            3.2644980000000032,
+            3.2588680000000068,
+            3.2735179999999673,
+            3.2591280000000324,
+            3.2734080000000176,
+            3.266318999999953,
+            3.265987999999993,
+            3.258807000000047,
+            3.2632489999999734,
+            3.264507999999978,
+            3.2719880000000785
+          ],
+          "iteration": 1,
+          "load_time_ms": null,
+          "prompt_tok_s": 25421.754774233872,
+          "prompt_tokens": 10007,
+          "response_preview": "not, I never knew. But as for sleeping with this harpooneer - I'll tell you one thing, landlord; if he ever comes back, ...",
+          "server_decode_tok_s": 240.46890252144777,
+          "tokens_generated": 39,
+          "ttft_ms": 400.281518,
+          "wall_clock_ms": 563.171695
+        },
+        {
+          "completion_tok_s": 276.7952622394298,
+          "degenerate": false,
+          "e2e_latency_ms": 469.338707,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": 13.29581356652626,
+            "cpu_pkg_energy_j": 42.960287,
+            "cpu_rapl_available": true,
+            "decode_duration_s": 0.132158,
+            "decode_energy_j": 61.35260936387698,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 0.488953435,
+            "energy_j": 160.92928699992456,
+            "gco2_per_tok": 7.210093503580848e-05,
+            "gpu_decode_j": 48.056795797350716,
+            "gpu_energy_j": 117.96899999992456,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": 1.9791164310928058,
+            "j_per_tok": 5.191267322578211,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": 0.0014420187007161698
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 151.70733333333334,
+              "power_peak_w": 194.484,
+              "samples": 6,
+              "util_avg_pct": 16,
+              "util_peak_pct": 97,
+              "vram_avg_mb": 2807,
+              "vram_peak_mb": 2951
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 27.217166666666667,
+              "power_peak_w": 27.224,
+              "samples": 6,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 2781,
+              "vram_peak_mb": 2781
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 58,
+            "cpu_peak_pct": 99,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 4773,
+            "rss_peak_mb": 4774,
+            "samples": 4,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [
+            7.005415000000028,
+            3.2928679999999986,
+            3.2827990000000113,
+            3.3049279999999612,
+            3.2857589999999846,
+            3.2836690000000317,
+            3.288718000000017,
+            3.2787179999999694,
+            3.382440000000031,
+            3.2860089999999786,
+            3.2665779999999813,
+            3.2664780000000064,
+            3.2646480000000224,
+            3.2667470000000094,
+            3.2763589999999567,
+            3.2635190000000307,
+            3.3030279999999834,
+            3.284807999999998,
+            3.267687999999964,
+            3.2625280000000316,
+            3.2722289999999816,
+            3.2757980000000657,
+            3.2650879999999347,
+            3.2995290000000637,
+            3.2406769999999483,
+            3.2884990000000016,
+            3.297348999999997,
+            3.3041990000000396,
+            3.2959379999999783,
+            9.43034799999998
+          ],
+          "iteration": 2,
+          "load_time_ms": null,
+          "prompt_tok_s": 28586.694124823887,
+          "prompt_tokens": 10007,
+          "response_preview": "not, I never knew. But as for sleeping with a harpooneer - I'll tell you what I did; I slept on the floor.",
+          "server_decode_tok_s": 277.3825399699069,
+          "tokens_generated": 31,
+          "ttft_ms": 356.795435,
+          "wall_clock_ms": 469.338707
+        },
+        {
+          "completion_tok_s": 298.02255233834813,
+          "degenerate": false,
+          "e2e_latency_ms": 515.864364,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": 14.74236730604872,
+            "cpu_pkg_energy_j": 44.899686,
+            "cpu_rapl_available": true,
+            "decode_duration_s": 0.17862643299999997,
+            "decode_energy_j": 84.31785623090391,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 0.536128521,
+            "energy_j": 188.57868600000373,
+            "gco2_per_tok": 5.572656205673869e-05,
+            "gpu_decode_j": 69.5754889248552,
+            "gpu_energy_j": 143.67900000000373,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": 1.793996941083062,
+            "j_per_tok": 4.012312468085185,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": 0.0011145312411347738
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 167.294,
+              "power_peak_w": 194.484,
+              "samples": 6,
+              "util_avg_pct": 91,
+              "util_peak_pct": 97,
+              "vram_avg_mb": 2903,
+              "vram_peak_mb": 3047
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 27.182999999999996,
+              "power_peak_w": 27.183,
+              "samples": 6,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 2781,
+              "vram_peak_mb": 2781
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 62,
+            "cpu_peak_pct": 99,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 4778,
+            "rss_peak_mb": 4778,
+            "samples": 4,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [
+            7.031685999999979,
+            3.2950480000000084,
+            3.282668000000001,
+            3.278638000000001,
+            3.2881189999999947,
+            3.2912390000000187,
+            3.341028999999992,
+            3.318488000000002,
+            3.2920689999999695,
+            3.2827889999999798,
+            3.277958000000069,
+            3.279957999999965,
+            3.271938999999975,
+            3.2847980000000234,
+            3.279648000000009,
+            3.2684189999999944,
+            3.282067999999981,
+            3.2636679999999956,
+            3.2697580000000244,
+            3.267438000000027,
+            3.270258999999953,
+            3.2707679999999755,
+            3.264867000000038,
+            3.266578000000038,
+            3.2688589999999635,
+            3.2702980000000252,
+            3.263527999999951,
+            3.262078000000031,
+            3.267667000000017,
+            3.271278999999936,
+            3.26473900000002,
+            3.268047000000024,
+            3.2631680000000074,
+            3.2702189999999973,
+            3.2644469999999615,
+            3.2634590000000685,
+            3.269437999999923,
+            3.2594080000000645,
+            3.253977999999961,
+            3.266008000000056,
+            3.2696079999999483,
+            3.2609880000000544,
+            3.259897999999964,
+            3.2633279999999445,
+            3.2701680000000124,
+            3.2602280000000405
+          ],
+          "iteration": 3,
+          "load_time_ms": null,
+          "prompt_tok_s": 28477.01613823836,
+          "prompt_tokens": 10007,
+          "response_preview": "not, I never knew. But as for sleeping with this harpooneer - I'll tell you what I did; but don't go repeating it to any...",
+          "server_decode_tok_s": 298.13151969231,
+          "tokens_generated": 47,
+          "ttft_ms": 357.502088,
+          "wall_clock_ms": 515.864364
+        }
+      ],
+      "load_error": null,
+      "load_time_ms": 6940.807981,
+      "model": "fixie-ai/ultravox-v0_5-llama-3_2-1b",
+      "model_fingerprint": null,
+      "num_ctx": 131072,
+      "prompt": "10000",
+      "prompt_chars": 42295,
+      "stats": {
+        "Carbon gCO2/tok [gpu+cpu_pkg]": {
+          "count": 3,
+          "max": 7.210093503580848e-05,
+          "mean": 6.45547276633309e-05,
+          "min": 5.572656205673869e-05,
+          "p50": 6.583668589744551e-05,
+          "p95": 7.14745101219722e-05,
+          "stddev": 8.26211748282082e-06,
+          "unit": "g"
+        },
+        "Completion tok/s": {
+          "count": 3,
+          "max": 298.02255233834813,
+          "mean": 271.3556123600834,
+          "min": 239.24902250247234,
+          "p50": 276.7952622394298,
+          "p95": 295.8998233284563,
+          "stddev": 29.76196054445255,
+          "unit": "tok/s"
+        },
+        "Decode ms/tok": {
+          "count": 3,
+          "max": 4.179745394736843,
+          "mean": 3.7159915852021363,
+          "min": 3.355450760869565,
+          "p50": 3.6127786,
+          "p95": 4.123048715263159,
+          "stddev": 0.42172870555767206,
+          "unit": "ms"
+        },
+        "E2E latency": {
+          "count": 3,
+          "max": 563.171695,
+          "mean": 516.124922,
+          "min": 469.338707,
+          "p50": 515.864364,
+          "p95": 558.4409619,
+          "stddev": 46.91703664028195,
+          "unit": "ms"
+        },
+        "Energy J/tok [gpu+cpu_pkg]": {
+          "count": 3,
+          "max": 5.191267322578211,
+          "mean": 4.647940391759825,
+          "min": 4.012312468085185,
+          "p50": 4.740241384616077,
+          "p95": 5.146164728781998,
+          "stddev": 0.5948724587630994,
+          "unit": "J"
+        },
+        "Energy Wh/tok [gpu+cpu_pkg]": {
+          "count": 3,
+          "max": 0.0014420187007161698,
+          "mean": 0.0012910945532666179,
+          "min": 0.0011145312411347738,
+          "p50": 0.0013167337179489102,
+          "p95": 0.001429490202439444,
+          "stddev": 0.00016524234965641644,
+          "unit": "Wh"
+        },
+        "Energy decode J/tok [gpu+cpu_pkg]": {
+          "count": 3,
+          "max": 2.0019814233044544,
+          "mean": 1.925031598493441,
+          "min": 1.793996941083062,
+          "p50": 1.9791164310928058,
+          "p95": 1.9996949240832895,
+          "stddev": 0.11405377262151904,
+          "unit": "J"
+        },
+        "ITL (per token)": {
+          "count": 114,
+          "max": 14.077080000000024,
+          "mean": 3.69793349122807,
+          "min": 0.0005299999999692773,
+          "p50": 3.2716089999999554,
+          "p95": 7.043103350000001,
+          "stddev": 1.864764314863125,
+          "unit": "ms"
+        },
+        "Model load": {
+          "count": 1,
+          "max": 6940.807981,
+          "mean": 6940.807981,
+          "min": 6940.807981,
+          "p50": 6940.807981,
+          "p95": 6940.807981,
+          "stddev": 0.0,
+          "unit": "ms"
+        },
+        "Prompt tok/s": {
+          "count": 3,
+          "max": 28586.694124823887,
+          "mean": 27495.15501243204,
+          "min": 25421.754774233872,
+          "p50": 28477.01613823836,
+          "p95": 28575.726326165335,
+          "stddev": 1796.4544875964789,
+          "unit": "tok/s"
+        },
+        "TTFT": {
+          "count": 3,
+          "max": 400.281518,
+          "mean": 371.526347,
+          "min": 356.795435,
+          "p50": 357.502088,
+          "p95": 396.003575,
+          "stddev": 24.905214996964652,
+          "unit": "ms"
+        },
+        "Tokens generated": {
+          "count": 3,
+          "max": 47.0,
+          "mean": 39.0,
+          "min": 31.0,
+          "p50": 39.0,
+          "p95": 46.2,
+          "stddev": 8.0,
+          "unit": "count"
+        }
+      },
+      "target": "LOKEN",
+      "url": "http://127.0.0.1:11435"
+    },
+    {
+      "coherence_pass": null,
+      "first_response_preview": null,
+      "iteration_errors": [],
+      "iterations": [],
+      "load_error": "vLLM target at http://localhost:8000 is not serving 'fixie-ai/ultravox-v0_5-llama-3_2-1b' (start it with `vllm serve fixie-ai/ultravox-v0_5-llama-3_2-1b`)",
+      "load_time_ms": null,
+      "model": "fixie-ai/ultravox-v0_5-llama-3_2-1b",
+      "model_fingerprint": null,
+      "num_ctx": 131072,
+      "prompt": "10000",
+      "prompt_chars": 42295,
+      "stats": {},
+      "target": "vLLM",
+      "url": "http://localhost:8000"
+    },
+    {
+      "coherence_pass": null,
+      "first_response_preview": "",
+      "iteration_errors": [],
+      "iterations": [],
+      "load_error": "not run: paired with GGUF weights only",
+      "load_time_ms": null,
+      "model": "fixie-ai/ultravox-v0_5-llama-3_2-1b",
+      "model_fingerprint": null,
+      "num_ctx": 131072,
+      "prompt": "10000",
+      "prompt_chars": 0,
+      "stats": {},
+      "target": "Ollama",
+      "url": ""
+    }
+  ],
+  "schema": "loken/2",
+  "subjects": {
+    "LOKEN": {
+      "devices": {
+        "compiled": {
+          "audio": true,
+          "cuda": true,
+          "image": true,
+          "midi": true,
+          "opencl": true,
+          "video": true,
+          "vulkan": false
+        },
+        "devices": [
+          {
+            "backend": "cuda",
+            "name": "NVIDIA GeForce RTX 5070 Ti",
+            "status": "available",
+            "type": "CUDA"
+          },
+          {
+            "backend": "cuda",
+            "name": "NVIDIA GeForce RTX 5060 Ti",
+            "status": "available",
+            "type": "CUDA"
+          },
+          {
+            "backend": "cpu",
+            "name": "CPU (32 cores)",
+            "status": "available",
+            "type": "CPU"
+          }
+        ]
+      },
+      "says": {
+        "commit": "dfc01f3be",
+        "loken": "0.4.1",
+        "version": "0.4.1"
+      },
+      "url": "http://127.0.0.1:11435"
+    },
+    "vLLM": {
+      "devices": null,
+      "says": null,
+      "url": "http://localhost:8000"
+    }
+  },
+  "timestamp": "2026-10-27",
+  "vllm_version": "0.32.0"
+}
