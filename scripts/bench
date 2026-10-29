@@ -677,7 +677,7 @@ PY
                     echo "  ollama left out of $m: it could not import the model"
                 fi
             fi
-            env ENGINES="$engines" STREAM="$st" BENCH_MODE="$dev" OUT="$out.part" VLLM_SERVE="$vserve" OLLAMA_AS="$oname" \
+            env ENGINES="$engines" STREAM="$st" BENCH_MODE="$dev" OUT="$out.part" VLLM_SERVE="$vserve" OLLAMA_AS="$oname" CELL_CAP="${CELL_CAP:-7200}" \
                 GPU_PIN="$([ "$dev" = gpu ] && echo "${PIN:-}")" ASR_AUDIO="$ASR_AUDIO" \
                 timeout --kill-after=60 "${CELL_CAP:-7200}" \
                 scripts/engines/fair-run.sh --models "$m" --prompt "$(cat "$ROOT/prompts/$pr.txt")" --num-ctx "$ctx" \

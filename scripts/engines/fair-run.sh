@@ -175,6 +175,11 @@ gpu_policy_banner
 # across runs, and streaming unless STREAM=0 asks for the other path. These are the reason a number from here can be compared with a number from there.
 COMMON=(--warmup 0 --carbon-intensity 50 --unique-prompt)
 [ "${STREAM:-1}" = 1 ] && COMMON+=(--stream)
+# A request may take as long as its cell: a large model reading a long prompt is measured, not
+# cut short by the tool. CELL_CAP is the campaign's limit; a lokprof without the option keeps its own.
+if [ -n "${CELL_CAP:-}" ] && "$LOKPROF" --help 2>/dev/null | grep -q -- --request-timeout; then
+  COMMON+=(--request-timeout "$CELL_CAP")
+fi
 
 # Thermal fairness: the two engines run back-to-back, so without a gate the SECOND engine
 # starts on a hotter part and clocks lower - a measurable ordering bias (the engine measured
