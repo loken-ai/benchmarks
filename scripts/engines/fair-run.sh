@@ -337,10 +337,19 @@ engine_start() {
   local log="$LOGDIR/$n.log"
   kill_all
   mkdir -p "$LOGDIR"
+  # The engine runs in a memory scope of its own: at most the memory available once every
+  # engine is stopped, and no swap. An engine that asks for more is stopped alone, its cell
+  # recorded as failed, instead of swapping the machine until nothing answers.
+  local guard=()
+  if command -v systemd-run >/dev/null && systemd-run --user --scope --quiet true 2>/dev/null; then
+    local avail_kib
+    avail_kib=$(awk '/^MemAvailable:/ {print $2}' /proc/meminfo)
+    guard=(systemd-run --user --scope --quiet -p "MemoryMax=${avail_kib}K" -p MemorySwapMax=0 --)
+  fi
   # gpu_env_for prints KEY=VALUE words, and the split is the point.
   # shellcheck disable=SC2046
   ( cd "${E_CWD[$n]:-$PWD}" \
-    && env $(gpu_env_for "$n") ${E_ENV[$n]:-} nohup "${E_BIN[$n]}" ${E_ARGS[$n]:-} >"$log" 2>&1 & echo $! >"$LOGDIR/$n.pid" )
+    && env $(gpu_env_for "$n") ${E_ENV[$n]:-} nohup "${guard[@]}" "${E_BIN[$n]}" ${E_ARGS[$n]:-} >"$log" 2>&1 & echo $! >"$LOGDIR/$n.pid" )
   local up=0
   wait_url "${E_PROBE[$n]}" "${E_WAIT[$n]:-60}" "${E_WANT[$n]:-}" "$LOGDIR/$n.pid" || up=$?
   if [ "$up" = 2 ]; then
