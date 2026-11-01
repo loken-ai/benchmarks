@@ -1,0 +1,509 @@
+{
+  "config": {
+    "carbon_intensity_gco2_per_kwh": 50.0,
+    "custom_prompt": null,
+    "energy_measure": true,
+    "gpu_sample": true,
+    "iterations": 3,
+    "max_tokens": 128,
+    "models": [
+      "deepseek-v4.1-flash-1017:iq3"
+    ],
+    "num_ctx": [
+      131072
+    ],
+    "num_gpu": 0,
+    "prompts": [
+      "10000"
+    ],
+    "session_id": null,
+    "streaming": true,
+    "unique_prompt": true,
+    "warmup": 0
+  },
+  "engine_build": 1793484422,
+  "idle_energy_baseline": null,
+  "machine": {
+    "cpu": "AMD Ryzen 9 9950X3D 16-Core Processor",
+    "cpu_flags": [
+      "avx2",
+      "fma",
+      "bmi2",
+      "f16c",
+      "avx512f",
+      "avx512bw",
+      "avx512vl",
+      "avx512_vnni",
+      "avx512_bf16"
+    ],
+    "gpus": [],
+    "hardware_id": "bd91eeb1ae1ec419",
+    "host_id": "12973014bbf73a88",
+    "kernel": "6.12.113+deb13-amd64",
+    "os": "Debian GNU/Linux 13 (trixie)",
+    "ram_gib": 60,
+    "sockets": 1,
+    "threads": 32
+  },
+  "ollama_version": "0.40.13",
+  "protocol": {
+    "cards_by_uuid": null,
+    "engines_seen": [
+      "ollama"
+    ],
+    "gpu_temps_c_at_start": [
+      37,
+      42
+    ],
+    "iterations": 3,
+    "max_tokens": 128,
+    "prefix_reuse_offered": false,
+    "streaming": true,
+    "unique_prompt": true,
+    "warmup": 0
+  },
+  "results": [
+    {
+      "coherence_pass": null,
+      "first_response_preview": null,
+      "iteration_errors": [
+        "#1: stream HTTP status 500: {\"error\":\"llama-server process has terminated: exit status 1: ggml_aligned_malloc: insufficient memory (attempted to allocate 213168.06 MB)\\nggml_backend_cpu_buffer_type_alloc_buffer: failed to allocate buffer of size 223522912256\\nggml_backend_buft_alloc_buffer_n_default: failed to allocate CPU buffer of size 223522912256\\nerror loading model: unable to allocate CPU buffer\"}",
+        "#2: stream HTTP status 500: {\"error\":\"llama-server process has terminated: exit status 1: ggml_aligned_malloc: insufficient memory (attempted to allocate 213168.06 MB)\\nggml_backend_cpu_buffer_type_alloc_buffer: failed to allocate buffer of size 223522912256\\nggml_backend_buft_alloc_buffer_n_default: failed to allocate CPU buffer of size 223522912256\\nerror loading model: unable to allocate CPU buffer\"}",
+        "#3: stream HTTP status 500: {\"error\":\"llama-server process has terminated: exit status 1: ggml_aligned_malloc: insufficient memory (attempted to allocate 213168.06 MB)\\nggml_backend_cpu_buffer_type_alloc_buffer: failed to allocate buffer of size 223522912256\\nggml_backend_buft_alloc_buffer_n_default: failed to allocate CPU buffer of size 223522912256\\nerror loading model: unable to allocate CPU buffer\"}"
+      ],
+      "iterations": [],
+      "load_error": null,
+      "load_time_ms": 12692.414777,
+      "model": "deepseek-v4.1-flash-1017:iq3",
+      "model_fingerprint": {
+        "modified_at": "2026-10-29",
+        "parameter_size": "748.5B",
+        "quantization_level": "F32"
+      },
+      "num_ctx": 131072,
+      "prompt": "10000",
+      "prompt_chars": 42295,
+      "stats": {
+        "Model load": {
+          "count": 1,
+          "max": 12692.414777,
+          "mean": 12692.414777,
+          "min": 12692.414777,
+          "p50": 12692.414777,
+          "p95": 12692.414777,
+          "stddev": 0.0,
+          "unit": "ms"
+        }
+      },
+      "target": "Ollama",
+      "url": "http://127.0.0.1:11434"
+    },
+    {
+      "coherence_pass": true,
+      "first_response_preview": "broken crockery, there is no telling, but I rolled about a good deal, and could not sleep for a long time. At last I sli...",
+      "iteration_errors": [
+        "#2: connection closed during headers",
+        "#3: connect 127.0.0.1:11435: Connection refused (os error 111)"
+      ],
+      "iterations": [
+        {
+          "completion_tok_s": 1.0255259224666695,
+          "degenerate": false,
+          "e2e_latency_ms": 1472244.572738,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": 13907.454632689403,
+            "cpu_pkg_energy_j": 29979.091975,
+            "cpu_rapl_available": true,
+            "decode_duration_s": 123.87151016000007,
+            "decode_energy_j": 17477.529647921125,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 1472.269816938,
+            "energy_j": 73382.68597499865,
+            "gco2_per_tok": 0.007962531030273291,
+            "gpu_decode_j": 3570.0750152317196,
+            "gpu_energy_j": 43403.593999998644,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": 136.5432003743838,
+            "j_per_tok": 573.3022341796769,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": 0.15925062060546583
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 9.413176387014317,
+              "power_peak_w": 39.807,
+              "samples": 14077,
+              "util_avg_pct": 0,
+              "util_peak_pct": 4,
+              "vram_avg_mb": 262,
+              "vram_peak_mb": 263
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 9.860426724444121,
+              "power_peak_w": 27.265,
+              "samples": 14077,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 184,
+              "vram_peak_mb": 185
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 627,
+            "cpu_peak_pct": 3234,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 53439,
+            "rss_peak_mb": 59657,
+            "samples": 7295,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [
+            2181.4039610000327,
+            663.2499470000621,
+            562.822150999913,
+            624.643754000077,
+            984.2713039999362,
+            8037.955447999993,
+            702.4401589999907,
+            698.3878260001075,
+            1023.6832909998484,
+            874.1640890000854,
+            748.9808910000138,
+            881.3570570000447,
+            872.6127420000266,
+            707.5751449998934,
+            777.9760189999361,
+            885.4781600001734,
+            859.4085359999444,
+            930.8276499998756,
+            916.1604939999525,
+            726.227390000131,
+            755.3784419998992,
+            958.6330270001199,
+            820.4684909998905,
+            887.6948220001068,
+            766.6112510000821,
+            794.7556009998079,
+            865.7110490000341,
+            870.8393080001697,
+            707.7367759998888,
+            891.0560870000627,
+            949.7884909999557,
+            681.127136999974,
+            868.5150250000879,
+            724.7729680000339,
+            788.0036989999935,
+            871.3961159999017,
+            856.8360969999339,
+            880.5447360002436,
+            685.5222979998216,
+            870.0734909998719,
+            890.3406550001819,
+            670.4796239999123,
+            889.6205029999837,
+            954.7614499998745,
+            949.7745350000914,
+            963.9167680002283,
+            860.3523189998232,
+            956.2236299999058,
+            987.0746940001845,
+            848.9164869999513,
+            971.0993679999374,
+            935.872239000164,
+            935.9834569999948,
+            1035.2120279998053,
+            7582.970170000102,
+            732.0742159998044,
+            854.9919260002207,
+            992.5564589998685,
+            871.7267579999752,
+            788.1524030002765,
+            825.0082229997497,
+            908.5162380000111,
+            897.7729030000046,
+            872.8701509998646,
+            1062.6681040001567,
+            908.663763999939,
+            909.7011200000998,
+            974.2478249999695,
+            786.773557000095,
+            972.6992919999175,
+            878.4259599999059,
+            894.0757030001841,
+            830.6104439999908,
+            932.9898890000768,
+            996.4516079998575,
+            773.6312080000062,
+            895.1313930000179,
+            787.2507839999162,
+            937.9329349999316,
+            944.2758649999741,
+            938.4520360000897,
+            1111.9234209998976,
+            924.3184530001599,
+            748.6642720000818,
+            802.3279089999851,
+            853.4275609999895,
+            762.9587789999787,
+            734.1303680001292,
+            883.4846549998038,
+            821.2833070000634,
+            695.4484020001255,
+            935.5934179998003,
+            923.3147299999837,
+            908.7564449999481,
+            626.6747680001426,
+            834.6372819999233,
+            846.6031140000559,
+            790.9426820001099,
+            1058.3537629998755,
+            682.0484370000195,
+            936.9251500000246,
+            809.8625499999616,
+            929.1780159999616,
+            801.6828799999785,
+            975.9734650002792,
+            832.3514959998429,
+            819.4725089999847,
+            799.8293959998991,
+            840.8460660001729,
+            833.7756429999135,
+            750.1434460000601,
+            760.7439089999534,
+            942.7045439998619,
+            896.2047990001738,
+            816.2066499998327,
+            846.4293219998945,
+            990.133837000234,
+            826.1746919997968,
+            845.4336080001667,
+            929.0748950000852,
+            753.5578970001079,
+            919.8531199998688,
+            967.1884330001194,
+            885.2652869997546,
+            725.3885429999791,
+            753.9971400001086,
+            950.2692179998849
+          ],
+          "iteration": 1,
+          "load_time_ms": null,
+          "prompt_tok_s": 7.399297047102118,
+          "prompt_tokens": 9977,
+          "response_preview": "broken crockery, there is no telling, but I rolled about a good deal, and could not sleep for a long time. At last I sli...",
+          "server_decode_tok_s": 1.0349308380300957,
+          "tokens_generated": 128,
+          "ttft_ms": 1348398.306778,
+          "wall_clock_ms": 1472244.572738
+        }
+      ],
+      "load_error": null,
+      "load_time_ms": 2903.018104,
+      "model": "deepseek-v4.1-flash-1017:iq3",
+      "model_fingerprint": null,
+      "num_ctx": 131072,
+      "prompt": "10000",
+      "prompt_chars": 42295,
+      "stats": {
+        "Carbon gCO2/tok [gpu+cpu_pkg]": {
+          "count": 1,
+          "max": 0.007962531030273291,
+          "mean": 0.007962531030273291,
+          "min": 0.007962531030273291,
+          "p50": 0.007962531030273291,
+          "p95": 0.007962531030273291,
+          "stddev": 0.0,
+          "unit": "g"
+        },
+        "Completion tok/s": {
+          "count": 1,
+          "max": 1.0255259224666695,
+          "mean": 1.0255259224666695,
+          "min": 1.0255259224666695,
+          "p50": 1.0255259224666695,
+          "p95": 1.0255259224666695,
+          "stddev": 0.0,
+          "unit": "tok/s"
+        },
+        "Decode ms/tok": {
+          "count": 1,
+          "max": 975.1094322362201,
+          "mean": 975.1094322362201,
+          "min": 975.1094322362201,
+          "p50": 975.1094322362201,
+          "p95": 975.1094322362201,
+          "stddev": 0.0,
+          "unit": "ms"
+        },
+        "E2E latency": {
+          "count": 1,
+          "max": 1472244.572738,
+          "mean": 1472244.572738,
+          "min": 1472244.572738,
+          "p50": 1472244.572738,
+          "p95": 1472244.572738,
+          "stddev": 0.0,
+          "unit": "ms"
+        },
+        "Energy J/tok [gpu+cpu_pkg]": {
+          "count": 1,
+          "max": 573.3022341796769,
+          "mean": 573.3022341796769,
+          "min": 573.3022341796769,
+          "p50": 573.3022341796769,
+          "p95": 573.3022341796769,
+          "stddev": 0.0,
+          "unit": "J"
+        },
+        "Energy Wh/tok [gpu+cpu_pkg]": {
+          "count": 1,
+          "max": 0.15925062060546583,
+          "mean": 0.15925062060546583,
+          "min": 0.15925062060546583,
+          "p50": 0.15925062060546583,
+          "p95": 0.15925062060546583,
+          "stddev": 0.0,
+          "unit": "Wh"
+        },
+        "Energy decode J/tok [gpu+cpu_pkg]": {
+          "count": 1,
+          "max": 136.5432003743838,
+          "mean": 136.5432003743838,
+          "min": 136.5432003743838,
+          "p50": 136.5432003743838,
+          "p95": 136.5432003743838,
+          "stddev": 0.0,
+          "unit": "J"
+        },
+        "ITL (per token)": {
+          "count": 127,
+          "max": 8037.955447999993,
+          "mean": 975.10943223622,
+          "min": 562.822150999913,
+          "p50": 871.3961159999017,
+          "p95": 1031.753406899818,
+          "stddev": 882.1406240203273,
+          "unit": "ms"
+        },
+        "Model load": {
+          "count": 1,
+          "max": 2903.018104,
+          "mean": 2903.018104,
+          "min": 2903.018104,
+          "p50": 2903.018104,
+          "p95": 2903.018104,
+          "stddev": 0.0,
+          "unit": "ms"
+        },
+        "Prompt tok/s": {
+          "count": 1,
+          "max": 7.399297047102118,
+          "mean": 7.399297047102118,
+          "min": 7.399297047102118,
+          "p50": 7.399297047102118,
+          "p95": 7.399297047102118,
+          "stddev": 0.0,
+          "unit": "tok/s"
+        },
+        "TTFT": {
+          "count": 1,
+          "max": 1348398.306778,
+          "mean": 1348398.306778,
+          "min": 1348398.306778,
+          "p50": 1348398.306778,
+          "p95": 1348398.306778,
+          "stddev": 0.0,
+          "unit": "ms"
+        },
+        "Tokens generated": {
+          "count": 1,
+          "max": 128.0,
+          "mean": 128.0,
+          "min": 128.0,
+          "p50": 128.0,
+          "p95": 128.0,
+          "stddev": 0.0,
+          "unit": "count"
+        }
+      },
+      "target": "LOKEN",
+      "url": "http://127.0.0.1:11435"
+    },
+    {
+      "coherence_pass": null,
+      "first_response_preview": "",
+      "iteration_errors": [],
+      "iterations": [],
+      "load_error": "not run: paired with safetensors weights only",
+      "load_time_ms": null,
+      "model": "deepseek-v4.1-flash-1017:iq3",
+      "model_fingerprint": null,
+      "num_ctx": 131072,
+      "prompt": "10000",
+      "prompt_chars": 0,
+      "stats": {},
+      "target": "vLLM",
+      "url": ""
+    }
+  ],
+  "schema": "loken/2",
+  "subjects": {
+    "LOKEN": {
+      "devices": {
+        "compiled": {
+          "audio": true,
+          "cuda": true,
+          "image": true,
+          "midi": true,
+          "opencl": true,
+          "video": true,
+          "vulkan": false
+        },
+        "devices": [
+          {
+            "backend": "cpu",
+            "name": "CPU (32 cores)",
+            "status": "available",
+            "type": "CPU"
+          }
+        ]
+      },
+      "says": {
+        "commit": "6e6f88e23",
+        "loken": "0.4.2-dev+g6e6f88e23",
+        "version": "0.4.2-dev+g6e6f88e23"
+      },
+      "url": "http://127.0.0.1:11435"
+    },
+    "Ollama": {
+      "devices": null,
+      "says": {
+        "version": "0.40.13"
+      },
+      "url": "http://127.0.0.1:11434"
+    }
+  },
+  "timestamp": "2026-11-01",
+  "vllm_version": "0.32.0"
+}
