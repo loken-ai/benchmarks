@@ -14,3 +14,4 @@ All notable changes to the benchmarks. The format follows [Keep a Changelog](htt
 - Campaign: measure ollama on the Hugging Face GGUF models too.
 - Campaign: let a request take as long as its cell.
 - Campaign: stop an engine that asks for more memory than there is.
+- Campaign: select the host-only and Vulkan runs with the backends option.

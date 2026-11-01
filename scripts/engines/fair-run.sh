@@ -93,7 +93,7 @@ GPU_PIN="${GPU_PIN:-}"          # older spelling of GPUS=<n>: expose only that c
 # How each engine is told to stay on the CPU, derived from BENCH_MODE below. NUMGPU goes to
 # the tool (an ollama option); LOKEN_EXTRA goes to the LOKEN server at launch.
 NUMGPU=(); LOKEN_EXTRA=()
-if [ "$BENCH_MODE" = cpu ]; then NUMGPU=(--num-gpu 0); LOKEN_EXTRA=(--cpu); fi
+if [ "$BENCH_MODE" = cpu ]; then NUMGPU=(--num-gpu 0); LOKEN_EXTRA=(--backends cpu); fi
 
 # First model of the cell, parsed from --models: the placement decision below needs it,
 # and so does the pre-bench probe further down.
@@ -416,18 +416,18 @@ case "$BACKEND" in
         echo ">> this ollama has no Vulkan backend: loken is measured alone" >&2
         _loken_alone=1
       fi
-      # loken reads the card it may use from its configuration; the tree's file stays as it is.
-      _vk_cwd="$TMP/loken-vulkan"; mkdir -p "$_vk_cwd"
-      python3 - "${E_CWD[loken]}/config.toml" "$_vk_cwd/config.toml" "$VULKAN_CARD" <<'PY'
-import re, sys
-src, dst, card = sys.argv[1:4]
-text = open(src).read()
-text = re.sub(r"(?m)^vulkan_devices\s*=.*\n", "", text)
-line = 'vulkan_devices = ["%s"]\n' % card
-text = text.replace("[inference]\n", "[inference]\n" + line, 1) if "[inference]\n" in text else line + text
-open(dst, "w").write(text)
-PY
-      E_CWD[loken]="$_vk_cwd"
+      # loken takes every Vulkan GPU of the machine and cannot be told to take one of several.
+      # With more than 1, it would measure other cards than the one ollama measures.
+      _vk_count=$(vulkaninfo --summary 2>/dev/null | awk '
+        /deviceType/ { cpu = ($0 ~ /CPU/) }
+        /deviceName/ { if (!cpu) n++ }
+        END { print n + 0 }')
+      if [ "$_vk_count" -ne 1 ]; then
+        echo "BACKEND=vulkan is refused: this machine has $_vk_count Vulkan GPUs and loken cannot be told to use only one" >&2
+        exit 2
+      fi
+      LOKEN_EXTRA=(--backends vulkan)
+      E_ARGS[loken]="serve --models-dir $MODELS_DIR --keep-alive 30m ${LOKEN_EXTRA[*]}"
     fi
     ;;
   *) echo "BACKEND must be native, vulkan or opencl, not '$BACKEND'" >&2; exit 2 ;;
