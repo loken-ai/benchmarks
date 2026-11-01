@@ -1,120 +1,43 @@
 # benchmarks
 
-The bench campaign of [loken](https://github.com/loken-ai/loken): the driver, the matrix, the
-protocol that makes a comparison fair, and the runs that every machine which ran it has shared. You
-run the campaign with the released builds of loken and
-[lokprof](https://github.com/loken-ai/lokprof), file your runs here, and the site shows the
-results of every machine at <https://loken-ai.github.io/benchmarks/>: one page per hardware
-configuration, charts of a rate across context sizes, models and hardware, and a search over every row.
+The measurement campaign of [loken](https://github.com/loken-ai/loken).
+It measures loken, ollama and vLLM on the same machine, the same prompts and the same clock, and keeps every run a machine shares.
+The results site at <https://loken-ai.github.io/benchmarks/results/> shows them: 1 page per hardware configuration, charts of a rate and a search over every row.
 
-## Run the campaign
-
-You need Linux, `python3` and `curl`, a loken release serving the models you want measured, and a
-lokprof release. Then:
+## Quick start
 
 ```sh
-cp bench.toml.example bench.toml   # name the lokend and the lokprof of your releases
-scripts/bench                      # plan: print the cells a campaign would run
-scripts/bench run                  # run it
+cp bench.toml.example bench.toml   # name the lokend and the lokprof you built
+scripts/bench                      # print the cells a campaign would measure
+scripts/bench run                  # measure them and file 1 record per cell
 ```
 
-`docs/BENCHMARKING.md` is the procedure and `docs/METHOD.md` says how a cell is measured and how the
-columns are read. The procedure covers the engines the campaign installs for comparison, the
-matrix of context sizes, prompts and devices, the backends (CUDA, ROCm, Vulkan, OpenCL, host) and
-the modalities.
+The campaign needs Linux, Python 3.11, `curl`, a `lokend` built from [loken](https://github.com/loken-ai/loken) and a `lokprof` built from [lokprof](https://github.com/loken-ai/lokprof).
 
-## Share your runs
+## State
 
-`scripts/bench run` files each cell under `runs/<hardware_id>/<run_id>.json`. To share them:
+The campaign runs on NVIDIA and AMD cards, through CUDA, ROCm, Vulkan and OpenCL, and on the host.
+It measures text and vision against ollama and vLLM, and image generation, speech synthesis, audio generation and speech recognition.
 
-1. Fork this repository and commit the new files under `runs/`.
-2. Open a pull request. The checks below run on every record it adds.
+## Documents
 
-Do not edit a record: its name is the hash of its content. Records taken by other means go through
-`scripts/add.py results/*.json`, which files the accepted ones and prints why it refused the others.
-
-## What a record says about your machine
-
-Enough to know what was measured, and nothing that names you or your machine:
-
-- the processor, its threads and sockets, the instruction sets host kernels use, the memory;
-- for each card, its name, maker, architecture (such as `sm_89` or `gfx1201`), memory, power cap and
-  PCIe link; the kernel, the distribution and the driver;
-- for a cluster, the same for every node;
-- the day of the run, in UTC, without the time of day;
-- two one-way hashes: `host_id` groups the runs of one machine, and `hardware_id` names a
-  configuration shared by every machine built the same way.
-
-A card's serial, a host name, a path, a private address and a mailbox never enter a record.
-`scripts/add.py` removes what is outside this list and `scripts/check.py` refuses a record that keeps
-any of it.
-
-## What CI checks
-
-For each record a pull request adds or changes:
-
-| check | refused when |
+| Document | Holds |
 |---|---|
-| readable | the file is not a JSON object |
-| schema | the `schema` major is not one lokprof writes (`loken/2`) |
-| cells | `results` is empty |
-| machine | the record has no `machine` block |
-| name | the file name is not the `run_id` computed from the content |
-| hardware | the folder is not the `hardware_id` hashed from the `machine` block, or the block states another one |
-| anonymity | a date has a time of day, the machine block holds a field outside the list, or a string names a path, a private address or a mailbox |
-| protocol | not the campaign's: 3 iterations, no warm-up, 128 tokens, streaming true or false; a record without a protocol must hold only error cells |
-| duplicate | the same `run_id` already sits elsewhere in `runs/` |
+| [Overview](docs/start/overview.md) | how to read the results site, and what the campaign claims |
+| [Install](docs/start/install.md) and [First run](docs/start/first-run.md) | from a clone to a first record |
+| [Concepts](docs/start/concepts.md) | cell, protocol, record, equivalence class, status |
+| [Run the campaign](docs/guides/run-the-campaign.md) and [Share your runs](docs/guides/share-your-runs.md) | the 2 tasks |
+| [Method](docs/METHOD.md) | how a cell is measured and compared |
+| [Results table](docs/reference/results-table.md), [Record](docs/reference/record.md), [Matrix](docs/reference/matrix.md), [Settings](docs/reference/settings.md) | what is looked up |
 
-Each refused record gets one line naming every reason. Run the same checks locally:
+## Contributing
 
-```sh
-scripts/check.py runs/<hardware_id>/<run_id>.json
-python3 -m unittest discover tests
-node --test tests/*.test.js
-```
-
-## Statuses
-
-| status | meaning |
-|---|---|
-| submitted | the record is checked and stands alone |
-| confirmed | another host measured the same equivalence class on the same `hardware_id` |
-
-The equivalence class (`scripts/records/classes.py`) is the schema major, the protocol flags, the
-machine with its kernel and driver, and each engine with its build and backend. A record without a
-`host_id` confirms nothing.
-
-## Build the site
-
-```sh
-scripts/site.py
-python3 -m http.server -d site
-```
-
-Then open `http://localhost:8000/`. The search page reads `index.json`, which a browser does not load
-from a `file://` page. CI publishes `site/` to GitHub Pages on every push to `main`. Dates are UTC days; a record holds no time of day. A loken row whose record does not
-state the loken version is labelled `loken` without a number.
-
-## Layout
-
-| path | what it holds |
-|---|---|
-| `scripts/bench` | the campaign driver |
-| `scripts/engines/` | the isolation protocol (`fair-run.sh`), the card policy and the vLLM launchers |
-| `scripts/records/` | the record store, the hardware identity, the equivalence classes and the converter of old reports |
-| `scripts/architecture.py` | describes the machine and its cluster |
-| `scripts/enable-energy.sh` | makes the energy of a machine measurable, and reports what is and is not |
-| `scripts/add.py`, `scripts/check.py`, `scripts/site.py` | file a run, check it, build the site |
-| `scripts/bench_row.py`, `scripts/scoreboard.py` | the table rows and the win count |
-| `scripts/pages.py` | the layout of the site: the shell, the hero, the hardware cards and the result tables |
-| `web/` | the style sheet and the scripts of the site: the charts, the search and the table filter |
-| `matrix.toml`, `fixtures/` | the matrix axes and the speech recognition fixtures, credited in `NOTICE.md` |
-| `bench.toml.example` | the settings a campaign reads |
-| `runs/` | the shared runs, one folder per hardware |
-| `tests/` | the tests |
+Share your runs through a pull request, see [Share your runs](docs/guides/share-your-runs.md).
+[CONTRIBUTING.md](CONTRIBUTING.md) covers the code, the tests and the layout of the repository.
 
 ## Licence
 
-The code is MIT OR Apache-2.0, like loken and lokprof: see `LICENSE-MIT` and `LICENSE-APACHE`. The
-records under `runs/` are published under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/):
-see `LICENSE-DATA`. A contributor who opens a pull request agrees to publish their records under it.
+The code is MIT OR Apache-2.0: see [LICENSE-MIT](LICENSE-MIT) and [LICENSE-APACHE](LICENSE-APACHE).
+The records under `runs/` are published under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/): see [LICENSE-DATA](LICENSE-DATA).
+A contributor who opens a pull request agrees to publish their records under it.
+The recordings of the speech recognition cells are credited in [NOTICE.md](NOTICE.md).

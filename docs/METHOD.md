@@ -1,22 +1,38 @@
-How a cell is measured and how the columns of the tables are read. The procedure that produces the
-runs is [BENCHMARKING.md](BENCHMARKING.md).
+# Method
 
-# Method of the measurements
+Every engine of a cell is measured by the same tool, on the same prompt, with the same clock.
+[Read a results table](reference/results-table.md) gives each column.
 
-One cell is `(model, context, prompt, mode, device, engine)`, measured by
-[lokprof](https://github.com/loken-ai/lokprof): 3 iterations, greedy, 128 tokens.
+## The cell
 
-`Ctx` is the window each engine was asked to reserve, not a window the prompt fills: the
-longest prompt is about 2,100 tokens. Ollama allocates the whole window up front, and at 131072
-that sends layers of the larger models to the host; this engine plans its quantised cache at
-4096 tokens and grows it on demand, so it reserved less. The 131072 column compares those two
-policies on prompts that stay far below the window, not two engines at a full context.
-Engines run alone, others stopped, cards back at idle - a peer process changes where a model
-lands. Ollama runs without Vulkan, `num_gpu 0` for CPU rows.
+[lokprof](https://github.com/loken-ai/lokprof) measures a cell, see [Concepts](start/concepts.md#cell), in 3 iterations, greedy, with a cap of 128 generated tokens.
 
-**Prompts** are three sizes of one text, byte-identical to every engine. Only the prefill differs;
-the 128-token cap keeps the decode column comparable. A prompt is named by its size in tokens, and
-`prompts/<size>.txt` holds the text.
+## Engines run alone
+
+Each engine runs alone.
+The processes of the other engines are stopped, and the cards come back to their idle temperature before it starts.
+A peer process left running changes where a model lands.
+
+On the native backend, ollama runs with its Vulkan backend off.
+A CPU row runs ollama with `num_gpu` 0.
+
+## Context window
+
+`Ctx` is the window each engine was asked to reserve, not a window the prompt fills.
+The longest prompt is 10 000 tokens.
+
+Ollama allocates the whole window up front.
+At 131072, that sends layers of the larger models to the host.
+loken plans its quantised cache at 4096 tokens and grows it on demand, so it reserves less.
+The 131072 column compares these 2 allocation policies on prompts far below the window.
+It is not a comparison of 2 engines at a full context.
+
+## Prompts
+
+The prompts are 3 sizes of 1 text, and every engine gets the same bytes.
+Only the prefill differs between sizes.
+The cap of 128 tokens keeps the decode column comparable.
+A prompt is named by its size in tokens, and the repository holds its text.
 
 | Prompt | Tokens | Characters | Words |
 |---|---|---|---|
@@ -24,107 +40,125 @@ the 128-token cap keeps the decode column comparable. A prompt is named by its s
 | `1000` | 1 000 | 4 384 | 794 |
 | `10000` | 10 000 | 42 295 | 7 736 |
 
-The text is the opening of a public domain novel in plain ASCII. Each prompt is the start of the
-next, cut where the Qwen3 tokenizer counts exactly the size, at a word or a punctuation mark
-(the 100 token prompt ends inside a word). Another tokenizer counts a few percent more or less,
-so the size is nominal for the model under test. A window the prompt and its answer do not fit in
-is not measured, so the 10000 prompt runs at the 131072 window only. A record names the prompt by
-its size and states the number of characters it was given; a record whose prompt is not one of
-these three, or whose text has another length, is refused.
+The text is the opening of a public domain novel, in plain ASCII.
+Each prompt is the start of the next one.
+Each is cut where the Qwen3 tokenizer counts exactly its size, at a word or a punctuation mark.
+The 100 token prompt ends inside a word.
+Another tokenizer counts a few percent more or less, so the size is nominal for the model under test.
 
-Vision rows send the same prompt beside their image.
+A window that cannot hold the prompt and its answer is not measured, so the `10000` prompt runs at the 131072 window only.
+A record names its prompt by its size and states the number of characters sent.
+A record whose prompt is not one of these 3, or whose text has another length, is refused.
 
-**Cards.** Ollama is pinned to one card only while the weights fit it - above that it would get
-one card plus host spill while the others get the machine. Rows before 2026-08-14 04:00 on
-models larger than one card were taken under the older rule and read as wins that were not.
+A vision row sends the same prompt beside its image.
 
-**Prompts reach every engine unwrapped.** `/api/generate` applies the chat template; vLLM is
-benched on `/v1/completions`, which does not. Rows before 2026-08-14 08:00 had two engines
-answering a story opening as a question while the third continued it.
+## Prompts reach every engine unwrapped
 
-**Cells that publish no rate.**
+A text prompt reaches every engine without a chat template.
+lokprof sends it to `/api/generate` in raw mode, and to vLLM on `/v1/completions`, which applies no template.
+A vision prompt goes to `/api/generate` with its image, through the chat template.
 
-| Marked | Meaning |
-|---|---|
-| `incoherent` | the answer repeats itself. Excluded both ways: it would flatter whichever engine produced it |
-| `no answer` | one token back, no decode interval to divide by. Prefill, latency and joules stand |
-| `unsupported` | the engine was given the model and could not run it: an architecture it does not know, weights it cannot hold, a model it does not have. The cell states the engine's own reason |
-| `not run` | the harness gives the engine no way to take this model: no endpoint for that kind of generation, or weights in a format the engine is not paired with. The cell states why, so a missing rate is never mistaken for a cell nobody tried |
-| `failed` | the engine took the model and no iteration survived: a request the bench gave up on, or one the engine refused. The result file carries each iteration's error |
+Rows before 2026-08-14 08:00 had 2 engines answering a story opening as a question while the third continued it.
 
-**Read `Tokens` before the rate.** A model that stops early is averaged over a few dozen steps
-and carries the request's fixed cost - the same engine measured 398 tok/s over 30 tokens and 417
-over 128. Short rows are published; their Delta is blank.
+## Cards
 
-The `incoherent` gemma4 cells are a tracked defect here, not a verdict on the models: the same
-weights answer correctly under ollama on several of those rows.
+A campaign gives every engine every card of the machine.
+ollama is told to spread a model over the cards it sees.
 
-**Delta** compares loken to the best other engine, cold with cold and warm with warm, blank when
-token counts differ. Each engine counts at the newest version measured in the cell: an older
-release stays in the table beside a newer one but is no longer compared, and a cell not yet
-measured with the newest release keeps the older one until it is. The share of decode cells
-loken wins reads the same Deltas. A positive Delta means loken is better: faster for prefill and decode, a
-shorter time to first token, fewer joules. **Energy** sums
-NVML GPU draw with the RAPL package and DRAM domains. **vLLM rows read a different file** - an
-AWQ 4-bit checkpoint against the GGUF Q4_K_M the other two share - so every vLLM comparison
-carries that caveat, and their prefill column was not collected.
+A run restricted to 1 card keeps ollama on it only while the weights fit that card.
+Above that, ollama would get 1 card plus host spill while the other engines get the machine, so every engine gets every card.
+Rows before 2026-08-14 04:00 on models larger than 1 card were taken under an older rule, and read as wins that were not.
 
-## Reading the tables
+## Weights
 
-Check the `Date` and `Run` of a row before comparing two rows: a page can hold cells from
-several runs and builds, and the newest measurement of a cell wins. `Device` says `GPU` or
-`CPU`: it separates card from host, not one card from two, and two cards flatter this engine
-because ollama splits models that fit on one (olmoe measured 496 tok/s on a single card, 390
-given the machine).
+An ollama row measures a GGUF file, and the loken row of its cell measures the same file.
+A vLLM row measures a safetensors checkpoint, and the loken row of its cell measures the same checkpoint.
+A model published in both formats is 2 catalogue entries, with 2 sets of cells.
 
-Sections are the architecture each checkpoint declares under `general.architecture`, not the
-name it is published as. That is why `deepseek-r1:70b` sits under `llama` and
-`deepseek-r1:32b` under `qwen2`: they are distils, and what the kernels run is the
-architecture, not the brand.
+Before this pairing, a vLLM row read an AWQ 4-bit checkpoint against the GGUF Q4_K_M of the other 2 engines, and collected no prefill.
+Every vLLM comparison of that time carries this caveat.
+
+## Delta
+
+A Delta compares loken with the best other engine of the cell.
+[Read a results table](reference/results-table.md#delta) gives its sign, its blank cases and the version of each other engine that counts.
+
+The share of decode cells loken wins, on the results site, reads the same warm Deltas.
+
+## Cells that publish no rate
+
+An `incoherent` answer is excluded both ways.
+As a reference it would flatter loken, and as a loken row it would publish a Delta against work nobody did.
+
+The `incoherent` gemma4 cells are a tracked defect of loken, not a verdict on the models.
+The same weights answer correctly under ollama on several of those rows.
+
+[Read a results table](reference/results-table.md#cells-that-publish-no-rate) lists every mark.
+
+## Read Tokens before the rate
+
+A model that stops early averages its rate over a few tens of steps, and carries the fixed cost of the request.
+The same engine measured 398 tok/s over 30 tokens and 417 over 128.
+Short rows are published, and their Delta is blank.
 
 ## Cold and warm
 
-Every cell runs three times. Each iteration is given a prompt that no engine has seen: the text of
-the cell with a counter in front of it, so an engine that keeps a prefix cache cannot answer from
-it. Replaying one prompt would measure that cache and report a prefill rate of hundreds of
-thousands of tokens per second, a cache hit in the units of a rate. Each rate column shows two
-figures, `cold / warm`.
+Every cell runs 3 times.
+Each iteration gets a prompt that no engine has seen: the text of the cell with a counter in front of it.
+An engine that keeps a prefix cache then cannot answer from it.
+Replaying 1 prompt would measure that cache, and report a prefill of hundreds of thousands of tokens per second.
+That figure is a cache hit in the units of a rate.
 
-**Cold** is the first iteration of the cell: the first request after the engine started, which pays
-what a first request pays (loading, compiling, filling caches). **Warm** is the median of the
-following iterations, on an engine that has served a request. A cell of a single iteration shows
-its cold figure and a dash.
+Cold is the first iteration of the cell: the first request after the engine started.
+It pays what a first request pays: loading, compiling, filling caches.
+Warm is the median of the following iterations, on an engine that has served a request.
 
-The columns that split are Prefill, TTFT and Decode, and so are their three Delta columns, each
-printed `cold / warm`. A Delta is blank for a half that cannot be compared. Joules, E2E and the
-token count are taken over all iterations, as before. Non-stream rows have no time to first
-token, so their Prefill and TTFT are dashes. The scoreboard (`scripts/scoreboard.py`) prints
-one line for each: `N/M cells win on both axes`, throughput being the decode Delta of that half
-and the other axis the energy Delta.
+The columns that split are Prefill, TTFT and Decode, and their 3 Delta columns, each printed `cold / warm`.
+A Delta is blank for a half that cannot be compared.
+Joules, E2E and the token count are taken over all the iterations.
+
+During a campaign, the driver prints 1 line for each half: `N/M cells win on BOTH axes`.
+A cell wins when the decode Delta of that half and the energy Delta are both positive.
 
 ## The rate columns
 
-**Prefill** is prompt tokens over the time to first token, measured by the bench, the
-same way for every engine. **TTFT** is that time, in milliseconds.
+Prefill is the prompt tokens over the time to first token, measured by lokprof the same way for every engine.
+TTFT is that time, in milliseconds.
 
-It used to be each engine's own `prompt_tok_s`, which is that engine's timer minus whatever it
-does not count - and they do not leave out the same things. On a 15-token prompt ollama
-reported 652 tok/s where its own time to first token implied 35, and this engine 49 373 where
-its own implied 728. Side by side those reversed the verdict on three cells of four, and at the
-long prompt the exaggeration was worse, not better.
+Prefill used to be each engine's own `prompt_tok_s`.
+That figure is the engine's timer minus what it does not count, and the engines do not leave out the same things.
+On a 15 token prompt, ollama reported 652 tok/s where its own time to first token implied 35, and loken 49 373 where its own implied 728.
+Side by side, those figures reversed the verdict on 3 cells of 4.
+At the long prompt the exaggeration was worse.
 
-**Decode** is the client-observed span from the first generated token to the last, also the
-same for every engine. vLLM publishes no prefill/decode split, so scoring two engines by their
-own bookkeeping and the third by the clock would compare the bookkeeping. Cells measured from
-2026-09-02 also carry `server_decode_tok_s` in the result file, the rate the server reports of
-itself, recorded so the two can be seen to disagree - at 2 ms a token the client's read loop
-costs about what the token does.
+Decode is the span the client observes from the first generated token to the last, the same for every engine.
+vLLM publishes no split of prefill and decode.
+Scoring 2 engines by their own bookkeeping and the third by the clock would compare the bookkeeping.
 
-**The joules are a median over all the iterations of a cell** (the rates are split cold and
-warm, above). The first iteration of a cell is a cold load. Prefill took the median for that reason from the start;
-decode and energy took the mean, on the assumption that they did not carry the outlier. On a
-mixture too large to hold they do: qwen3next measured 3.8, 15.2, 15.2 tok/s and the mean
-published 11.4 for a model that decodes at 15.2. Energy was worse and flattered this engine -
-the first iteration's joules include loading the weights, and both engines inflate, not by the
-same factor: qwen3:0.6b published +383.6% where the steady state is +149.9%. Cells whose
-iterations are flat are unchanged by the median, which is every cell but the large mixtures.
+Cells measured from 2026-09-02 also carry `server_decode_tok_s` in the record, the rate the server reports of itself.
+It shows where the 2 disagree.
+At 2 ms a token, the read loop of the client costs about what the token does.
+
+## Energy
+
+Energy sums the draw of the cards with the RAPL package and DRAM domains of the processor.
+An NVIDIA card is read through NVML, an AMD card through the power reading of the amdgpu driver.
+A total over the cards alone is compared only with another total over the cards alone.
+
+The joules are a median over all the iterations of a cell.
+The first iteration of a cell is a cold load.
+Prefill took the median for that reason from the start.
+Decode and energy took the mean, on the assumption that they did not carry the outlier.
+
+On a mixture too large to hold, they do.
+qwen3next measured 3.8, 15.2 and 15.2 tok/s, and the mean published 11.4 for a model that decodes at 15.2.
+Energy was worse, and flattered loken.
+The joules of the first iteration include loading the weights, and the engines inflate by different factors.
+qwen3:0.6b published +383.6% where the steady state is +149.9%.
+The median leaves a cell with flat iterations unchanged, which is every cell but the large mixtures.
+
+## Model families
+
+The family of a model is the architecture its checkpoint declares under `general.architecture`, not the name it is published as.
+`deepseek-r1:70b` is a llama and `deepseek-r1:32b` a qwen2, both distils.
+What the kernels run is the architecture, not the brand.
