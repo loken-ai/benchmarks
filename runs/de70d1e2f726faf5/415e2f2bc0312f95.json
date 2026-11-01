@@ -1,0 +1,859 @@
+{
+  "config": {
+    "carbon_intensity_gco2_per_kwh": 50.0,
+    "custom_prompt": null,
+    "energy_measure": true,
+    "gpu_sample": true,
+    "iterations": 3,
+    "max_tokens": 128,
+    "models": [
+      "deepseek-r1:32b"
+    ],
+    "num_ctx": [
+      4096
+    ],
+    "num_gpu": null,
+    "prompts": [
+      "1000"
+    ],
+    "session_id": null,
+    "streaming": false,
+    "unique_prompt": true,
+    "warmup": 0
+  },
+  "engine_build": 1793207058,
+  "idle_energy_baseline": null,
+  "machine": {
+    "cpu": "AMD Ryzen 9 9950X3D 16-Core Processor",
+    "cpu_flags": [
+      "avx2",
+      "fma",
+      "bmi2",
+      "f16c",
+      "avx512f",
+      "avx512bw",
+      "avx512vl",
+      "avx512_vnni",
+      "avx512_bf16"
+    ],
+    "driver": "615.71.10",
+    "gpus": [
+      {
+        "arch": "sm_120",
+        "index": 0,
+        "name": "NVIDIA GeForce RTX 5070 Ti",
+        "pcie_gen": 5,
+        "pcie_width": 8,
+        "power_cap_w": 300,
+        "vendor": "nvidia",
+        "vram_mib": 16303
+      },
+      {
+        "arch": "sm_120",
+        "index": 1,
+        "name": "NVIDIA GeForce RTX 5060 Ti",
+        "pcie_gen": 5,
+        "pcie_width": 8,
+        "power_cap_w": 180,
+        "vendor": "nvidia",
+        "vram_mib": 16311
+      }
+    ],
+    "hardware_id": "de70d1e2f726faf5",
+    "host_id": "12973014bbf73a88",
+    "kernel": "6.12.113+deb13-amd64",
+    "os": "Debian GNU/Linux 13 (trixie)",
+    "ram_gib": 60,
+    "sockets": 1,
+    "threads": 32
+  },
+  "ollama_version": "0.40.12",
+  "protocol": {
+    "cards_by_uuid": null,
+    "engines_seen": [
+      "llama-server",
+      "ollama"
+    ],
+    "gpu_temps_c_at_start": [
+      44,
+      43
+    ],
+    "iterations": 3,
+    "max_tokens": 128,
+    "prefix_reuse_offered": false,
+    "streaming": false,
+    "unique_prompt": true,
+    "warmup": 0
+  },
+  "results": [
+    {
+      "coherence_pass": true,
+      "first_response_preview": "miles to see it? No. What makes Niagara Niagara? The Mighty waters of the upper Niagara River, rushing over the precipic...",
+      "iteration_errors": [],
+      "iterations": [
+        {
+          "completion_tok_s": 12.974861042314698,
+          "degenerate": false,
+          "e2e_latency_ms": 9865.230894,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 891.271245,
+            "cpu_rapl_available": true,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 9.886678387,
+            "energy_j": 2472.890245000006,
+            "gco2_per_tok": 0.0002683257644314243,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 1581.619000000006,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": null,
+            "j_per_tok": 19.319455039062547,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": 0.005366515288628485
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 87.80237499999998,
+              "power_peak_w": 135.908,
+              "samples": 96,
+              "util_avg_pct": 22,
+              "util_peak_pct": 89,
+              "vram_avg_mb": 7454,
+              "vram_peak_mb": 14149
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 74.22302083333331,
+              "power_peak_w": 144.731,
+              "samples": 96,
+              "util_avg_pct": 35,
+              "util_peak_pct": 100,
+              "vram_avg_mb": 7363,
+              "vram_peak_mb": 13799
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 5,
+            "cpu_peak_pct": 89,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 51,
+            "rss_peak_mb": 550,
+            "samples": 50,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 1,
+          "load_time_ms": 4391.836145,
+          "prompt_tok_s": 1469.2520065701337,
+          "prompt_tokens": 1009,
+          "response_preview": "miles to see it? No. What makes Niagara Niagara? The Mighty waters of the upper Niagara River, rushing over the precipic...",
+          "server_decode_tok_s": 26.827733672704166,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 9865.230894
+        },
+        {
+          "completion_tok_s": 23.2861757674552,
+          "degenerate": false,
+          "e2e_latency_ms": 5496.8235779999995,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 547.930907,
+            "cpu_rapl_available": true,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 5.51881938,
+            "energy_j": 1780.650907000001,
+            "gco2_per_tok": 0.00019321298904079873,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 1232.7200000000012,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": null,
+            "j_per_tok": 13.911335210937509,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": 0.0038642597808159745
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 122.16270909090912,
+              "power_peak_w": 140.636,
+              "samples": 55,
+              "util_avg_pct": 27,
+              "util_peak_pct": 39,
+              "vram_avg_mb": 10361,
+              "vram_peak_mb": 10361
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 115.1096,
+              "power_peak_w": 138.547,
+              "samples": 55,
+              "util_avg_pct": 61,
+              "util_peak_pct": 100,
+              "vram_avg_mb": 10233,
+              "vram_peak_mb": 10233
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 0,
+            "cpu_peak_pct": 0,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 28,
+            "rss_peak_mb": 28,
+            "samples": 29,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 2,
+          "load_time_ms": 0.906341,
+          "prompt_tok_s": 1505.4555980120228,
+          "prompt_tokens": 1009,
+          "response_preview": "miles to see it? No. What makes Niagara Niagara? The Mighty waters of the upper Niagara River, rushing over the precipic...",
+          "server_decode_tok_s": 26.87643161617432,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 5496.8235779999995
+        },
+        {
+          "completion_tok_s": 23.246544208148173,
+          "degenerate": false,
+          "e2e_latency_ms": 5506.194764,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 549.0349,
+            "cpu_rapl_available": true,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 5.526112758,
+            "energy_j": 1794.9419000000066,
+            "gco2_per_tok": 0.00019476366102430626,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 1245.9070000000065,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": null,
+            "j_per_tok": 14.022983593750052,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": 0.0038952732204861253
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 121.30843636363637,
+              "power_peak_w": 153.67,
+              "samples": 55,
+              "util_avg_pct": 28,
+              "util_peak_pct": 38,
+              "vram_avg_mb": 10362,
+              "vram_peak_mb": 10363
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 113.0088181818182,
+              "power_peak_w": 127.102,
+              "samples": 55,
+              "util_avg_pct": 61,
+              "util_peak_pct": 100,
+              "vram_avg_mb": 10234,
+              "vram_peak_mb": 10235
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 0,
+            "cpu_peak_pct": 4,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 28,
+            "rss_peak_mb": 28,
+            "samples": 29,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 3,
+          "load_time_ms": 11.019297,
+          "prompt_tok_s": 1504.2122415147671,
+          "prompt_tokens": 1009,
+          "response_preview": "miles to see it? No. What makes Niagara Niagara? The Mighty waters of the upper Niagara River, rushing over the precipic...",
+          "server_decode_tok_s": 26.891468135501068,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 5506.194764
+        }
+      ],
+      "load_error": null,
+      "load_time_ms": 6233.447972999999,
+      "model": "deepseek-r1:32b",
+      "model_fingerprint": {
+        "modified_at": "2026-04-10",
+        "parameter_size": "32.8B",
+        "quantization_level": "Q4_K_M"
+      },
+      "num_ctx": 4096,
+      "prompt": "1000",
+      "prompt_chars": 4384,
+      "stats": {
+        "Carbon gCO2/tok [gpu+cpu_pkg]": {
+          "count": 3,
+          "max": 0.0002683257644314243,
+          "mean": 0.00021876747149884312,
+          "min": 0.00019321298904079873,
+          "p50": 0.00019476366102430626,
+          "p95": 0.0002609695540907125,
+          "stddev": 4.29257433796289e-05,
+          "unit": "g"
+        },
+        "Completion tok/s": {
+          "count": 3,
+          "max": 23.2861757674552,
+          "mean": 19.835860339306024,
+          "min": 12.974861042314698,
+          "p50": 23.246544208148173,
+          "p95": 23.2822126115245,
+          "stddev": 5.941832729058424,
+          "unit": "tok/s"
+        },
+        "E2E latency": {
+          "count": 3,
+          "max": 9865.230894,
+          "mean": 6956.083078666667,
+          "min": 5496.8235779999995,
+          "p50": 5506.194764,
+          "p95": 9429.327281,
+          "stddev": 2519.400268590879,
+          "unit": "ms"
+        },
+        "Energy J/tok [gpu+cpu_pkg]": {
+          "count": 3,
+          "max": 19.319455039062547,
+          "mean": 15.751257947916704,
+          "min": 13.911335210937509,
+          "p50": 14.022983593750052,
+          "p95": 18.789807894531297,
+          "stddev": 3.090653523333279,
+          "unit": "J"
+        },
+        "Energy Wh/tok [gpu+cpu_pkg]": {
+          "count": 3,
+          "max": 0.005366515288628485,
+          "mean": 0.004375349429976862,
+          "min": 0.0038642597808159745,
+          "p50": 0.0038952732204861253,
+          "p95": 0.005219391081814249,
+          "stddev": 0.0008585148675925777,
+          "unit": "Wh"
+        },
+        "Model load": {
+          "count": 1,
+          "max": 6233.447972999999,
+          "mean": 6233.447972999999,
+          "min": 6233.447972999999,
+          "p50": 6233.447972999999,
+          "p95": 6233.447972999999,
+          "stddev": 0.0,
+          "unit": "ms"
+        },
+        "Prompt tok/s": {
+          "count": 3,
+          "max": 1505.4555980120228,
+          "mean": 1492.973282032308,
+          "min": 1469.2520065701337,
+          "p50": 1504.2122415147671,
+          "p95": 1505.3312623622974,
+          "stddev": 20.55263160787631,
+          "unit": "tok/s"
+        },
+        "Tokens generated": {
+          "count": 3,
+          "max": 128.0,
+          "mean": 128.0,
+          "min": 128.0,
+          "p50": 128.0,
+          "p95": 128.0,
+          "stddev": 0.0,
+          "unit": "count"
+        }
+      },
+      "target": "Ollama",
+      "url": "http://127.0.0.1:11434"
+    },
+    {
+      "coherence_pass": true,
+      "first_response_preview": "miles to see it? No. What makes Niagara Niagara? The Mighty waters. But here in this insular city, do you see what I mea...",
+      "iteration_errors": [],
+      "iterations": [
+        {
+          "completion_tok_s": 35.40929054663329,
+          "degenerate": false,
+          "e2e_latency_ms": 3614.870505,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 308.420009,
+            "cpu_rapl_available": true,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 3.635246594,
+            "energy_j": 1528.0570090000024,
+            "gco2_per_tok": 0.00016580479698350718,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 1219.6370000000024,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": null,
+            "j_per_tok": 11.937945382812519,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": 0.003316095939670144
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 218.13945945945943,
+              "power_peak_w": 250.342,
+              "samples": 37,
+              "util_avg_pct": 98,
+              "util_peak_pct": 99,
+              "vram_avg_mb": 14684,
+              "vram_peak_mb": 14841
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 116.48448648648647,
+              "power_peak_w": 130.399,
+              "samples": 37,
+              "util_avg_pct": 93,
+              "util_peak_pct": 96,
+              "vram_avg_mb": 7138,
+              "vram_peak_mb": 7189
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 94,
+            "cpu_peak_pct": 104,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 3658,
+            "rss_peak_mb": 3670,
+            "samples": 19,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 1,
+          "load_time_ms": 8.923895,
+          "prompt_tok_s": 1402.0352738846589,
+          "prompt_tokens": 1009,
+          "response_preview": "miles to see it? No. What makes Niagara Niagara? The Mighty waters. But here in this insular city, do you see what I mea...",
+          "server_decode_tok_s": 44.37576075134753,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 3614.870505
+        },
+        {
+          "completion_tok_s": 36.092582382402064,
+          "degenerate": false,
+          "e2e_latency_ms": 3546.4350719999998,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 300.983992,
+            "cpu_rapl_available": true,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 3.566115516,
+            "energy_j": 1510.8079920000077,
+            "gco2_per_tok": 0.0001639331588541675,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 1209.8240000000078,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": null,
+            "j_per_tok": 11.80318743750006,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": 0.00327866317708335
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 230.4456285714285,
+              "power_peak_w": 252.047,
+              "samples": 35,
+              "util_avg_pct": 90,
+              "util_peak_pct": 99,
+              "vram_avg_mb": 14681,
+              "vram_peak_mb": 14841
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 121.49934285714288,
+              "power_peak_w": 130.994,
+              "samples": 35,
+              "util_avg_pct": 83,
+              "util_peak_pct": 96,
+              "vram_avg_mb": 7137,
+              "vram_peak_mb": 7191
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 92,
+            "cpu_peak_pct": 104,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 3672,
+            "rss_peak_mb": 3673,
+            "samples": 19,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 2,
+          "load_time_ms": 7.690476,
+          "prompt_tok_s": 1404.676021972318,
+          "prompt_tokens": 1009,
+          "response_preview": "miles to see it? No. What makes Niagara Niagara? The Mighty waters. But here's another thought. Suppose you were confine...",
+          "server_decode_tok_s": 45.407238577697306,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 3546.4350719999998
+        },
+        {
+          "completion_tok_s": 36.48792943732735,
+          "degenerate": false,
+          "e2e_latency_ms": 3508.009415,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 299.031259,
+            "cpu_rapl_available": true,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 3.527735549,
+            "energy_j": 1515.3442589999945,
+            "gco2_per_tok": 0.00016442537532552023,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 1216.3129999999946,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": null,
+            "j_per_tok": 11.838627023437457,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": 0.0032885075065104048
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 229.15788888888886,
+              "power_peak_w": 253.941,
+              "samples": 36,
+              "util_avg_pct": 96,
+              "util_peak_pct": 99,
+              "vram_avg_mb": 14681,
+              "vram_peak_mb": 14841
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 121.34463888888894,
+              "power_peak_w": 131.366,
+              "samples": 36,
+              "util_avg_pct": 91,
+              "util_peak_pct": 96,
+              "vram_avg_mb": 7138,
+              "vram_peak_mb": 7191
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 91,
+            "cpu_peak_pct": 104,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 3674,
+            "rss_peak_mb": 3675,
+            "samples": 19,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 3,
+          "load_time_ms": 7.668037,
+          "prompt_tok_s": 1402.551771834757,
+          "prompt_tokens": 1009,
+          "response_preview": "miles to see it? No. What makes Niagara Niagara? The Mighty waters. But here in this insular city, do you see what I mea...",
+          "server_decode_tok_s": 46.04853815596891,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 3508.009415
+        }
+      ],
+      "load_error": null,
+      "load_time_ms": 6982.12503,
+      "model": "deepseek-r1:32b",
+      "model_fingerprint": {
+        "modified_at": "",
+        "parameter_size": "32.8B",
+        "quantization_level": "Q4_K_M"
+      },
+      "num_ctx": 4096,
+      "prompt": "1000",
+      "prompt_chars": 4384,
+      "stats": {
+        "Carbon gCO2/tok [gpu+cpu_pkg]": {
+          "count": 3,
+          "max": 0.00016580479698350718,
+          "mean": 0.00016472111038773164,
+          "min": 0.0001639331588541675,
+          "p50": 0.00016442537532552023,
+          "p95": 0.00016566685481770848,
+          "stddev": 9.70232828791843e-07,
+          "unit": "g"
+        },
+        "Completion tok/s": {
+          "count": 3,
+          "max": 36.48792943732735,
+          "mean": 35.99660078878757,
+          "min": 35.40929054663329,
+          "p50": 36.092582382402064,
+          "p95": 36.448394731834824,
+          "stddev": 0.5456874690370074,
+          "unit": "tok/s"
+        },
+        "E2E latency": {
+          "count": 3,
+          "max": 3614.870505,
+          "mean": 3556.4383306666664,
+          "min": 3508.009415,
+          "p50": 3546.4350719999998,
+          "p95": 3608.0269617,
+          "stddev": 54.12829229673888,
+          "unit": "ms"
+        },
+        "Energy J/tok [gpu+cpu_pkg]": {
+          "count": 3,
+          "max": 11.937945382812519,
+          "mean": 11.85991994791668,
+          "min": 11.80318743750006,
+          "p50": 11.838627023437457,
+          "p95": 11.928013546875013,
+          "stddev": 0.06985676367301336,
+          "unit": "J"
+        },
+        "Energy Wh/tok [gpu+cpu_pkg]": {
+          "count": 3,
+          "max": 0.003316095939670144,
+          "mean": 0.003294422207754633,
+          "min": 0.00327866317708335,
+          "p50": 0.0032885075065104048,
+          "p95": 0.0033133370963541703,
+          "stddev": 1.9404656575837094e-05,
+          "unit": "Wh"
+        },
+        "Model load": {
+          "count": 1,
+          "max": 6982.12503,
+          "mean": 6982.12503,
+          "min": 6982.12503,
+          "p50": 6982.12503,
+          "p95": 6982.12503,
+          "stddev": 0.0,
+          "unit": "ms"
+        },
+        "Prompt tok/s": {
+          "count": 3,
+          "max": 1404.676021972318,
+          "mean": 1403.087689230578,
+          "min": 1402.0352738846589,
+          "p50": 1402.551771834757,
+          "p95": 1404.463596958562,
+          "stddev": 1.3995689361287649,
+          "unit": "tok/s"
+        },
+        "Tokens generated": {
+          "count": 3,
+          "max": 128.0,
+          "mean": 128.0,
+          "min": 128.0,
+          "p50": 128.0,
+          "p95": 128.0,
+          "stddev": 0.0,
+          "unit": "count"
+        }
+      },
+      "target": "LOKEN",
+      "url": "http://127.0.0.1:11435"
+    },
+    {
+      "coherence_pass": null,
+      "first_response_preview": "",
+      "iteration_errors": [],
+      "iterations": [],
+      "load_error": "not run: paired with safetensors weights only",
+      "load_time_ms": null,
+      "model": "deepseek-r1:32b",
+      "model_fingerprint": null,
+      "num_ctx": 4096,
+      "prompt": "1000",
+      "prompt_chars": 0,
+      "stats": {},
+      "target": "vLLM",
+      "url": ""
+    }
+  ],
+  "schema": "loken/2",
+  "subjects": {
+    "LOKEN": {
+      "devices": {
+        "compiled": {
+          "audio": true,
+          "cuda": true,
+          "image": true,
+          "midi": true,
+          "opencl": true,
+          "video": true,
+          "vulkan": false
+        },
+        "devices": [
+          {
+            "backend": "cuda",
+            "name": "NVIDIA GeForce RTX 5070 Ti",
+            "status": "available",
+            "type": "CUDA"
+          },
+          {
+            "backend": "cuda",
+            "name": "NVIDIA GeForce RTX 5060 Ti",
+            "status": "available",
+            "type": "CUDA"
+          },
+          {
+            "backend": "cpu",
+            "name": "CPU (32 cores)",
+            "status": "available",
+            "type": "CPU"
+          }
+        ]
+      },
+      "says": {
+        "commit": "802f561e1",
+        "loken": "0.4.2",
+        "version": "0.4.2"
+      },
+      "url": "http://127.0.0.1:11435"
+    },
+    "Ollama": {
+      "devices": null,
+      "says": {
+        "version": "0.40.12"
+      },
+      "url": "http://127.0.0.1:11434"
+    }
+  },
+  "timestamp": "2026-10-29",
+  "vllm_version": "0.32.0"
+}
