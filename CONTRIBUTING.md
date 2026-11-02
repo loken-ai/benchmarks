@@ -146,7 +146,8 @@ The search page reads `index.json`, which a browser does not load from a `file:/
 | `site/index.json` | every row of every table, with its figures as numbers |
 | `site/search.html`, `site/charts.html` | the pages that read `index.json` |
 
-CI publishes `site/` to GitHub Pages on every push to `main`.
+CI builds `site/` on every push to `main`.
+The repository `loken-ai.github.io` publishes it.
 The site and the footer of every page link to `docs/METHOD.md` on GitHub, so that file keeps its path.
 
 ## Documentation

@@ -33,7 +33,8 @@ Publish the records of your machine on the results site through a pull request.
    The checks run on every record the pull request adds or changes.
 <!-- site: end -->
 
-CI checks the records of the pull request, and publishes the results site from `main` only.
+CI checks the records of the pull request, and builds the results site from `main`.
+The repository `loken-ai.github.io` publishes the site, from the `main` it takes at its next publication.
 
 ```mermaid
 sequenceDiagram
@@ -41,7 +42,7 @@ sequenceDiagram
     participant F as Your fork
     participant P as Pull request
     participant CI as CI
-    participant S as Results site
+    participant S as loken-ai.github.io
     C->>C: scripts/check.py on your records
     C->>F: push a branch with the new files of runs/
     F->>P: open against main
@@ -49,7 +50,7 @@ sequenceDiagram
     CI-->>P: accepted, or 1 REFUSED line per record
     P->>CI: merged into main
     CI->>CI: check every record, then scripts/site.py
-    CI->>S: publish the site on GitHub Pages
+    S->>S: takes main at its next publication
 ```
 
 Do not edit a record.

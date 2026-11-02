@@ -9,7 +9,8 @@ It installs the latest ollama and vLLM into a directory of its own, and measures
 The campaign and the results site meet only at `runs/`.
 The campaign files its records there, on the machine it measures.
 `scripts/site.py` builds the site from the records of a clone, on any machine.
-CI builds and publishes it on every push to `main`.
+CI builds it on every push to `main`, to check that it builds.
+The repository `loken-ai.github.io` publishes it.
 
 ```mermaid
 flowchart LR

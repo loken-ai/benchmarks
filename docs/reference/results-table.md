@@ -80,13 +80,15 @@ A positive Delta is shown in green, a negative one in red.
 
 ```mermaid
 flowchart TD
-    L["loken row of the cell"] --> Q1{"loken answer coherent?"}
-    Q1 -- no --> X["no Delta, the row marked incoherent"]
+    L(["loken row of the cell"]) --> Q0{"loken ran and answered?"}
+    Q0 -- no --> X0(["no Delta, the row says why"])
+    Q0 -- yes --> Q1{"loken answer coherent?"}
+    Q1 -- no --> X(["no Delta, the row marked incoherent"])
     Q1 -- yes --> P["each other engine at its newest version in the cell"]
     P --> F["leave out an incoherent answer, and a token count more than 2% from loken's"]
     F --> Q2{"a figure left for this half?"}
-    Q2 -- no --> B["Delta blank for this half"]
-    Q2 -- yes --> D["Delta against the best figure left"]
+    Q2 -- no --> B(["Delta blank for this half"])
+    Q2 -- yes --> D(["Delta against the best figure left"])
 ```
 
 A Delta is blank in each of these cases:
