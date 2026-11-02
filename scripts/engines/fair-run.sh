@@ -120,7 +120,7 @@ blob_bytes_of() {
   tag="${name%:*}/${name##*:}"
   # A name that starts with a host (hf.co/...) keeps it; a bare one is the library's.
   case "${tag%%/*}" in
-    *.*) mf="$MODELS_DIR/manifests/$tag" ;;
+    *.*) mf="$MODELS_DIR/manifests/$tag"; [ -f "$mf" ] || mf="$MODELS_DIR/manifests-v2/$tag" ;;
     *) case "${name%:*}" in */*) mf="$MODELS_DIR/manifests/registry.ollama.ai/$tag" ;;
                              *) mf="$MODELS_DIR/manifests/registry.ollama.ai/library/$tag" ;; esac ;;
   esac

@@ -178,21 +178,41 @@ if src.startswith(hf.rstrip("/") + "/"):
     print(src + "\t" + ((d.get("details") or {}).get("quantization_level") or "latest"))
 ' "$HF_STORE" 2>/dev/null
 }
+# The file name a Modelfile gives ollama for a model file. The first shard of a split GGUF
+# (name-00001-of-00002.gguf) becomes the wildcard that matches every shard (name-*.gguf), which is
+# how ollama reads a split model. Any other file is named as it is.
+ollama_from() { # ollama_from <file>
+    if [[ "$1" =~ ^(.*)-[0-9]{5}-of-[0-9]{5}\.gguf$ ]]; then
+        printf '%s-*.gguf' "${BASH_REMATCH[1]}"
+    else
+        printf '%s' "$1"
+    fi
+}
+# The manifest file of a model in an ollama store, whichever manifest folder holds it: older
+# ollama writes <store>/manifests, newer ollama <store>/manifests-v2. Nothing when there is none.
+ollama_manifest() { # ollama_manifest <store> <host/repository/tag>
+    local d
+    for d in manifests manifests-v2; do
+        if [ -s "$1/$d/$2" ]; then printf '%s' "$1/$d/$2"; return 0; fi
+    done
+    return 0
+}
 ollama_import() { # ollama_import <model>
     local m="$1" src quant name manifest port="${OLLAMA_PORT:-11434}" pid mf out
     IFS=$'\t' read -r src quant <<< "$(hf_source "$m")"
     name="hf.co/$m:$quant"
-    manifest="$OLLAMA_STORE/manifests/hf.co/$m/$quant"
-    if [ ! -s "$manifest" ]; then
+    manifest="$(ollama_manifest "$OLLAMA_STORE" "hf.co/$m/$quant")"
+    if [ -z "$manifest" ]; then
         mf="$(mktemp -d)"
-        printf 'FROM %s\n' "$src" > "$mf/Modelfile"
+        printf 'FROM %s\n' "$(ollama_from "$src")" > "$mf/Modelfile"
         OLLAMA_HOST="127.0.0.1:$port" OLLAMA_MODELS="$OLLAMA_STORE" "$OLLAMA_BIN" serve >"$mf/serve.log" 2>&1 &
         pid=$!
         for _ in $(seq 1 60); do curl -sf -m 2 "http://127.0.0.1:$port/api/version" >/dev/null && break; sleep 1; done
         out="$(OLLAMA_HOST="127.0.0.1:$port" "$OLLAMA_BIN" create "$name" -f "$mf/Modelfile" 2>&1 | tail -1)"
         kill "$pid" 2>/dev/null; wait "$pid" 2>/dev/null
         rm -rf "$mf"
-        if [ ! -s "$manifest" ]; then
+        manifest="$(ollama_manifest "$OLLAMA_STORE" "hf.co/$m/$quant")"
+        if [ -z "$manifest" ]; then
             echo "ollama could not import $m from $src: $out" >&2
             return 0
         fi
