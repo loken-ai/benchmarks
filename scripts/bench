@@ -126,8 +126,9 @@ def modality(caps):
     if "tts" in caps: return "tts"
     if "asr" in caps: return "asr"
     if "completion" in caps: return "text"
+    if "embedding" in caps: return "embedding"
     if not caps: return "unserved"   # listed from the store, no engine in this build serves it
-    return sorted(caps)[0]           # embedding, video, midi...: no lokprof clock, an error cell
+    return sorted(caps)[0]           # video, midi...: no lokprof clock, an error cell
 for m in json.load(sys.stdin).get("models", []):
     fmt = (m.get("details") or {}).get("format") or ""
     print(m["name"] + "\t" + modality(m.get("capabilities")) + "\t" + fmt)
@@ -263,7 +264,7 @@ plan_cell() { # plan_cell <model> <modality> <format>
     local m="$1" mod="$2" fmt="$3"
     local engines="loken" amod="$mod" vserve="" err=""
     case "$mod" in
-        text|vision)
+        text|vision|embedding)
             case "$fmt" in
                 gguf)        engines="ollama loken" ;;
                 safetensors) engines="loken vllm"; vserve="hf:$m --name $m" ;;

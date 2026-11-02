@@ -7,6 +7,7 @@ All notable changes to the benchmarks. The format follows [Keep a Changelog](htt
 ### Added
 
 - Campaign: resume with a new loken release on the failed cells only.
+- Campaign: measure the embedding models.
 
 ### Fixed
 
