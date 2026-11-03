@@ -296,3 +296,24 @@ class Architecture(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class SealTest(unittest.TestCase):
+    """A record text sealed by lokprof is refused once it changes."""
+
+    @staticmethod
+    def sealed(body):
+        import hashlib
+        import json
+        blank = json.dumps({**body, "seal": "0" * 64}, indent=2)
+        return blank.replace("0" * 64, hashlib.sha256(blank.encode()).hexdigest(), 1)
+
+    def test_an_untouched_text_holds_its_seal(self):
+        self.assertTrue(R.seal_holds(self.sealed({"results": [1, 2]})))
+
+    def test_a_changed_text_does_not(self):
+        text = self.sealed({"results": [1, 2]})
+        self.assertFalse(R.seal_holds(text.replace("2", "3")))
+
+    def test_a_text_without_a_seal_has_nothing_to_check(self):
+        self.assertTrue(R.seal_holds('{"results": []}'))

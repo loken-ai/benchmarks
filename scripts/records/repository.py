@@ -6,7 +6,7 @@ a one-way hash: a run names no person and no machine.
 A run is anonymised when it enters: the time of day is cut from its dates, and the machine block
 keeps only the fields listed here. Anything else a recorder wrote about the machine is dropped.
 """
-import datetime, json, pathlib, re
+import datetime, hashlib, json, pathlib, re
 
 import classes as C
 import hardware as H
@@ -26,6 +26,20 @@ CARD_FIELDS = ("index", "name", "vendor", "arch", "vram_mib", "power_cap_w", "pc
 # A string of a record that names a place or a person.
 LOCAL = re.compile(r"(/home/|/Users/|/mnt/|[A-Za-z]:\\|\b192\.168\.|\b10\.\d+\.\d+\.\d+|"
                    r"\b172\.(1[6-9]|2\d|3[01])\.\d+\.\d+|[\w.+-]+@[\w-]+\.[\w.-]+)")
+
+
+def seal_holds(text):
+    """Whether a record text written by lokprof holds the seal of its own content: the SHA-256 of the
+    text with 64 zeros in place of the seal. A text without a seal holds nothing to check."""
+    try:
+        seal = json.loads(text).get("seal")
+    except ValueError:
+        return False
+    if seal is None:
+        return True
+    if not isinstance(seal, str):
+        return False
+    return hashlib.sha256(text.replace(seal, "0" * 64, 1).encode()).hexdigest() == seal
 
 
 def submitter(record):

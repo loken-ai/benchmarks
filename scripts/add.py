@@ -3,7 +3,7 @@
 
     scripts/add.py results/*.json
 
-Each record loses the time of day of its dates and every machine field outside the list in
+A record that carries a lokprof seal must still match it. Each record loses the time of day of its dates and every machine field outside the list in
 records/repository.py, then is filed under the hash of what is kept. A record already held is
 skipped. A refused record is not filed, and its reasons are printed.
 """
@@ -31,7 +31,13 @@ def main(argv):
     refused = []
     for src in map(pathlib.Path, argv):
         try:
+            if not R.seal_holds(src.read_text()):
+                refused.append((src, ["its seal does not match: the file changed after lokprof wrote it"]))
+                continue
+            # The filed text differs from the written one (dates cut, fields dropped), so the seal
+            # goes: the file is named by the hash of what is kept.
             record = R.anonymised(R.read(src))
+            record.pop("seal", None)
         except Exception as e:
             refused.append((src, [f"not readable JSON: {e}"]))
             continue
