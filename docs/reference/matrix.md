@@ -75,7 +75,9 @@ The capability loken declares decides the clock of lokprof.
 | asr | other | loken | word error rate, on `/v1/audio/transcriptions` |
 | text or vision | neither | none | an error cell: unknown format |
 | no capability | any | none | an error cell: no engine of this build serves the model |
-| embedding, video, midi | any | none | an error cell: lokprof has no clock for it |
+| embedding | `gguf` | loken, ollama | input tok/s and latency, on `/v1/embeddings` |
+| embedding | `safetensors` | loken, vLLM | input tok/s and latency, on `/v1/embeddings` |
+| video, midi | any | none | an error cell: lokprof has no clock for it |
 <!-- site: end -->
 
 A model in both formats is 2 catalogue entries.
@@ -91,4 +93,5 @@ vLLM transcribes the same checkpoint, its context held to the decoder length the
 | text, vision | the answer is not degenerate |
 | image | the pipeline is deterministic at a fixed seed |
 | tts | it produced audio, not silence |
+| embedding | every vector is finite and not all zeros |
 | asr | it produced a transcript |
