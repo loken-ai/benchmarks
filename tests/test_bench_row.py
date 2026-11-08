@@ -42,6 +42,16 @@ class Rendering(unittest.TestCase):
         self.assertEqual(said["a/image"], ["not run: no image generation endpoint in the harness"])
         self.assertEqual(said["b/gguf"], ["unsupported: model 'b/gguf' not found"])
 
+    def test_an_embedding_cell_with_its_figures_in_the_stats_is_not_failed(self):
+        done = self.cell("e/embed", None)
+        done["stats"] = {"Embedding latency": {"mean": 12.0}}
+        empty = self.cell("f/embed", None)
+        docs = B.load_docs([({"config": {"streaming": True}, "results": [done, empty]}, "x.json", "r1")])
+        (key_done,) = [k for k in docs if k[0] == "e/embed"]
+        (key_empty,) = [k for k in docs if k[0] == "f/embed"]
+        self.assertFalse(docs[key_done]["ollama"]["failed"])
+        self.assertTrue(docs[key_empty]["ollama"]["failed"])
+
 
 if __name__ == "__main__":
     unittest.main()

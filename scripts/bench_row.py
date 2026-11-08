@@ -323,7 +323,9 @@ def rows(d, mode, device):
             # iteration: either way no rate, and the result file carries the reason.
             "impossible": bool(r.get("load_error")),
             "reason": r.get("load_error") or "",
-            "failed": not (r.get("iterations") or []) and not r.get("load_error"),
+            # An embedding cell keeps no iteration: its figures are in the stats.
+            "failed": not (r.get("iterations") or []) and not r.get("load_error")
+                and "Embedding latency" not in st,
         }
     return out
 
