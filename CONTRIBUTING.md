@@ -47,7 +47,6 @@ Do not edit a record, and do not add one taken under another protocol than the c
 | `bench.toml.example` | the settings a campaign reads |
 | `runs/` | the shared records, 1 folder per hardware id |
 | `tests/` | the tests |
-| `docs/` | the documentation, 1 page per file of the documentation site |
 
 `bench.toml`, `results/` and `site/` stay out of git.
 
@@ -148,15 +147,9 @@ The search page reads `index.json`, which a browser does not load from a `file:/
 
 CI builds `site/` on every push to `main`.
 The repository `loken-ai.github.io` publishes it.
-The site and the footer of every page link to `docs/METHOD.md` on GitHub, so that file keeps its path.
+The site and the footer of every page link to the method page of the documentation site.
 
 ## Documentation
 
-The documentation follows the conventions of the family, with the widgets of the documentation site.
-Before a pull request that touches it:
-
-```sh
-dkt lint --enable site-annotation docs
-```
-
-A page of `docs/` names no file of `scripts/` other than a command the reader runs.
+The documentation lives in the `loken-ai.github.io` repository, under `docs/site/06-benchmarks`.
+A page names no file of `scripts/` other than a command the reader runs.

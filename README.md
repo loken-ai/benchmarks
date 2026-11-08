@@ -17,7 +17,7 @@ The campaign needs Linux, Python 3.11, `curl`, a `lokend` built from [loken](htt
 ## State
 
 The campaign runs on NVIDIA and AMD cards, through CUDA, ROCm, Vulkan and OpenCL, and on the host.
-It measures text and vision against ollama and vLLM, and image generation, speech synthesis, audio generation and speech recognition.
+It measures text, vision and embedding against ollama and vLLM, and image generation, speech synthesis, audio generation and speech recognition.
 
 ## Documents
 
