@@ -50,7 +50,7 @@ def page(title, body, depth=0, active="", description=""):
 <footer><div class="wrap">
 <span>Runs are published under <a href="{REPO}/blob/main/LICENSE-DATA">CC BY 4.0</a>, the code under MIT or Apache-2.0.</span>
 <a href="{REPO}">Run the campaign and share your runs</a>
-<a href="{REPO}/blob/main/docs/METHOD.md">How a cell is measured</a>
+<a href="https://loken-ai.github.io/benchmarks/method/">How a cell is measured</a>
 <a href="https://github.com/loken-ai/loken">loken</a>
 </div></footer>
 </body>

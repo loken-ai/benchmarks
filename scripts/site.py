@@ -181,7 +181,7 @@ def main():
                 f'<h1>{P.esc(info["title"])}</h1>\n<p class="sub">{P.esc(info["cpu"])}</p>\n'
                 f'<div class="chips">{chips}<span class="chip">hardware id {P.esc(hid)}</span></div>\n'
                 f'<section class="stats">{tiles}</section>\n<h2>Architecture</h2>\n{P.specs(machine, docs)}\n'
-                f'<p class="note">Columns as in the <a href="{P.REPO}/blob/main/docs/METHOD.md">method</a>. Each rate reads '
+                f'<p class="note">Columns as in the <a href="https://loken-ai.github.io/benchmarks/method/">method</a>. Each rate reads '
                 f'cold / warm. A row\'s Date (UTC) and Run name the record behind it; Status is that record\'s.</p>\n'
                 + "\n".join(sections) + '\n<script src="../table.js"></script>')
         (OUT / "hw" / f"{hid}.html").write_text(P.page(label, body, depth=1, active="index.html",
