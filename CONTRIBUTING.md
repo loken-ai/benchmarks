@@ -2,7 +2,7 @@
 
 ## Runs
 
-Share the runs of your machine as [Share your runs](docs/site/02-guides/share-your-runs.md) says.
+Share the runs of your machine as [Share your runs](https://loken-ai.github.io/benchmarks/share-your-runs/) says.
 Run `scripts/check.py` on your records before the pull request.
 Do not edit a record, and do not add one taken under another protocol than the campaign's.
 
@@ -125,7 +125,7 @@ Its `self_check` verifies the test vector of lokprof's `src/provenance.rs`.
 
 `scripts/records/repository.py` lists the fields a machine block, a node and a card may hold.
 `scripts/add.py` keeps those fields, cuts the dates to the day, and gives a CPU run the machine block of its host alone.
-`scripts/check.py` applies the checks that [Record](docs/site/03-reference/02-record.md#checks) lists, and CI runs it on every record a pull request adds or changes, and on every record on each push to `main`.
+`scripts/check.py` applies the checks that [Record](https://loken-ai.github.io/benchmarks/record/#checks) lists, and CI runs it on every record a pull request adds or changes, and on every record on each push to `main`.
 
 ## The site
 
