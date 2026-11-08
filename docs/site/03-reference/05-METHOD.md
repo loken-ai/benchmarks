@@ -1,11 +1,11 @@
 # Method
 
 Every engine of a cell is measured by the same tool, on the same prompt, with the same clock.
-[Read a results table](reference/results-table.md) gives each column.
+[Read a results table](03-results-table.md) gives each column.
 
 ## The cell
 
-[lokprof](https://github.com/loken-ai/lokprof) measures a cell, see [Concepts](start/concepts.md#cell), in 3 iterations, greedy, with a cap of 128 generated tokens.
+[lokprof](https://github.com/loken-ai/lokprof) measures a cell, see [Concepts](../01-get-started/04-concepts.md#cell), in 3 iterations, greedy, with a cap of 128 generated tokens.
 
 ## Engines run alone
 
@@ -81,7 +81,7 @@ Every vLLM comparison of that time carries this caveat.
 ## Delta
 
 A Delta compares loken with the best other engine of the cell.
-[Read a results table](reference/results-table.md#delta) gives its sign, its blank cases and the version of each other engine that counts.
+[Read a results table](03-results-table.md#delta) gives its sign, its blank cases and the version of each other engine that counts.
 
 The share of decode cells loken wins, on the results site, reads the same warm Deltas.
 
@@ -93,7 +93,7 @@ As a reference it would flatter loken, and as a loken row it would publish a Del
 The `incoherent` gemma4 cells are a tracked defect of loken, not a verdict on the models.
 The same weights answer correctly under ollama on several of those rows.
 
-[Read a results table](reference/results-table.md#cells-that-publish-no-rate) lists every mark.
+[Read a results table](03-results-table.md#cells-that-publish-no-rate) lists every mark.
 
 ## Read Tokens before the rate
 

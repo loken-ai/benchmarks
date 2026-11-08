@@ -90,7 +90,7 @@ A record turns `confirmed` when another host measured the same equivalence class
 | the day of the run, in UTC | a time of day, a mailbox |
 | the hardware id and the host id, 2 one-way hashes | |
 
-[Record](../reference/record.md) lists every field.
+[Record](../03-reference/02-record.md) lists every field.
 
 ## Troubleshooting
 

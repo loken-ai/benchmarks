@@ -23,16 +23,16 @@ It measures text and vision against ollama and vLLM, and image generation, speec
 
 | Document | Holds |
 |---|---|
-| [Overview](docs/start/overview.md) | how to read the results site, and what the campaign claims |
-| [Install](docs/start/install.md) and [First run](docs/start/first-run.md) | from a clone to a first record |
-| [Concepts](docs/start/concepts.md) | cell, protocol, record, equivalence class, status |
-| [Run the campaign](docs/guides/run-the-campaign.md) and [Share your runs](docs/guides/share-your-runs.md) | the 2 tasks |
-| [Method](docs/METHOD.md) | how a cell is measured and compared |
-| [Results table](docs/reference/results-table.md), [Record](docs/reference/record.md), [Matrix](docs/reference/matrix.md), [Settings](docs/reference/settings.md) | what is looked up |
+| [Overview](docs/site/01-get-started/01-overview.md) | how to read the results site, and what the campaign claims |
+| [Install](docs/site/01-get-started/02-install.md) and [First run](docs/site/01-get-started/03-first-run.md) | from a clone to a first record |
+| [Concepts](docs/site/01-get-started/04-concepts.md) | cell, protocol, record, equivalence class, status |
+| [Run the campaign](docs/site/02-guides/run-the-campaign.md) and [Share your runs](docs/site/02-guides/share-your-runs.md) | the 2 tasks |
+| [Method](docs/site/03-reference/05-METHOD.md) | how a cell is measured and compared |
+| [Results table](docs/site/03-reference/03-results-table.md), [Record](docs/site/03-reference/02-record.md), [Matrix](docs/site/03-reference/01-matrix.md), [Settings](docs/site/03-reference/04-settings.md) | what is looked up |
 
 ## Contributing
 
-Share your runs through a pull request, see [Share your runs](docs/guides/share-your-runs.md).
+Share your runs through a pull request, see [Share your runs](docs/site/02-guides/share-your-runs.md).
 [CONTRIBUTING.md](CONTRIBUTING.md) covers the code, the tests and the layout of the repository.
 
 ## Licence

@@ -49,7 +49,7 @@ cargo build --release
 ```
 
 The binary is `target/release/lokprof`.
-Name both binaries in `bench.toml`, see [Settings](../reference/settings.md).
+Name both binaries in `bench.toml`, see [Settings](../03-reference/04-settings.md).
 
 ### Check records and build the site
 

@@ -41,7 +41,7 @@ It holds the reason and no figure, so a missing rate never passes for a cell nob
 
 The protocol is what every cell of a campaign shares: 3 iterations, no warm-up, a cap of 128 generated tokens, a new prompt at each iteration, streaming on or off.
 A record states its protocol, and a record of another protocol is refused.
-[Method](../METHOD.md) says how a cell is measured under it.
+[Method](../03-reference/05-METHOD.md) says how a cell is measured under it.
 
 ## Record
 
@@ -50,7 +50,7 @@ It holds the cells of the run, the protocol, the versions of the engines and a d
 
 A record is filed once under the hash of its content.
 A rerun is a new record, and no record is overwritten.
-[Record](../reference/record.md) gives its format.
+[Record](../03-reference/02-record.md) gives its format.
 
 ## Hardware id and host id
 

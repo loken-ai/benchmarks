@@ -18,7 +18,7 @@ The fast pass, `scripts/bench run`, takes the first value of each axis.
 
 `context` is the window each engine is asked to reserve.
 `prompts` are 3 sizes of 1 text, in tokens counted with the Qwen3 tokenizer.
-[Method](../METHOD.md#prompts) gives their characters and words.
+[Method](05-METHOD.md#prompts) gives their characters and words.
 
 ## Order
 

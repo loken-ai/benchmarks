@@ -25,7 +25,7 @@ scripts/bench run
 ## What the campaign claims
 
 A Delta compares loken with the best other engine of the same cell, on the same machine, the same prompt and the same number of generated tokens.
-Each claim holds inside 1 cell, under the protocol of [the method](../METHOD.md).
+Each claim holds inside 1 cell, under the protocol of [the method](../03-reference/05-METHOD.md).
 
 The campaign claims no more than that:
 
@@ -34,7 +34,7 @@ The campaign claims no more than that:
 - `GPU` separates the cards from the host, not 1 card from 2.
 - A row of an engine that answered in a loop publishes no rate, whichever engine it is.
 - A rate over fewer generated tokens than its peer gets no Delta.
-- 2 records compare only inside 1 [equivalence class](concepts.md#equivalence-class).
+- 2 records compare only inside 1 [equivalence class](04-concepts.md#equivalence-class).
 
 ## How to read the site
 
@@ -48,7 +48,7 @@ CI rebuilds it from the records on every push to `main`.
 | [Charts](https://loken-ai.github.io/benchmarks/results/charts.html) | 1 rate of 1 model across context sizes, of every model on 1 hardware, or of 1 model across hardware |
 | [Search](https://loken-ai.github.io/benchmarks/results/search.html) | every row of every hardware, filtered by words, hardware, engine, device, mode, prompt and context, with a CSV download |
 
-[Read a results table](../reference/results-table.md) gives each column and each mark.
+[Read a results table](../03-reference/03-results-table.md) gives each column and each mark.
 
 ## What it does
 

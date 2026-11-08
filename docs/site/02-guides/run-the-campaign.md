@@ -5,7 +5,7 @@ Measure every model loken serves across the whole matrix, and file a record for 
 ## Before you start
 
 <!-- site: widget checklist id=benchmarks-run-prereq -->
-- [ ] [First run](../start/first-run.md) works on this machine.
+- [ ] [First run](../01-get-started/03-first-run.md) works on this machine.
 - [ ] `scripts/enable-energy.sh --check` reports every domain measurable.
 - [ ] Nothing else uses the cards or the processor for the hours the campaign takes.
 - [ ] Disk space for the vLLM environment, and for any safetensors checkpoint missing from the Hugging Face store.
@@ -23,7 +23,7 @@ config_dir = "loken"
 binary = "lokprof/lokprof"
 ```
 
-The models come from loken's catalogue, and the axes from [the matrix](../reference/matrix.md).
+The models come from loken's catalogue, and the axes from [the matrix](../03-reference/01-matrix.md).
 The store paths come from the `config.toml` in `config_dir`: `ollama_models_dir` and `huggingface_models_dir`.
 
 ## Run it
@@ -145,7 +145,7 @@ The run keeps the complete cells of an earlier `lokend`.
 It measures again the cells that failed, lost an iteration or are missing.
 <!-- site: end -->
 
-[Settings](../reference/settings.md) lists every variable.
+[Settings](../03-reference/04-settings.md) lists every variable.
 
 ## Troubleshooting
 

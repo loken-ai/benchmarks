@@ -5,7 +5,7 @@ Measure 1 model in the fast pass, check its record and see it on a local copy of
 ## Before you start
 
 <!-- site: widget checklist id=benchmarks-first-run-prereq -->
-- [ ] The repository is cloned and `lokend` and `lokprof` are built, see [Install](install.md).
+- [ ] The repository is cloned and `lokend` and `lokprof` are built, see [Install](02-install.md).
 - [ ] loken's configuration serves at least 1 model.
 - [ ] The cards are idle: no engine holds memory on them.
 <!-- site: end -->
@@ -14,7 +14,7 @@ Measure 1 model in the fast pass, check its record and see it on a local copy of
 
 <!-- site: widget steps id=benchmarks-first-run-steps -->
 1. Name the builds in `bench.toml`.
-   A relative path follows [Settings](../reference/settings.md#benchtoml).
+   A relative path follows [Settings](../03-reference/04-settings.md#benchtoml).
 
    ```toml
    [loken]
@@ -99,7 +99,7 @@ wrote <n> hardware page(s), <rows> row(s) in index.json, <n> record(s)
 <!-- site: end -->
 
 The first run installs vLLM and ollama into a directory of the campaign, and prints a `provisioning` line for each.
-The record of the cell lands under `runs/<hardware_id>/<run_id>.json`, see [Record](../reference/record.md).
+The record of the cell lands under `runs/<hardware_id>/<run_id>.json`, see [Record](../03-reference/02-record.md).
 
 The local site holds every record of the clone.
 The rows of the cell are on the page of the hardware id of the machine.
