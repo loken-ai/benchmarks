@@ -54,6 +54,38 @@ def protocol_problems(record):
            and not (k == "unique_prompt" and replay_removed(record))]
     if not isinstance(protocol.get("streaming"), bool):
         out.append(f"protocol streaming is {protocol.get('streaming')!r}, the campaign sets true or false")
+    out += sampling_problems(protocol.get("sampling"))
+    return out
+
+
+# A penalty that multiplies the logits leaves them unchanged at 1; the others add, and leave them
+# unchanged at 0.
+MULTIPLYING_PENALTIES = ("repeat_penalty", "repetition_penalty")
+
+
+def sampling_problems(sampling):
+    """Reasons to refuse the sampling a record says it sent, by route: the campaign asks every
+    engine for the most likely token, with penalties that leave the logits unchanged.
+    A record that does not state its sampling has nothing to check."""
+    if sampling is None:
+        return []
+    if not isinstance(sampling, dict):
+        return [f"protocol sampling is {sampling!r}, not an object of routes"]
+    out = []
+    for route, fields in sampling.items():
+        if not isinstance(fields, dict):
+            out.append(f"protocol sampling of {route} is {fields!r}, not an object of fields")
+            continue
+        if fields.get("temperature") != 0:
+            out.append(f"protocol sampling of {route} has temperature {fields.get('temperature')!r}, "
+                       "the campaign samples greedily at 0")
+        for key, value in fields.items():
+            if not key.endswith("_penalty"):
+                continue
+            neutral = 1 if key in MULTIPLYING_PENALTIES else 0
+            if value != neutral:
+                out.append(f"protocol sampling of {route} has {key} {value!r}, "
+                           f"the campaign leaves the logits unchanged at {neutral}")
     return out
 
 

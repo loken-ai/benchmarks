@@ -10,6 +10,7 @@ All notable changes to the benchmarks. The format follows [Keep a Changelog](htt
 - Campaign: measure the embedding models.
 - Records: refuse a record whose seal does not match.
 - Records: name the version of lokprof that measured the run.
+- Records: refuse a record that sampled other than greedily with neutral penalties.
 
 ### Fixed
 

@@ -215,6 +215,36 @@ class UniquePrompt(unittest.TestCase):
         self.assertEqual(K.protocol_problems(unique), [])
 
 
+class Sampling(unittest.TestCase):
+    GREEDY = {"/api/generate": {"temperature": 0.0, "repeat_penalty": 1.0, "presence_penalty": 0.0,
+                                "frequency_penalty": 0.0},
+              "/v1/completions": {"temperature": 0.0, "repetition_penalty": 1.0, "presence_penalty": 0.0,
+                                  "frequency_penalty": 0.0}}
+
+    def reasons(self, sampling):
+        protocol = {"iterations": 3, "warmup": 0, "max_tokens": 128, "streaming": True, "unique_prompt": True}
+        if sampling is not None:
+            protocol["sampling"] = sampling
+        return K.protocol_problems({"protocol": protocol, "results": []})
+
+    def test_greedy_sampling_with_neutral_penalties_is_accepted(self):
+        self.assertEqual(self.reasons(self.GREEDY), [])
+
+    def test_a_record_that_does_not_state_its_sampling_is_accepted(self):
+        self.assertEqual(self.reasons(None), [])
+
+    def test_a_temperature_above_0_is_refused(self):
+        warm = copy.deepcopy(self.GREEDY)
+        warm["/v1/completions"]["temperature"] = 0.7
+        self.assertTrue(any("/v1/completions has temperature 0.7" in why for why in self.reasons(warm)))
+
+    def test_a_penalty_that_changes_the_logits_is_refused(self):
+        for key, value in (("repeat_penalty", 1.1), ("presence_penalty", 0.5)):
+            changed = copy.deepcopy(self.GREEDY)
+            changed["/api/generate"][key] = value
+            self.assertTrue(any(f"has {key} {value}" in why for why in self.reasons(changed)))
+
+
 class PromptChecks(unittest.TestCase):
     def cell(self, label, chars):
         return {"target": "LOKEN", "model": "m", "prompt": label, "prompt_chars": chars}
