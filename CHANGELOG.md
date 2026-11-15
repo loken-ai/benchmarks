@@ -22,3 +22,4 @@ All notable changes to the benchmarks. The format follows [Keep a Changelog](htt
 - Campaign: start vLLM with the window of the cell.
 - Campaign: measure loken on OpenCL with the backends option.
 - Campaign: keep measuring the next models after a cell without a result.
+- Campaign: stop a backend sweep that the measured loken was not built for.

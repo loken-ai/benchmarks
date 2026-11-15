@@ -100,6 +100,8 @@ The driver stamps each scratch file with the modification time of the `lokend` m
 - **Declared windows.** It reads the window each model declares before the first cell stops loken, and skips the cells above it.
 - **Resume.** A cell is kept when the same `lokend` and the same engine versions measured it, and when every row kept a figure or a reason.
   `KEEP_EARLIER_BUILDS=1` also keeps the complete cells of an earlier `lokend`.
+- **Backends.** A `BACKEND=vulkan` or `BACKEND=opencl` sweep stops before any cell when the `lokend` measured was built without that backend.
+  The driver reads the features the `lokend` lists with its devices.
 - **Cell cap.** `timeout` stops a cell after `CELL_CAP` seconds, and the driver reports it interrupted.
 
 ## The isolation protocol
