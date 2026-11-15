@@ -62,5 +62,20 @@ class SoundIterations(unittest.TestCase):
         self.assertEqual(info["dec"], (None, None))
 
 
+class EndedEarly(unittest.TestCase):
+    def test_a_side_that_stopped_against_one_at_the_limit_ended_early(self):
+        info = loken_info(row("LOKEN", [60.0, 66.0, 70.0], finish="stop", tokens=40),
+                          row("Ollama", [50.0, 55.0, 60.0], finish="length", tokens=128))
+        self.assertEqual(info["blank"], "loken ended early")
+        info = loken_info(row("LOKEN", [60.0, 66.0, 70.0], finish="length", tokens=128),
+                          row("Ollama", [50.0, 55.0, 60.0], finish="stop", tokens=40))
+        self.assertEqual(info["blank"], "peer ended early")
+
+    def test_lengths_that_differ_without_finish_reasons_still_read_tokens_differ(self):
+        info = loken_info(row("LOKEN", [60.0, 66.0, 70.0], tokens=40, with_verdict=False),
+                          row("Ollama", [50.0, 55.0, 60.0], tokens=128, with_verdict=False))
+        self.assertEqual(info["blank"], "tokens differ")
+
+
 if __name__ == "__main__":
     unittest.main()

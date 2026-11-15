@@ -56,7 +56,7 @@ class BlankReason(unittest.TestCase):
             with contextlib.redirect_stdout(out):
                 S.main(folder, brief=True)
         cold = out.getvalue().splitlines()[0]
-        self.assertIn("blank: 1 loken failed, 1 not run, 1 no peer row, 1 peer failed, 1 tokens differ, 0 other", cold)
+        self.assertIn("blank: 1 loken failed, 1 not run, 1 no peer row, 1 peer failed, 0 loken ended early, 0 peer ended early, 1 tokens differ, 0 other", cold)
 
 
 if __name__ == "__main__":

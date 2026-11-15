@@ -502,7 +502,15 @@ def over(v, kept):
 
 
 # Why a loken row has no delta, when it has none, in the order the reasons are checked.
-BLANKS = ("loken failed", "not run", "no peer row", "peer failed", "tokens differ", "other")
+BLANKS = ("loken failed", "not run", "no peer row", "peer failed", "loken ended early",
+          "peer ended early", "tokens differ", "other")
+
+
+def finish_of(v):
+    """Why the generations of a row ended, when all its compared iterations say the same."""
+    its = [v["its"][i] for i in v["kept"]] if v.get("kept") else v.get("its") or []
+    reasons = {it.get("finish") for it in its}
+    return reasons.pop() if len(reasons) == 1 else None
 
 
 def blank_reason(mine, peers):
@@ -512,6 +520,8 @@ def blank_reason(mine, peers):
     - not run: the harness has no measurement for the capability, on loken or on every peer.
     - no peer row: no peer engine has a row in the cell.
     - peer failed: every peer that was given the model could not run it.
+    - loken ended early, peer ended early: the answers are not of the same length, and one side
+      stopped on its own while the other ran to the token limit.
     - tokens differ: the answers are not of the same length.
     - other: anything else, such as energies over different domains.
     """
@@ -529,6 +539,11 @@ def blank_reason(mine, peers):
         return "peer failed"
     n = mine.get("ntok")
     if n and all(p.get("ntok") and abs(p["ntok"] - n) > 0.02 * n for p in ran):
+        ends = {finish_of(p) for p in ran}
+        if finish_of(mine) == "stop" and ends == {"length"}:
+            return "loken ended early"
+        if finish_of(mine) == "length" and ends == {"stop"}:
+            return "peer ended early"
         return "tokens differ"
     return "other"
 

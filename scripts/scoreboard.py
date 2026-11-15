@@ -121,7 +121,7 @@ def main(results_dir, brief=False):
         print(f"  blank, peer answer      {c['peer']}   (degenerate: not a free win)")
         print(f"  blank, both answers     {c['both']}   (degenerate on both: the model or the prompt)")
         for reason, n in c["blank"].items():
-            print(f"  blank, {reason:<17}{n}")
+            print(f"  blank, {reason:<18}{n}")
         if name == "warm":
             print(f"  cold only               {c['single']}   (a single iteration: no warm figure)")
         if c["losses"]:
