@@ -116,6 +116,8 @@ cell_context() { # cell_context <cell arguments>
 # OLLAMA_AS: the name ollama serves the model under, when it is not the cell's own (a Hugging Face
 # repository imported into the ollama store). OLLAMA_CELL_ARGS are the arguments with that name.
 OLLAMA_CELL_ARGS=("$@")
+# The model of the cell, the name every row of the merged record is keyed on.
+_cell_model="$_probe_model"
 if [ -n "${OLLAMA_AS:-}" ]; then
   _probe_model="$OLLAMA_AS"
   for _i in "${!OLLAMA_CELL_ARGS[@]}"; do
@@ -647,9 +649,11 @@ jq -s '
         engine_build: (map(.engine_build) | map(select(. != null)) | first),
         idle_energy_baseline: (map(.idle_energy_baseline) | map(select(. != null)) | first),
         config: .[0].config,
-        results: (map(.results) | add),
+        # The ollama row of a model ollama serves under another name joins the cell of its model.
+        results: (map(.results) | add
+                  | map(if $alias != "" and .model == $alias then .model = $cell else . end)),
       }
-    end' "${PARTS[@]}" > "$OUT"
+    end' --arg alias "${OLLAMA_AS:-}" --arg cell "$_cell_model" "${PARTS[@]}" > "$OUT"
 # A peer that did not start is a visible "impossible" cell for the model, never a silent absence.
 if _want ollama && [ ! -f "$TMP/ollama.json" ]; then FAILED+=("Ollama|$(failure_reason ollama)"); fi
 if _want vllm && [ "$BENCH_MODE" = gpu ] && [ -n "${VLLM_SERVE:-}" ] && [ ! -f "$TMP/vllm.json" ]; then

@@ -284,6 +284,23 @@ def request_latency(st):
     return stat(st, hits[0]) if len(hits) == 1 else None
 
 
+def cell_model(d):
+    """The model of the cell a record measured: the model of its loken row. One cell per record."""
+    names = {r["model"] for r in d.get("results", [])
+             if RETIRED_TARGETS.get(r["target"].lower(), r["target"].lower()) == "loken"}
+    return names.pop() if len(names) == 1 else None
+
+
+def row_model(r, cell):
+    """The model a row is keyed on. The driver imports a Hugging Face GGUF into ollama as
+    `hf.co/<repository>:<quantisation>`, and a record written before the merge folded that name
+    back holds it: such a row belongs to the cell of the repository."""
+    model = r["model"]
+    if cell and model.startswith("hf.co/") and model[len("hf.co/"):].rpartition(":")[0] == cell:
+        return cell
+    return model
+
+
 def rows(d, mode, device):
     path = d.get("converted_from") or d.get("timestamp")
     out = {}
@@ -292,6 +309,7 @@ def rows(d, mode, device):
     if not d.get("results"):
         print(f"skipping {path}: no results in it", file=sys.stderr)
         return {}
+    cell = cell_model(d)
     for r in d["results"]:
         st = r["stats"]
         jtok, jdom = energy_stat(st, "Energy J/tok")
@@ -305,7 +323,7 @@ def rows(d, mode, device):
         # cannot tell them apart keeps whichever was read last.
         target = r["target"].lower()
         target = RETIRED_TARGETS.get(target, target)
-        out.setdefault((r["model"], r["num_ctx"], r.get("prompt", "short"), mode, device), {})[target] = {
+        out.setdefault((row_model(r, cell), r["num_ctx"], r.get("prompt", "short"), mode, device), {})[target] = {
             # Prefill is prompt tokens over the time the bench itself measured to the first
             # one, NOT each engine's own prompt_tok_s, which is that engine's timer minus
             # whatever it does not count, and the engines do not leave out the same things:
