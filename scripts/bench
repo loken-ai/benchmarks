@@ -221,23 +221,37 @@ ollama_import() { # ollama_import <model>
     dedupe_blob "$manifest" "$src"
     printf '%s' "$name"
 }
-# The model blob of an ollama manifest made a hard link to the file it was copied from, when both
-# sit on one filesystem and hold the same bytes.
+# Every file of a model: each shard of a split GGUF, or the file itself.
+ollama_shards() { # ollama_shards <file>
+    if [[ "$1" =~ ^(.*)-[0-9]{5}-of-([0-9]{5})\.gguf$ ]]; then
+        compgen -G "${BASH_REMATCH[1]}-[0-9][0-9][0-9][0-9][0-9]-of-${BASH_REMATCH[2]}.gguf"
+    else
+        printf '%s\n' "$1"
+    fi
+}
+# Each model blob of an ollama manifest made a hard link to the file it was copied from, when both
+# sit on one filesystem and hold the same bytes. A split model has 1 blob per shard.
 dedupe_blob() { # dedupe_blob <manifest> <source file>
-    local digest blob
-    digest="$(python3 -c '
+    local digest blob shard shards=()
+    mapfile -t shards < <(ollama_shards "$2")
+    while read -r digest; do
+        blob="$OLLAMA_STORE/blobs/$digest"
+        [ -f "$blob" ] || continue
+        for shard in "${shards[@]}"; do
+            [ -f "$shard" ] || continue
+            [ "$(stat -c %i "$blob")" = "$(stat -Lc %i "$shard")" ] && break
+            [ "$(stat -c %d "$blob")" = "$(stat -Lc %d "$shard")" ] || continue
+            [ "$(stat -c %s "$blob")" = "$(stat -Lc %s "$shard")" ] || continue
+            cmp -s "$blob" "$shard" || continue
+            ln -f "$(readlink -f "$shard")" "$blob"
+            break
+        done
+    done < <(python3 -c '
 import sys, json
 for l in json.load(open(sys.argv[1])).get("layers", []):
     if l.get("mediaType", "").endswith(".model"):
         print(l["digest"].replace(":", "-"))
-' "$1")"
-    blob="$OLLAMA_STORE/blobs/$digest"
-    [ -f "$blob" ] && [ -f "$2" ] || return 0
-    [ "$(stat -c %i "$blob")" = "$(stat -Lc %i "$2")" ] && return 0
-    [ "$(stat -c %d "$blob")" = "$(stat -Lc %d "$2")" ] || return 0
-    [ "$(stat -c %s "$blob")" = "$(stat -Lc %s "$2")" ] || return 0
-    cmp -s "$blob" "$2" || return 0
-    ln -f "$(readlink -f "$2")" "$blob"
+' "$1")
 }
 
 # The context window a model declares, in tokens, from the metadata loken shows for it; nothing
