@@ -274,6 +274,16 @@ def energy_stat(st, prefix):
     # to remove first.
     return stat_warm(st, hits[0]), dom
 
+def request_latency(st):
+    """The time a request took, in ms, from the stats of a row.
+    lokprof names that time `<kind> latency` for every kind of request: E2E for text, Image,
+    Music, TTS, ASR and Embedding. None when the row served no request."""
+    if "E2E latency" in st:
+        return stat(st, "E2E latency")
+    hits = [k for k, v in st.items() if k.endswith(" latency") and isinstance(v, dict) and v.get("count", 1)]
+    return stat(st, hits[0]) if len(hits) == 1 else None
+
+
 def rows(d, mode, device):
     path = d.get("converted_from") or d.get("timestamp")
     out = {}
@@ -305,7 +315,7 @@ def rows(d, mode, device):
             "pre_c": pre[0], "pre_w": pre[1],
             "ttft_c": ttft[0], "ttft_w": ttft[1],
             "dec_c": dec[0], "dec_w": dec[1],
-            "e2e":     stat(st, "E2E latency"),
+            "e2e":     request_latency(st),
             # What the whole request cost. The per-token rate divides this by a token
             # count that is fixed per cell, so the two say the same thing at one size and
             # only the absolute one stays comparable when the size changes.
@@ -323,9 +333,10 @@ def rows(d, mode, device):
             # iteration: either way no rate, and the result file carries the reason.
             "impossible": bool(r.get("load_error")),
             "reason": r.get("load_error") or "",
-            # An embedding cell keeps no iteration: its figures are in the stats.
+            # A cell of embeddings, images, audio or transcripts keeps no iteration: its figures
+            # are in the stats, with the time of the requests it served.
             "failed": not (r.get("iterations") or []) and not r.get("load_error")
-                and "Embedding latency" not in st,
+                and request_latency(st) is None,
         }
     return out
 

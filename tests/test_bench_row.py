@@ -52,6 +52,24 @@ class Rendering(unittest.TestCase):
         self.assertFalse(docs[key_done]["ollama"]["failed"])
         self.assertTrue(docs[key_empty]["ollama"]["failed"])
 
+    def test_a_media_cell_with_its_latency_in_the_stats_is_measured(self):
+        kinds = ("Image latency", "Music latency", "TTS latency", "ASR latency")
+        cells = []
+        for n, kind in enumerate(kinds):
+            c = self.cell(f"m/{n}", None)
+            c["target"] = "LOKEN"
+            c["stats"] = {kind: {"count": 3, "mean": 900.0, "p50": 880.0}, "Real-time factor": {"count": 3, "mean": 0.2}}
+            cells.append(c)
+        load_only = self.cell("m/load", None)
+        load_only["target"] = "LOKEN"
+        load_only["stats"] = {"Model load": {"count": 1, "mean": 5000.0}}
+        docs = B.load_docs([({"config": {"streaming": True}, "results": cells + [load_only]}, "x.json", "r1")])
+        by_model = {k[0]: v["loken"] for k, v in docs.items()}
+        for n in range(len(kinds)):
+            self.assertFalse(by_model[f"m/{n}"]["failed"])
+            self.assertEqual(by_model[f"m/{n}"]["e2e"], 900.0)
+        self.assertTrue(by_model["m/load"]["failed"])
+
 
 if __name__ == "__main__":
     unittest.main()
