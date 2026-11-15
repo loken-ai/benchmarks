@@ -208,7 +208,8 @@ PKG_TEMP_SENSOR="${PKG_TEMP_SENSOR:-$(_discover_pkg_temp || true)}"   # milli-C,
 # Empty when neither can be asked.
 _gpu_hottest_c() {
   {
-    nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader,nounits 2>/dev/null
+    # nvidia-smi may print a fraction of a degree: the whole degrees are kept.
+    nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader,nounits 2>/dev/null | cut -d. -f1
     for _c in $(_amd_cards); do
       for _t in /sys/bus/pci/devices/"$_c"/hwmon/hwmon*/temp1_input; do
         [ -r "$_t" ] && echo $(( $(cat "$_t") / 1000 ))
