@@ -169,15 +169,21 @@ ollama_name() { # ollama_name <model>
     printf '%s' "${OLLAMA_AS[$m]}"
 }
 # "<file>\t<quantisation>" of a model loken reads from the Hugging Face store; nothing otherwise.
+# The file is the one loken's /api/show names, the model file without its companions.
+# The answer is kept for the whole run: the first cell stops the loken that answers it.
+declare -A HF_SOURCE=()
 hf_source() { # hf_source <model>
-    curl -sf -m 30 -X POST "$LOKEN_URL/api/show" -d "{\"name\":\"$1\"}" | python3 -c '
+    if [ -z "${HF_SOURCE[$1]+set}" ]; then
+        HF_SOURCE[$1]="$(curl -sf -m 30 -X POST "$LOKEN_URL/api/show" -d "{\"name\":\"$1\"}" | python3 -c '
 import sys, json
 d = json.load(sys.stdin)
 src = (d.get("modelfile") or "").partition("FROM ")[2].strip()
 hf = sys.argv[1]
 if src.startswith(hf.rstrip("/") + "/"):
     print(src + "\t" + ((d.get("details") or {}).get("quantization_level") or "latest"))
-' "$HF_STORE" 2>/dev/null
+' "$HF_STORE" 2>/dev/null)"
+    fi
+    printf '%s' "${HF_SOURCE[$1]}"
 }
 # The file name a Modelfile gives ollama for a model file. The first shard of a split GGUF
 # (name-00001-of-00002.gguf) becomes the wildcard that matches every shard (name-*.gguf), which is
@@ -572,10 +578,14 @@ run() {
     local models
     ensure_catalogue
     models="$(loken_models)"
-    # Each declared window is read now, while loken answers: the first cell stops that server.
-    local name kind
-    while IFS=$'\t' read -r name kind _; do
+    # Each declared window and each file ollama imports are read now, while loken answers: the
+    # first cell stops that server.
+    local name kind format
+    while IFS=$'\t' read -r name kind format; do
         case "$kind" in text|vision) model_context "$name" >/dev/null ;; esac
+        if [ -n "$HF_STORE" ] && [ "$format" = gguf ]; then
+            case "$kind" in text|vision|embedding) hf_source "$name" >/dev/null ;; esac
+        fi
     done <<< "$models"
     [ -n "$models" ] || die "loken returned no catalogue at $LOKEN_URL/api/tags (is it serving?)"
 

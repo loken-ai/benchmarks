@@ -30,6 +30,36 @@ def ollama_manifest(store, rel):
     return r.stdout
 
 
+def hf_source_twice(answer):
+    """`hf_source` asked twice for 1 model: once while loken answers, once after it stopped."""
+    text = open(BENCH).read()
+    source = re.search(r"^declare -A HF_SOURCE=\(\)\nhf_source\(\) \{.*?^\}\n", text, re.S | re.M)
+    script = (
+        source.group(0)
+        + 'curl() { printf "%s" "$ANSWER"; }\n'
+        + 'hf_source "$1" >/dev/null\n'
+        + "curl() { return 7; }\n"
+        + 'hf_source "$1"\n'
+    )
+    r = subprocess.run(
+        ["bash", "-c", script, "bash", "org/model"],
+        capture_output=True,
+        text=True,
+        env={**os.environ, "ANSWER": answer, "HF_STORE": "/hf", "LOKEN_URL": "http://loken"},
+    )
+    return r.stdout
+
+
+class HfSource(unittest.TestCase):
+    def test_the_file_read_while_loken_answers_is_kept_after_it_stops(self):
+        answer = '{"modelfile":"FROM /hf/hub/m/snap/m-Q4_K_M.gguf\\n","details":{"quantization_level":"Q4_K_M"}}'
+        self.assertEqual(hf_source_twice(answer), "/hf/hub/m/snap/m-Q4_K_M.gguf\tQ4_K_M")
+
+    def test_a_model_outside_the_store_has_no_source(self):
+        answer = '{"modelfile":"FROM /ollama/blobs/sha256-0\\n","details":{}}'
+        self.assertEqual(hf_source_twice(answer), "")
+
+
 class OllamaManifest(unittest.TestCase):
     def put(self, store, folder, rel):
         path = os.path.join(store, folder, rel)

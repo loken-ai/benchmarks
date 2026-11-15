@@ -94,6 +94,7 @@ The driver stamps each scratch file with the modification time of the `lokend` m
 - **Store consistency.** ollama and loken read the same store, because both derive it from the `config.toml` loken starts with.
 - **Hugging Face GGUF models.** ollama imports such a model once from the file loken loads, under `hf.co/<repository>:<quantisation>`.
   The copied blob is then replaced by a hard link to that file.
+  The driver asks loken for that file before the first cell stops loken.
 - **Idle cards.** A run refuses to start while an NVIDIA card is more than 5% busy or holds more than 600 MiB, or an AMD card is more than 5% busy.
   It reads the idle temperature of the cards once, before any cell.
 - **Declared windows.** It reads the window each model declares before the first cell stops loken, and skips the cells above it.
