@@ -25,7 +25,7 @@ PORT=8000
 GPU=1
 TP=1
 GMU=0.85
-MAXLEN=8192
+MAXLEN=""        # the window vLLM holds; empty takes the length the model declares
 DTYPE=""          # let vLLM/quant pick (AWQ->fp16); override with --dtype
 NAME=""
 REPO=""
@@ -53,7 +53,7 @@ done
 
 echo "  HF repo    : $REPO"
 echo "  Served as  : $NAME   (lokprof --models '$NAME')"
-echo "  Serving on : GPU$GPU  tp=$TP  port $PORT  max-len $MAXLEN  gpu-mem $GMU"
+echo "  Serving on : GPU$GPU  tp=$TP  port $PORT  max-len ${MAXLEN:-<declared>}  gpu-mem $GMU"
 echo "  HF cache   : $HF_HOME"
 echo
 
@@ -70,9 +70,9 @@ cmd=( "$VENV/bin/vllm" serve "$REPO"
       --served-model-name "$NAME"
       --port "$PORT"
       --tensor-parallel-size "$TP"
-      --max-model-len "$MAXLEN"
       --gpu-memory-utilization "$GMU" )
 [[ -n "$DTYPE" ]] && cmd+=( --dtype "$DTYPE" )
+[[ -n "$MAXLEN" ]] && cmd+=( --max-model-len "$MAXLEN" )
 cmd+=( "${EXTRA[@]}" )
 
 echo "+ ${cmd[*]}"

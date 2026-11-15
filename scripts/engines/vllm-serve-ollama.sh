@@ -28,7 +28,7 @@ PORT=8000
 GPU=1
 TP=1
 GMU=0.85
-MAXLEN=8192
+MAXLEN=""        # the window vLLM holds; empty takes the length the model declares
 TOKENIZER=""
 # GGUF quant only supports float16/float32 (NOT bfloat16), and vLLM warns
 # bf16 GGUF has precision issues on Blackwell - so default to float16.
@@ -121,7 +121,7 @@ esac
 sz=$(du -h "$BLOB" | cut -f1)
 echo "  Ollama tag : $TAG  (arch=$ARCH, $sz)"
 echo "  GGUF blob  : $BLOB"
-echo "  Serving on : GPU$GPU  tp=$TP  port $PORT  max-len $MAXLEN  gpu-mem $GMU"
+echo "  Serving on : GPU$GPU  tp=$TP  port $PORT  max-len ${MAXLEN:-<declared>}  gpu-mem $GMU"
 [[ -n "$TOKENIZER" ]] && echo "  Tokenizer  : $TOKENIZER (HF)" \
                       || echo "  Tokenizer  : <from GGUF metadata> (pass --tokenizer <hf-repo> if this fails)"
 echo
@@ -141,10 +141,10 @@ cmd=( "$VENV/bin/vllm" serve "$BLOB"
       --served-model-name "$TAG"
       --port "$PORT"
       --tensor-parallel-size "$TP"
-      --max-model-len "$MAXLEN"
       --dtype "$DTYPE"
       --gpu-memory-utilization "$GMU" )
 [[ -n "$TOKENIZER" ]] && cmd+=( --tokenizer "$TOKENIZER" )
+[[ -n "$MAXLEN" ]] && cmd+=( --max-model-len "$MAXLEN" )
 cmd+=( "${EXTRA[@]}" )
 
 echo "+ ${cmd[*]}"

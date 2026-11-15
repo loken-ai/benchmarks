@@ -103,6 +103,16 @@ for _a in "$@"; do
   if [ "$_seen_models" = 1 ]; then _probe_model="${_a%%,*}"; break; fi
   [ "$_a" = "--models" ] && _seen_models=1
 done
+# The largest window the cell asks for: the value of --num-ctx, a list separated by commas.
+# Nothing when the cell names none.
+cell_context() { # cell_context <cell arguments>
+  local seen=0 a
+  for a in "$@"; do
+    if [ "$seen" = 1 ]; then tr ',' '\n' <<< "$a" | sort -n | tail -1; return 0; fi
+    [ "$a" = --num-ctx ] && seen=1
+  done
+  return 0
+}
 # OLLAMA_AS: the name ollama serves the model under, when it is not the cell's own (a Hugging Face
 # repository imported into the ollama store). OLLAMA_CELL_ARGS are the arguments with that name.
 OLLAMA_CELL_ARGS=("$@")
@@ -294,6 +304,8 @@ failure_reason() { # failure_reason <engine>
   local log="$LOGDIR/$1.log"
   if grep -qiE "gated repo|401 Client Error" "$log" 2>/dev/null; then
     echo "the checkpoint is a gated repository on Hugging Face and the engine has no access to it"
+  elif grep -qiE "larger than the available KV cache memory" "$log" 2>/dev/null; then
+    echo "the window of the cell does not fit the memory the engine was given"
   elif grep -qiE "out of memory|OOM|OutOfMemory|not enough memory" "$log" 2>/dev/null; then
     echo "the weights do not fit the cards the engine was given"
   elif [ "${2:-0}" = 1 ]; then
@@ -557,16 +569,26 @@ if _want vllm && [ "$BENCH_MODE" = gpu ] && [ -n "${VLLM_SERVE:-}" ]; then
   # The number of cards it shards across is the policy's: the same cards the others were given.
   _vllm_args="$(gpu_extra_args_for vllm)"; _tp="${_vllm_args##* }"
   [ -n "$_tp" ] || _tp=1
+  # vLLM holds the window of the cell, the one the other engines are asked for. A target that
+  # names its own length (the decoder of a speech model) keeps it.
+  _max_len=""
+  if [[ " $VLLM_SERVE " != *" --max-len "* ]]; then
+    _cell_ctx=$(cell_context "$@")
+    [ -n "$_cell_ctx" ] && _max_len=" --max-len $_cell_ctx"
+  fi
   if [[ "$VLLM_SERVE" == hf:* ]]; then
     E_BIN[vllm]="$VLLM_HF_LAUNCHER"
-    E_ARGS[vllm]="${VLLM_SERVE#hf:} --gpu ${GPU_PIN:-0} --tp $_tp --port $VLLM_PORT"
+    E_ARGS[vllm]="${VLLM_SERVE#hf:} --gpu ${GPU_PIN:-0} --tp $_tp --port $VLLM_PORT$_max_len"
   else
     E_BIN[vllm]="$VLLM_TAG_LAUNCHER"
-    E_ARGS[vllm]="$VLLM_SERVE --gpu ${GPU_PIN:-0} --tp $_tp --port $VLLM_PORT"
+    E_ARGS[vllm]="$VLLM_SERVE --gpu ${GPU_PIN:-0} --tp $_tp --port $VLLM_PORT$_max_len"
   fi
   echo "  waiting for vLLM to finish loading weights (minutes)..."
   engine_start vllm && _vllm_up=1 || true
-  "$LOKPROF" --vllm "$VLLM_PORT" "${COMMON[@]}" "$@" -o "$TMP/vllm.json" || true
+  # A vLLM that did not come up is measured by nobody: its row gives the reason from its log.
+  if [ "${_vllm_up:-0}" = 1 ]; then
+    "$LOKPROF" --vllm "$VLLM_PORT" "${COMMON[@]}" "$@" -o "$TMP/vllm.json" || true
+  fi
   if [ -f "$TMP/vllm.json" ]; then PARTS+=("$TMP/vllm.json"); fi
 fi
 

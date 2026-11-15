@@ -109,6 +109,8 @@ The driver stamps each scratch file with the modification time of the `lokend` m
 - **1 engine at a time.** Before each engine it kills every engine process and its children, then waits until the NVIDIA cards hold less than 600 MiB.
 - **The same cards for everyone.** `gpu-policy.sh` resolves the cards to device UUIDs in PCI order, and applies 1 policy to every engine.
   ollama gets `OLLAMA_SCHED_SPREAD=1` when it sees more than 1 card, and vLLM a tensor parallel size.
+- **The window of the cell.** vLLM is started with the window the cell asks of every engine.
+  A vLLM that does not start is not measured, and its row gives the reason its log states.
 - **A pin only while the weights fit.** A restriction to 1 card is lifted when the weights exceed 91% of the largest card's memory.
   `GPU_PIN` is kept and only warned about.
 - **Cold, greedy, a new prompt each time.** lokprof runs with `--warmup 0 --unique-prompt --carbon-intensity 50`, and `--stream` unless `STREAM=0`.
