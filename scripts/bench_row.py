@@ -274,6 +274,29 @@ def energy_stat(st, prefix):
     # to remove first.
     return stat_warm(st, hits[0]), dom
 
+def iteration_data(i):
+    """What one iteration of a row holds for a comparison: its verdict and the rule that failed it,
+    why its generation ended, its token count, its rates, and its energy per token with the
+    domains it counted. A field the record does not hold is None: older records hold no verdict
+    and no finish reason."""
+    energy = i.get("energy") if isinstance(i.get("energy"), dict) else {}
+    whole = energy.get("complete") is True
+    domains = "+".join(energy.get("domains_counted") or []) if whole else ""
+    return {
+        "ok": i.get("coherence_pass"),
+        "rule": i.get("coherence_rule"),
+        "finish": i.get("finish_reason"),
+        "ntok": i.get("tokens_generated"),
+        "pre": _prefill(i),
+        "ttft": _ttft(i),
+        "dec": _decode(i),
+        "e2e": i.get("e2e_latency_ms"),
+        "jtok": energy.get("j_per_tok") if whole else None,
+        "jdom": domains or None,
+        "preview": i.get("response_preview") or "",
+    }
+
+
 def request_latency(st):
     """The time a request took, in ms, from the stats of a row.
     lokprof names that time `<kind> latency` for every kind of request: E2E for text, Image,
@@ -330,6 +353,9 @@ def rows(d, mode, device):
             # on a 15-token prompt ollama reported 652 tok/s where its own time to first token
             # implies 35. One definition, measured here, or the column is not a comparison.
             # Each of the three rates is kept cold and warm (see `cold_warm`).
+            # Each iteration on its own, and whether every one of them carries its verdict.
+            "its": [iteration_data(i) for i in its],
+            "verdicts": bool(its) and all("coherence_pass" in i for i in its),
             "pre_c": pre[0], "pre_w": pre[1],
             "ttft_c": ttft[0], "ttft_w": ttft[1],
             "dec_c": dec[0], "dec_w": dec[1],
@@ -426,6 +452,55 @@ def pair_delta(c, w):
     return f"{sign(c) or '-'} / {sign(w) or '-'}"
 
 
+def _median(values):
+    vals = sorted(v for v in values if v is not None)
+    if not vals:
+        return None
+    n = len(vals)
+    return vals[n // 2] if n % 2 else (vals[n // 2 - 1] + vals[n // 2]) / 2
+
+
+def sound_iterations(mine, peers):
+    """The iteration indexes to compare `mine` with `peers` over, or None to compare whole rows.
+
+    A cell compares the iterations no side flagged when every row carries a verdict per
+    iteration and one row fails at cell level. None when a row carries no verdicts, when no row
+    fails, or when every index is flagged on some side.
+    """
+    rows_ = [mine] + peers
+    if not peers or not all(r.get("verdicts") for r in rows_):
+        return None
+    if not any(r.get("coh") is False for r in rows_):
+        return None
+    n = min(len(r["its"]) for r in rows_)
+    kept = [i for i in range(n) if all(r["its"][i]["ok"] is not False for r in rows_)]
+    return kept or None
+
+
+def over(v, kept):
+    """The row `v` over the iterations `kept`, with the rules of a whole row: cold is the first
+    iteration when it is kept, warm the median of the later ones kept. The token count is their
+    mean, the energy per token their median when each counted the same domains."""
+    its = [v["its"][i] for i in kept]
+    later = [v["its"][i] for i in kept if i > 0]
+    first = v["its"][0] if 0 in kept else {}
+    out = dict(v)
+    for m in ("pre", "ttft", "dec"):
+        out[f"{m}_c"] = first.get(m)
+        out[f"{m}_w"] = _median(it[m] for it in later)
+    toks = [it["ntok"] for it in its if it["ntok"] is not None]
+    out["ntok"] = sum(toks) / len(toks) if toks else None
+    e2e = [it["e2e"] for it in its if it["e2e"] is not None]
+    out["e2e"] = sum(e2e) / len(e2e) if e2e else None
+    doms = {it["jdom"] for it in its}
+    jtok = _median(it["jtok"] for it in its) if len(doms) == 1 and None not in doms else None
+    out["j"], out["jdom"] = jtok, (doms.pop() if jtok is not None else None)
+    out["jreq"] = jtok * out["ntok"] if jtok is not None and out["ntok"] else None
+    out["coh"], out["preview"] = True, its[0]["preview"]
+    out["kept"] = kept
+    return out
+
+
 # Why a loken row has no delta, when it has none, in the order the reasons are checked.
 BLANKS = ("loken failed", "not run", "no peer row", "peer failed", "tokens differ", "other")
 
@@ -478,7 +553,18 @@ def cells_detail(merged):
         # decode: the same engine on the same model measured 398 tok/s over 30 tokens and 417
         # over 128. Every delta is therefore left blank unless the two sides produced the
         # same amount.
-        mine = by.get("loken", {}).get("ntok")
+        # A cell where one side flagged an iteration compares the iterations both sides
+        # kept, when every row says which iterations it flagged.
+        cmp = dict(by)
+        lk = by.get("loken")
+        if lk and not (lk.get("impossible") or lk.get("failed")):
+            ran = [k for k in newest_peers(by) if by[k].get("its")
+                   and not (by[k].get("impossible") or by[k].get("failed"))]
+            kept = sound_iterations(lk, [by[k] for k in ran])
+            if kept:
+                for k in ["loken"] + ran:
+                    cmp[k] = over(by[k], kept)
+        mine = cmp.get("loken", {}).get("ntok")
         same = lambda v: mine and v["ntok"] and abs(v["ntok"] - mine) <= 0.02 * mine
         # An engine that answered with a repeating pattern is not a baseline and not a
         # result. Excluding it from the comparison matters in both directions: as the
@@ -487,21 +573,23 @@ def cells_detail(merged):
         ok = lambda v: v.get("coh") is not False and not looks_looping(v.get("preview", ""))
         # Each peer at its newest version in this cell: an upgrade replaces the reference, it
         # does not leave the best of two releases standing against us.
-        peers = [by[k] for k in newest_peers(by) if same(by[k]) and ok(by[k])]
+        peers = [cmp[k] for k in newest_peers(by) if same(cmp[k]) and ok(cmp[k])]
         # Energy is comparable only when both sides counted the same domains: a total over the
         # cards alone against one that also counted the host is not a delta.
-        mydom = by.get("loken", {}).get("jdom")
+        mydom = cmp.get("loken", {}).get("jdom")
         othere = [v["jreq"] for v in peers if v["jreq"] and v.get("jdom") == mydom]
         ollama_cols = sorted(e for e in by if e.startswith("ollama@"))
         vllm_cols = sorted(e for e in by if e.startswith("vllm@"))
         variants = sorted(e for e in by if e.startswith("loken+"))
         for eng in ollama_cols + ["ollama"] + vllm_cols + ["vllm", "loken"] + variants:
             if eng not in by: continue
-            v = by[eng]
+            # The loken row shows the figures it is compared with; a peer row shows its own.
+            v = cmp[eng] if eng == "loken" else by[eng]
             info = {"key": key, "plain": eng == "loken", "mark": "", "dec": (None, None),
                     "pre": (None, None), "ttft": (None, None), "energy": None}
             if eng == "loken":
-                info["blank"] = blank_reason(v, [by[k] for k in newest_peers(by)])
+                info["blank"] = blank_reason(v, [cmp[k] for k in newest_peers(by)])
+                info["kept"] = v.get("kept")
             ds = ["", "", "", ""]
             if eng.startswith("loken") and ok(v):
                 for n, (m, low) in enumerate((("pre", False), ("ttft", True), ("dec", False))):
