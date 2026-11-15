@@ -35,6 +35,21 @@ _amd_cards() {
     done
 }
 
+# _amd_temps - the temperature of each AMD card, in whole C, from its first sensor that answers.
+# A card whose sensors do not answer prints nothing.
+_amd_temps() {
+    local card sensor milli
+    for card in $(_amd_cards); do
+        for sensor in /sys/bus/pci/devices/"$card"/hwmon/hwmon*/temp1_input; do
+            milli=$(cat "$sensor" 2>/dev/null) || continue
+            case "$milli" in ''|*[!0-9]*) continue ;; esac
+            echo $(( milli / 1000 ))
+            break
+        done
+    done
+    return 0
+}
+
 # detect_vendor - nvidia, amd, or all when the machine holds cards of both.
 detect_vendor() {
     local nvidia=0 amd=0

@@ -707,9 +707,7 @@ PY
             {
                 # nvidia-smi may print a fraction of a degree: the whole degrees are kept.
                 nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader,nounits 2>/dev/null | cut -d. -f1
-                for card in $(_amd_cards); do
-                    for t in /sys/bus/pci/devices/"$card"/hwmon/hwmon*/temp1_input; do [ -r "$t" ] && echo $(( $(cat "$t") / 1000 )); done
-                done
+                _amd_temps
             } | sort -rn | head -1
         )"
         if [ -n "$GPU_IDLE_C" ]; then

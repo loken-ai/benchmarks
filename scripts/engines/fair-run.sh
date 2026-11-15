@@ -220,12 +220,9 @@ _gpu_hottest_c() {
   {
     # nvidia-smi may print a fraction of a degree: the whole degrees are kept.
     nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader,nounits 2>/dev/null | cut -d. -f1
-    for _c in $(_amd_cards); do
-      for _t in /sys/bus/pci/devices/"$_c"/hwmon/hwmon*/temp1_input; do
-        [ -r "$_t" ] && echo $(( $(cat "$_t") / 1000 ))
-      done
-    done
+    _amd_temps
   } | sort -rn | head -1
+  return 0
 }
 # The idle floor, read before any engine starts. A campaign that begins on hot cards records a
 # floor it can meet, which is the honest failure: the gate then admits it is gating on a warm
@@ -296,6 +293,11 @@ kill_all() {
   done
   sleep 3   # extra settle: VRAM "used" can read low before the allocator fully releases
 }
+# Every engine a cell started stops with the cell, however the script ends: an error, a signal
+# or the cell cap.
+_engines_started=""
+trap '[ -z "$_engines_started" ] || kill_all' EXIT
+trap 'exit 143' TERM INT HUP
 # wait_url <url> [seconds] [must-contain] - an engine answering is not an engine ready:
 # vLLM serves /v1/models while the weights are still loading, so the third argument lets a
 # probe demand a substring rather than a status code.
@@ -374,9 +376,14 @@ engine_start() {
     guard=(systemd-run --user --scope --quiet -p "MemoryMax=${avail_kib}K" -p MemorySwapMax=0 --)
   fi
   # gpu_env_for prints KEY=VALUE words, and the split is the point.
+  # The engine replaces the subshell, so the pid file names the engine itself.
+  # Its output goes to its log: nothing of this script's output stays open in it.
+  _engines_started=1
   # shellcheck disable=SC2046
   ( cd "${E_CWD[$n]:-$PWD}" \
-    && env $(gpu_env_for "$n") ${E_ENV[$n]:-} nohup "${guard[@]}" "${E_BIN[$n]}" ${E_ARGS[$n]:-} >"$log" 2>&1 & echo $! >"$LOGDIR/$n.pid" )
+    && exec env $(gpu_env_for "$n") ${E_ENV[$n]:-} nohup "${guard[@]}" "${E_BIN[$n]}" ${E_ARGS[$n]:-} ) \
+    >"$log" 2>&1 </dev/null &
+  echo $! >"$LOGDIR/$n.pid"
   local up=0
   wait_url "${E_PROBE[$n]}" "${E_WAIT[$n]:-60}" "${E_WANT[$n]:-}" "$LOGDIR/$n.pid" || up=$?
   if [ "$up" = 2 ]; then
@@ -607,6 +614,7 @@ if _want vllm && [ "$BENCH_MODE" = gpu ] && [ -n "${VLLM_SERVE:-}" ]; then
 fi
 
 kill_all
+_engines_started=""
 # -- merge the per-engine results into one file -------------------------------
 if [ "${#PARTS[@]}" -eq 0 ]; then
   echo ">> no engine produced a result" >&2

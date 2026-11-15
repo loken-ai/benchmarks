@@ -110,6 +110,7 @@ It stamps the version `lokprof --version` prints as `lokprof_version`.
 `scripts/engines/fair-run.sh` measures 1 cell, and the driver does not reimplement it.
 
 - **1 engine at a time.** Before each engine it kills every engine process and its children, then waits until the NVIDIA cards hold less than 600 MiB.
+  An engine writes only to its log, and stops with its cell however the cell ends.
 - **The same cards for everyone.** `gpu-policy.sh` resolves the cards to device UUIDs in PCI order, and applies 1 policy to every engine.
   ollama gets `OLLAMA_SCHED_SPREAD=1` when it sees more than 1 card, and vLLM a tensor parallel size.
 - **The window of the cell.** vLLM is started with the window the cell asks of every engine.
