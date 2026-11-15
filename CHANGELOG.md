@@ -9,6 +9,7 @@ All notable changes to the benchmarks. The format follows [Keep a Changelog](htt
 - Campaign: resume with a new loken release on the failed cells only.
 - Campaign: measure the embedding models.
 - Records: refuse a record whose seal does not match.
+- Records: name the version of lokprof that measured the run.
 
 ### Fixed
 

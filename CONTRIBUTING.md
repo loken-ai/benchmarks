@@ -86,6 +86,7 @@ Nothing a campaign reads is retyped by hand.
 | `results/lokend-catalogue.log` | the output of the `lokend` the driver starts for the catalogue |
 
 The driver stamps each scratch file with the modification time of the `lokend` measured, as `engine_build`, and with the versions of the peer engines that produced a cell.
+It stamps the version `lokprof --version` prints as `lokprof_version`.
 
 ## What the driver guards
 

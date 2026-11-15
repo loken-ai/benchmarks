@@ -396,16 +396,19 @@ json.dump(doc, open(out, "w"))
 PY
 }
 
-# Stamp a freshly measured result with the binary build and the versions of the engines that
-# actually produced a row in it. The report reads the version from here, so a row never carries the
+# Stamp a freshly measured result with the binary build, the version of lokprof and the versions
+# of the engines that actually produced a row in it. The report reads the version from here, so a row never carries the
 # version installed when the report was generated - only the one it was measured with.
 stamp_result() { # stamp_result <file> <stamp> <prompt label> <modality> <format> <engines>
-    python3 - "$1" "$2" "${OLLAMA_VER:-}" "${VLLM_VER:-}" "$3" "$4" "$5" "$6" <<'PY'
+    python3 - "$1" "$2" "${OLLAMA_VER:-}" "${VLLM_VER:-}" "$3" "$4" "$5" "$6" "${LOKPROF_VER:-}" <<'PY'
 import json, sys
 p, stamp, over, vver, label = sys.argv[1], int(sys.argv[2]), sys.argv[3], sys.argv[4], sys.argv[5]
-modality, fmt, planned = sys.argv[6], sys.argv[7], sys.argv[8].split()
+modality, fmt, planned, lver = sys.argv[6], sys.argv[7], sys.argv[8].split(), sys.argv[9]
 d = json.load(open(p))
 d["engine_build"] = stamp
+# The version of the lokprof that measured the cell.
+if lver:
+    d["lokprof_version"] = lver
 # lokprof names a prompt it was given as text "custom"; the protocol names it by its size in
 # tokens, and the text itself is the file of that name in prompts/, not part of the record.
 for r in d.get("results", []):
@@ -677,6 +680,8 @@ PY
     # A card is measured through one backend; the host has none to choose.
     [ "$BACKEND" = native ] || devices="gpu"
     local stamp; stamp=$(stat -c %Y "$LOKEN_BIN")
+    # The version lokprof prints of itself, stamped into every record.
+    LOKPROF_VER="$("$LOKPROF" --version 2>/dev/null | grep -oE '[0-9]+\.[0-9]+\.[0-9]+[^ ]*' | head -1)"
 
     cd "$ROOT" || die "cannot cd $ROOT"
     # The thermal floor, read once for the whole campaign while nothing works on the cards and
