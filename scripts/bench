@@ -764,6 +764,7 @@ PY
             fi
             # Measured into a file of its own: a run that writes nothing leaves no earlier result
             # to be stamped with this build.
+            # The cell reads nothing from the list of models the loop reads.
             rm -f "$out.part"
             oname=""
             if [[ " $engines " == *" ollama "* ]]; then
@@ -779,7 +780,7 @@ PY
                 scripts/engines/fair-run.sh --models "$m" --prompt "$(cat "$ROOT/prompts/$pr.txt")" --num-ctx "$ctx" \
                 --max-tokens "${MAXTOK:-128}" --iterations 3 --modality "$amod" \
                 "${asrargs[@]}" \
-                2>&1 | tail -4
+                </dev/null 2>&1 | tail -4
             rc=${PIPESTATUS[0]}
             if [ "$rc" = 124 ] || [ "$rc" = 137 ]; then
                 echo "cell interrupted after ${CELL_CAP:-7200}s: $m ctx=$ctx $pr stream=$st $dev"

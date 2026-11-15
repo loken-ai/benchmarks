@@ -608,6 +608,10 @@ fi
 
 kill_all
 # -- merge the per-engine results into one file -------------------------------
+if [ "${#PARTS[@]}" -eq 0 ]; then
+  echo ">> no engine produced a result" >&2
+  exit 1
+fi
 mkdir -p "$(dirname "$OUT")"
 # The envelope is rebuilt from the first part, so anything not named here is dropped. It
 # dropped the record of what produced the numbers - schema, machine, protocol - and the

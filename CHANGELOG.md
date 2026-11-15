@@ -21,3 +21,4 @@ All notable changes to the benchmarks. The format follows [Keep a Changelog](htt
 - Campaign: read the window of a safetensors model from its configuration.
 - Campaign: start vLLM with the window of the cell.
 - Campaign: measure loken on OpenCL with the backends option.
+- Campaign: keep measuring the next models after a cell without a result.
