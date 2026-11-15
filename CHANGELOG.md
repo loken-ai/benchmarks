@@ -18,3 +18,4 @@ All notable changes to the benchmarks. The format follows [Keep a Changelog](htt
 - Campaign: let a request take as long as its cell.
 - Campaign: stop an engine that asks for more memory than there is.
 - Campaign: select the host-only and Vulkan runs with the backends option.
+- Campaign: read the window of a safetensors model from its configuration.

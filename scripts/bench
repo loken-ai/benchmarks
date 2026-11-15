@@ -260,9 +260,10 @@ for l in json.load(open(sys.argv[1])).get("layers", []):
 ' "$1")
 }
 
-# The context window a model declares, in tokens, from the metadata loken shows for it; nothing
-# when the metadata states none (a checkpoint, a media model). A cell asking for more than a model
-# declares is skipped, never measured past the window.
+# The context window a model declares, in tokens, from the metadata loken shows for it, else from
+# the configuration of its checkpoint in the Hugging Face store; nothing when neither states one
+# (a media model). A cell asking for more than a model declares is skipped, never measured past
+# the window.
 declare -A DECLARED_CTX=()
 model_context() { # model_context <model>
     if [ -z "${DECLARED_CTX[$1]+set}" ]; then
@@ -272,8 +273,57 @@ import sys, json
 info = json.load(sys.stdin).get("model_info") or {}
 sizes = [v for k, v in info.items() if k.endswith(".context_length") and isinstance(v, int)]
 print(max(sizes) if sizes else "")' 2>/dev/null)"
+        [ -n "${DECLARED_CTX[$1]}" ] || DECLARED_CTX[$1]="$(checkpoint_context "$1")"
     fi
     printf '%s' "${DECLARED_CTX[$1]}"
+}
+# The window the config.json of a checkpoint in the Hugging Face store declares, read as loken
+# reads it: the first of its length keys, in the text model's fields before the file's own.
+# A speech tower that names its text model declares the window of that model.
+# Nothing when the store holds no configuration that states one.
+checkpoint_context() { # checkpoint_context <repository>
+    [ -n "${HF_HOME:-}" ] || return 0
+    local hub="$HF_HOME"
+    [ "$(basename "$hub")" = hub ] || hub="$hub/hub"
+    python3 - "$hub" "$1" <<'PY'
+import glob, json, os, sys
+hub, repo = sys.argv[1], sys.argv[2]
+KEYS = ("max_position_embeddings", "max_seq_len", "seq_length", "n_positions")
+def read(folder):
+    for path in sorted(glob.glob(os.path.join(glob.escape(folder), "snapshots", "*", "config.json"))):
+        try:
+            return json.load(open(path))
+        except (OSError, ValueError):
+            continue
+    return None
+def config(repo):
+    return read(os.path.join(hub, "models--" + repo.replace("/", "--")))
+def named(repo):
+    # The text model by its full id, else by its name under any owner.
+    found = config(repo)
+    if found is not None:
+        return found
+    suffix = "--" + repo.rsplit("/", 1)[-1].lower()
+    for folder in sorted(os.listdir(hub)) if os.path.isdir(hub) else []:
+        if folder.lower().startswith("models--") and folder.lower().endswith(suffix):
+            found = read(os.path.join(hub, folder))
+            if found is not None:
+                return found
+    return None
+def declared(c):
+    for key in KEYS:
+        for fields in (c.get("text_config"), c):
+            v = fields.get(key) if isinstance(fields, dict) else None
+            if isinstance(v, int) and not isinstance(v, bool) and v > 0:
+                return v
+    return None
+c = config(repo)
+n = declared(c) if isinstance(c, dict) else None
+if n is None and isinstance(c, dict) and "audio_config" in c and isinstance(c.get("text_model_id"), str):
+    t = named(c["text_model_id"])
+    n = declared(t) if isinstance(t, dict) else None
+print(n or "", end="")
+PY
 }
 
 # The engines that can serve one cell, and how lokprof must run it, from the modality and the format.

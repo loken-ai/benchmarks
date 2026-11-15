@@ -71,7 +71,7 @@ Nothing a campaign reads is retyped by hand.
 | the store paths | the `config.toml` loken starts with: `ollama_models_dir`, `huggingface_models_dir` |
 | the model list | loken's catalogue, `GET /api/tags` |
 | the capability and the format of a model | the same catalogue entry: `capabilities` and `details.format` |
-| the window a model declares | `model_info` of `POST /api/show` |
+| the window a model declares | `model_info` of `POST /api/show`, else the `config.json` of its checkpoint in the Hugging Face store |
 | the matrix axes | `matrix.toml`, public ids only |
 | ollama and vLLM | the latest releases, installed under `results/engines/` |
 | the speech recognition recording | `fixtures/asr/` |
