@@ -333,6 +333,20 @@ wait_url() {
   return 1
 }
 
+# The placement of every model a loken log loaded, 1 line each: the segments of its layers.
+loken_placements() { # loken_placements <log>
+  sed 's/\x1b\[[0-9;]*m//g' "$1" 2>/dev/null | sed -n 's/.*loaded: layers \(.*\) (kv_quant=.*/\1/p; t; s/.*loaded: layers \(.*\)$/\1/p'
+}
+# Whether placements name the backend on every line and the host on none.
+wholly_on() { # wholly_on <backend> <placements>
+  local line
+  [ -n "$2" ] || return 1
+  while IFS= read -r line; do
+    case "$line" in *CPU*) return 1 ;; *"$1("*) ;; *) return 1 ;; esac
+  done <<< "$2"
+  return 0
+}
+
 # -- THE ENGINES --------------------------------------------------------------------------
 # One declaration each. Everything below starts, probes and stops them identically; what
 # differs between them is DATA in this table, not three shapes of code further down.
@@ -409,11 +423,13 @@ BACKEND="${BACKEND:-native}"
 case "$BACKEND" in
   native) ;;
   vulkan|opencl)
-    E_ENV[loken]="CUDA_VISIBLE_DEVICES=-1 HIP_VISIBLE_DEVICES=-1"
     if [ "$BACKEND" = opencl ]; then
       _loken_alone=1
       echo ">> backend opencl: loken alone, no reference engine runs this backend" >&2
+      # The card stays visible to loken: the OpenCL runtime of NVIDIA hides the cards that
+      # CUDA_VISIBLE_DEVICES hides. --backends below leaves CUDA and ROCm out of loken.
     else
+      E_ENV[loken]="CUDA_VISIBLE_DEVICES=-1 HIP_VISIBLE_DEVICES=-1"
       case "$GPU_VENDOR" in amd) _card_default=AMD ;; intel) _card_default=Intel ;; *) _card_default=NVIDIA ;; esac
       VULKAN_CARD="${VULKAN_CARD:-$_card_default}"
       command -v vulkaninfo >/dev/null 2>&1 || { echo "backend vulkan needs vulkaninfo to find the card" >&2; exit 2; }
@@ -439,9 +455,10 @@ case "$BACKEND" in
         echo "BACKEND=vulkan is refused: this machine has $_vk_count Vulkan GPUs and loken cannot be told to use only one" >&2
         exit 2
       fi
-      LOKEN_EXTRA=(--backends vulkan)
-      E_ARGS[loken]="serve --models-dir $MODELS_DIR --keep-alive 30m ${LOKEN_EXTRA[*]}"
     fi
+    # loken computes on the backend alone, and refuses a placement that leaves work on the host.
+    LOKEN_EXTRA=(--backends "$BACKEND")
+    E_ARGS[loken]="serve --models-dir $MODELS_DIR --keep-alive 30m ${LOKEN_EXTRA[*]}"
     ;;
   *) echo "BACKEND must be native, vulkan or opencl, not '$BACKEND'" >&2; exit 2 ;;
 esac
@@ -542,17 +559,14 @@ echo ">> LOKEN${LOKEN_EXTRA:+ ${LOKEN_EXTRA[*]}} ..."
 engine_start loken || true
 cool_wait
 "$LOKPROF" --loken http://127.0.0.1:$LOKEN_PORT "${NUMGPU[@]}" "${COMMON[@]}" "$@" -o "$TMP/loken.json" || true
-# A backend run records loken only if the model ran on that backend alone. loken places layers
-# the backend cannot hold on the host, and a host rate under a Vulkan or OpenCL name would be
-# read as the backend's: the cell then carries the peer alone, and says why.
-if [ -f "$TMP/loken.json" ] && [ "$BACKEND" != native ]; then
-  _placed=$(sed 's/\x1b\[[0-9;]*m//g' "$LOGDIR/loken.log" 2>/dev/null | grep -oE "loaded: layers [^ ]+" | tail -1)
-  case "$_placed" in
-    *"$BACKEND("*) case "$_placed" in *CPU*) _placed="" ;; esac ;;
-    *) _placed="" ;;
-  esac
-  if [ -z "$_placed" ]; then
-    echo "  warning: loken did not run wholly on $BACKEND (placement: $(sed 's/\x1b\[[0-9;]*m//g' "$LOGDIR/loken.log" 2>/dev/null | grep -oE "loaded: layers [^ ]+" | tail -1)) - not recorded" >&2
+# A backend run records loken only if every model it loaded ran on that backend alone. A host
+# rate under a Vulkan or OpenCL name would be read as the backend's: the cell then carries the
+# peer alone, and says why. A part that holds errors only is kept: it says why loken did not run.
+if [ -f "$TMP/loken.json" ] && [ "$BACKEND" != native ] \
+    && jq -e '[.results[]? | select((.iterations // []) | length > 0)] | length > 0' "$TMP/loken.json" >/dev/null 2>&1; then
+  _placements=$(loken_placements "$LOGDIR/loken.log")
+  if ! wholly_on "$BACKEND" "$_placements"; then
+    echo "  warning: loken did not run wholly on $BACKEND (placement: ${_placements:-none}) - not recorded" >&2
     rm -f "$TMP/loken.json"
   fi
 fi
