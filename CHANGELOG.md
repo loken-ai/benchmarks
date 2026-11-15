@@ -26,3 +26,4 @@ All notable changes to the benchmarks. The format follows [Keep a Changelog](htt
 - Campaign: stop a backend sweep that the measured loken was not built for.
 - Campaign: end a cell that fails after an engine started instead of waiting on it.
 - Table: keep a measured image, audio or speech cell out of the failed ones.
+- Campaign: count each blank cell of the score line under its own reason.

@@ -61,7 +61,8 @@ def tally(detail, t):
     ours = {i["key"] for _, i in detail if i["plain"] and i["mark"] == "incoherent"}
     peers = {i["key"] for r, i in detail if "loken" not in r[5] and i["mark"] == "incoherent"}
     both = ours & peers
-    c = dict(won=0, lost_energy=0, lost_decode=0, ours=0, peer=0, both=0, uneven=0, single=0, losses=[])
+    c = dict(won=0, lost_energy=0, lost_decode=0, ours=0, peer=0, both=0, single=0, losses=[],
+             blank={reason: 0 for reason in B.BLANKS})
     for r, i in detail:
         if not i["plain"]:
             continue
@@ -76,7 +77,7 @@ def tally(detail, t):
             elif i["key"] in peers:
                 c["peer"] += 1
             else:
-                c["uneven"] += 1
+                c["blank"][i.get("blank", "other")] += 1
             continue
         where = f"{r[0]} {r[1]} {r[2]} {r[3]} {r[4]}"
         if d > 0 and e > 0:
@@ -101,10 +102,11 @@ def main(results_dir, brief=False):
         # Two lines after every cell, because a campaign that only scores itself at the end
         # cannot tell a correction from a regression while there is still time to act.
         for name, _, c in counts:
+            reasons = ", ".join(f"{n} {reason}" for reason, n in c["blank"].items())
             print(f"  goal {name}: {c['won']}/{c['total']} cells win on BOTH axes"
                   f"   ({c['lost_decode']} throughput, {c['lost_energy']} energy"
-                  f" | blank: {c['ours']} ours, {c['peer']} peer, {c['both']} both,"
-                  f" {c['uneven']} uneven tokens, {c['single']} cold only){age}")
+                  f" | blank: {reasons}, degenerate {c['ours']} ours {c['peer']} peer {c['both']} both,"
+                  f" {c['single']} cold only){age}")
         return 0 if complete else 1
     if v and v[0] != v[1]:
         print(f"  WARNING: {v[1]-v[0]} of {v[1]} files come from an earlier binary.")
@@ -118,7 +120,8 @@ def main(results_dir, brief=False):
         print(f"  blank, our answer       {c['ours']}   (degenerate: the cell is a defect)")
         print(f"  blank, peer answer      {c['peer']}   (degenerate: not a free win)")
         print(f"  blank, both answers     {c['both']}   (degenerate on both: the model or the prompt)")
-        print(f"  blank, uneven tokens    {c['uneven']}")
+        for reason, n in c["blank"].items():
+            print(f"  blank, {reason:<17}{n}")
         if name == "warm":
             print(f"  cold only               {c['single']}   (a single iteration: no warm figure)")
         if c["losses"]:

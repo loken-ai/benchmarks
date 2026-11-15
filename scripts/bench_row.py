@@ -426,6 +426,38 @@ def pair_delta(c, w):
     return f"{sign(c) or '-'} / {sign(w) or '-'}"
 
 
+# Why a loken row has no delta, when it has none, in the order the reasons are checked.
+BLANKS = ("loken failed", "not run", "no peer row", "peer failed", "tokens differ", "other")
+
+
+def blank_reason(mine, peers):
+    """Why the loken row `mine` has no delta against `peers`, the newest row of each peer engine.
+
+    - loken failed: loken could not run the model, does not serve it, or answered nothing.
+    - not run: the harness has no measurement for the capability, on loken or on every peer.
+    - no peer row: no peer engine has a row in the cell.
+    - peer failed: every peer that was given the model could not run it.
+    - tokens differ: the answers are not of the same length.
+    - other: anything else, such as energies over different domains.
+    """
+    if mine.get("impossible"):
+        return "not run" if mark_of(mine.get("reason")) == "not run" else "loken failed"
+    if mine.get("failed") or (mine.get("ntok") is not None and mine["ntok"] <= 1):
+        return "loken failed"
+    if not peers:
+        return "no peer row"
+    given = [p for p in peers if not (p.get("impossible") and mark_of(p.get("reason")) == "not run")]
+    if not given:
+        return "not run"
+    ran = [p for p in given if not (p.get("impossible") or p.get("failed"))]
+    if not ran:
+        return "peer failed"
+    n = mine.get("ntok")
+    if n and all(p.get("ntok") and abs(p["ntok"] - n) > 0.02 * n for p in ran):
+        return "tokens differ"
+    return "other"
+
+
 def cells(merged):
     """The report's rows. See `cells_detail` for the numbers behind them."""
     return [r for r, _ in cells_detail(merged)]
@@ -434,7 +466,8 @@ def cells(merged):
 def cells_detail(merged):
     """(row, info) per cell and engine. `info` carries the deltas as numbers for the scoreboard:
     `plain` (the unvaried loken row), `mark` (the word that replaces the rates, or ""), `key`,
-    and, for a loken row, `dec` = (cold, warm), `pre`, `ttft` and `energy` percentages."""
+    and, for a loken row, `dec` = (cold, warm), `pre`, `ttft` and `energy` percentages.
+    The plain loken row also carries `blank`, the reason `blank_reason` gives."""
     out = []
     for key, by in sorted(merged.items(), key=lambda x: (x[0][0], x[0][1], x[0][2], x[0][3], x[0][4])):
         model, ctx, prompt, mode, device = key
@@ -467,6 +500,8 @@ def cells_detail(merged):
             v = by[eng]
             info = {"key": key, "plain": eng == "loken", "mark": "", "dec": (None, None),
                     "pre": (None, None), "ttft": (None, None), "energy": None}
+            if eng == "loken":
+                info["blank"] = blank_reason(v, [by[k] for k in newest_peers(by)])
             ds = ["", "", "", ""]
             if eng.startswith("loken") and ok(v):
                 for n, (m, low) in enumerate((("pre", False), ("ttft", True), ("dec", False))):
