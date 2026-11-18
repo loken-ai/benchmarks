@@ -1,0 +1,884 @@
+{
+  "config": {
+    "carbon_intensity_gco2_per_kwh": 50.0,
+    "custom_prompt": null,
+    "energy_measure": true,
+    "gpu_sample": true,
+    "iterations": 3,
+    "max_tokens": 128,
+    "models": [
+      "qwen3:latest"
+    ],
+    "num_ctx": [
+      4096
+    ],
+    "num_gpu": null,
+    "prompts": [
+      "100"
+    ],
+    "quality_base_sha256": null,
+    "replay_trace_sha256": null,
+    "session_id": null,
+    "streaming": false,
+    "top_logprobs": null,
+    "unique_prompt": true,
+    "warmup": 0
+  },
+  "engine_build": 1794751149,
+  "idle_energy_baseline": null,
+  "lokprof_version": "0.6.0",
+  "machine": {
+    "cpu": "AMD Ryzen 9 9950X3D 16-Core Processor",
+    "cpu_flags": [
+      "avx2",
+      "fma",
+      "bmi2",
+      "f16c",
+      "avx512f",
+      "avx512bw",
+      "avx512vl",
+      "avx512_vnni",
+      "avx512_bf16"
+    ],
+    "driver": "620.70.06",
+    "gpus": [
+      {
+        "arch": "sm_120",
+        "index": 0,
+        "name": "NVIDIA GeForce RTX 5070 Ti",
+        "pcie_gen": 5,
+        "pcie_width": 8,
+        "power_cap_w": 300,
+        "vendor": "nvidia",
+        "vram_mib": 16303
+      },
+      {
+        "arch": "sm_120",
+        "index": 1,
+        "name": "NVIDIA GeForce RTX 5060 Ti",
+        "pcie_gen": 5,
+        "pcie_width": 8,
+        "power_cap_w": 180,
+        "vendor": "nvidia",
+        "vram_mib": 16311
+      }
+    ],
+    "hardware_id": "de70d1e2f726faf5",
+    "host_id": "12973014bbf73a88",
+    "kernel": "6.12.115+deb13.1-amd64",
+    "os": "Debian GNU/Linux 13 (trixie)",
+    "ram_gib": 60,
+    "sockets": 1,
+    "threads": 32
+  },
+  "ollama_version": "0.40.16",
+  "protocol": {
+    "cards_by_uuid": null,
+    "engines_seen": [
+      "llama-server",
+      "ollama"
+    ],
+    "gpu_temps_c_at_start": [
+      48,
+      43
+    ],
+    "iterations": 3,
+    "max_tokens": 128,
+    "prefix_reuse_offered": false,
+    "streaming": false,
+    "unique_prompt": true,
+    "warmup": 0
+  },
+  "results": [
+    {
+      "coherence_pass": true,
+      "first_response_preview": "... Okay, I need to figure out what the user is asking for here. They provided a passage that starts with \"Call me Ishma...",
+      "iteration_errors": [],
+      "iterations": [
+        {
+          "completion_tok_s": 26.466775621463146,
+          "degenerate": false,
+          "e2e_latency_ms": 4836.252131,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 422.461322,
+            "cpu_rapl_available": true,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 4.860938452,
+            "energy_j": 925.246322000149,
+            "gco2_per_tok": 0.00010039565125869673,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 502.785000000149,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": null,
+            "j_per_tok": 7.228486890626164,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": 0.0020079130251739346
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 53.746893617021264,
+              "power_peak_w": 111.266,
+              "samples": 47,
+              "util_avg_pct": 9,
+              "util_peak_pct": 33,
+              "vram_avg_mb": 1587,
+              "vram_peak_mb": 5539
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 41.44791489361702,
+              "power_peak_w": 111.47,
+              "samples": 47,
+              "util_avg_pct": 20,
+              "util_peak_pct": 66,
+              "vram_avg_mb": 1598,
+              "vram_peak_mb": 5319
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 10,
+            "cpu_peak_pct": 84,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 79,
+            "rss_peak_mb": 564,
+            "samples": 25,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 1,
+          "load_time_ms": 3386.605507,
+          "prompt_tok_s": 656.0882560202172,
+          "prompt_tokens": 108,
+          "response_preview": "... Okay, I need to figure out what the user is asking for here. They provided a passage that starts with \"Call me Ishma...",
+          "server_decode_tok_s": 99.69251091165685,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 4836.252131
+        },
+        {
+          "completion_tok_s": 98.65057344923244,
+          "degenerate": false,
+          "e2e_latency_ms": 1297.50893,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 141.145838,
+            "cpu_rapl_available": true,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 1.317734229,
+            "energy_j": 407.9018379972582,
+            "gco2_per_tok": 4.4260182074355274e-05,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 266.7559999972582,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": null,
+            "j_per_tok": 3.18673310935358,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": 0.0008852036414871055
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 100.61907142857142,
+              "power_peak_w": 111.646,
+              "samples": 14,
+              "util_avg_pct": 25,
+              "util_peak_pct": 33,
+              "vram_avg_mb": 3017,
+              "vram_peak_mb": 3017
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 100.62471428571428,
+              "power_peak_w": 111.969,
+              "samples": 14,
+              "util_avg_pct": 51,
+              "util_peak_pct": 66,
+              "vram_avg_mb": 3091,
+              "vram_peak_mb": 3091
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 0,
+            "cpu_peak_pct": 4,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 42,
+            "rss_peak_mb": 42,
+            "samples": 8,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 2,
+          "load_time_ms": 0.908444,
+          "prompt_tok_s": 3886.4298823275394,
+          "prompt_tokens": 108,
+          "response_preview": "... Okay, I need to figure out what the user is asking for here. They provided a passage that starts with \"Call me Ishma...",
+          "server_decode_tok_s": 101.56634345293828,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 1297.50893
+        },
+        {
+          "completion_tok_s": 98.85037347721473,
+          "degenerate": false,
+          "e2e_latency_ms": 1294.886357,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 141.283435,
+            "cpu_rapl_available": true,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 1.315569002,
+            "energy_j": 410.52443499666214,
+            "gco2_per_tok": 4.454475206126976e-05,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 269.24099999666214,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": null,
+            "j_per_tok": 3.207222148411423,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": 0.0008908950412253952
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 94.46071428571427,
+              "power_peak_w": 111.926,
+              "samples": 14,
+              "util_avg_pct": 25,
+              "util_peak_pct": 32,
+              "vram_avg_mb": 3017,
+              "vram_peak_mb": 3017
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 94.6947857142857,
+              "power_peak_w": 112.428,
+              "samples": 14,
+              "util_avg_pct": 51,
+              "util_peak_pct": 66,
+              "vram_avg_mb": 3091,
+              "vram_peak_mb": 3091
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 0,
+            "cpu_peak_pct": 4,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 42,
+            "rss_peak_mb": 42,
+            "samples": 8,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 3,
+          "load_time_ms": 1.000365,
+          "prompt_tok_s": 3897.9319305590648,
+          "prompt_tokens": 108,
+          "response_preview": "... Okay, I need to figure out what the user is asking for here. They provided a passage that starts with \"Call me Ishma...",
+          "server_decode_tok_s": 101.77866162650253,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 1294.886357
+        }
+      ],
+      "load_error": null,
+      "load_time_ms": 2225.862542,
+      "model": "qwen3:latest",
+      "model_fingerprint": {
+        "modified_at": "2026-10-14",
+        "parameter_size": "8.2B",
+        "quantization_level": "Q4_K_M"
+      },
+      "num_ctx": 4096,
+      "prompt": "100",
+      "prompt_chars": 451,
+      "quality": null,
+      "settings": {
+        "keep_alive": "30m",
+        "model_digest": "a01413b41f2355f529c1b02bbe97544d5f7e5f82f25e7fe835da249282856fd8",
+        "request_timeout_s": 7200,
+        "running_format": null
+      },
+      "stats": {
+        "Carbon gCO2/tok [gpu+cpu_pkg]": {
+          "count": 3,
+          "max": 0.00010039565125869673,
+          "mean": 6.306686179810725e-05,
+          "min": 4.4260182074355274e-05,
+          "p50": 4.454475206126976e-05,
+          "p95": 9.481056133895402e-05,
+          "stddev": 3.2327993085932896e-05,
+          "unit": "g"
+        },
+        "Completion tok/s": {
+          "count": 3,
+          "max": 98.85037347721473,
+          "mean": 74.6559075159701,
+          "min": 26.466775621463146,
+          "p50": 98.65057344923244,
+          "p95": 98.83039347441651,
+          "stddev": 41.73313197655355,
+          "unit": "tok/s"
+        },
+        "E2E latency": {
+          "count": 3,
+          "max": 4836.252131,
+          "mean": 2476.215806,
+          "min": 1294.886357,
+          "p50": 1297.50893,
+          "p95": 4482.3778109,
+          "stddev": 2043.8518319491545,
+          "unit": "ms"
+        },
+        "Energy J/tok [gpu+cpu_pkg]": {
+          "count": 3,
+          "max": 7.228486890626164,
+          "mean": 4.540814049463722,
+          "min": 3.18673310935358,
+          "p50": 3.207222148411423,
+          "p95": 6.82636041640469,
+          "stddev": 2.327615502187168,
+          "unit": "J"
+        },
+        "Energy Wh/tok [gpu+cpu_pkg]": {
+          "count": 3,
+          "max": 0.0020079130251739346,
+          "mean": 0.001261337235962145,
+          "min": 0.0008852036414871055,
+          "p50": 0.0008908950412253952,
+          "p95": 0.0018962112267790806,
+          "stddev": 0.0006465598617186579,
+          "unit": "Wh"
+        },
+        "Model load": {
+          "count": 1,
+          "max": 2225.862542,
+          "mean": 2225.862542,
+          "min": 2225.862542,
+          "p50": 2225.862542,
+          "p95": 2225.862542,
+          "stddev": 0.0,
+          "unit": "ms"
+        },
+        "Prompt tok/s": {
+          "count": 3,
+          "max": 3897.9319305590648,
+          "mean": 2813.4833563022735,
+          "min": 656.0882560202172,
+          "p50": 3886.4298823275394,
+          "p95": 3896.7817257359125,
+          "stddev": 1868.3678139807346,
+          "unit": "tok/s"
+        },
+        "Tokens generated": {
+          "count": 3,
+          "max": 128.0,
+          "mean": 128.0,
+          "min": 128.0,
+          "p50": 128.0,
+          "p95": 128.0,
+          "stddev": 0.0,
+          "unit": "count"
+        }
+      },
+      "target": "Ollama",
+      "url": "http://127.0.0.1:11434"
+    },
+    {
+      "coherence_pass": true,
+      "first_response_preview": "... Okay, I need to figure out what the user is asking for here. They provided a passage that starts with \"Call me Ishma...",
+      "iteration_errors": [],
+      "iterations": [
+        {
+          "completion_tok_s": 138.589045413835,
+          "degenerate": false,
+          "e2e_latency_ms": 923.593922,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 84.337924,
+            "cpu_rapl_available": true,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 0.944453102,
+            "energy_j": 324.58392399934434,
+            "gco2_per_tok": 3.5219609808956636e-05,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 240.24599999934435,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": null,
+            "j_per_tok": 2.5358119062448776,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": 0.0007043921961791327
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 131.05360000000002,
+              "power_peak_w": 206.153,
+              "samples": 10,
+              "util_avg_pct": 90,
+              "util_peak_pct": 99,
+              "vram_avg_mb": 12806,
+              "vram_peak_mb": 13639
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 27.285199999999996,
+              "power_peak_w": 27.544,
+              "samples": 10,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 19,
+              "vram_peak_mb": 19
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 77,
+            "cpu_peak_pct": 104,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 1930,
+            "rss_peak_mb": 1931,
+            "samples": 6,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 1,
+          "load_time_ms": 8.861059,
+          "prompt_tok_s": 4949.035247441451,
+          "prompt_tokens": 108,
+          "response_preview": "... Okay, I need to figure out what the user is asking for here. They provided a passage that starts with \"Call me Ishma...",
+          "server_decode_tok_s": 144.97104707901795,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 923.593922
+        },
+        {
+          "completion_tok_s": 139.4805676969818,
+          "degenerate": false,
+          "e2e_latency_ms": 917.690558,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 82.769951,
+            "cpu_rapl_available": true,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 0.937160536,
+            "energy_j": 318.44195100211596,
+            "gco2_per_tok": 3.4553163086167095e-05,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 235.67200000211596,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": null,
+            "j_per_tok": 2.487827742204031,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": 0.0006910632617233419
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 205.2657,
+              "power_peak_w": 237.383,
+              "samples": 10,
+              "util_avg_pct": 80,
+              "util_peak_pct": 99,
+              "vram_avg_mb": 13669,
+              "vram_peak_mb": 13673
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 27.286400000000004,
+              "power_peak_w": 27.549,
+              "samples": 10,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 19,
+              "vram_peak_mb": 19
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 75,
+            "cpu_peak_pct": 104,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 1938,
+            "rss_peak_mb": 1939,
+            "samples": 6,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 2,
+          "load_time_ms": 7.077433,
+          "prompt_tok_s": 4766.095479543786,
+          "prompt_tokens": 108,
+          "response_preview": "... Okay, I need to figure out what the user is asking for here. They provided a text that starts with \"Call me Ishmael....",
+          "server_decode_tok_s": 144.38466411747646,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 917.690558
+        },
+        {
+          "completion_tok_s": 139.75328631763466,
+          "degenerate": false,
+          "e2e_latency_ms": 915.89975,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 82.541096,
+            "cpu_rapl_available": true,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 0.937365729,
+            "energy_j": 303.80809600092385,
+            "gco2_per_tok": 3.2965288194544686e-05,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 221.26700000092387,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": null,
+            "j_per_tok": 2.3735007500072176,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": 0.0006593057638908938
+          },
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 211.6732,
+              "power_peak_w": 246.459,
+              "samples": 10,
+              "util_avg_pct": 59,
+              "util_peak_pct": 99,
+              "vram_avg_mb": 13703,
+              "vram_peak_mb": 13707
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 20.657199999999996,
+              "power_peak_w": 26.236,
+              "samples": 10,
+              "util_avg_pct": 0,
+              "util_peak_pct": 0,
+              "vram_avg_mb": 19,
+              "vram_peak_mb": 19
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 76,
+            "cpu_peak_pct": 99,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 1939,
+            "rss_peak_mb": 1940,
+            "samples": 6,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 3,
+          "load_time_ms": 8.661307,
+          "prompt_tok_s": 5064.153683559886,
+          "prompt_tokens": 108,
+          "response_preview": "... Okay, I need to figure out what the user is asking for here. They provided a passage that starts with \"Call me Ishma...",
+          "server_decode_tok_s": 145.30129419817337,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 915.89975
+        }
+      ],
+      "load_error": null,
+      "load_time_ms": 2165.629841,
+      "model": "qwen3:latest",
+      "model_fingerprint": {
+        "modified_at": "",
+        "parameter_size": "8.2B",
+        "quantization_level": "Q4_K_M"
+      },
+      "num_ctx": 4096,
+      "prompt": "100",
+      "prompt_chars": 451,
+      "quality": null,
+      "settings": {
+        "keep_alive": "30m",
+        "model_digest": "sha256:05a61d37b08453e59290add468e3bb2f688e23a01e967fecb0e2fa41218cea76",
+        "request_timeout_s": 7200,
+        "running_format": "q4_K+q8_0+q6_K"
+      },
+      "stats": {
+        "Carbon gCO2/tok [gpu+cpu_pkg]": {
+          "count": 3,
+          "max": 3.5219609808956636e-05,
+          "mean": 3.4246020363222803e-05,
+          "min": 3.2965288194544686e-05,
+          "p50": 3.4553163086167095e-05,
+          "p95": 3.515296513667768e-05,
+          "stddev": 1.1581208807781898e-06,
+          "unit": "g"
+        },
+        "Completion tok/s": {
+          "count": 3,
+          "max": 139.75328631763466,
+          "mean": 139.27429980948384,
+          "min": 138.589045413835,
+          "p50": 139.4805676969818,
+          "p95": 139.72601445556938,
+          "stddev": 0.6089121870842441,
+          "unit": "tok/s"
+        },
+        "E2E latency": {
+          "count": 3,
+          "max": 923.593922,
+          "mean": 919.0614099999999,
+          "min": 915.89975,
+          "p50": 917.690558,
+          "p95": 923.0035856,
+          "stddev": 4.026101972854631,
+          "unit": "ms"
+        },
+        "Energy J/tok [gpu+cpu_pkg]": {
+          "count": 3,
+          "max": 2.5358119062448776,
+          "mean": 2.465713466152042,
+          "min": 2.3735007500072176,
+          "p50": 2.487827742204031,
+          "p95": 2.531013489840793,
+          "stddev": 0.08338470341602947,
+          "unit": "J"
+        },
+        "Energy Wh/tok [gpu+cpu_pkg]": {
+          "count": 3,
+          "max": 0.0007043921961791327,
+          "mean": 0.0006849204072644561,
+          "min": 0.0006593057638908938,
+          "p50": 0.0006910632617233419,
+          "p95": 0.0007030593027335536,
+          "stddev": 2.316241761556374e-05,
+          "unit": "Wh"
+        },
+        "Model load": {
+          "count": 1,
+          "max": 2165.629841,
+          "mean": 2165.629841,
+          "min": 2165.629841,
+          "p50": 2165.629841,
+          "p95": 2165.629841,
+          "stddev": 0.0,
+          "unit": "ms"
+        },
+        "Prompt tok/s": {
+          "count": 3,
+          "max": 5064.153683559886,
+          "mean": 4926.428136848374,
+          "min": 4766.095479543786,
+          "p50": 4949.035247441451,
+          "p95": 5052.641839948043,
+          "stddev": 150.30962820907908,
+          "unit": "tok/s"
+        },
+        "Tokens generated": {
+          "count": 3,
+          "max": 128.0,
+          "mean": 128.0,
+          "min": 128.0,
+          "p50": 128.0,
+          "p95": 128.0,
+          "stddev": 0.0,
+          "unit": "count"
+        }
+      },
+      "target": "LOKEN",
+      "url": "http://127.0.0.1:11435"
+    },
+    {
+      "coherence_pass": null,
+      "first_response_preview": "",
+      "iteration_errors": [],
+      "iterations": [],
+      "load_error": "not run: paired with safetensors weights only",
+      "load_time_ms": null,
+      "model": "qwen3:latest",
+      "model_fingerprint": null,
+      "num_ctx": 4096,
+      "prompt": "100",
+      "prompt_chars": 0,
+      "quality": null,
+      "settings": {
+        "keep_alive": "30m",
+        "model_digest": "a01413b41f2355f529c1b02bbe97544d5f7e5f82f25e7fe835da249282856fd8",
+        "request_timeout_s": 7200,
+        "running_format": null
+      },
+      "stats": {},
+      "target": "vLLM",
+      "url": ""
+    }
+  ],
+  "schema": "loken/2",
+  "subjects": {
+    "LOKEN": {
+      "devices": {
+        "compiled": {
+          "audio": true,
+          "cuda": true,
+          "image": true,
+          "midi": true,
+          "opencl": true,
+          "video": true,
+          "vulkan": false
+        },
+        "devices": [
+          {
+            "backend": "cuda",
+            "name": "NVIDIA GeForce RTX 5070 Ti",
+            "status": "available",
+            "type": "CUDA"
+          },
+          {
+            "backend": "cuda",
+            "name": "NVIDIA GeForce RTX 5060 Ti",
+            "status": "available",
+            "type": "CUDA"
+          },
+          {
+            "backend": "cpu",
+            "name": "CPU (32 cores)",
+            "status": "available",
+            "type": "CPU"
+          }
+        ]
+      },
+      "says": {
+        "commit": "f53edb690",
+        "loken": "0.5.0",
+        "version": "0.5.0"
+      },
+      "url": "http://127.0.0.1:11435"
+    },
+    "Ollama": {
+      "devices": null,
+      "says": {
+        "version": "0.40.16"
+      },
+      "url": "http://127.0.0.1:11434"
+    }
+  },
+  "timestamp": "2026-11-15",
+  "vllm_version": "0.33.0"
+}
