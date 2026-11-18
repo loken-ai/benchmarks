@@ -1,0 +1,919 @@
+{
+  "config": {
+    "carbon_intensity_gco2_per_kwh": 50.0,
+    "custom_prompt": null,
+    "energy_measure": true,
+    "gpu_sample": true,
+    "iterations": 3,
+    "max_tokens": 128,
+    "models": [
+      "gpt-oss:latest"
+    ],
+    "num_ctx": [
+      131072
+    ],
+    "num_gpu": null,
+    "prompts": [
+      "100"
+    ],
+    "quality_base_sha256": null,
+    "replay_trace_sha256": null,
+    "session_id": null,
+    "streaming": false,
+    "top_logprobs": null,
+    "unique_prompt": true,
+    "warmup": 0
+  },
+  "engine_build": 1794871364,
+  "idle_energy_baseline": null,
+  "lokprof_version": "0.6.0-dev+g919485a05",
+  "machine": {
+    "cpu": "AMD Ryzen 9 9950X3D 16-Core Processor",
+    "cpu_flags": [
+      "avx2",
+      "fma",
+      "bmi2",
+      "f16c",
+      "avx512f",
+      "avx512bw",
+      "avx512vl",
+      "avx512_vnni",
+      "avx512_bf16"
+    ],
+    "driver": "620.70.06",
+    "gpus": [
+      {
+        "arch": "sm_120",
+        "index": 0,
+        "name": "NVIDIA GeForce RTX 5070 Ti",
+        "pcie_gen": 5,
+        "pcie_width": 8,
+        "power_cap_w": 300,
+        "vendor": "nvidia",
+        "vram_mib": 16303
+      },
+      {
+        "arch": "sm_120",
+        "index": 1,
+        "name": "NVIDIA GeForce RTX 5060 Ti",
+        "pcie_gen": 5,
+        "pcie_width": 8,
+        "power_cap_w": 180,
+        "vendor": "nvidia",
+        "vram_mib": 16311
+      }
+    ],
+    "hardware_id": "de70d1e2f726faf5",
+    "host_id": "12973014bbf73a88",
+    "kernel": "6.12.115+deb13.1-amd64",
+    "os": "Debian GNU/Linux 13 (trixie)",
+    "ram_gib": 60,
+    "sockets": 1,
+    "threads": 32
+  },
+  "ollama_version": "0.40.16",
+  "protocol": {
+    "cards_by_uuid": null,
+    "engines_seen": [
+      "llama-server",
+      "ollama"
+    ],
+    "gpu_temps_c_at_start": [
+      51,
+      46
+    ],
+    "iterations": 3,
+    "max_tokens": 128,
+    "prefix_reuse_offered": false,
+    "sampling": {
+      "/api/generate": {
+        "frequency_penalty": 0.0,
+        "presence_penalty": 0.0,
+        "repeat_penalty": 1.0,
+        "temperature": 0.0
+      },
+      "/v1/completions": {
+        "frequency_penalty": 0.0,
+        "presence_penalty": 0.0,
+        "repetition_penalty": 1.0,
+        "temperature": 0.0
+      }
+    },
+    "streaming": false,
+    "unique_prompt": true,
+    "warmup": 0
+  },
+  "results": [
+    {
+      "coherence_pass": false,
+      "first_response_preview": "... (the rest is truncated) We have to produce a summary of the text. The text is the opening of Moby-Dick by Herman Mel...",
+      "iteration_errors": [],
+      "iterations": [
+        {
+          "coherence_pass": true,
+          "coherence_rule": null,
+          "completion_tok_s": 21.412906760469724,
+          "degenerate": false,
+          "e2e_latency_ms": 5977.703141,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 535.43694,
+            "cpu_rapl_available": true,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 5.998109539,
+            "energy_j": 1125.6889400003279,
+            "gco2_per_tok": 0.00012214506727434112,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 590.2520000003278,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": null,
+            "j_per_tok": 8.794444843752562,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": 0.0024429013454868227
+          },
+          "finish_reason": "length",
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 55.98907017543862,
+              "power_peak_w": 100.321,
+              "samples": 57,
+              "util_avg_pct": 9,
+              "util_peak_pct": 84,
+              "vram_avg_mb": 4631,
+              "vram_peak_mb": 10523
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 38.29764912280703,
+              "power_peak_w": 100.664,
+              "samples": 57,
+              "util_avg_pct": 16,
+              "util_peak_pct": 85,
+              "vram_avg_mb": 4589,
+              "vram_peak_mb": 10415
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 8,
+            "cpu_peak_pct": 94,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 89,
+            "rss_peak_mb": 567,
+            "samples": 31,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 1,
+          "load_time_ms": 4523.663791,
+          "prompt_tok_s": 298.14307492391725,
+          "prompt_tokens": 106,
+          "response_preview": "... (the rest is truncated) We have to produce a summary of the text. The text is the opening of Moby-Dick by Herman Mel...",
+          "server_decode_tok_s": 116.71505478312882,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 5977.703141
+        },
+        {
+          "coherence_pass": true,
+          "coherence_rule": null,
+          "completion_tok_s": 112.49220041260645,
+          "degenerate": false,
+          "e2e_latency_ms": 1137.856665,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 122.661396,
+            "cpu_rapl_available": true,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 1.159578913,
+            "energy_j": 334.7423960002384,
+            "gco2_per_tok": 3.6321874565998085e-05,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 212.08100000023842,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": null,
+            "j_per_tok": 2.6151749687518624,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": 0.0007264374913199617
+          },
+          "finish_reason": "length",
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 85.40516666666667,
+              "power_peak_w": 93.811,
+              "samples": 12,
+              "util_avg_pct": 22,
+              "util_peak_pct": 27,
+              "vram_avg_mb": 10523,
+              "vram_peak_mb": 10523
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 90.63075000000002,
+              "power_peak_w": 107.689,
+              "samples": 12,
+              "util_avg_pct": 53,
+              "util_peak_pct": 72,
+              "vram_avg_mb": 10415,
+              "vram_peak_mb": 10415
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 0,
+            "cpu_peak_pct": 4,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 44,
+            "rss_peak_mb": 44,
+            "samples": 7,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 2,
+          "load_time_ms": 1.525576,
+          "prompt_tok_s": 2414.5235871620234,
+          "prompt_tokens": 106,
+          "response_preview": "... (the rest of the text is truncated) We have a text that is presumably the first part of Moby Dick. The user says: \"P...",
+          "server_decode_tok_s": 117.67269156976289,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 1137.856665
+        },
+        {
+          "coherence_pass": false,
+          "coherence_rule": "few_distinct_windows",
+          "completion_tok_s": 112.46374745378449,
+          "degenerate": true,
+          "e2e_latency_ms": 1138.1445390000001,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 120.892292,
+            "cpu_rapl_available": true,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 1.159762317,
+            "energy_j": 330.2862919975264,
+            "gco2_per_tok": 3.583835633653715e-05,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 209.3939999975264,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": null,
+            "j_per_tok": 2.580361656230675,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": 0.0007167671267307431
+          },
+          "finish_reason": "length",
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 84.14441666666667,
+              "power_peak_w": 93.526,
+              "samples": 12,
+              "util_avg_pct": 21,
+              "util_peak_pct": 27,
+              "vram_avg_mb": 10523,
+              "vram_peak_mb": 10523
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 91.31458333333335,
+              "power_peak_w": 107.221,
+              "samples": 12,
+              "util_avg_pct": 53,
+              "util_peak_pct": 73,
+              "vram_avg_mb": 10415,
+              "vram_peak_mb": 10415
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 0,
+            "cpu_peak_pct": 0,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 43,
+            "rss_peak_mb": 43,
+            "samples": 7,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 3,
+          "load_time_ms": 2.128205,
+          "prompt_tok_s": 2415.2387896463724,
+          "prompt_tokens": 106,
+          "response_preview": "per, etc. etc. The question: \"What is the correct way to cite a passage from a public domain text? I am writing a paper ...",
+          "server_decode_tok_s": 117.67745162123673,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 1138.1445390000001
+        }
+      ],
+      "load_error": null,
+      "load_time_ms": 2781.181614,
+      "model": "gpt-oss:latest",
+      "model_fingerprint": {
+        "modified_at": "2026-04-10",
+        "parameter_size": "20.9B",
+        "quantization_level": "MXFP4"
+      },
+      "num_ctx": 131072,
+      "prompt": "100",
+      "prompt_chars": 451,
+      "quality": null,
+      "settings": {
+        "keep_alive": "30m",
+        "model_digest": "c97da73d3a2e72f1014546a1784ee9d2dbd1a7096fa1d4994c3d62da81103b8e",
+        "request_timeout_s": 7200,
+        "running_format": null
+      },
+      "stats": {
+        "Carbon gCO2/tok [gpu+cpu_pkg]": {
+          "count": 3,
+          "max": 0.00012214506727434112,
+          "mean": 6.476843272562546e-05,
+          "min": 3.583835633653715e-05,
+          "p50": 3.6321874565998085e-05,
+          "p95": 0.00011356274800350681,
+          "stddev": 4.969021122487013e-05,
+          "unit": "g"
+        },
+        "Completion tok/s": {
+          "count": 3,
+          "max": 112.49220041260645,
+          "mean": 82.12295154228688,
+          "min": 21.412906760469724,
+          "p50": 112.46374745378449,
+          "p95": 112.48935511672425,
+          "stddev": 52.57644297069174,
+          "unit": "tok/s"
+        },
+        "E2E latency": {
+          "count": 3,
+          "max": 5977.703141,
+          "mean": 2751.2347816666665,
+          "min": 1137.856665,
+          "p50": 1138.1445390000001,
+          "p95": 5493.7472808,
+          "stddev": 2794.2035673966575,
+          "unit": "ms"
+        },
+        "Energy J/tok [gpu+cpu_pkg]": {
+          "count": 3,
+          "max": 8.794444843752562,
+          "mean": 4.663327156245033,
+          "min": 2.580361656230675,
+          "p50": 2.6151749687518624,
+          "p95": 8.176517856252492,
+          "stddev": 3.57769520819065,
+          "unit": "J"
+        },
+        "Energy Wh/tok [gpu+cpu_pkg]": {
+          "count": 3,
+          "max": 0.0024429013454868227,
+          "mean": 0.0012953686545125092,
+          "min": 0.0007167671267307431,
+          "p50": 0.0007264374913199617,
+          "p95": 0.0022712549600701366,
+          "stddev": 0.000993804224497403,
+          "unit": "Wh"
+        },
+        "Model load": {
+          "count": 1,
+          "max": 2781.181614,
+          "mean": 2781.181614,
+          "min": 2781.181614,
+          "p50": 2781.181614,
+          "p95": 2781.181614,
+          "stddev": 0.0,
+          "unit": "ms"
+        },
+        "Prompt tok/s": {
+          "count": 3,
+          "max": 2415.2387896463724,
+          "mean": 1709.3018172441043,
+          "min": 298.14307492391725,
+          "p50": 2414.5235871620234,
+          "p95": 2415.1672693979376,
+          "stddev": 1222.099371941033,
+          "unit": "tok/s"
+        },
+        "Tokens generated": {
+          "count": 3,
+          "max": 128.0,
+          "mean": 128.0,
+          "min": 128.0,
+          "p50": 128.0,
+          "p95": 128.0,
+          "stddev": 0.0,
+          "unit": "count"
+        }
+      },
+      "target": "Ollama",
+      "url": "http://127.0.0.1:11434"
+    },
+    {
+      "coherence_pass": false,
+      "first_response_preview": "... (the rest of the text is truncated).\" We need to produce a summary of the text. The text is the opening of Moby-Dick...",
+      "iteration_errors": [],
+      "iterations": [
+        {
+          "coherence_pass": false,
+          "coherence_rule": "few_distinct_windows",
+          "completion_tok_s": 37.347598201782006,
+          "degenerate": true,
+          "e2e_latency_ms": 3427.26189,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 331.498649,
+            "cpu_rapl_available": true,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 3.4470239080000002,
+            "energy_j": 753.3266490016093,
+            "gco2_per_tok": 8.174117285173713e-05,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 421.8280000016093,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": null,
+            "j_per_tok": 5.885364445325073,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": 0.0016348234570347424
+          },
+          "finish_reason": "length",
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 71.46830555555555,
+              "power_peak_w": 141.003,
+              "samples": 36,
+              "util_avg_pct": 22,
+              "util_peak_pct": 65,
+              "vram_avg_mb": 7327,
+              "vram_peak_mb": 14066
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 37.38433333333335,
+              "power_peak_w": 71.096,
+              "samples": 36,
+              "util_avg_pct": 13,
+              "util_peak_pct": 58,
+              "vram_avg_mb": 3994,
+              "vram_peak_mb": 5355
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 144,
+            "cpu_peak_pct": 643,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 5679,
+            "rss_peak_mb": 13307,
+            "samples": 19,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 1,
+          "load_time_ms": 7.109188,
+          "prompt_tok_s": 2616.3742921874496,
+          "prompt_tokens": 106,
+          "response_preview": "... (the rest of the text is truncated).\" We need to produce a summary of the text. The text is the opening of Moby-Dick...",
+          "server_decode_tok_s": 176.09152944948616,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 3427.26189
+        },
+        {
+          "coherence_pass": true,
+          "coherence_rule": null,
+          "completion_tok_s": 132.58036854143953,
+          "degenerate": false,
+          "e2e_latency_ms": 965.452136,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 89.422591,
+            "cpu_rapl_available": true,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 0.985296264,
+            "energy_j": 306.5835909984503,
+            "gco2_per_tok": 3.3266448676047124e-05,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 217.16099999845028,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": null,
+            "j_per_tok": 2.395184304675393,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": 0.0006653289735209424
+          },
+          "finish_reason": "length",
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 128.41790909090906,
+              "power_peak_w": 144.399,
+              "samples": 11,
+              "util_avg_pct": 38,
+              "util_peak_pct": 62,
+              "vram_avg_mb": 10322,
+              "vram_peak_mb": 10322
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 60.09090909090909,
+              "power_peak_w": 64.44,
+              "samples": 11,
+              "util_avg_pct": 32,
+              "util_peak_pct": 40,
+              "vram_avg_mb": 5325,
+              "vram_peak_mb": 5325
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 80,
+            "cpu_peak_pct": 99,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 4293,
+            "rss_peak_mb": 4293,
+            "samples": 6,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 2,
+          "load_time_ms": 6.909665,
+          "prompt_tok_s": 3130.993286057501,
+          "prompt_tokens": 106,
+          "response_preview": "... (the rest is the text of Moby-Dick) The text is: [the entire text of Moby-Dill? Actually it's Moby-Dick. The text is...",
+          "server_decode_tok_s": 138.8445667985192,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 965.452136
+        },
+        {
+          "coherence_pass": true,
+          "coherence_rule": null,
+          "completion_tok_s": 137.16091849260425,
+          "degenerate": false,
+          "e2e_latency_ms": 933.210432,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 83.487413,
+            "cpu_rapl_available": true,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 0.952536672,
+            "energy_j": 279.202412999851,
+            "gco2_per_tok": 3.0295400716129665e-05,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 195.714999999851,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": null,
+            "j_per_tok": 2.181268851561336,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": 0.0006059080143225933
+          },
+          "finish_reason": "length",
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 144.2652,
+              "power_peak_w": 159.944,
+              "samples": 10,
+              "util_avg_pct": 56,
+              "util_peak_pct": 65,
+              "vram_avg_mb": 10322,
+              "vram_peak_mb": 10322
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 63.235,
+              "power_peak_w": 67.928,
+              "samples": 10,
+              "util_avg_pct": 27,
+              "util_peak_pct": 38,
+              "vram_avg_mb": 5325,
+              "vram_peak_mb": 5325
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 77,
+            "cpu_peak_pct": 99,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 4293,
+            "rss_peak_mb": 4293,
+            "samples": 6,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 3,
+          "load_time_ms": 7.492414,
+          "prompt_tok_s": 3139.3315296985206,
+          "prompt_tokens": 106,
+          "response_preview": "... (the rest is from the classic novel).\" We need to identify the source of the text. The text is from \"Moby-Dick\" by H...",
+          "server_decode_tok_s": 143.89780859691106,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 933.210432
+        }
+      ],
+      "load_error": null,
+      "load_time_ms": 3010.376662,
+      "model": "gpt-oss:latest",
+      "model_fingerprint": {
+        "modified_at": "",
+        "parameter_size": "20.9B",
+        "quantization_level": "MXFP4"
+      },
+      "num_ctx": 131072,
+      "prompt": "100",
+      "prompt_chars": 451,
+      "quality": null,
+      "settings": {
+        "keep_alive": "30m",
+        "model_digest": "sha256:776beb3adb235076157cfea408b8ea2a2d25eae99d7f5da997f607f6b69fa0fa",
+        "request_timeout_s": 7200,
+        "running_format": "bf16+q8_0+mxfp4"
+      },
+      "stats": {
+        "Carbon gCO2/tok [gpu+cpu_pkg]": {
+          "count": 3,
+          "max": 8.174117285173713e-05,
+          "mean": 4.84343407479713e-05,
+          "min": 3.0295400716129665e-05,
+          "p50": 3.3266448676047124e-05,
+          "p95": 7.689370043416811e-05,
+          "stddev": 2.8882790379157738e-05,
+          "unit": "g"
+        },
+        "Completion tok/s": {
+          "count": 3,
+          "max": 137.16091849260425,
+          "mean": 102.36296174527526,
+          "min": 37.347598201782006,
+          "p50": 132.58036854143953,
+          "p95": 136.70286349748778,
+          "stddev": 56.35151712228538,
+          "unit": "tok/s"
+        },
+        "E2E latency": {
+          "count": 3,
+          "max": 3427.26189,
+          "mean": 1775.3081526666667,
+          "min": 933.210432,
+          "p50": 965.452136,
+          "p95": 3181.0809145999997,
+          "stddev": 1430.724727047933,
+          "unit": "ms"
+        },
+        "Energy J/tok [gpu+cpu_pkg]": {
+          "count": 3,
+          "max": 5.885364445325073,
+          "mean": 3.4872725338539343,
+          "min": 2.181268851561336,
+          "p50": 2.395184304675393,
+          "p95": 5.536346431260104,
+          "stddev": 2.079560907299357,
+          "unit": "J"
+        },
+        "Energy Wh/tok [gpu+cpu_pkg]": {
+          "count": 3,
+          "max": 0.0016348234570347424,
+          "mean": 0.0009686868149594259,
+          "min": 0.0006059080143225933,
+          "p50": 0.0006653289735209424,
+          "p95": 0.0015378740086833622,
+          "stddev": 0.0005776558075831546,
+          "unit": "Wh"
+        },
+        "Model load": {
+          "count": 1,
+          "max": 3010.376662,
+          "mean": 3010.376662,
+          "min": 3010.376662,
+          "p50": 3010.376662,
+          "p95": 3010.376662,
+          "stddev": 0.0,
+          "unit": "ms"
+        },
+        "Prompt tok/s": {
+          "count": 3,
+          "max": 3139.3315296985206,
+          "mean": 2962.2330359811567,
+          "min": 2616.3742921874496,
+          "p50": 3130.993286057501,
+          "p95": 3138.4977053344187,
+          "stddev": 299.55147232266324,
+          "unit": "tok/s"
+        },
+        "Tokens generated": {
+          "count": 3,
+          "max": 128.0,
+          "mean": 128.0,
+          "min": 128.0,
+          "p50": 128.0,
+          "p95": 128.0,
+          "stddev": 0.0,
+          "unit": "count"
+        }
+      },
+      "target": "LOKEN",
+      "url": "http://127.0.0.1:11435"
+    },
+    {
+      "coherence_pass": null,
+      "first_response_preview": "",
+      "iteration_errors": [],
+      "iterations": [],
+      "load_error": "not run: paired with safetensors weights only",
+      "load_time_ms": null,
+      "model": "gpt-oss:latest",
+      "model_fingerprint": null,
+      "num_ctx": 131072,
+      "prompt": "100",
+      "prompt_chars": 0,
+      "quality": null,
+      "settings": {
+        "keep_alive": "30m",
+        "model_digest": "c97da73d3a2e72f1014546a1784ee9d2dbd1a7096fa1d4994c3d62da81103b8e",
+        "request_timeout_s": 7200,
+        "running_format": null
+      },
+      "stats": {},
+      "target": "vLLM",
+      "url": ""
+    }
+  ],
+  "schema": "loken/2",
+  "subjects": {
+    "LOKEN": {
+      "devices": {
+        "compiled": {
+          "audio": true,
+          "cpu": false,
+          "cuda": true,
+          "image": true,
+          "metrics": false,
+          "midi": true,
+          "opencl": true,
+          "rocm": true,
+          "video": true,
+          "vulkan": true
+        },
+        "devices": [
+          {
+            "backend": "cuda",
+            "name": "NVIDIA GeForce RTX 5070 Ti",
+            "status": "available",
+            "type": "CUDA"
+          },
+          {
+            "backend": "cuda",
+            "name": "NVIDIA GeForce RTX 5060 Ti",
+            "status": "available",
+            "type": "CUDA"
+          },
+          {
+            "backend": "cpu",
+            "name": "CPU (32 cores)",
+            "status": "available",
+            "type": "CPU"
+          }
+        ]
+      },
+      "says": {
+        "commit": "58db5578b",
+        "loken": "0.5.0-dev+g58db5578b",
+        "version": "0.5.0-dev+g58db5578b"
+      },
+      "url": "http://127.0.0.1:11435"
+    },
+    "Ollama": {
+      "devices": null,
+      "says": {
+        "version": "0.40.16"
+      },
+      "url": "http://127.0.0.1:11434"
+    }
+  },
+  "timestamp": "2026-11-17",
+  "vllm_version": "0.33.0"
+}

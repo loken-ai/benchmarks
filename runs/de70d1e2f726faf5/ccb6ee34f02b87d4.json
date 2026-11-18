@@ -1,0 +1,919 @@
+{
+  "config": {
+    "carbon_intensity_gco2_per_kwh": 50.0,
+    "custom_prompt": null,
+    "energy_measure": true,
+    "gpu_sample": true,
+    "iterations": 3,
+    "max_tokens": 128,
+    "models": [
+      "deepseek-r1:70b"
+    ],
+    "num_ctx": [
+      131072
+    ],
+    "num_gpu": null,
+    "prompts": [
+      "1000"
+    ],
+    "quality_base_sha256": null,
+    "replay_trace_sha256": null,
+    "session_id": null,
+    "streaming": false,
+    "top_logprobs": null,
+    "unique_prompt": true,
+    "warmup": 0
+  },
+  "engine_build": 1794871364,
+  "idle_energy_baseline": null,
+  "lokprof_version": "0.6.0-dev+g919485a05",
+  "machine": {
+    "cpu": "AMD Ryzen 9 9950X3D 16-Core Processor",
+    "cpu_flags": [
+      "avx2",
+      "fma",
+      "bmi2",
+      "f16c",
+      "avx512f",
+      "avx512bw",
+      "avx512vl",
+      "avx512_vnni",
+      "avx512_bf16"
+    ],
+    "driver": "620.70.06",
+    "gpus": [
+      {
+        "arch": "sm_120",
+        "index": 0,
+        "name": "NVIDIA GeForce RTX 5070 Ti",
+        "pcie_gen": 5,
+        "pcie_width": 8,
+        "power_cap_w": 300,
+        "vendor": "nvidia",
+        "vram_mib": 16303
+      },
+      {
+        "arch": "sm_120",
+        "index": 1,
+        "name": "NVIDIA GeForce RTX 5060 Ti",
+        "pcie_gen": 5,
+        "pcie_width": 8,
+        "power_cap_w": 180,
+        "vendor": "nvidia",
+        "vram_mib": 16311
+      }
+    ],
+    "hardware_id": "de70d1e2f726faf5",
+    "host_id": "12973014bbf73a88",
+    "kernel": "6.12.115+deb13.1-amd64",
+    "os": "Debian GNU/Linux 13 (trixie)",
+    "ram_gib": 60,
+    "sockets": 1,
+    "threads": 32
+  },
+  "ollama_version": "0.40.16",
+  "protocol": {
+    "cards_by_uuid": null,
+    "engines_seen": [
+      "llama-server",
+      "ollama"
+    ],
+    "gpu_temps_c_at_start": [
+      47,
+      41
+    ],
+    "iterations": 3,
+    "max_tokens": 128,
+    "prefix_reuse_offered": false,
+    "sampling": {
+      "/api/generate": {
+        "frequency_penalty": 0.0,
+        "presence_penalty": 0.0,
+        "repeat_penalty": 1.0,
+        "temperature": 0.0
+      },
+      "/v1/completions": {
+        "frequency_penalty": 0.0,
+        "presence_penalty": 0.0,
+        "repetition_penalty": 1.0,
+        "temperature": 0.0
+      }
+    },
+    "streaming": false,
+    "unique_prompt": true,
+    "warmup": 0
+  },
+  "results": [
+    {
+      "coherence_pass": true,
+      "first_response_preview": "miles to see it? No. And why? Because you could not see water there. So, in the absence of water, the land itself become...",
+      "iteration_errors": [],
+      "iterations": [
+        {
+          "coherence_pass": true,
+          "coherence_rule": null,
+          "completion_tok_s": 1.8903863660529683,
+          "degenerate": false,
+          "e2e_latency_ms": 67711.02579799999,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 9798.488102,
+            "cpu_rapl_available": true,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 67.732930004,
+            "energy_j": 14893.900102000476,
+            "gco2_per_tok": 0.0016160915909288712,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 5095.412000000477,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": null,
+            "j_per_tok": 116.35859454687872,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": 0.03232183181857742
+          },
+          "finish_reason": "length",
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 49.62270789865874,
+              "power_peak_w": 139.01,
+              "samples": 671,
+              "util_avg_pct": 6,
+              "util_peak_pct": 99,
+              "vram_avg_mb": 12810,
+              "vram_peak_mb": 14629
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 33.22890014903126,
+              "power_peak_w": 62.191,
+              "samples": 671,
+              "util_avg_pct": 5,
+              "util_peak_pct": 100,
+              "vram_avg_mb": 13265,
+              "vram_peak_mb": 14627
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 0,
+            "cpu_peak_pct": 79,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 40,
+            "rss_peak_mb": 365,
+            "samples": 331,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 1,
+          "load_time_ms": 13321.685524,
+          "prompt_tok_s": 259.6364626346076,
+          "prompt_tokens": 1009,
+          "response_preview": "miles to see it? No. And why? Because you could not see water there. So, in the absence of water, the land itself become...",
+          "server_decode_tok_s": 2.5345941909754544,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 67711.02579799999
+        },
+        {
+          "coherence_pass": true,
+          "coherence_rule": null,
+          "completion_tok_s": 2.35545891360027,
+          "degenerate": false,
+          "e2e_latency_ms": 54341.852138,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 8518.756629,
+            "cpu_rapl_available": true,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 54.373582239,
+            "energy_j": 12783.809628999374,
+            "gco2_per_tok": 0.001387132121202189,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 4265.052999999374,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": null,
+            "j_per_tok": 99.8735127265576,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": 0.02774264242404378
+          },
+          "finish_reason": "length",
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 50.91485501858736,
+              "power_peak_w": 138.107,
+              "samples": 538,
+              "util_avg_pct": 7,
+              "util_peak_pct": 100,
+              "vram_avg_mb": 14187,
+              "vram_peak_mb": 14187
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 34.60142193308551,
+              "power_peak_w": 59.018,
+              "samples": 538,
+              "util_avg_pct": 5,
+              "util_peak_pct": 100,
+              "vram_avg_mb": 14627,
+              "vram_peak_mb": 14627
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 0,
+            "cpu_peak_pct": 4,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 39,
+            "rss_peak_mb": 39,
+            "samples": 267,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 2,
+          "load_time_ms": 5.332054,
+          "prompt_tok_s": 266.5466986381815,
+          "prompt_tokens": 1009,
+          "response_preview": "miles to see it? No. And why? Because you could not see water there. So, in the absence of water, the land itself become...",
+          "server_decode_tok_s": 2.535466119893398,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 54341.852138
+        },
+        {
+          "coherence_pass": true,
+          "coherence_rule": null,
+          "completion_tok_s": 2.3554387602446107,
+          "degenerate": false,
+          "e2e_latency_ms": 54342.317092000005,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 8623.698468,
+            "cpu_rapl_available": true,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 54.363369153,
+            "energy_j": 12936.563468002087,
+            "gco2_per_tok": 0.001403706973524532,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 4312.865000002086,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": null,
+            "j_per_tok": 101.0669020937663,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": 0.02807413947049064
+          },
+          "finish_reason": "length",
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 51.6934574074074,
+              "power_peak_w": 139.706,
+              "samples": 540,
+              "util_avg_pct": 7,
+              "util_peak_pct": 97,
+              "vram_avg_mb": 14187,
+              "vram_peak_mb": 14187
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 35.14460000000003,
+              "power_peak_w": 59.598,
+              "samples": 540,
+              "util_avg_pct": 5,
+              "util_peak_pct": 100,
+              "vram_avg_mb": 14627,
+              "vram_peak_mb": 14627
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 0,
+            "cpu_peak_pct": 4,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 40,
+            "rss_peak_mb": 40,
+            "samples": 265,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 3,
+          "load_time_ms": 1.184831,
+          "prompt_tok_s": 266.07576223849617,
+          "prompt_tokens": 1009,
+          "response_preview": "miles to see it? No. And why? Because you could not see water there. So, in the absence of water, the land itself become...",
+          "server_decode_tok_s": 2.5356122782587254,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 54342.317092000005
+        }
+      ],
+      "load_error": null,
+      "load_time_ms": 11302.226846,
+      "model": "deepseek-r1:70b",
+      "model_fingerprint": {
+        "modified_at": "2026-03-01",
+        "parameter_size": "70.6B",
+        "quantization_level": "Q4_K_M"
+      },
+      "num_ctx": 131072,
+      "prompt": "1000",
+      "prompt_chars": 4384,
+      "quality": null,
+      "settings": {
+        "keep_alive": "30m",
+        "model_digest": "d37b54d01a76512a5adbaa9da4ee1c00833bf2dfefb0d4cc54351ba529e0f4da",
+        "request_timeout_s": 7200,
+        "running_format": null
+      },
+      "stats": {
+        "Carbon gCO2/tok [gpu+cpu_pkg]": {
+          "count": 3,
+          "max": 0.0016160915909288712,
+          "mean": 0.0014689768952185307,
+          "min": 0.001387132121202189,
+          "p50": 0.001403706973524532,
+          "p95": 0.001594853129188437,
+          "stddev": 0.00012767431888534365,
+          "unit": "g"
+        },
+        "Completion tok/s": {
+          "count": 3,
+          "max": 2.35545891360027,
+          "mean": 2.200428013299283,
+          "min": 1.8903863660529683,
+          "p50": 2.3554387602446107,
+          "p95": 2.355456898264704,
+          "stddev": 0.26850394293556595,
+          "unit": "tok/s"
+        },
+        "E2E latency": {
+          "count": 3,
+          "max": 67711.02579799999,
+          "mean": 58798.39834266666,
+          "min": 54341.852138,
+          "p50": 54342.317092000005,
+          "p95": 66374.15492739998,
+          "stddev": 7718.561794286327,
+          "unit": "ms"
+        },
+        "Energy J/tok [gpu+cpu_pkg]": {
+          "count": 3,
+          "max": 116.35859454687872,
+          "mean": 105.76633645573422,
+          "min": 99.8735127265576,
+          "p50": 101.0669020937663,
+          "p95": 114.82942530156747,
+          "stddev": 9.192550959744741,
+          "unit": "J"
+        },
+        "Energy Wh/tok [gpu+cpu_pkg]": {
+          "count": 3,
+          "max": 0.03232183181857742,
+          "mean": 0.029379537904370617,
+          "min": 0.02774264242404378,
+          "p50": 0.02807413947049064,
+          "p95": 0.031897062583768745,
+          "stddev": 0.0025534863777068725,
+          "unit": "Wh"
+        },
+        "Model load": {
+          "count": 1,
+          "max": 11302.226846,
+          "mean": 11302.226846,
+          "min": 11302.226846,
+          "p50": 11302.226846,
+          "p95": 11302.226846,
+          "stddev": 0.0,
+          "unit": "ms"
+        },
+        "Prompt tok/s": {
+          "count": 3,
+          "max": 266.5466986381815,
+          "mean": 264.0863078370951,
+          "min": 259.6364626346076,
+          "p50": 266.07576223849617,
+          "p95": 266.499604998213,
+          "stddev": 3.8608660968379724,
+          "unit": "tok/s"
+        },
+        "Tokens generated": {
+          "count": 3,
+          "max": 128.0,
+          "mean": 128.0,
+          "min": 128.0,
+          "p50": 128.0,
+          "p95": 128.0,
+          "stddev": 0.0,
+          "unit": "count"
+        }
+      },
+      "target": "Ollama",
+      "url": "http://127.0.0.1:11434"
+    },
+    {
+      "coherence_pass": false,
+      "first_response_preview": "miles to see it? No. And why? Because you could not see water there. So, in the absence of water, the land itself become...",
+      "iteration_errors": [],
+      "iterations": [
+        {
+          "coherence_pass": true,
+          "coherence_rule": null,
+          "completion_tok_s": 2.0939254207890925,
+          "degenerate": false,
+          "e2e_latency_ms": 61129.206766,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 9404.519446,
+            "cpu_rapl_available": true,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 61.151252621,
+            "energy_j": 14758.310446001133,
+            "gco2_per_tok": 0.001601379171658109,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 5353.7910000011325,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": null,
+            "j_per_tok": 115.29930035938385,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": 0.03202758343316218
+          },
+          "finish_reason": "length",
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 55.153258223684226,
+              "power_peak_w": 108.017,
+              "samples": 608,
+              "util_avg_pct": 4,
+              "util_peak_pct": 98,
+              "vram_avg_mb": 14304,
+              "vram_peak_mb": 14388
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 41.71792927631587,
+              "power_peak_w": 97.785,
+              "samples": 608,
+              "util_avg_pct": 8,
+              "util_peak_pct": 99,
+              "vram_avg_mb": 14390,
+              "vram_peak_mb": 14605
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 1237,
+            "cpu_peak_pct": 2820,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 39965,
+            "rss_peak_mb": 40051,
+            "samples": 303,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 1,
+          "load_time_ms": 45.567696,
+          "prompt_tok_s": 73.36249050556408,
+          "prompt_tokens": 1009,
+          "response_preview": "miles to see it? No. And why? Because you could not see water there. So, in the absence of water, the land itself become...",
+          "server_decode_tok_s": 2.7045644849767077,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 61129.206766
+        },
+        {
+          "coherence_pass": false,
+          "coherence_rule": "few_distinct_windows",
+          "completion_tok_s": 2.8637751382927226,
+          "degenerate": true,
+          "e2e_latency_ms": 44696.246674,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 6746.784103,
+            "cpu_rapl_available": true,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 44.716243772,
+            "energy_j": 10531.917103001311,
+            "gco2_per_tok": 0.0011427861439888575,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 3785.1330000013113,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": null,
+            "j_per_tok": 82.28060236719774,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": 0.022855722879777152
+          },
+          "finish_reason": "length",
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 55.87628314606736,
+              "power_peak_w": 109.727,
+              "samples": 445,
+              "util_avg_pct": 4,
+              "util_peak_pct": 95,
+              "vram_avg_mb": 14310,
+              "vram_peak_mb": 14550
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 41.714667415730325,
+              "power_peak_w": 98.776,
+              "samples": 445,
+              "util_avg_pct": 6,
+              "util_peak_pct": 99,
+              "vram_avg_mb": 14402,
+              "vram_peak_mb": 14605
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 1892,
+            "cpu_peak_pct": 3218,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 40019,
+            "rss_peak_mb": 40106,
+            "samples": 218,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 2,
+          "load_time_ms": 34.97802,
+          "prompt_tok_s": 40.473488540953,
+          "prompt_tokens": 1009,
+          "response_preview": "miles to see it? No. And why? Because you could not see water there. So, in the absence of water, the land itself become...",
+          "server_decode_tok_s": 6.4877370600520194,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 44696.246674
+        },
+        {
+          "coherence_pass": true,
+          "coherence_rule": null,
+          "completion_tok_s": 3.244595145162621,
+          "degenerate": false,
+          "e2e_latency_ms": 39450.222377000006,
+          "energy": {
+            "carbon_intensity_gco2_per_kwh": 50.0,
+            "complete": true,
+            "cpu_pkg_decode_j": null,
+            "cpu_pkg_energy_j": 6611.217765,
+            "cpu_rapl_available": true,
+            "decode_duration_s": null,
+            "decode_energy_j": null,
+            "domains_counted": [
+              "gpu",
+              "cpu_pkg"
+            ],
+            "dram_decode_j": null,
+            "dram_energy_j": 0.0,
+            "dram_rapl_available": false,
+            "duration_s": 39.470610081,
+            "energy_j": 10412.000764999822,
+            "gco2_per_tok": 0.0011297743885633487,
+            "gpu_decode_j": null,
+            "gpu_energy_j": 3800.782999999821,
+            "gpu_path": "nvml_counter",
+            "gpu_sources": [
+              "nvml_counter"
+            ],
+            "j_per_decode_tok": null,
+            "j_per_tok": 81.34375597656111,
+            "missing_domains": [],
+            "note": null,
+            "wh_per_tok": 0.022595487771266975
+          },
+          "finish_reason": "length",
+          "gpu_samples": [
+            {
+              "gpu_index": 0,
+              "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+              "power_avg_w": 60.8283282442749,
+              "power_peak_w": 106.899,
+              "samples": 393,
+              "util_avg_pct": 6,
+              "util_peak_pct": 98,
+              "vram_avg_mb": 14319,
+              "vram_peak_mb": 14520
+            },
+            {
+              "gpu_index": 1,
+              "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+              "power_avg_w": 47.79546310432565,
+              "power_peak_w": 97.52,
+              "samples": 393,
+              "util_avg_pct": 11,
+              "util_peak_pct": 99,
+              "vram_avg_mb": 14398,
+              "vram_peak_mb": 14605
+            }
+          ],
+          "host_sample": {
+            "cpu_avg_pct": 1496,
+            "cpu_peak_pct": 3358,
+            "procs": [
+              "lokend",
+              "ollama",
+              "python",
+              "vllm"
+            ],
+            "rss_avg_mb": 40003,
+            "rss_peak_mb": 40107,
+            "samples": 195,
+            "swap_peak_mb": 0
+          },
+          "inter_token_latencies_ms": [],
+          "iteration": 3,
+          "load_time_ms": 39.031759,
+          "prompt_tok_s": 68.45775073098453,
+          "prompt_tokens": 1009,
+          "response_preview": "miles to see it? No. And why? Because you could not see water there. So, in the absence of water, the land itself become...",
+          "server_decode_tok_s": 5.188410114634107,
+          "tokens_generated": 128,
+          "ttft_ms": null,
+          "wall_clock_ms": 39450.222377000006
+        }
+      ],
+      "load_error": null,
+      "load_time_ms": 33132.489706,
+      "model": "deepseek-r1:70b",
+      "model_fingerprint": {
+        "modified_at": "",
+        "parameter_size": "70.6B",
+        "quantization_level": "Q4_K_M"
+      },
+      "num_ctx": 131072,
+      "prompt": "1000",
+      "prompt_chars": 4384,
+      "quality": null,
+      "settings": {
+        "keep_alive": "30m",
+        "model_digest": "sha256:5e9a45d7d8b98eb61a65815d36008bfef6fd6ebad6f0be432fb61d83b70550f8",
+        "request_timeout_s": 7200,
+        "running_format": "q4_K+q6_K+q5_K"
+      },
+      "stats": {
+        "Carbon gCO2/tok [gpu+cpu_pkg]": {
+          "count": 3,
+          "max": 0.001601379171658109,
+          "mean": 0.0012913132347367718,
+          "min": 0.0011297743885633487,
+          "p50": 0.0011427861439888575,
+          "p95": 0.0015555198688911838,
+          "stddev": 0.0002686037795229124,
+          "unit": "g"
+        },
+        "Completion tok/s": {
+          "count": 3,
+          "max": 3.244595145162621,
+          "mean": 2.734098568081478,
+          "min": 2.0939254207890925,
+          "p50": 2.8637751382927226,
+          "p95": 3.2065131444756307,
+          "stddev": 0.5861929829789646,
+          "unit": "tok/s"
+        },
+        "E2E latency": {
+          "count": 3,
+          "max": 61129.206766,
+          "mean": 48425.22527233334,
+          "min": 39450.222377000006,
+          "p50": 44696.246674,
+          "p95": 59485.9107568,
+          "stddev": 11310.329441477264,
+          "unit": "ms"
+        },
+        "Energy J/tok [gpu+cpu_pkg]": {
+          "count": 3,
+          "max": 115.29930035938385,
+          "mean": 92.97455290104756,
+          "min": 81.34375597656111,
+          "p50": 82.28060236719774,
+          "p95": 111.99743056016524,
+          "stddev": 19.339472125649692,
+          "unit": "J"
+        },
+        "Energy Wh/tok [gpu+cpu_pkg]": {
+          "count": 3,
+          "max": 0.03202758343316218,
+          "mean": 0.025826264694735437,
+          "min": 0.022595487771266975,
+          "p50": 0.022855722879777152,
+          "p95": 0.031110397377823677,
+          "stddev": 0.005372075590458246,
+          "unit": "Wh"
+        },
+        "Model load": {
+          "count": 1,
+          "max": 33132.489706,
+          "mean": 33132.489706,
+          "min": 33132.489706,
+          "p50": 33132.489706,
+          "p95": 33132.489706,
+          "stddev": 0.0,
+          "unit": "ms"
+        },
+        "Prompt tok/s": {
+          "count": 3,
+          "max": 73.36249050556408,
+          "mean": 60.76457659250053,
+          "min": 40.473488540953,
+          "p50": 68.45775073098453,
+          "p95": 72.87201652810612,
+          "stddev": 17.742894600397847,
+          "unit": "tok/s"
+        },
+        "Tokens generated": {
+          "count": 3,
+          "max": 128.0,
+          "mean": 128.0,
+          "min": 128.0,
+          "p50": 128.0,
+          "p95": 128.0,
+          "stddev": 0.0,
+          "unit": "count"
+        }
+      },
+      "target": "LOKEN",
+      "url": "http://127.0.0.1:11435"
+    },
+    {
+      "coherence_pass": null,
+      "first_response_preview": "",
+      "iteration_errors": [],
+      "iterations": [],
+      "load_error": "not run: paired with safetensors weights only",
+      "load_time_ms": null,
+      "model": "deepseek-r1:70b",
+      "model_fingerprint": null,
+      "num_ctx": 131072,
+      "prompt": "1000",
+      "prompt_chars": 0,
+      "quality": null,
+      "settings": {
+        "keep_alive": "30m",
+        "model_digest": "d37b54d01a76512a5adbaa9da4ee1c00833bf2dfefb0d4cc54351ba529e0f4da",
+        "request_timeout_s": 7200,
+        "running_format": null
+      },
+      "stats": {},
+      "target": "vLLM",
+      "url": ""
+    }
+  ],
+  "schema": "loken/2",
+  "subjects": {
+    "LOKEN": {
+      "devices": {
+        "compiled": {
+          "audio": true,
+          "cpu": false,
+          "cuda": true,
+          "image": true,
+          "metrics": false,
+          "midi": true,
+          "opencl": true,
+          "rocm": true,
+          "video": true,
+          "vulkan": true
+        },
+        "devices": [
+          {
+            "backend": "cuda",
+            "name": "NVIDIA GeForce RTX 5070 Ti",
+            "status": "available",
+            "type": "CUDA"
+          },
+          {
+            "backend": "cuda",
+            "name": "NVIDIA GeForce RTX 5060 Ti",
+            "status": "available",
+            "type": "CUDA"
+          },
+          {
+            "backend": "cpu",
+            "name": "CPU (32 cores)",
+            "status": "available",
+            "type": "CPU"
+          }
+        ]
+      },
+      "says": {
+        "commit": "58db5578b",
+        "loken": "0.5.0-dev+g58db5578b",
+        "version": "0.5.0-dev+g58db5578b"
+      },
+      "url": "http://127.0.0.1:11435"
+    },
+    "Ollama": {
+      "devices": null,
+      "says": {
+        "version": "0.40.16"
+      },
+      "url": "http://127.0.0.1:11434"
+    }
+  },
+  "timestamp": "2026-11-17",
+  "vllm_version": "0.33.0"
+}
